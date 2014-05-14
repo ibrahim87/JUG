@@ -1,0 +1,177 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/template/template.xhtml">
+                	
+			<ui:define name="pageTitle">Register</ui:define>		
+			<ui:define name="pageContent">
+			
+			
+			
+			<h:form id="insc">  
+  
+    <p:growl id="growl" sticky="true" showDetail="true"/>  
+  
+    <p:wizard widgetVar="wiz"  
+            flowListener="#{userBean.onFlowProcess}">  
+      
+        <p:tab id="personal" title="Personal">  
+  
+            <p:panel header="Personal Details">  
+              
+                <h:messages errorClass="error"/>  
+                  
+                <h:panelGrid columns="2" columnClasses="label, value" styleClass="grid" cellspacing="12">  
+                    <h:outputText value="First name: *" />  
+                    <p:inputText required="true" label="Firstname"  
+                            value="#{userBean.user.prenom}" />  
+                      
+                    <h:outputText value="Last name: *" />  
+                    <p:inputText required="true" label="Lastname"  
+                      value="#{userBean.user.nom}" />  
+                      
+                      
+                  <h:outputText value="Date of birth:" />  
+          		  <p:calendar id="dateNaiss" value="#{userBean.user.dateNaiss}" pattern="dd/MM/yyyy" showOn="button" required="true" label="Date of birth"/>	 
+                      
+                 <h:outputText value="Gender: " />  
+       			 <p:selectOneRadio id="gender" value="#{userBean.user.sexe}" required="true" label="Gender">  
+            	 <f:selectItem itemLabel="Male" itemValue="Male" />  
+           		 <f:selectItem itemLabel="Female" itemValue="Memale" />  
+       			 </p:selectOneRadio>
+                      
+                    <h:outputText value="Skip to last: " />  
+                    <h:selectBooleanCheckbox value="#{userBean.skip}" />  
+                </h:panelGrid>  
+            </p:panel>  
+        </p:tab>  
+              
+        <p:tab id="access" title="Username">  
+            <p:panel header="Access Details">  
+              
+                <h:messages errorClass="error"/>  
+                  
+                <h:panelGrid columns="2" columnClasses="label, value" cellspacing="12">  
+                    <h:outputText value="Username: *" />  
+                  <h:inputText id="lg" value="#{userBean.user.login}" required="true" requiredMessage="login is required">
+						
+					</h:inputText> 
+                      
+                     <h:outputText value="Password: *: " />  
+          		  <p:password id="password1" value="#{userBean.user.password}" feedback="true" inline="true" required="true" label="Password"/>  
+		
+				
+				 <h:outputText value="Re-enter password: *: " />  
+          		 <p:password id="password2" value="#{userBean.password2}" feedback="true" inline="true" required="true" label="Re-enter password" > 
+                  
+                      </p:password>
+                    <h:outputText value="Skip to last: " />  
+                    <h:selectBooleanCheckbox value="#{userBean.skip}" />  
+                </h:panelGrid>  
+            </p:panel>  
+        </p:tab>  
+              
+        <p:tab id="contact" title="Other informations">  
+            <p:panel header="Mandatory Informations">  
+                  
+                <h:messages errorClass="error"/>  
+              
+                <h:panelGrid columns="2" columnClasses="label, value" cellspacing="12">  
+ 
+					<h:outputText value="Email: *" />  
+         		  <h:inputText id="email1" value="#{userBean.user.mail}" required="true" requiredMessage="email is required" validatorMessage="invalid email">
+						<f:validateRegex pattern="^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$" />
+					</h:inputText>
+        
+          		 
+          		 	<h:outputText value="Re-enter Email: *" />  
+         		<h:inputText id="email2" value="#{userBean.email2}" required="true" requiredMessage="email is required" validatorMessage="invalid email">
+						<f:validateRegex pattern="^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$" />
+					</h:inputText> 
+         		    
+         		              		 	
+             	 <h:outputText value="You are inscribed as : " />  
+       			 <p:selectOneRadio id="role" value="#{userBean.nameRole}" required="true" label="Type of inscription">  
+            	 <f:selectItem itemLabel="Student" itemValue="Student" />  
+           		 <f:selectItem itemLabel="Teacher" itemValue="Teacher" />  
+           		 </p:selectOneRadio> 
+           		 
+           <h:outputText value="Choose picture For you profil: " />  
+       			 
+           <p:fileUpload fileUploadListener="#{userBean.upload}"  
+            mode="advanced"  
+            update="messages"  
+            auto="true"  
+            sizeLimit="100000"   
+            allowTypes="/(\.|\/)(gif|jpe?g|png)$/"/>  
+       			 <p:growl id="messages" showDetail="true"/>  
+                </h:panelGrid>  
+            </p:panel>  
+        </p:tab>  
+              
+        <p:tab id="confirm" title="Confirmation">  
+            <p:panel header="Confirmation">  
+              
+                <h:panelGrid id="confirmation" columns="2" cellspacing="12" >  
+                    <h:outputText value="Firs tname: " />  
+                    <h:outputText styleClass="outputLabel"  
+                                value="#{userBean.user.prenom}" />  
+                      
+                    <h:outputText value="Last name: " />  
+                    <h:outputText  styleClass="outputLabel"  
+                                value="#{userBean.user.nom}"/>  
+                      
+                    <h:outputText value="Date od birth: " />  
+                    <h:outputText styleClass="outputLabel"  
+                                value="#{userBean.user.dateNaiss}" />
+                      
+                    <h:outputText value="Gender : " />  
+                    <h:outputText styleClass="outputLabel"  
+                                value="#{userBean.user.sexe}" />  
+                      
+                    <h:outputText value="Username: " />  
+                    <h:outputText styleClass="outputLabel"  
+                                value="#{userBean.user.login}" />  
+                      
+                    <h:outputText value="Password : " />  
+                    <h:outputText styleClass="outputLabel"  
+                                value="#{userBean.user.password}" />  
+                      
+                    <h:outputText value="Email: " />  
+                    <h:outputText styleClass="outputLabel"  
+                                value="#{userBean.user.mail}" />  
+                      
+                    <h:outputText value="Inscribed as : " />  
+                    <h:outputText styleClass="outputLabel"  
+                                value="#{userBean.nameRole}"/>  
+                      
+                   
+
+   					<h:outputText />  
+                    <h:outputText />  
+                       <h:outputText />  
+                    <h:outputText />  
+                        <h:outputText value=" Profil picture : " />    
+                       <p:graphicImage id="img" width="45px" height="60px" 
+                  		  value="#{userBean.streamedPicture}" styleClass="identityPicture"/>  
+                    <h:outputText />  
+                    <h:outputText />  
+                </h:panelGrid>  
+                  
+                <p:commandButton  id="validate" value="Validate" icon="ui-icon-check"   
+                    style="margin:0" action="#{userBean.createUser()}" update="growl insc"/>  
+              
+            </p:panel>  
+        </p:tab>  
+          
+    </p:wizard>  
+      
+</h:form>  
+      
+			
+			
+			
+			</ui:define>
+</ui:composition>

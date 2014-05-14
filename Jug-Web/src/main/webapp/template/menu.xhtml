@@ -1,0 +1,59 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+                	
+                	
+                	  <h:form> 
+								
+				
+                	<ul class="nav">	
+				<li>
+				<a href="index.html">
+				<h:graphicImage library="images" name="home.png" alt="Magazine" /></a></li>
+				<li class="dropdown">
+					 <h:commandLink value="Home" action="/index" />
+					<ul class="sub-menu">
+						<li> <h:commandLink value="Home" action="/pages/admin/Home" /></li>
+						<li> <h:commandLink value="Home" action="/pages/home" /></li>
+					</ul>
+				</li>
+				<li> <h:commandLink value="About" action="/pages/home" /></li>
+				<li class="dropdown"><h:commandLink value="Page Templates" action="/pages/home" />
+					<ul class="sub-menu">
+						<li><h:commandLink value="Blog" action="/pages/home" /></li>
+						<li><h:commandLink value="Contact" action="/pages/home" /></li>
+						<li><h:commandLink value="Default" action="/pages/home" /></li>
+						<li><h:commandLink value="Error 404" action="/pages/home" /></li>
+						<li><h:commandLink value="Full Width" action="/pages/home" /></li>
+						<li><h:commandLink value="Galleries" action="/pages/home" /></li>
+						<li><h:commandLink value="Galleries1" action="/pages/home" /></li>
+						<li><h:commandLink value="Galleries2" action="/pages/home" /></li>
+						<li><h:commandLink value="Magazine1" action="/pages/home" /></li>
+						<li><h:commandLink value="Magazine2" action="/pages/home" /></li>
+					</ul>
+				</li>
+				<li class="dropdown"><a href="blog.html">Blog</a>
+					<ul class="sub-menu">
+						<li><h:commandLink value="Fashion News" action="/pages/home" /></li>
+						<li><h:commandLink value="Game News" action="/pages/home" /></li>
+						<li><h:commandLink value="Sport News" action="/pages/home" /></li>
+						<li class="dropdown"><h:commandLink value="Technology" action="/pages/home" />
+							<ul class="sub-menu">
+								<li><h:commandLink value="Fashion News" action="/pages/home" /></li>
+								<li><h:commandLink value="Game News" action="/pages/home" /></li>
+								<li><h:commandLink value="Sport News" action="/pages/home" /></li>
+								<li><h:commandLink value="Technology" action="/pages/home" /></li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+				<li><h:commandLink value="register" action="/pages/Register" /></li>
+				<li><h:commandLink value="Single Post" action="/pages/home" /></li>
+				<li><h:commandLink value="Documentation" action="/pages/home" /></li>
+				</ul>
+				
+                	</h:form>
+
+</ui:composition>
