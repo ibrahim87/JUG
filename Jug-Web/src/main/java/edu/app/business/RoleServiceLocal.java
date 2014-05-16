@@ -20,6 +20,7 @@ public interface RoleServiceLocal {
 	void remove(Role role);
 
 	List<Role> findAll();
+	
 	Role findByRoleName(String nom);
 
 }

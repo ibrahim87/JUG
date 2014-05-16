@@ -5,8 +5,6 @@ import java.beans.PropertyChangeSupport;
 import java.io.Serializable;
 import java.util.Date;
 
-
-
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,7 +15,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
-
 
 // TODO: Auto-generated Javadoc
 /**
@@ -35,8 +32,6 @@ public class User implements Serializable {
 
 	/** The Prenom. */
 	private String prenom;
-
-
 
 	/** The mail. */
 	private String mail;
@@ -59,11 +54,6 @@ public class User implements Serializable {
 	/** The role. */
 	private Role role;
 	private Picture picture;
-
-
-
-
-
 
 	private static final long serialVersionUID = 1L;
 
@@ -122,8 +112,6 @@ public class User implements Serializable {
 	 * 
 	 * @return the prenom
 	 */
-
-
 
 	/**
 	 * Gets the mail.
@@ -267,7 +255,7 @@ public class User implements Serializable {
 		super();
 		this.nom = nom;
 		this.prenom = prenom;
-		
+
 		this.mail = mail;
 		this.etat = etat;
 		this.login = login;
@@ -284,7 +272,7 @@ public class User implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		
+
 		result = prime * result + ((login == null) ? 0 : login.hashCode());
 		return result;
 	}
@@ -302,7 +290,7 @@ public class User implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		User other = (User) obj;
-		
+
 		if (login == null) {
 			if (other.login != null)
 				return false;
@@ -317,10 +305,10 @@ public class User implements Serializable {
 	 * @see java.lang.Object#toString()
 	 */
 	public String toString() {
-		return "User [nom=" + nom + ", Prenom=" + prenom 
-				+ ", mail=" + mail + ", etat=" + etat + ", login=" + login
-				+ ", password=" + password + ", sexe=" + sexe + ", date_naiss="
-				+ dateNaiss + "]";
+		return "User [nom=" + nom + ", Prenom=" + prenom + ", mail=" + mail
+				+ ", etat=" + etat + ", login=" + login + ", password="
+				+ password + ", sexe=" + sexe + ", date_naiss=" + dateNaiss
+				+ "]";
 	}
 
 	/**
@@ -344,8 +332,6 @@ public class User implements Serializable {
 		this.role = role;
 	}
 
-
-	
 	@Transient
 	public PropertyChangeSupport getChangeSupport() {
 		return changeSupport;
@@ -385,7 +371,6 @@ public class User implements Serializable {
 		changeSupport.removePropertyChangeListener(listener);
 	}
 
-	
 	/**
 	 * Gets the picture.
 	 * 
@@ -414,13 +399,5 @@ public class User implements Serializable {
 	public void setPrenom(String prenom) {
 		this.prenom = prenom;
 	}
-
-	
-
-	
-	
-
-	
-	
 
 }

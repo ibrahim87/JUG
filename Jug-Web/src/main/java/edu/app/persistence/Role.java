@@ -33,6 +33,17 @@ public class Role implements Serializable {
 		super();
 	}
 
+	
+	public Role(PropertyChangeSupport changeSupport, int id, String name,
+			List<User> users) {
+		super();
+		this.changeSupport = changeSupport;
+		this.id = id;
+		this.name = name;
+		this.users = users;
+	}
+
+
 	@Id
 	public int getId() {
 		return this.id;

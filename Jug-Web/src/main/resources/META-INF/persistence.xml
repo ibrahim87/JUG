@@ -4,13 +4,7 @@
 	
 	
 	<jta-data-source>java:/appDS</jta-data-source>
-	<class>edu.app.persistence.Commentaire</class>
-	<class>edu.app.persistence.Picture</class>
-	<class>edu.app.persistence.Role</class>
-	<class>edu.app.persistence.Contact</class>
-	<class>edu.app.persistence.Page</class>
-	<class>edu.app.persistence.User</class>
-	<class>edu.app.persistence.Article</class>
+	
 	
 	<properties>
 			<property name="hibernate.hbm2ddl.auto" value="update"/>

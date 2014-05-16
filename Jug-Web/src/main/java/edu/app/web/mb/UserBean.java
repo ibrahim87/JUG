@@ -65,7 +65,7 @@ private AnotherEmailSenderRemote anotherEmailSenderRemote;
 	private StreamedContent streamedPic;
 	private DefaultStreamedContent streamedPicture;
 	private String Email;
-	private String destinationTemp = "C:\\Jee\\servers\\s05\\jboss-as-7.1.1\\welcome-content\\temp\\";
+	private String destinationTemp = "E:\\jee\\servers\\s05\\jboss-as-7.1.1\\welcome-content\\temp\\";
 
 
 	public UserBean() {

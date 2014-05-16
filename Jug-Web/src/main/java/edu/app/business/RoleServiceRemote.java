@@ -48,5 +48,6 @@ public interface RoleServiceRemote {
 	 * @return the list
 	 */
 	List<Role> findAll();
+	Role findByRoleName(String nom);
 
 }

@@ -50,10 +50,28 @@
 					</ul>
 				</li>
 				<li><h:commandLink value="register" action="/pages/Register" /></li>
-				<li><h:commandLink value="Single Post" action="/pages/home" /></li>
+				<li><h:commandLink value="login" action="/pages/login" /></li>
 				<li><h:commandLink value="Documentation" action="/pages/home" /></li>
+				<li><h:commandLink  rendered="#{userBean.user}" value="profile" action="/pages/Profile" /></li>
+				
 				</ul>
 				
+				
                 	</h:form>
+                	 <h:form rendered="#{userBean.loggedIn}">
+                	<div class="identityText">
+                		
+						<h:outputText value="#{userBean.user.nom} #{userBean.user.prenom}"/> <br/>
+						You are connect as a <h:outputText value="#{userBean.user.role.name}"/>	 
+						</div>
+						<div class="identityLink">
+						<h:commandLink action="#{userBean.logout}" value="LOG OUT"/>
+						</div>
+						<div class="identityPicture">
+						 <p:graphicImage id="img" width="37px" height="28px"
+                  		  value="#{userBean.streamedPic}"/>  
+                   </div>
+				
+				</h:form>
 
 </ui:composition>

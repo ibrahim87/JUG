@@ -1,0 +1,29 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+                
+                
+                 <h:form rendered="#{userBean.loggedIn}">
+                	<div class="identityText">
+                		
+						<h:outputText value="#{userBean.user.nom} #{userBean.user.prenom}"/> <br/>
+						You are connect as a <h:outputText value="#{userBean.user.role.name}"/>	 
+						</div>
+						<div class="identityLink">
+						<h:commandLink action="#{userBean.logout}" value="LOG OUT"/>
+						</div>
+						<div class="identityPicture">
+						 <p:graphicImage id="img" width="37px" height="28px"
+                  		  value="#{userBean.streamedPic}"/>  
+                   </div>
+				
+				</h:form>
+                
+                
+                
+                
+                	
+
+</ui:composition>
