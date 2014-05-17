@@ -92,8 +92,15 @@ sub {
   bottom: -0.25em;
 }
 
+
+#tofprofil{
+	width:"37px"; 
+	height:"28px";
+	
+}
+
 img {
-  width: auto;
+ /* width: auto;*/
   height: auto;
   max-width: 100%;
   vertical-align: middle;
@@ -4472,6 +4479,7 @@ input[type="submit"].btn.btn-mini {
   display: block;
   float: left;
   margin: 0 10px 0 0;
+  margin-left:-150px;
 }
 
 .navbar .nav.pull-right {

@@ -3,8 +3,6 @@
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui">
-                
-                
                  <h:form rendered="#{userBean.loggedIn}">
                 	<div class="identityText">
                 		
@@ -14,16 +12,6 @@
 						<div class="identityLink">
 						<h:commandLink action="#{userBean.logout}" value="LOG OUT"/>
 						</div>
-						<div class="identityPicture">
-						 <p:graphicImage id="img" width="37px" height="28px"
-                  		  value="#{userBean.streamedPic}"/>  
-                   </div>
-				
-				</h:form>
-                
-                
-                
-                
-                	
+				</h:form>	
 
 </ui:composition>

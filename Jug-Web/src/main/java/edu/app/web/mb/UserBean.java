@@ -57,8 +57,8 @@ private AnotherEmailSenderRemote anotherEmailSenderRemote;
 	private List<User> users = new ArrayList<User>();
 	private List<User> picUsers = new ArrayList<User>();
 	private boolean loggedIn = false;
-	private boolean imTeacher = false;
-	private boolean imStudent = false;
+	private boolean imJUGLeader = false;
+	private boolean imJUGMember = false;
 	private boolean skip;
 	private boolean showFiledUpload = false;
 	@SuppressWarnings("unused")
@@ -180,21 +180,9 @@ private AnotherEmailSenderRemote anotherEmailSenderRemote;
 		this.skip = skip;
 	}
 
-	public boolean isImTeacher() {
-		return imTeacher;
-	}
+	
 
-	public void setImTeacher(boolean imTeacher) {
-		this.imTeacher = imTeacher;
-	}
 
-	public boolean isImStudent() {
-		return imStudent;
-	}
-
-	public void setImStudent(boolean imStudent) {
-		this.imStudent = imStudent;
-	}
 
 	public StreamedContent getStreamedPic() {
 		DefaultStreamedContent streamedPic = new DefaultStreamedContent(
@@ -272,11 +260,11 @@ public String getEmail() {
 					user = found;
 					loggedIn = true;
 					if (user.getRole().getId() == 1) {
-						navigateTo = "/pages/student/userCourses";
-						imStudent = true;
+						navigateTo = "/pages/JUGLeader/Home";
+						imJUGLeader = true;
 					} else if (user.getRole().getId() == 2) {
-						navigateTo = "/pages/teacher/teacherCourses";
-						imTeacher = true;
+						navigateTo = "/pages/JUGMember/Home";
+						imJUGMember = true;
 					
 					}
 				}
@@ -295,7 +283,7 @@ public String getEmail() {
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap()
 				.clear();
 		
-		navigateTo = "/pages/index";
+		navigateTo = "/index";
 		return navigateTo;
 	}
 
@@ -310,7 +298,7 @@ public String getEmail() {
 				"Success! , Your inscription is Done ");
 		FacesContext.getCurrentInstance().addMessage(null, msg);
 		user = new User();
-		navigateTo = "/pages/index";
+		navigateTo = "/index";
 		return navigateTo;
 		
 	}
@@ -377,6 +365,22 @@ public String getEmail() {
 		if (password2!=user.getPassword()) {
 			throw new ValidatorException(new FacesMessage("password not identical!"+user.getPassword()));
 		}
+	}
+
+	public boolean isImJUGLeader() {
+		return imJUGLeader;
+	}
+
+	public void setImJUGLeader(boolean imJUGLeader) {
+		this.imJUGLeader = imJUGLeader;
+	}
+
+	public boolean isImJUGMember() {
+		return imJUGMember;
+	}
+
+	public void setImJUGMember(boolean imJUGMember) {
+		this.imJUGMember = imJUGMember;
 	}
 
 	

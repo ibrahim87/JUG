@@ -8,6 +8,39 @@
 
 <h:form>
 
+						<div class="widget widget_latestpost"><h3 class="title"><span>Technology News</span></h3>
+				<div class="latest-posts">
+					<article class="post">
+						<a class="image_thumb_zoom" href="#" title="Permalink to Porta lorem ipsum dolor sit amet, consectetur adipiscing risus" rel="bookmark">
+						<h:graphicImage   width="100" height="100" library="images" name="EspritJUG.png" class="attachment-post-first wp-post-image" alt="shutterstock_70787161" />
+						
+						
+						</a>
+						
+						
+						<h:form  id="login_form" >
+					
+						<h:outputText value="  Login  "/>
+						<h:inputText value="#{userBean.user.login}" style=" width : 105px;"/>
+						
+						<h:outputText value="  Password  " />
+						<h:inputSecret value="#{userBean.user.password}" style=" width : 106px;"/>
+						<p:commandButton id="login_submit" action="#{userBean.doLogin}" value="log in" />
+						<h:message for="login_submit" styleClass="error"/>
+						
+				</h:form>
+					</article>
+				
+					
+
+				
+				</div>
+			</div>
+			
+			
+			
+			
+
 				<div id="tabwidget" class="widget tab-container"> 
 				<ul id="tabnav" class="clearfix"> 
 					<li><h3><a href="#tab1" class="selected"><h:graphicImage library="images" name="view-white-bg.png" alt="Popular"/> Popular</a></h3></li>
