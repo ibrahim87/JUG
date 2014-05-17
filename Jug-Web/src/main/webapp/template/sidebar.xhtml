@@ -17,7 +17,7 @@
 						
 						</a>
 						
-						
+						<h:panelGrid columns="2">
 						<h:form  id="login_form" >
 					
 						<h:outputText value="  Login  "/>
@@ -28,7 +28,27 @@
 						<p:commandButton id="login_submit" action="#{userBean.doLogin}" value="log in" />
 						<h:message for="login_submit" styleClass="error"/>
 						
-				</h:form>
+						
+						</h:form>
+						
+						</h:panelGrid>
+						<h:form>
+						<p:commandLink value="forgot your password" styleClass="forgot" onclick="dlgmail.show()"></p:commandLink>
+							<p:ajaxStatus onstart="statusDlg.show()" onsuccess="statusDlg.hide()"></p:ajaxStatus>
+						<p:dialog modal="true" widgetVar="statusDlg" header="Progressing..." draggable="true" closable="false">
+						<p:graphicImage value="/resources/images/ajaxLoadingBar.gif"></p:graphicImage>
+						</p:dialog>
+						
+						<p:dialog header="Find your account" widgetVar="dlgmail" showEffect="explode" hideEffect="bounce">  
+						<h:panelGrid columns="2" cellspacing="25">
+   						 <h:outputText value="Write your Email" />  
+   						 <h:inputText value="#{userBean.email}" size="20"/>
+   						 </h:panelGrid>
+   						 <p:commandButton value="validate" action="#{userBean.forgot}"  oncomplete="dlgmail.hide()" update="message"></p:commandButton>
+   						  <p:commandButton value="Return" oncomplete="dlgmail.hide()"></p:commandButton>
+						</p:dialog>  
+						<p:growl  id="message" showDetail="true" ></p:growl>
+						</h:form>
 					</article>
 				
 					

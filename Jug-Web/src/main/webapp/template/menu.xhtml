@@ -50,7 +50,7 @@
 					</ul>
 				</li>
 				<li><h:commandLink value="register" action="/pages/Register" /></li>
-				<li><h:commandLink value="login" action="/pages/login" /></li>
+			
 				<li><h:commandLink value="Documentation" action="/pages/home" /></li>
 				
 				<li><h:commandLink  rendered="#{userBean.loggedIn}" value="profile" action="/pages/Profile" />
@@ -61,7 +61,7 @@
 				<li><h:commandLink action="#{userBean.logout}" value="LOG OUT"/></li>
 				</ul>
 				</li>
-				<p:spacer width="100" height="10" />
+				
 				</ul>
 				
 			
@@ -69,8 +69,9 @@
                 	</h:form>
                 	 <h:form rendered="#{userBean.loggedIn}">
                 	<div class="identityText">
+                	<p:spacer width="50" height="10" />
                 		 <p:graphicImage id="img" width="37px" height="28px"
-                  		  value="#{userBean.streamedPic}"/>  
+                  		  value="#{userBean.streamedPic}"/> 	
 						<h:outputText value="#{userBean.user.nom} #{userBean.user.prenom}"/> 
 						You are connect as a <h:outputText value="#{userBean.user.role.name}"/>	 
 						</div>
