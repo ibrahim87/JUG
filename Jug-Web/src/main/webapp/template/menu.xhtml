@@ -1,83 +1,93 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:h="http://java.sun.com/jsf/html"
-                xmlns:f="http://java.sun.com/jsf/core"
-                xmlns:ui="http://java.sun.com/jsf/facelets"
-                xmlns:p="http://primefaces.org/ui">
-                	
-                	
-                	  <h:form> 
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
 
 
-                	<ul class="nav">	
-				<li>
-				<a href="index.html">
-				<h:graphicImage library="images" name="home.png" alt="Magazine" /></a></li>
-				<li class="dropdown">
-					 <h:commandLink value="Home" action="/index" />
-					<ul class="sub-menu">
-						<li> <h:commandLink value="Home" action="/pages/admin/Home" /></li>
-						<li> <h:commandLink value="Home" action="/pages/home" /></li>
-					</ul>
-				</li>
-				<li> <h:commandLink value="About" action="/pages/home" /></li>
-				<li class="dropdown"><h:commandLink value="Page Templates" action="/pages/home" />
-					<ul class="sub-menu">
-						<li><h:commandLink value="Blog" action="/pages/home" /></li>
-						<li><h:commandLink value="Contact" action="/pages/home" /></li>
-						<li><h:commandLink value="Default" action="/pages/home" /></li>
-						<li><h:commandLink value="Error 404" action="/pages/home" /></li>
-						<li><h:commandLink value="Full Width" action="/pages/home" /></li>
-						<li><h:commandLink value="Galleries" action="/pages/home" /></li>
-						<li><h:commandLink value="Galleries1" action="/pages/home" /></li>
-						<li><h:commandLink value="Galleries2" action="/pages/home" /></li>
-						<li><h:commandLink value="Magazine1" action="/pages/home" /></li>
-						<li><h:commandLink value="Magazine2" action="/pages/home" /></li>
-					</ul>
-				</li>
-				<li class="dropdown"><a href="blog.html">Blog</a>
-					<ul class="sub-menu">
-						<li><h:commandLink value="Fashion News" action="/pages/home" /></li>
-						<li><h:commandLink value="Game News" action="/pages/home" /></li>
-						<li><h:commandLink value="Sport News" action="/pages/home" /></li>
-						<li class="dropdown"><h:commandLink value="Technology" action="/pages/home" />
-							<ul class="sub-menu">
-								<li><h:commandLink value="Fashion News" action="/pages/home" /></li>
-								<li><h:commandLink value="Game News" action="/pages/home" /></li>
-								<li><h:commandLink value="Sport News" action="/pages/home" /></li>
-								<li><h:commandLink value="Technology" action="/pages/home" /></li>
-							</ul>
-						</li>
-					</ul>
-				</li>
-				<li><h:commandLink value="register" action="/pages/Register" /></li>
-			
-				<li><h:commandLink value="Documentation" action="/pages/home" /></li>
-				
-				<li><h:commandLink  rendered="#{userBean.loggedIn}" value="profile" action="/pages/Profile" />
+	<h:form>
+
+
+		<ul class="nav">
+			<li><a href="index.html"> <h:graphicImage library="images"
+						name="home.png" alt="Magazine" /></a></li>
+			<li class="dropdown"><h:commandLink value="Home" action="/index" />
 				<ul class="sub-menu">
-				
-				
-				<li><h:commandLink action="/index" value="Edit Profile"/></li>
-				<li><h:commandLink action="#{userBean.logout}" value="LOG OUT"/></li>
-				</ul>
-				</li>
-				
-				</ul>
-				
-			
+					<li><h:commandLink value="Home" action="/pages/admin/Home" /></li>
+					<li><h:commandLink value="Home" action="/pages/home" /></li>
+				</ul></li>
+			<li><h:commandLink value="About" action="/pages/home" /></li>
+			<li class="dropdown"><h:commandLink value="Page Templates"
+					action="/pages/home" />
+				<ul class="sub-menu">
+					<li><h:commandLink value="Blog" action="/pages/home" /></li>
+					<li><h:commandLink value="Contact" action="/pages/home" /></li>
+					<li><h:commandLink value="Default" action="/pages/home" /></li>
+					<li><h:commandLink value="Error 404" action="/pages/home" /></li>
+					<li><h:commandLink value="Full Width" action="/pages/home" /></li>
+					<li><h:commandLink value="Galleries" action="/pages/home" /></li>
+					<li><h:commandLink value="Galleries1" action="/pages/home" /></li>
+					<li><h:commandLink value="Galleries2" action="/pages/home" /></li>
+					<li><h:commandLink value="Magazine1" action="/pages/home" /></li>
+					<li><h:commandLink value="Magazine2" action="/pages/home" /></li>
+				</ul></li>
+			<li class="dropdown"><a href="blog.html">Blog</a>
+				<ul class="sub-menu">
+					<li><h:commandLink value="Fashion News" action="/pages/home" /></li>
+					<li><h:commandLink value="Game News" action="/pages/home" /></li>
+					<li><h:commandLink value="Sport News" action="/pages/home" /></li>
+					<li class="dropdown"><h:commandLink value="Technology"
+							action="/pages/home" />
+						<ul class="sub-menu">
+							<li><h:commandLink value="Fashion News" action="/pages/home" /></li>
+							<li><h:commandLink value="Game News" action="/pages/home" /></li>
+							<li><h:commandLink value="Sport News" action="/pages/home" /></li>
+							<li><h:commandLink value="Technology" action="/pages/home" /></li>
+						</ul></li>
+				</ul></li>
+			<li><h:commandLink value="register" action="/pages/Register" /></li>
 
-                	</h:form>
-                	 <h:form rendered="#{userBean.loggedIn}">
-                	<div class="identityText">
-                	<p:spacer width="50" height="10" />
-                		 <p:graphicImage id="img" width="37px" height="28px"
-                  		  value="#{userBean.streamedPic}"/> 	
-						<h:outputText value="#{userBean.user.nom} #{userBean.user.prenom}"/> 
-						You are connect as a <h:outputText value="#{userBean.user.role.name}"/>	 
-						</div>
-						
-						
+			<li><h:commandLink value="Documentation" action="/pages/home" /></li>
 
-				</h:form>
+			<li><h:commandLink rendered="#{userBean.loggedIn}" value="profile" action="/pages/Profile" />
+				<ul class="sub-menu">
+
+
+					<li><h:commandLink action="/index" value="Edit Profile" /></li>
+					<li><h:commandLink action="#{userBean.logout}" value="LOG OUT" /></li>
+				</ul></li>
+
+		<li><h:commandLink rendered="#{userBean.loggedIn}"  action="#{userBean.logout}" >
+			<p:graphicImage id="img" width="37px" height="28px"
+					value="#{userBean.streamedPic}" />	</h:commandLink>
+						<ul class="sub-menu">
+
+
+					<li><h:commandLink action="/index" value="Edit Profile" /></li>
+					<li><h:commandLink action="#{userBean.logout}" value="LOG OUT" /></li>
+				</ul></li>
+
+		</ul>
+
+
+
+	</h:form>
+	<h:form rendered="#{userBean.loggedIn}">
+		<div class="identityText">
+			<p:spacer width="50" height="10" />
+			<h:commandLink action="#{userBean.logout}">
+				<!-- <p:graphicImage id="img" width="37px" height="28px"
+					value="#{userBean.streamedPic}" />-->
+			</h:commandLink>
+			<h:outputText value="#{userBean.user.nom} #{userBean.user.prenom}" />
+			You are connect as a
+			<h:outputText value="#{userBean.user.role.name}" />
+		</div>
+
+
+
+
+
+	</h:form>
 
 </ui:composition>
