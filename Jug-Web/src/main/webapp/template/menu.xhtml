@@ -49,13 +49,7 @@
 
 			<li><h:commandLink value="Documentation" action="/pages/home" /></li>
 
-			<li><h:commandLink rendered="#{userBean.loggedIn}" value="profile" action="/pages/Profile" />
-				<ul class="sub-menu">
-
-
-					<li><h:commandLink action="/index" value="Edit Profile" /></li>
-					<li><h:commandLink action="#{userBean.logout}" value="LOG OUT" /></li>
-				</ul></li>
+		
 
 		<li><h:commandLink rendered="#{userBean.loggedIn}"  action="#{userBean.logout}" >
 			<p:graphicImage id="img" width="37px" height="28px"
@@ -63,7 +57,7 @@
 						<ul class="sub-menu">
 
 
-					<li><h:commandLink action="/index" value="Edit Profile" /></li>
+					<li><h:commandLink action="/pages/JUGLeader/Profile" value="Edit Profile" /></li>
 					<li><h:commandLink action="#{userBean.logout}" value="LOG OUT" /></li>
 				</ul></li>
 
@@ -74,13 +68,13 @@
 	</h:form>
 	<h:form rendered="#{userBean.loggedIn}">
 		<div class="identityText">
-			<p:spacer width="50" height="10" />
+			
 			<h:commandLink action="#{userBean.logout}">
 				<!-- <p:graphicImage id="img" width="37px" height="28px"
 					value="#{userBean.streamedPic}" />-->
 			</h:commandLink>
 			<h:outputText value="#{userBean.user.nom} #{userBean.user.prenom}" />
-			You are connect as a
+			You are connect as a<br/>
 			<h:outputText value="#{userBean.user.role.name}" />
 		</div>
 

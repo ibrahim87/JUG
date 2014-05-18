@@ -10,6 +10,86 @@
 			
 			
 			
+			<p:fieldset legend="Personal information" styleClass="panelProfil" > 
+			<div id="picProfil">
+			<h:form id="fpic">
+			<p:commandLink update="fpic">
+  			 <p:graphicImage id="img" width="70px" height="70px" value="#{userBean.streamedPic}"/>  
+                <f:setPropertyActionListener target="#{userBean.showFiledUpload}" value="true"/>  		  
+			</p:commandLink>
+			    <p:fileUpload fileUploadListener="#{userBean.upload}"  mode="advanced"  update="growl"   auto="true"  sizeLimit="100000"   
+            allowTypes="/(\.|\/)(gif|jpe?g|png)$/" rendered="#{userBean.showFiledUpload}">
+           	
+            </p:fileUpload>  
+            	<p:growl id="growl" showDetail="true"/>  
+            </h:form>
+  			</div>
+  			
+    
+  			 <h:form id="profil">
+			
+				<h:outputText value=" #{userBean.user.nom}" styleClass="profilRow"/>
+  						
+  						<h:outputText value="E-mail : #{userBean.user.mail}" styleClass="profilRow"/><br/>
+			
+
+
+
+  					
+  						
+  			
+  		<h:panelGrid columns="2" rowClasses="panelGridProfilRows" styleClass="panelGridProfil" cellpadding="6px" cellspacing="20px" >
+  			
+            <h:outputText value="Last name : " />  
+            <p:inplace id="lastName" editor="true">  
+                <p:inputText value="#{userBean.user.nom}"  
+                            required="true" label="text"/>  
+            </p:inplace>
+            
+             <h:outputText value="First name : " />  
+           	 <p:inplace id="firstName" editor="true">  
+                <p:inputText value="#{userBean.user.prenom}"  
+                            required="true" label="text"/>  
+            </p:inplace>
+            
+    
+      
+
+            
+          	    <h:outputText value="Date of birth :" />  
+       		   <p:inplace id="dateBirth" editor="true">  
+         	 	  <p:calendar id="dateNaiss" value="#{userBean.user.dateNaiss}" pattern="dd/MM/yyyy" showOn="button" required="true" label="Date of birth"/>
+            	</p:inplace>
+            
+             <h:outputText value="Gender : " />  
+                  <p:inplace id="Gnederupdate" editor="true">  
+       			 <p:selectOneRadio id="gender" value="#{userBean.user.sexe}" required="true" label="Gender">  
+            	 <f:selectItem itemLabel="Male" itemValue="Male" />  
+           		 <f:selectItem itemLabel="Female" itemValue="Female" />  
+       			 </p:selectOneRadio>
+            	</p:inplace>
+            
+         		    <h:outputText value="Username : " />  
+         		     <p:inplace id="username" editor="true">  
+                      		<h:inputText id="lg" value="#{userBean.user.login}" required="true" requiredMessage="username should not be empty">
+						<f:ajax event="blur" execute="@this" render="msgprofil"/>
+					</h:inputText> 
+                   </p:inplace>
+                   
+             </h:panelGrid>
+                    
+                    <h:outputText/>
+                    
+                    			
+            
+             <p:commandButton  id="validate" value="Validate" icon="ui-icon-check"   
+                    style="margin-left:480px" actionListener="#{userBean.update}" update="msgprofil" action="/Home" />
+		
+		<p:growl id="msgprofil" showDetail="true"/>
+	
+			</h:form>	
+</p:fieldset>
+			
 			
 			
 			
