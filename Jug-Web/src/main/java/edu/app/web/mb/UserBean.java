@@ -294,6 +294,20 @@ public String getEmail() {
 		user.setEtat("attente");
 		user.setPicture(picture);
 		userServiceLocal.createUser(user);
+		
+		
+		
+		
+		
+//		anotherEmailSenderRemote.sendMail(
+//				
+//				
+//				
+//				user.getMail(), "Register"," Hello Mr , and Mrs. felicitation you registered in our website, you have access to our site crossing   \n Your UserName is :=  " 
+//		       + user.getLogin()
+//					+ "\n Your Password is :=    "
+//		+ user.getPassword());
+			
 		FacesMessage msg = new FacesMessage(
 				"Success! , Your inscription is Done ");
 		FacesContext.getCurrentInstance().addMessage(null, msg);
@@ -302,6 +316,15 @@ public String getEmail() {
 		return navigateTo;
 		
 	}
+	
+	public void forgetPassword (){
+		anotherEmailSenderRemote.sendMail(user.getMail(), "  hello your user name is :   " , "    " + user.getLogin()+ "  \n your password is   "+user.getPassword());
+		
+		
+		
+		
+	}
+	
 
 	public void upload(FileUploadEvent event) throws IOException {
 

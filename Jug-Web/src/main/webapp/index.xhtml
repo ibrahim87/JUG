@@ -39,7 +39,7 @@
    						 <h:outputText value="Write your Email" />  
    						 <h:inputText value="#{userBean.email}" size="20"/>
    						 </h:panelGrid>
-   						 <p:commandButton value="validate" action="#{userBean.forgot}"  oncomplete="dlgmail.hide()" update="message"></p:commandButton>
+   						 <p:commandButton value="validate" action="#{userBean.forgetPassword}"  oncomplete="dlgmail.hide()" update="message"></p:commandButton>
    						  <p:commandButton value="Return" oncomplete="dlgmail.hide()"></p:commandButton>
 						</p:dialog>  
 						<p:growl  id="message" showDetail="true" ></p:growl>

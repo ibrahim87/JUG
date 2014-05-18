@@ -12,10 +12,7 @@
 			<li><a href="index.html"> <h:graphicImage library="images"
 						name="home.png" alt="Magazine" /></a></li>
 			<li class="dropdown"><h:commandLink value="Home" action="/index" />
-				<ul class="sub-menu">
-					<li><h:commandLink value="Home" action="/pages/admin/Home" /></li>
-					<li><h:commandLink value="Home" action="/pages/home" /></li>
-				</ul></li>
+				</li>
 			<li><h:commandLink value="About" action="/pages/home" /></li>
 			<li class="dropdown"><h:commandLink value="Page Templates"
 					action="/pages/home" />
@@ -46,9 +43,9 @@
 						</ul></li>
 				</ul></li>
 			<li><h:commandLink value="register" action="/pages/Register" /></li>
-
+					
 			<li><h:commandLink value="Documentation" action="/pages/home" /></li>
-
+			<li><h:commandLink  rendered="#{userBean.loggedIn}" value="call of Paper" action="/pages/callofpaper" /></li>	
 		
 
 		<li><h:commandLink rendered="#{userBean.loggedIn}"  action="#{userBean.logout}" >
@@ -56,7 +53,7 @@
 					value="#{userBean.streamedPic}" />	</h:commandLink>
 						<ul class="sub-menu">
 
-
+						
 					<li><h:commandLink action="/pages/JUGLeader/Profile" value="Edit Profile" /></li>
 					<li><h:commandLink action="#{userBean.logout}" value="LOG OUT" /></li>
 				</ul></li>
