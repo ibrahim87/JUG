@@ -72,25 +72,7 @@ public class UserService implements UserServiceRemote, UserServiceLocal {
 		return use;
 
 	}
-	public User findByUserMail(String name) {
-
-		User use = null;
-
-		Query query = em.createQuery("select u from User u where u.mail=:z")
-				.setParameter("z", name);
-		Object obj = null;
-		try {
-			obj = query.getSingleResult();
-		} catch (Exception e) {
-			return null;
-		}
-
-		if (obj != null)
-			use = (User) obj;
-
-		return use;
-
-	}
+	
 	@SuppressWarnings("unchecked")
 	public List<User> findByRole(Role role) {
 		List<User> toFind = null;
@@ -277,4 +259,27 @@ public class UserService implements UserServiceRemote, UserServiceLocal {
 		exists = (Boolean)query.getSingleResult();
 		return exists;
 	}
+
+	@Override
+	public User findUserByEmail(String mail) {
+		User use = null;
+
+		Query query = em.createQuery("select u from User u where u.mail=:z")
+				.setParameter("z", mail);
+		Object obj = null;
+		try {
+			obj = query.getSingleResult();
+		} catch (Exception e) {
+			return null;
+		}
+
+		if (obj != null)
+			use = (User) obj;
+
+		return use;
+	}
+
+	
+
+	
 }

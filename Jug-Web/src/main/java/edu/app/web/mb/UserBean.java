@@ -65,6 +65,8 @@ private AnotherEmailSenderRemote anotherEmailSenderRemote;
 	private StreamedContent streamedPic;
 	private DefaultStreamedContent streamedPicture;
 	private String Email;
+	private String mail ;
+
 	private String destinationTemp = "E:\\jee\\servers\\s05\\jboss-as-7.1.1\\welcome-content\\temp\\";
 
 
@@ -75,7 +77,7 @@ private AnotherEmailSenderRemote anotherEmailSenderRemote;
 	public void init() {
 		users = userServiceLocal.findAllUser();
 		picUsers = userServiceLocal.findByStatus("Refuser");
-
+		loggedIn=false;
 	
 	}
 
@@ -279,6 +281,7 @@ public String getEmail() {
 	}
 
 	public String logout() {
+		loggedIn =false;
 		String navigateTo = null;
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap()
 				.clear();
@@ -299,14 +302,14 @@ public String getEmail() {
 		
 		
 		
-//		anotherEmailSenderRemote.sendMail(
-//				
-//				
-//				
-//				user.getMail(), "Register"," Hello Mr , and Mrs. felicitation you registered in our website, you have access to our site crossing   \n Your UserName is :=  " 
-//		       + user.getLogin()
-//					+ "\n Your Password is :=    "
-//		+ user.getPassword());
+	anotherEmailSenderRemote.sendMail(
+				
+				
+				
+				user.getMail(), "Register"," Hello Mr , and Mrs. felicitation you registered in our website, you have access to our site crossing   \n Your UserName is :=  " 
+		       + user.getLogin()
+				+ "\n Your Password is :=    "
+	+ user.getPassword());
 			
 		FacesMessage msg = new FacesMessage(
 				"Success! , Your inscription is Done ");
@@ -406,6 +409,15 @@ public String getEmail() {
 		this.imJUGMember = imJUGMember;
 	}
 
+	public String getMail() {
+		return mail;
+	}
+
+	public void setMail(String mail) {
+		this.mail = mail;
+	}
+
+	
 	
 	
 }

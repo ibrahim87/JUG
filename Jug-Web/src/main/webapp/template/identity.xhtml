@@ -3,15 +3,5 @@
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui">
-                 <h:form rendered="#{userBean.loggedIn}">
-                	<div class="identityText">
-                		
-						<h:outputText value="#{userBean.user.nom} #{userBean.user.prenom}"/> <br/>
-						You are connect as a <h:outputText value="#{userBean.user.role.name}"/>	 
-						</div>
-						<div class="identityLink">
-						<h:commandLink action="#{userBean.logout}" value="LOG OUT"/>
-						</div>
-				</h:form>	
-
+                 
 </ui:composition>

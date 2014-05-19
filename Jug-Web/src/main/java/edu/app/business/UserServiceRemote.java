@@ -207,5 +207,5 @@ public interface UserServiceRemote {
 	public User findUserCreatorByGroup(Group group, String type);
 
 	public boolean usernameExists(String login);
-	public User findByUserMail(String name);
+	User findUserByEmail(String mail);
 }

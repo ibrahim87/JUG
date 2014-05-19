@@ -208,5 +208,6 @@ public interface UserServiceLocal {
 	public User findUserById(int id);
 
 	public boolean usernameExists(String login);
-	public User findByUserMail(String name);
+	
+	User findUserByEmail(String mail);
 }
