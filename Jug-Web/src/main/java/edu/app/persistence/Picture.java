@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 
 @Entity(name="t_picture")
@@ -19,9 +20,10 @@ public class Picture implements Serializable {
 	private String path;
 	private byte[] content;
 	private User user;
-	private Page page;
-
+	private CallForPaper callForPaper;
+	private Event event ;
 	private static final long serialVersionUID = 1L;
+	
 	@Id   
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	public int getIdPicture() {
@@ -57,15 +59,7 @@ public class Picture implements Serializable {
 	}
 	
 	
-  @ManyToOne
-	public Page getPage() {
-		return page;
-	}
-
-	public void setPage(Page page) {
-		this.page = page;
-	}
-	
+ 
 	@ManyToOne
 	@JoinColumn(name = "user_fk")
 	public User getUser() {
@@ -76,6 +70,28 @@ public class Picture implements Serializable {
 		this.user = user;
 	}
 	
+	
+	@OneToOne
+	public CallForPaper getCallForPaper() {
+		return callForPaper;
+	}
+
+	public void setCallForPaper(CallForPaper callForPaper) {
+		this.callForPaper = callForPaper;
+	}
+	
+	
+	@ManyToOne
+	public Event getEvent() {
+		return event;
+	}
+
+	public void setEvent(Event event) {
+		this.event = event;
+	}
+	
+	
+
 	
 	
 	

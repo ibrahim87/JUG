@@ -4,6 +4,7 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -11,7 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -51,9 +52,31 @@ public class User implements Serializable {
 	/** The date naiss. */
 	private Date dateNaiss;
 
-	/** The role. */
-	private Role role;
+
+
+
 	private Picture picture;
+	private List<Article>articles;
+
+
+	
+	
+	public User(String nom, String prenom, String mail, String etat,
+			String login, String password, String sexe, Date dateNaiss,
+			String organisation, String position, String personalProfile,
+			String companyProfile, String titleOfPaper, String detailsOfPaper) {
+		super();
+		this.nom = nom;
+		this.prenom = prenom;
+		this.mail = mail;
+		this.etat = etat;
+		this.login = login;
+		this.password = password;
+		this.sexe = sexe;
+		this.dateNaiss = dateNaiss;
+		
+	}
+
 
 	private static final long serialVersionUID = 1L;
 
@@ -257,13 +280,17 @@ public class User implements Serializable {
 		this.prenom = prenom;
 
 		this.mail = mail;
-		this.etat = etat;
+	this.etat = etat;
 		this.login = login;
 		this.password = password;
 		this.sexe = sexe;
 		this.dateNaiss = dateNaiss;
 	}
-
+		
+	
+	
+	
+	
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -277,11 +304,7 @@ public class User implements Serializable {
 		return result;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
+
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
@@ -311,26 +334,10 @@ public class User implements Serializable {
 				+ "]";
 	}
 
-	/**
-	 * Gets the role.
-	 * 
-	 * @return the role
-	 */
-	@ManyToOne
-	@JoinColumn(name = "role_fk")
-	public Role getRole() {
-		return role;
-	}
-
-	/**
-	 * Sets the role.
-	 * 
-	 * @param role
-	 *            the new role
-	 */
-	public void setRole(Role role) {
-		this.role = role;
-	}
+	
+	
+	
+	
 
 	@Transient
 	public PropertyChangeSupport getChangeSupport() {
@@ -400,4 +407,18 @@ public class User implements Serializable {
 		this.prenom = prenom;
 	}
 
+	
+	@OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
+	public List<Article> getArticles() {
+		return articles;
+	}
+
+	public void setArticles(List<Article> articles) {
+		this.articles = articles;
+	}
+
+	
+
+
+	
 }

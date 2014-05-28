@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.ejb.Local;
 
-import edu.app.persistence.Role;
 import edu.app.persistence.User;
 
 /**
