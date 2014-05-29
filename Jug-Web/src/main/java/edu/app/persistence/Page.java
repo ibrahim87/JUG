@@ -1,16 +1,12 @@
 package edu.app.persistence;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 @Entity(name="t_page")
 public class Page implements Serializable{
@@ -22,7 +18,7 @@ public class Page implements Serializable{
 	private int idPage;
 	private String titre ;
 	private String contenu ;
-	private List<Picture>pictures;
+
 	private Article article;
 	
 	public Page() {
@@ -52,15 +48,7 @@ public class Page implements Serializable{
 	}
 	
 	
-	@OneToMany(mappedBy = "page" ,cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-	public List<Picture> getPictures() {
-		if (pictures == null)
-			pictures = new ArrayList<Picture>();
-		return pictures;
-	}
-	public void setPictures(List<Picture> pictures) {
-		this.pictures = pictures;
-	}
+	
 	@ManyToOne
 	public Article getArticle() {
 		return article;

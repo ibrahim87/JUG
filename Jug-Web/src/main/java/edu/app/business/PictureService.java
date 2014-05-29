@@ -23,7 +23,7 @@ public class PictureService implements PictureServiceRemote,
 		PictureServiceLocal {
 
 	/** The em. */
-	@PersistenceContext
+	@PersistenceContext(unitName = "PU")
 	private EntityManager em;
 
 	/**

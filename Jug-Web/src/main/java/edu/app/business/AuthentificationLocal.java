@@ -19,4 +19,5 @@ public interface AuthentificationLocal {
 	boolean loginExists(String login);
 	
 	
+	
 }

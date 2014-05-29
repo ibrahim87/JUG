@@ -1,0 +1,207 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/template/template.xhtml">
+                	
+			<ui:define name="pagerTitle">CALL FOR PAPIER</ui:define>		
+			<ui:define name="pageContent">
+			
+	<h:form id="insct">  
+  
+    <p:growl id="growl" sticky="true" showDetail="true"/>  
+  
+    <p:wizard widgetVar="wiz"  
+            flowListener="#{userBean.onFlowProcess}">  
+      
+        <p:tab id="per" title="Personal">  
+  
+            <p:panel header="Personal Details">  
+              
+                <h:messages errorClass="error"/>  
+                  
+                <h:panelGrid columns="2" columnClasses="label, value" styleClass="grid" cellspacing="12">  
+                    <h:outputText value="First name: *" />  
+                    <p:inputText required="true" label="Firstname"  
+                            value="#{userBean.userCall.prenom}"/>  
+                      
+                    <h:outputText value="Last name: *" />  
+                    <p:inputText required="true" label="Lastname"  
+                      value="#{userBean.userCall.nom}"/>  
+                      
+                      
+                   <h:outputText value="Skip to last: " />  
+                    <h:selectBooleanCheckbox value="#{userBean.skip}"/>  
+                </h:panelGrid>  
+            </p:panel>  
+        </p:tab>  
+              
+		  <p:tab id="contacts" title="Other informations">  
+            <p:panel header="Mandatory Informations">  
+                  
+                <h:messages errorClass="error"/>  
+              
+                <h:panelGrid columns="2" columnClasses="label, value" cellspacing="12">  
+ 
+					<h:outputText value="Email: *" />  
+         		  <h:inputText id="email1" value="#{userBean.userCall.mail}" required="true" requiredMessage="email is required" validatorMessage="invalid email">
+						<f:validateRegex pattern="^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$" />
+					</h:inputText>
+        	 <h:outputText value="You are inscribed as : " />  
+       			 <p:selectOneRadio id="role" value="#{userBean.nameRole}" required="true" label="Type of inscription">  
+            	 <f:selectItem itemLabel="call" itemValue="JUGCall" />  
+           		
+           		 </p:selectOneRadio> 
+           		 
+        
+        
+        
+          		  <h:outputText value="Organisation: *" />  
+                    <p:inputText required="true" label="Organisation"  
+                      value="#{userBean.userCall.organisation}"/>  
+          		 	
+         		              		 	
+              <h:outputText value="Position: *" />  
+                    <p:inputText required="true" label="position"  
+                      value="#{userBean.userCall.position}"/>  
+                      
+                      <h:outputText value="Personal Profile *" />  
+                    <p:inputText required="true" label="PersonalProfile"  
+                      value="#{userBean.userCall.personalProfile}"/>  
+                      
+                         <h:outputText value="Company Profile *" />  
+                    <p:inputText required="true" label="CompanyProfile"  
+                      value="#{userBean.userCall.companyProfile}"/>  
+                      
+        
+           <h:outputText value="Choose picture For you profil: " />  
+       			 
+           <p:fileUpload fileUploadListener="#{userBean.upload}"  
+            mode="advanced"  
+            update="messages"  
+            auto="true"  
+            sizeLimit="100000"   
+            allowTypes="/(\.|\/)(gif|jpe?g|png)$/"/>  
+       			 <p:growl id="messages" showDetail="true"/>  
+                </h:panelGrid>  
+            </p:panel>  
+        </p:tab>  
+			
+			  <p:tab id="cont" title="Paper Information">  
+            <p:panel header="Mandatory Informations">  
+                  
+                <h:messages errorClass="error"/>  
+              
+                <h:panelGrid columns="2" columnClasses="label, value" cellspacing="12">  
+ 					
+					  <h:outputText value="Title of Paper *" />  
+                    <p:inputText required="true" label="titleOfPaper"  
+                      value="#{userBean.userCall.titleOfPaper}" />  
+                      
+         		              		 	
+             	 <h:outputText value="description" />
+
+					<p:inputTextarea rows="5" cols="30"
+						value="#{userBean.userCall.detailsOfPaper}" maxlength="100"
+						counterTemplate="{0} characters remaining." autoResize="false" />
+					
+                </h:panelGrid>  
+            </p:panel>  
+        </p:tab>  
+			
+			
+			
+			
+			   <p:tab id="confirm" title="Confirmation">  
+            <p:panel header="Confirmation">  
+              
+                <h:panelGrid id="confirmation" columns="2" cellspacing="12" >  
+                    <h:outputText value="Firs tname: " />  
+                    <h:outputText styleClass="outputLabel"  
+                                value="#{userBean.userCall.prenom}" />  
+                      
+                    <h:outputText value="Last name: " />  
+                    <h:outputText  styleClass="outputLabel"  
+                                value="#{userBean.userCall.nom}"/>  
+                      
+                   
+                   <h:outputText value="Email: " />  
+                    <h:outputText styleClass="outputLabel"  
+                                value="#{userBean.userCall.mail}"/>  
+                      
+                      
+                     
+                    <h:outputText value=" Organisation : " />  
+                    <h:outputText styleClass="outputLabel"  
+                                value="#{userBean.userCall.organisation}"/>  
+                      
+                       
+                       
+                        <h:outputText value=" Position : " />  
+                    <h:outputText styleClass="outputLabel"  
+                                value="#{userBean.userCall.position}"/>  
+                       
+                    
+                    
+                    
+                        <h:outputText value=" Personal Profile : " />  
+                    <h:outputText styleClass="outputLabel"  
+                                value="#{userBean.userCall.personalProfile}"/>  
+                       
+                      <h:outputText value=" Company Profile : " />  
+                    <h:outputText styleClass="outputLabel"  
+                                value="#{userBean.userCall.companyProfile}"/>  
+                       
+                    
+                    
+                    
+                    
+					  <h:outputText value="Title of Paper *" />  
+                    <p:inputText required="true" label="titleOfPaper"  
+                      value="#{userBean.userCall.titleOfPaper}"/>  
+                      
+         		              		 	
+             	 <h:outputText value="description" />
+
+					<p:inputTextarea rows="5" cols="30"
+						value="#{userBean.userCall.detailsOfPaper}" maxlength="100"
+						counterTemplate="{0} characters remaining." autoResize="false" />
+                      
+                      <h:outputText />  
+                    <h:outputText />  
+                    <h:outputText />  
+                    <h:outputText />  
+                        <h:outputText value=" Profil picture : " />    
+                       <p:graphicImage id="img" width="45px" height="60px" 
+                  		  value="#{userBean.streamedPicture}" styleClass="identityPicture"/>  
+                  		  <h:outputText />  
+                    <h:outputText />  
+                </h:panelGrid>  
+                  
+                  
+                 
+                  
+                <p:commandButton  id="v" value="Validate" icon="ui-icon-check"   
+                    style="margin:0" action="#{userBean.createrCallOfPaper()}" update="growl insct"/>  
+              
+            </p:panel>  
+        </p:tab>  
+          
+			
+			
+	</p:wizard>
+	
+	
+	</h:form>		
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			</ui:define>
+</ui:composition>

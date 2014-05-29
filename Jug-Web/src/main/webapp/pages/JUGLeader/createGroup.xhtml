@@ -1,0 +1,71 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/template/template.xhtml">
+                	
+			<ui:define name="pageTitle">Add Group</ui:define>		
+			<ui:define name="pageContent">
+			
+			
+			<h:form id="formCreateGroup"> 
+			<center> 
+			<div class="createGroup">
+				<p:panel id="panelCreateCourse">
+				
+    				<h:panelGrid id="grid" columns="2" cellspacing="15" width="370px">  
+     				   <h:outputText value="Group name : *" style="font-size:12px;margin-left:20px;color:#50468C"/>  
+        		<p:inputText id="courseName" required="true"  value="#{groupBean.group.name}" size="26"/>  
+      		
+
+        
+              	   <h:outputText value="Type of Group *" style="font-size:12px;margin-left:20px;color:#50468C"/>  
+       				 <p:selectOneRadio id="typeGroup" value="#{groupBean.group.type}" required="true" label="Type of group">  
+            	 	<f:selectItem itemLabel="Public" itemValue="Public" />  
+           			 <f:selectItem itemLabel="Private" itemValue="Private" />  
+       			 </p:selectOneRadio>
+					
+					
+       		
+       		<h:outputText value="Choose Picture for the group : " style="font-size:12px;margin-left:20px;color:#50468C"/>     			 
+         
+           <p:fileUpload fileUploadListener="#{groupBean.upload}"  
+            mode="advanced"  
+            update="messages"  
+            auto="true"  
+            sizeLimit="1000000"   
+            allowTypes="/(\.|\/)(gif|jpe?g|pdf)$/"/>  
+            
+			<p:growl id="messages" showDetail="true" />	
+			<h:outputText/>		
+    
+    
+  	
+
+    
+			           <h:outputLabel for="classes" value="Add members : "  style="font-size:12px;margin-left:20px;color:#50468C"/>
+       					 <p:selectCheckboxMenu value="#{groupBean.selectedUsersName}"
+						label="users" filter="true" filterText="Filter"
+						filterMatchMode="startsWith" panelStyle="width:220px">
+						<f:selectItems value="#{groupBean.usersName}" />
+					</p:selectCheckboxMenu>
+					 </h:panelGrid> 
+					 <p:commandButton id="submitButton" actionListener="#{groupBean.createGroup()}"  value="Validate" update="@(form)" style="font-weight:bold;margin-left:280px;color:#50468C"/>  
+    			  </p:panel>
+      
+   						 </div>
+  					  </center>
+    
+    
+
+	</h:form>  
+			
+			
+			
+			
+			
+			
+			
+			</ui:define>
+</ui:composition>

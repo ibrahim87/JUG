@@ -3,7 +3,7 @@
   <display-name>Projet_PFE_WEB</display-name>
   <context-param>
     <param-name>primefaces.THEME</param-name>
-  <param-value>bootstrap</param-value>
+    <param-value>bootstrap</param-value>
   </context-param>
   <servlet>
     <servlet-name>Faces Servlet</servlet-name>
@@ -22,47 +22,47 @@
     <location>/index.jsf</location>
   </error-page>
   <filter>
-		<filter-name>PrimeFaces FileUpload Filter</filter-name>
-		<filter-class>org.primefaces.webapp.filter.FileUploadFilter</filter-class>
-		</filter>
-		<filter-mapping>
-		<filter-name>PrimeFaces FileUpload Filter</filter-name>
-		<servlet-name>Faces Servlet</servlet-name>
-	</filter-mapping>
-		<servlet>
-		<servlet-name>Push Servlet</servlet-name>
-		<servlet-class>org.primefaces.push.PushServlet</servlet-class>
-		<init-param>
-			<param-name>org.atmosphere.useWebSocket</param-name>
-			<param-value>false</param-value>
-		</init-param>
-		<init-param>
-			<param-name>org.atmosphere.cpr.sessionSupport</param-name>
-			<param-value>true</param-value>
-		</init-param>
-		<init-param>
-			<param-name>org.atmosphere.useNative</param-name>
-			<param-value>true</param-value>
-		</init-param>
-		<init-param>
-			<param-name>org.atmosphere.cpr.broadcasterCacheClass</param-name>
-			<param-value>org.atmosphere.cache.HeaderBroadcasterCache</param-value>
-		</init-param>
-		<init-param>
-			<param-name>org.atmosphere.cpr.broadcastFilterClasses</param-name>
-			<param-value>org.atmosphere.client.TrackMessageSizeFilter</param-value>
-		</init-param>
-		<init-param>
-			<param-name>org.atmosphere.resumeOnBroadcast</param-name>
-			<param-value>true</param-value>
-		</init-param>
-		<load-on-startup>1</load-on-startup>
-		<async-supported>true</async-supported>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>Push Servlet</servlet-name>
-		<url-pattern>/primepush/*</url-pattern>
-	</servlet-mapping>
+    <filter-name>PrimeFaces FileUpload Filter</filter-name>
+    <filter-class>org.primefaces.webapp.filter.FileUploadFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>PrimeFaces FileUpload Filter</filter-name>
+    <servlet-name>Faces Servlet</servlet-name>
+  </filter-mapping>
+  <servlet>
+    <servlet-name>Push Servlet</servlet-name>
+    <servlet-class>org.primefaces.push.PushServlet</servlet-class>
+    <init-param>
+      <param-name>org.atmosphere.useWebSocket</param-name>
+      <param-value>false</param-value>
+    </init-param>
+    <init-param>
+      <param-name>org.atmosphere.cpr.sessionSupport</param-name>
+      <param-value>true</param-value>
+    </init-param>
+    <init-param>
+      <param-name>org.atmosphere.useNative</param-name>
+      <param-value>true</param-value>
+    </init-param>
+    <init-param>
+      <param-name>org.atmosphere.cpr.broadcasterCacheClass</param-name>
+      <param-value>org.atmosphere.cache.HeaderBroadcasterCache</param-value>
+    </init-param>
+    <init-param>
+      <param-name>org.atmosphere.cpr.broadcastFilterClasses</param-name>
+      <param-value>org.atmosphere.client.TrackMessageSizeFilter</param-value>
+    </init-param>
+    <init-param>
+      <param-name>org.atmosphere.resumeOnBroadcast</param-name>
+      <param-value>true</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+    <async-supported>true</async-supported>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Push Servlet</servlet-name>
+    <url-pattern>/primepush/*</url-pattern>
+  </servlet-mapping>
   <error-page>
     <exception-type>javax.servlet.ServletException</exception-type>
     <location>/index.jsf</location>
