@@ -60,8 +60,7 @@ public class Picture implements Serializable {
 	
 	
  
-	@ManyToOne
-	@JoinColumn(name = "user_fk")
+	@OneToOne
 	public User getUser() {
 		return user;
 	}
@@ -82,6 +81,7 @@ public class Picture implements Serializable {
 	
 	
 	@ManyToOne
+	@JoinColumn(name="event_fk")
 	public Event getEvent() {
 		return event;
 	}

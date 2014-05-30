@@ -1,15 +1,13 @@
 package edu.app.persistence;
 
 import java.io.Serializable;
-import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 
 @Entity(name="t_proposition")
@@ -20,26 +18,17 @@ public class Proposition implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private int idProp;
+	private String title;
 	private String organisation;
 	private String propositionSpeaker;
 	private String personnalProfile;
 	private String companyProfile;
 	private Speaker speaker;
-	private List<CallForPaper> callForPapers;
-	
+	private CallForPaper callForPaper;
+	private boolean accepted ;
 	public Proposition() {
 	}
 
-	public Proposition(int idProp, String organisation,
-			String propositionSpeaker, String personnalProfile,
-			String companyProfile) {
-		super();
-		this.idProp = idProp;
-		this.organisation = organisation;
-		this.propositionSpeaker = propositionSpeaker;
-		this.personnalProfile = personnalProfile;
-		this.companyProfile = companyProfile;
-	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -54,6 +43,7 @@ public class Proposition implements Serializable {
 	
 	
 	@ManyToOne
+	@JoinColumn(name="speaker_fk")
 	public Speaker getSpeaker() {
 		return speaker;
 	}
@@ -97,15 +87,6 @@ public class Proposition implements Serializable {
 
 	
 	
-	
-	@OneToMany(mappedBy = "proposition", cascade = CascadeType.PERSIST)
-	public List<CallForPaper> getCallForPapers() {
-		return callForPapers;
-	}
-
-	public void setCallForPapers(List<CallForPaper> callForPapers) {
-		this.callForPapers = callForPapers;
-	}
 	
 	
 	
@@ -182,6 +163,34 @@ public class Proposition implements Serializable {
 				+ organisation + ", propositionSpeaker=" + propositionSpeaker
 				+ ", personnalProfile=" + personnalProfile
 				+ ", companyProfile=" + companyProfile + "]";
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	@ManyToOne
+	public CallForPaper getCallForPaper() {
+		return callForPaper;
+	}
+
+
+	public void setCallForPaper(CallForPaper callForPaper) {
+		this.callForPaper = callForPaper;
+	}
+
+
+	public boolean isAccepted() {
+		return accepted;
+	}
+
+
+	public void setAccepted(boolean accepted) {
+		this.accepted = accepted;
 	}
 	
 	

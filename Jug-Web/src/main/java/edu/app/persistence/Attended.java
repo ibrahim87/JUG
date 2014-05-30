@@ -8,10 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.Table;
 
-@Entity
-@Table(name="t_attended")
+@Entity(name="t_attended")
 public class Attended  implements Serializable {
 
 	/**
@@ -21,6 +19,8 @@ public class Attended  implements Serializable {
 	
 	private int idAttended;
 	private List<Event>events;
+	private String firstname ;
+	private String lastname;
 	
 	public Attended() {
 	}

@@ -9,11 +9,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
-@Entity(name = "t_event")
+@Entity
+@Table(name = "t_event")
 public class Event implements Serializable {
 
 	/**
@@ -121,7 +124,7 @@ public class Event implements Serializable {
 		this.lienHungOut = lienHungOut;
 	}
 
-	@OneToMany(mappedBy = "event", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy="event", cascade = CascadeType.ALL)
 	public List<Picture> getPictures() {
 		return pictures;
 	}
@@ -131,6 +134,7 @@ public class Event implements Serializable {
 	}
 
 	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "callofpaper_fk", unique = true)
 	public CallForPaper getCallForPaper() {
 		return callForPaper;
 	}
@@ -147,7 +151,7 @@ public class Event implements Serializable {
 		this.title = title;
 	}
 	
-	@ManyToMany
+	@ManyToMany( mappedBy = "events" )
 	public List<Attended> getAttendeds() {
 		return attendeds;
 	}

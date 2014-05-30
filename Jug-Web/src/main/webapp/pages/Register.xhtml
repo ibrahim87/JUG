@@ -93,9 +93,11 @@
          		    
          		              		 	
              	 <h:outputText value="You are inscribed as : " />  
-       			 <p:selectOneRadio id="role" value="#{userBean.nameRole}" required="true" label="Type of inscription">  
-            	 <f:selectItem itemLabel="JUGMember" itemValue="JUGMember" />  
-           		 <f:selectItem itemLabel="JUGLeader" itemValue="JUGLeader" />  
+       			 <p:selectOneRadio id="role" value="#{userBean.selectedTypeUser}" required="true" label="Type of inscription">  
+            	 <f:selectItem itemLabel="Member" itemValue="Member" />  
+           		 <f:selectItem itemLabel="Vip" itemValue="Vip" />  
+           		  <f:selectItem itemLabel="Speaker" itemValue="Speaker" /> 
+           		  
            		 </p:selectOneRadio> 
            		 
            <h:outputText value="Choose picture For you profil: " />  
@@ -145,7 +147,7 @@
                       
                     <h:outputText value="Inscribed as : " />  
                     <h:outputText styleClass="outputLabel"  
-                                value="#{userBean.nameRole}"/>  
+                                value="#{userBean.selectedTypeUser}"/>  
                       
                    
 

@@ -3,50 +3,20 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	 xmlns:p="http://primefaces.org/ui"
->
-	<h:head>
-		<title>template</title>
-				<h:outputStylesheet library="css" name="style.css" />
-				<h:outputStylesheet library="css" name="swipemenu.css" />
-				<h:outputStylesheet library="css" name="flexslider.css" />
-				<h:outputStylesheet library="css" name="bootstrap.css" />
-				<h:outputStylesheet library="css" name="bootstrap-responsive.css" />
-				<h:outputStylesheet library="css" name="jquery.simplyscroll.css" />
-				<h:outputStylesheet library="css" name="jPages.css" />
-				<h:outputStylesheet library="css" name="jquery.rating.css" />
-				<h:outputStylesheet library="css" name="ie.css" />
-				<h:outputStylesheet library="css" name="flexslider.css" />
-				<h:outputStylesheet library="css" name="prettyPhoto.css" />
-				
-				
-				
-			
-				
-				
-
-<h:outputScript library="js" name="jquery-1.10.2.min.js" />
- <h:outputScript library="js" name="html5.js" /> 
- <h:outputScript library="js" name="bootstrap.min.js" /> 
-<h:outputScript library="js" name="jquery.flexslider.js" />
- <h:outputScript library="js" name="jquery.flexslider.init.js" /> 
-
-<h:outputScript library="js" name="jquery.bxslider.js" /> 
- <h:outputScript library="js" name="jquery.bxslider.init.js" />
-<h:outputScript library="js" name="jquery.rating.js" />
-<h:outputScript library="js" name="jquery.idTabs.min.js" />
- <h:outputScript library="js" name="jquery.simplyscroll.js" />
-<h:outputScript library="js" name="fluidvids.min.js" />
-<h:outputScript library="js" name="jPages.js" />
-<h:outputScript library="js" name="jquery.sidr.min.js" />
-<h:outputScript library="js" name="jquery.touchSwipe.min.js" />
-<h:outputScript library="js" name="custom.js" />
-
-
-
-
-<h:outputScript library="js" name="jquery.prettyPhoto.js" />
-<h:outputScript library="js" name="jquery.swipemenu.init.js" />
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>template</title>
+	<h:outputStylesheet library="css" name="style.css" />
+	<h:outputStylesheet library="css" name="swipemenu.css" />
+	<h:outputStylesheet library="css" name="flexslider.css" />
+	<h:outputStylesheet library="css" name="bootstrap.css" />
+	<h:outputStylesheet library="css" name="bootstrap-responsive.css" />
+	<h:outputStylesheet library="css" name="jquery.simplyscroll.css" />
+	<h:outputStylesheet library="css" name="jPages.css" />
+	<h:outputStylesheet library="css" name="jquery.rating.css" />
+	<h:outputStylesheet library="css" name="ie.css" />
+	<h:outputStylesheet library="css" name="flexslider.css" />
+	<h:outputStylesheet library="css" name="prettyPhoto.css" />
 
 
 
@@ -54,175 +24,510 @@
 
 
 
+	<h:outputScript library="js" name="jquery-1.10.2.min.js" />
+	<h:outputScript library="js" name="html5.js" />
+	<h:outputScript library="js" name="bootstrap.min.js" />
+	<h:outputScript library="js" name="jquery.flexslider.js" />
+	<h:outputScript library="js" name="jquery.flexslider.init.js" />
 
-	</h:head>
-	<h:body>
-		
-<div id="page">
+	<h:outputScript library="js" name="jquery.bxslider.js" />
+	<h:outputScript library="js" name="jquery.bxslider.init.js" />
+	<h:outputScript library="js" name="jquery.rating.js" />
+	<h:outputScript library="js" name="jquery.idTabs.min.js" />
+	<h:outputScript library="js" name="jquery.simplyscroll.js" />
+	<h:outputScript library="js" name="fluidvids.min.js" />
+	<h:outputScript library="js" name="jPages.js" />
+	<h:outputScript library="js" name="jquery.sidr.min.js" />
+	<h:outputScript library="js" name="jquery.touchSwipe.min.js" />
+	<h:outputScript library="js" name="custom.js" />
 
-	<header id="header" class="container">
-		<div id="mast-head">
-			<div id="logo">
-			
-			<a href="index.html" title="Magazine" rel="home">
-			<h:graphicImage library="images" name="logo.png" alt="Magazine" />
-		</a>
+
+
+
+	<h:outputScript library="js" name="jquery.prettyPhoto.js" />
+	<h:outputScript library="js" name="jquery.swipemenu.init.js" />
+
+
+
+
+
+
+
+
+</h:head>
+<h:body>
+
+	<div id="page">
+
+		<header id="header" class="container">
+			<div id="mast-head">
+				<div id="logo">
+
+					<a href="index.html" title="Magazine" rel="home"> <h:graphicImage
+							library="images" name="logo.png" alt="Magazine" />
+					</a>
+				</div>
+			</div>
+
+
+			<nav class="navbar navbar-inverse clearfix nobot">
+
+				<a id="responsive-menu-button" href="#swipe-menu"> </a>
+
+
+				<div class="nav-collapse" id="swipe-menu-responsive">
+
+
+
+					<ui:include src="/template/menu.xhtml" />
+
+
+				</div>
+				<!--/.nav-collapse -->
+
+			</nav>
+			<!-- /.navbar -->
+
+		</header>
+		<!-- #masthead -->
+
+
+
+
+
+		<div id="headline" class="container">
+			<div class="row-fluid">
+
+				<div class="span3">
+					<article class="post">
+						<a href="#"
+							title="Permalink to Donec consectetuer ligula vulputate sem tristique cursus"
+							rel="bookmark"> <h:graphicImage library="images"
+								name="JUG2013.jpg" class="thumb"
+								alt="photodune-2043745-college-student-s" width="225"
+								height="136" />
+
+						</a>
+						<div class="entry">
+							<h3>
+								<a href="#"
+									title="Permalink to Donec consectetuer ligula vulputate sem tristique cursus"
+									rel="bookmark">Donec consectetuer ligula vulputate...</a>
+							</h3>
+							<p>5 months ago</p>
+						</div>
+						<div class="clearfix"></div>
+					</article>
+				</div>
+
+				<div class="span3">
+					<article class="post">
+						<a href="#"
+							title="Permalink to Nam nibh arcu tristique eget pretium vitae libero ac risus"
+							rel="bookmark"> <h:graphicImage library="images"
+								name="JUG2014.jpg" class="thumb"
+								alt="photodune-2043745-college-student-s" width="225"
+								height="136" />
+						</a>
+						<div class="entry">
+							<h3>
+								<a href="#"
+									title="Permalink to Nam nibh arcu tristique eget pretium vitae libero ac risus"
+									rel="bookmark">Nam nibh arcu tristique eget pretiu...</a>
+							</h3>
+							<p>5 months ago</p>
+						</div>
+						<div class="clearfix"></div>
+					</article>
+				</div>
+
+				<div class="span3">
+					<article class="post">
+						<a href="#"
+							title="Permalink to Aliquam quam lectus pulvinar urna leo dignissim lorem"
+							rel="bookmark"> <h:graphicImage library="images/dummy"
+								name="shutterstock_2114081-225x136.jpg" class="thumb"
+								alt="shutterstock_2114081" width="225" height="136" />
+						</a>
+						<div class="entry">
+							<h3>
+								<a href="#"
+									title="Permalink to Aliquam quam lectus pulvinar urna leo dignissim lorem"
+									rel="bookmark">Aliquam quam lectus pulvinar urna l...</a>
+							</h3>
+							<p>6 months ago</p>
+						</div>
+						<div class="clearfix"></div>
+					</article>
+				</div>
+
+				<div class="span3">
+					<article class="post">
+						<a href="#"
+							title="Permalink to Phasellus scelerisque massa molestie iaculis lectus pulvinar"
+							rel="bookmark"> <h:graphicImage library="images/dummy"
+								name="photodune-2043745-college-student-s-225x136.jpg"
+								class="thumb" alt="shutterstock_109209743" width="225"
+								height="136" />
+
+						</a>
+						<div class="entry">
+							<h3>
+								<a href="#"
+									title="Permalink to Phasellus scelerisque massa molestie iaculis lectus pulvinar"
+									rel="bookmark">Phasellus scelerisque massa molesti...</a>
+							</h3>
+							<p>6 months ago</p>
+						</div>
+						<div class="clearfix"></div>
+					</article>
+				</div>
+
 			</div>
 		</div>
 
-				
-        <nav class="navbar navbar-inverse clearfix nobot">
-						
-			<a id="responsive-menu-button" href="#swipe-menu">
-			 		
-			</a>	
 
-           
-            <div class="nav-collapse" id="swipe-menu-responsive">
 
-			
-				
-			<ui:include src="/template/menu.xhtml" />
-			
-			
-            </div><!--/.nav-collapse -->
-			
-        </nav><!-- /.navbar -->
-			
-	</header><!-- #masthead -->
-	
-	
-	
-	
-	
-<div id="headline" class="container">
-	<div class="row-fluid">
-		
-		<div class="span3">
-			<article class="post">
-				<a href="#" title="Permalink to Donec consectetuer ligula vulputate sem tristique cursus" rel="bookmark">
-				<h:graphicImage library="images" name="JUG2013.jpg" class="thumb" alt="photodune-2043745-college-student-s"  width="225" height="136"/>
-		
-				</a>
-				<div class="entry">
-					<h3><a href="#" title="Permalink to Donec consectetuer ligula vulputate sem tristique cursus" rel="bookmark">Donec consectetuer ligula vulputate...</a></h3>
-					<p>5 months ago </p>
+
+
+
+
+		<div id="intr" class="container">
+			<div class="row-fluid">
+				<div class="brnews span9">
+					<h3>Breaking News</h3>
+					<ul id="scroller">
+						<li><p>
+								<a href="#"
+									title="Permalink to Lectus non rutrum pulvinar urna leo dignissim lorem"
+									rel="bookmark"><span class="title">Lectus non rutrum
+										pu...</span> Nam nibh arcu, tristique eget pretium sed, porta i...</a>
+							</p></li>
+						<li><p>
+								<a href="#"
+									title="Permalink to Suspen disse auctor dapibus neque pulvinar urna leo"
+									rel="bookmark"><span class="title">Suspen disse
+										auctor ...</span> Fusce aliquet non ipsum vitae scelerisque. Nullam
+									...</a>
+							</p></li>
+						<li><p>
+								<a href="#"
+									title="Permalink to Porta lorem ipsum dolor sit amet, consectetur adipiscing risus"
+									rel="bookmark"><span class="title">Porta lorem ipsum
+										do...</span> Lorem ipsum dolor sit amet, consectetur adipiscing...</a>
+							</p></li>
+					</ul>
 				</div>
-				<div class="clearfix"></div>
-			</article>
-		</div>
-		
-		<div class="span3">
-			<article class="post">
-				<a href="#" title="Permalink to Nam nibh arcu tristique eget pretium vitae libero ac risus" rel="bookmark">
-				<h:graphicImage library="images" name="JUG2014.jpg" class="thumb" alt="photodune-2043745-college-student-s"  width="225" height="136"/>
-				</a>
-				<div class="entry">
-					<h3><a href="#" title="Permalink to Nam nibh arcu tristique eget pretium vitae libero ac risus" rel="bookmark">Nam nibh arcu tristique eget pretiu...</a></h3>
-					<p>5 months ago </p>
+
+				<div class="search span3">
+					<div class="offset1">
+						<form method="get" id="searchform" action="#">
+							<p>
+								<input type="text" value="Search here..."
+									onfocus="if ( this.value == 'Search here...' ) { this.value = ''; }"
+									onblur="if ( this.value == '' ) { this.value = 'Search here...'; }"
+									name="s" id="s" /> <input type="submit" id="searchsubmit"
+									value="Search" />
+							</p>
+						</form>
+					</div>
 				</div>
-				<div class="clearfix"></div>
-			</article>
+			</div>
 		</div>
 
-		<div class="span3">
-			<article class="post">
-				<a href="#" title="Permalink to Aliquam quam lectus pulvinar urna leo dignissim lorem" rel="bookmark">
-				<h:graphicImage library="images/dummy" name="shutterstock_2114081-225x136.jpg" class="thumb" alt="shutterstock_2114081"  width="225" height="136"/>
-				</a>
-				<div class="entry">
-					<h3><a href="#" title="Permalink to Aliquam quam lectus pulvinar urna leo dignissim lorem" rel="bookmark">Aliquam quam lectus pulvinar urna l...</a></h3>
-					<p>6 months ago </p>
-				</div>
-				<div class="clearfix"></div>
-			</article>
-		</div>
+		<div id="content" class="container">
 
-		<div class="span3">
-			<article class="post">
-				<a href="#" title="Permalink to Phasellus scelerisque massa molestie iaculis lectus pulvinar" rel="bookmark">
-				<h:graphicImage library="images/dummy" name="photodune-2043745-college-student-s-225x136.jpg" class="thumb" alt="shutterstock_109209743"  width="225" height="136"/>
+			<div id="main" class="row-fluid">
+				<div id="main-left" class="span8">
+
+					<ui:insert name="pageContent" />
+
+
+
+				</div>
+				<!-- #main-left -->
+	<!-- <ui:include src="/template/sidebar.xhtml" /> -->
+				 <!-- <div id="sidebar" class="span4">
+
+
 				
-				</a>
-				<div class="entry">
-					<h3><a href="#" title="Permalink to Phasellus scelerisque massa molestie iaculis lectus pulvinar" rel="bookmark">Phasellus scelerisque massa molesti...</a></h3>
-					<p>6 months ago </p>
-				</div>
-				<div class="clearfix"></div>
-			</article>
-		</div>	
-		
-	</div>
-	</div>
 
-	
-	
-	
-	
-	
-	
-	<div id="intr" class="container">
-		<div class="row-fluid">
-			<div class="brnews span9">
-				<h3>Breaking News</h3>
-				<ul id="scroller">
-					<li><p><a href="#" title="Permalink to Lectus non rutrum pulvinar urna leo dignissim lorem" rel="bookmark"><span class="title">Lectus non rutrum pu...</span> Nam nibh arcu, tristique eget pretium sed, porta i...</a></p></li>
-					<li><p><a href="#" title="Permalink to Suspen disse auctor dapibus neque pulvinar urna leo" rel="bookmark"><span class="title">Suspen disse auctor ...</span> Fusce aliquet non ipsum vitae scelerisque. Nullam ...</a></p></li>
-					<li><p><a href="#" title="Permalink to Porta lorem ipsum dolor sit amet, consectetur adipiscing risus" rel="bookmark"><span class="title">Porta lorem ipsum do...</span> Lorem ipsum dolor sit amet, consectetur adipiscing...</a></p></li>
+					
+
+				<div id="tabwidget" class="widget tab-container"> 
+				<ul id="tabnav" class="clearfix"> 
+					<li><h3><a href="#tab1" class="selected"><h:graphicImage library="images" name="view-white-bg.png" alt="Popular"/> Popular</a></h3></li>
+					<li><h3><a href="#tab2"><h:graphicImage library="images" name="time-white.png" alt="Recent"/>Recent</a></h3></li>
+				    <li><h3><a href="#tab3"><h:graphicImage library="images" name="komen-putih.png" alt="Comments"/>Comments</a></h3></li>
+				</ul> 
+
+			<div id="tab-content">
+			
+	 		<div id="tab1" style="display: block; ">
+				<ul id="itemContainer" class="recent-tab">
+					<li>
+						<a href="#"><h:graphicImage   width="225" height="136"  library="images/dummy" name="shutterstock_134257640-225x136.jpg"  class="thumb" alt="shutterstock_134257640" /></a>
+						<h4 class="post-title"><a href="#">Lectus non rutrum pulvinar urna...</a></h4>
+						<p>Nam nibh arcu, tristique eget pretium sed, porta id quam. Praesent dig...</p>
+						<div class="clearfix"></div>				
+					</li>
+					<li>
+						<a href="#"><h:graphicImage   width="225" height="136"  library="images/dummy" name="photodune-2043745-college-student-s-225x136.jpg"  class="thumb" alt="photodune-2043745-college-student-s" /></a>
+						<h4 class="post-title"><a href="#">Donec consectetuer ligula vulpu...</a></h4>
+						<p>Nam nibh arcu, tristique eget pretium sed, porta id quam. Praesent dig...</p>
+						<div class="clearfix"></div>				
+					</li>
+					<li>
+						<a href="#"><h:graphicImage   width="225" height="136"  library="images/dummy" name="photodune-3517559-idea-s-225x136.jpg"  class="thumb" alt="photodune-3517559-idea-s" /></a>
+						<h4 class="post-title"><a href="#">Nam nibh arcu tristique eget pr...</a></h4>
+						<p>Nam nibh arcu, tristique eget pretium sed, porta id quam. Praesent dig...</p>
+						<div class="clearfix"></div>				
+					</li>
+					<li>
+						<a href="#"><h:graphicImage   width="225" height="136"  library="images/dummy" name="shutterstock_123603871-225x136.jpg"  class="thumb" alt="gallery-1" /></a>
+						<h4 class="post-title"><a href="#">Quisque sodales viverra ornare ...</a></h4>
+						<p>Quisque sodales viverra ornare. Aenean posuere lacus sed facilisis gra...</p>
+						<div class="clearfix"></div>				
+					</li>
+					<li>
+						<a href="#"><h:graphicImage   width="225" height="136"  library="images/dummy" name="photodune-3834701-laughing-girl-xs-225x136.jpg"  class="thumb" alt="photodune-3834701-laughing-girl-xs" /></a>
+						<h4 class="post-title"><a href="#">Morbi est est lectus non rutrum...</a></h4>
+						<p>Fusce aliquet non ipsum vitae scelerisque. Nullam ultricies adipiscing...</p>
+						<div class="clearfix"></div>				
+					</li>
+					<li>
+						<a href="#"><h:graphicImage   width="225" height="136" library="images/dummy" name="shutterstock_2114081-225x136.jpg" class="thumb" alt="shutterstock_2114081" /></a>
+						<h4 class="post-title"><a href="#">Aliquam quam lectus pulvinar ur...</a></h4>
+						<p>Fusce aliquet non ipsum vitae scelerisque. Nullam ultricies adipiscing...</p>
+						<div class="clearfix"></div>				
+					</li>
+					<li>
+						<a href="#"><h:graphicImage   width="225" height="136" library="images/dummy" name="shutterstock_70184773-225x136.jpg" class="thumb" alt="shutterstock_70184773" /></a>
+						<h4 class="post-title"><a href="#">Suspen disse auctor dapibus neq...</a></h4>
+						<p>Fusce aliquet non ipsum vitae scelerisque. Nullam ultricies adipiscing...</p>
+						<div class="clearfix"></div>				
+					</li>
+					<li>
+						<a href="#"><h:graphicImage   width="225" height="136" library="images/dummy" name="shutterstock_70787161-225x136.jpg" class="thumb" alt="shutterstock_70787161" /></a>
+						<h4 class="post-title"><a href="#">Porta lorem ipsum dolor sit ame...</a></h4>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer place...</p>
+						<div class="clearfix"></div>				
+					</li>
+					<li>
+						<a href="#"><h:graphicImage   width="225" height="136" library="images/dummy" name="shutterstock_58382248-225x136.jpg" class="thumb" alt="shutterstock_58382248" /></a>
+						<h4 class="post-title"><a href="#">Integer vitae libero ac risus e...</a></h4>
+						<p>Fusce aliquet non ipsum vitae scelerisque. Nullam ultricies adipiscing...</p>
+						<div class="clearfix"></div>				
+					</li>
+								
+					<script type="text/javascript">
+						jQuery(document).ready(function($){
+
+							/* initiate the plugin */
+							$("div.holder").jPages({
+							containerID  : "itemContainer",
+							perPage      : 3,
+							startPage    : 1,
+							startRange   : 1,
+							links		   : "blank"
+							});
+						});		
+					</script>
+
 				</ul>
+				
+				<div class="holder clearfix"></div>
+				<div class="clear"></div>
+
+			End most viewed post		  
+
+			</div>/#tab1
+ 
+			<div id="tab2" style="display: none;">	
+				<ul id="itemContainer2" class="recent-tab">
+					<li>
+						<a href="#"><h:graphicImage   width="225" height="136" library="images/dummy" name="shutterstock_134257640-225x136.jpg" class="thumb" alt="shutterstock_134257640" /></a>
+						<h4 class="post-title"><a href="http://magazine.themedesigner.in/lectus-non-rutrum-pulvinar-urna-leo-dignissim-lorem-8/">Lectus non rutrum pulvinar urna...</a></h4>
+						<p>Nam nibh arcu, tristique eget pretium sed, porta id quam. Praesent dig...</p>
+						<div class="clearfix"></div>	
+					</li>
+					<li>
+						<a href="#"><h:graphicImage   width="225" height="136" library="images/dummy" name="shutterstock_70184773-225x136.jpg" class="thumb" alt="shutterstock_70184773" /></a>
+						<h4 class="post-title"><a href="#">Suspen disse auctor dapibus neq...</a></h4>
+						<p>Fusce aliquet non ipsum vitae scelerisque. Nullam ultricies adipiscing...</p>
+						<div class="clearfix"></div>	
+					</li>
+					<li>
+						<h:graphicImage   width="225" height="136" library="images/dummy" name="shutterstock_70787161-225x136.jpg" class="thumb" alt="shutterstock_70787161" />
+						<h4 class="post-title"><a href="#">Porta lorem ipsum dolor sit ame...</a></h4>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer place...</p>
+						<div class="clearfix"></div>	
+					</li>
+				</ul> 	 
+			</div>/#tab2 
+
+			<div id="tab3" style="display: none; ">
+				<ul>
+					<li><span class="author">Magazine Author</span> on <a href="#" title=" View comment ">Lorem Ipsum is simply dummy te</a></li>
+					<li><span class="author">Magazine Author</span> on <a href="#" title=" View comment ">Lorem Ipsum is simply dummy te</a></li>
+					<li><span class="author">magazine</span> on <a href="#" title=" View comment ">This is threaded comment level</a></li>
+					<li><span class="author">magazine</span> on <a href="#" title=" View comment ">This is threaded comment syste</a></li>
+				</ul>
+			</div>/#tab2 
+	
+			</div>/#tab-content
+
+			</div>/#tab-widget 
+
+			<div class="widget widget_latestpost">
+				<h3 class="title"><span>Recent Posts</span></h3>
+				<div class="latest-posts widget">
+					<div class="latest-post clearfix">
+						<h:graphicImage   width="225" height="136" library="images/dummy" name="shutterstock_134257640-225x136.jpg" class="thumb fl" alt="shutterstock_134257640" title=""/>
+						<h4><a href="#" rel="bookmark" title="Lectus non rutrum pulvinar urna leo dignissim lorem">Lectus non rutrum pulvinar urna leo</a></h4>
+						<div class="post-time">August 12, 2013</div>
+						<div class="ratings" style="float: none">
+							<input class="star" type="radio" name="recent-post-1" value="1" disabled="disabled"/>
+							<input class="star" type="radio" name="recent-post-1" value="2" disabled="disabled"/>
+							<input class="star" type="radio" name="recent-post-1" value="3" disabled="disabled"/>
+							<input class="star" type="radio" name="recent-post-1" value="4" disabled="disabled" checked="checked"/>
+							<input class="star" type="radio" name="recent-post-1" value="5" disabled="disabled"/>
+						</div>
+					</div>
+					
+					<div class="latest-post clearfix">
+					<h:graphicImage   width="225" height="136" library="images/dummy" name="shutterstock_70184773-225x136.jpg" class="thumb fl" alt="shutterstock_70184773" title="" />
+						<h4><a href="#" rel="bookmark" title="Suspen disse auctor dapibus neque pulvinar urna leo">Suspen disse auctor dapibus neque</a></h4>
+						<div class="post-time">August 11, 2013</div>
+						<div class="ratings" style="float: none">
+							<input class="star" type="radio" name="recent-post-2" value="1" disabled="disabled"/>
+							<input class="star" type="radio" name="recent-post-2" value="2" disabled="disabled"/>
+							<input class="star" type="radio" name="recent-post-2" value="3" disabled="disabled"/>
+							<input class="star" type="radio" name="recent-post-2" value="4" disabled="disabled" checked="checked"/>
+							<input class="star" type="radio" name="recent-post-2" value="5" disabled="disabled"/>
+						</div>
+					</div>
+
+					<div class="latest-post clearfix">
+						<h:graphicImage   width="225" height="136" library="images/dummy" name="shutterstock_70787161-225x136.jpg" class="thumb fl" alt="shutterstock_70787161" title="" />
+						<h4><a href="#" rel="bookmark" title="Porta lorem ipsum dolor sit amet, consectetur adipiscing risus">Porta lorem ipsum dolor sit amet</a></h4>
+						<div class="post-time">August 2, 2013</div>
+						<div class="ratings" style="float: none">
+							<input class="star" type="radio" name="recent-post-3" value="1" disabled="disabled"/>
+							<input class="star" type="radio" name="recent-post-3" value="2" disabled="disabled"/>
+							<input class="star" type="radio" name="recent-post-3" value="3" disabled="disabled"/>
+							<input class="star" type="radio" name="recent-post-3" value="4" disabled="disabled" checked="checked"/>
+							<input class="star" type="radio" name="recent-post-3" value="5" disabled="disabled"/>
+						</div>
+					</div>
+
+				</div>
 			</div>
-		
-		<div class="search span3"><div class="offset1">
-			<form method="get" id="searchform" action="#">
-				<p><input type="text" value="Search here..." onfocus="if ( this.value == 'Search here...' ) { this.value = ''; }" onblur="if ( this.value == '' ) { this.value = 'Search here...'; }" name="s" id="s" />
-				<input type="submit" id="searchsubmit" value="Search" /></p>
-			</form>
-		</div></div>
-		</div>
-	</div>
 
-	<div id="content" class="container">
-
-		<div id="main" class="row-fluid">
-			<div id="main-left" class="span8">
-		
-			<ui:insert name="pageContent"/>
+			<div class="widget widget_latestpost"><h3 class="title"><span>Technology News</span></h3>
+				<div class="latest-posts">
+					<article class="post">
+						<a class="image_thumb_zoom" href="#" title="Permalink to Porta lorem ipsum dolor sit amet, consectetur adipiscing risus" rel="bookmark">
+						<h:graphicImage   width="371" height="177" library="images/dummy" name="shutterstock_70787161-371x177.jpg" class="attachment-post-first wp-post-image" alt="shutterstock_70787161" />
+						</a>
+						<h4 class="post-title">
+						<a href="#" title="Permalink to Porta lorem ipsum dolor sit amet, consectetur adipiscing risus" rel="bookmark">Porta lorem ipsum dolor sit amet, c...</a>
+						<span class="date">August 2, 2013</span>
+						</h4>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer placerat id augue non dapibus. Morbi ut ipsum cond...</p>
+					</article>
 				
-				
+					<article class="post">
+						<div class="entry clearfix">
+							<a href="#" title="Permalink to Donec consectetuer ligula vulputate sem tristique cursus" rel="bookmark">
+							<h:graphicImage   width="225" height="136" library="images/dummy" name="photodune-2043745-college-student-s-225x136.jpg" class="thumb" alt="photodune-2043745-college-student-s" />
+						
+							<h4 class="post-title">Donec consectetuer ligula vulputate...</h4>
+							</a>
+							<p>Nam nibh arcu, tristique eget pretium se...</p>
+							<div class="meta">
+								<span class="date">July 11, 2013</span>
+							</div>
+						</div>
+					</article>
 
-			</div><!-- #main-left -->
+					<article class="post">
+						<div class="entry clearfix">
+							<a href="#" title="Permalink to Quisque sodales viverra ornare vitae libero ac risus" rel="bookmark">
+								<h:graphicImage   width="225" height="136" library="images/dummy" name="shutterstock_123603871-225x136.jpg" class="thumb" alt="gallery-1" />
+							<h4 class="post-title">Quisque sodales viverra ornare vita...</h4></a>
+							<p>Quisque sodales viverra ornare. Aenean p...</p>
+							<div class="meta">
+								<span class="date">July 2, 2013</span>
+							</div>
+						</div>
+					</article>
+				</div>
+			</div>
+			
+			<div class="video-box widget row-fluid">
+				<h3 class="title"><span style="background-color: #;color: #;">Videos Gallery</span></h3>		
+				<iframe width="369" height="188" src="http://www.youtube.com/embed/PMR1H3pmhn8" frameborder="0" ></iframe>
+				<ul>
+					<li>
+					<a href="#" title="Permalink to Lectus non rutrum pulvinar urna leo dignissim lorem" rel="bookmark">
+						<h:graphicImage   width="225" height="136" library="images/dummy" name="shutterstock_134257640-225x136.jpg" alt="shutterstock_134257640" />
+							
+				</a>
+					</li>
+						
+					<li>
+					<a href="#" title="Permalink to Vestibulum volutpat tortor libero sodales leo mauris ut lectus" rel="bookmark">
+					<h:graphicImage   width="225" height="136" library="images/dummy" name="photodune-3517559-idea-s-225x136.jpg" alt="photodune-3517559-idea-s" />
+					</a>
+					</li>
+						
+					<li>
+					<a href="#" title="Permalink to Vivamus ultrices luctus nunc sem sit amet interdum consectetuer" rel="bookmark">
+					<h:graphicImage   width="225" height="136" library="images/dummy" name="photodune-2043745-college-student-s-225x136.jpg" alt="photodune-2043745-college-student-s" />
+					
+					</a>
+					</li>
+					
+					<li>
+					<a href="#" title="Permalink to Phasellus scelerisque massa molestie iaculis lectus pulvinar" rel="bookmark">
+					<h:graphicImage   width="225" height="136" library="images/dummy" name="shutterstock_109209743-225x136.jpg" alt="shutterstock_109209743" />
+					
+					</a>
+					</li>
+				</ul>
+        	</div>
+						
 
-	 <div id="sidebar" class="span4">
-	 
-	 
- <ui:include src="/template/sidebar.xhtml"/>  	 
-					  
-		 		
-					  
-					  
-					  
-		
-        			
-		</div> <!-- sidebar -->
-		
-		<div class="clearfix"></div>
 
-		<div id="gallery">
-			<h3 class="title"><span>All News Gallery</span></h3>
-		
-		</div>
 
-		</div><!-- #main -->
+
+
+				</div> -->
+				<!-- sidebar -->
+
+				<div class="clearfix"></div>
+
+				<div id="gallery">
+					<h3 class="title">
+						<span>All News Gallery</span>
+					</h3>
+
+				</div>
+
+			</div>
+			<!-- #main -->
 
 		</div><!-- #content -->
 
-	<footer id="footer" class="row-fluid">
-	
-     <ui:include src="/template/footer.xhtml"/>  	
-		
-	</footer>
+		<footer id="footer" class="row-fluid">
 
-</div><!-- #wrapper -->
-		
-	</h:body>
+			<ui:include src="/template/footer.xhtml" />
+
+		</footer>
+
+	</div>
+	<!-- #wrapper -->
+
+</h:body>
 </html>

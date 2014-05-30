@@ -7,34 +7,36 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+
 @Entity
-@Table(name="t_article")
-public class Article implements Serializable{
+@Table(name = "t_article")
+public class Article implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private int idArticle ;
-	private String title ;
-	private String status ;
-	private String contenu ;
-	private Date datecration ; 
-	private User user ;
-	private List<Page>pages;
-	
-	
-	
+	private int idArticle;
+	private String title;
+	private String status;
+	private String contenu;
+	private Date datecration;
+	private User user;
+	private List<Page> pages;
+
 	public Article() {
 	}
-	
-	@Id	
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public int getIdArticle() {
 		return idArticle;
 	}
@@ -42,7 +44,6 @@ public class Article implements Serializable{
 	public void setIdArticle(int idArticle) {
 		this.idArticle = idArticle;
 	}
-
 
 	public String getStatus() {
 		return status;
@@ -67,8 +68,9 @@ public class Article implements Serializable{
 	public void setDatecration(Date datecration) {
 		this.datecration = datecration;
 	}
-	
-	@OneToMany(mappedBy = "article" ,cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+
+	@OneToMany(mappedBy = "article", cascade = { CascadeType.PERSIST,
+			CascadeType.MERGE })
 	public List<Page> getPages() {
 		if (pages == null)
 			pages = new ArrayList<Page>();
@@ -86,7 +88,9 @@ public class Article implements Serializable{
 	public void setTitle(String title) {
 		this.title = title;
 	}
+
 	@ManyToOne
+	@JoinColumn(name="user_fk")
 	public User getUser() {
 		return user;
 	}
@@ -94,10 +98,5 @@ public class Article implements Serializable{
 	public void setUser(User user) {
 		this.user = user;
 	}
-	
-	
-	
-	
-	
-	
+
 }
