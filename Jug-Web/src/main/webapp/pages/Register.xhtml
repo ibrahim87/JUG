@@ -1,3 +1,6 @@
+
+
+
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:f="http://java.sun.com/jsf/core"
@@ -140,19 +143,8 @@
            		 <f:selectItem itemLabel="Female" itemValue="Memale" />  
        			 </p:selectOneRadio>
                       
-                    <h:outputText value="Skip to last: " />  
-                    <h:selectBooleanCheckbox value="#{userBean.skip}" />  
-                </h:panelGrid>  
-            </p:panel>  
-        </p:tab>  
-              
-        <p:tab id="access" title="Username">  
-            <p:panel header="Access Details">  
-              
-                <h:messages errorClass="error"/>  
-                  
-                <h:panelGrid columns="2" columnClasses="label, value" cellspacing="12">  
-                    <h:outputText value="Username: *" />  
+                      
+                       <h:outputText value="Username: *" />  
                   <h:inputText id="lg" value="#{userBean.newuser.login}" required="true" requiredMessage="login is required">
 						
 					</h:inputText> 
@@ -179,59 +171,39 @@
 						<f:validateRegex pattern="^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$" />
 					</h:inputText>  
          		    
-                   <h:outputText value="You are inscribed as : " />  
-       			 <p:selectOneRadio  value="#{userBean.selectedTypeUser}" required="true" label="Type of inscription">  
+         		    
+         		    
+         		    
+         		   
+         		  <!--   <h:outputText value="You are inscribed as : " />  
+       			 <p:selectOneRadio value="#{userBean.selectedTypeUser}" required="true" label="Type of inscription">  
             	 <f:selectItem itemLabel="Member" itemValue="1" />  
            		
            		  <f:selectItem itemLabel="Speaker" itemValue="2" /> 
            		  
-           		 </p:selectOneRadio>
-           		 
+           		 </p:selectOneRadio> -->
+         		    
+         	<h:form>	
+           <h:outputText value="Choose picture For you profil: " />  
+       			 
+      	  <p:fileUpload fileUploadListener="#{userBean.upload}"  
+            mode="advanced"  
+            update="messages"  
+            auto="true"  
+            sizeLimit="100000"   
+            allowTypes="/(\.|\/)(gif|jpe?g|png)$/"/> 
+       			 <p:growl id="messages" showDetail="true"/>  
+                   </h:form>   
+                      
                     <h:outputText value="Skip to last: " />  
                     <h:selectBooleanCheckbox value="#{userBean.skip}" />  
                 </h:panelGrid>  
             </p:panel>  
         </p:tab>  
               
-     <!--  <p:tab id="contactm" title="Other informations">  
-            <p:panel header="Mandatory Informations">  
-                  
-                <h:messages errorClass="error"/>  
+       
               
-                <h:panelGrid columns="2" columnClasses="label, value" cellspacing="12">  
  
-					 <h:outputText value="Email: *" />  
-         		  <h:inputText id="email" value="#{userBean.newuser.mail}" required="true" requiredMessage="email is required" validatorMessage="invalid email">
-						<f:validateRegex pattern="^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$" />
-					</h:inputText>
-        
-          		 
-          		 	<h:outputText value="Re-enter Email: *" />  
-         		<h:inputText id="email2" value="#{userBean.email2}" required="true" requiredMessage="email is required" validatorMessage="invalid email">
-						<f:validateRegex pattern="^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$" />
-					</h:inputText>  
-         		    
-         		              		 	
-             	 <h:outputText value="You are inscribed as : " />  
-       			 <p:selectOneRadio id="r" value="#{userBean.selectedTypeUser}" required="true" label="Type of inscription">  
-            	 <f:selectItem itemLabel="Member" itemValue="1" />  
-           		
-           		  <f:selectItem itemLabel="Speaker" itemValue="2" /> 
-           		  
-           		 </p:selectOneRadio>
-           		 
-          <h:outputText value="Choose picture For you profil: " />  
-       			 
-        <p:fileUpload fileUploadListener="#{userBean.upload}"  
-            mode="advanced"  
-            update="messages"  
-            auto="true"  
-            sizeLimit="100000"   
-            allowTypes="/(\.|\/)(gif|jpe?g|png)$/"/> 
-       			 <p:growl id="messages" showDetail="true"/>   
-                </h:panelGrid>  
-            </p:panel>  
-        </p:tab> -->
               
         <p:tab id="confirm" title="Confirmation">  
             <p:panel header="Confirmation">  
@@ -265,21 +237,20 @@
               <h:outputText value="Email: " />  
                     <h:outputText styleClass="outputLabel"  
                                 value="#{userBean.newuser.mail}" />   
-                      
-                  <h:outputText value="Inscribed as : " />  
+                     
+              <!--  <h:outputText value="Inscribed as : " />  
                     <h:outputText styleClass="outputLabel"  
                                 value="#{userBean.selectedTypeUser}"/>
-                     
-                   
-
+                      -->
+                  
    			  <h:outputText />  
                     <h:outputText />  
                        <h:outputText />  
                     <h:outputText />  
-                  <!-- <h:outputText value=" Profil picture : " />    
+            <h:outputText value=" Profil picture : " />    
                        <p:graphicImage id="img" width="45px" height="60px" 
                   		  value="#{userBean.streamedPicture}" styleClass="identityPicture"/> 
-                    <h:outputText /> -->   
+                    <h:outputText /> 
                     <h:outputText />   
                 </h:panelGrid>  
                   

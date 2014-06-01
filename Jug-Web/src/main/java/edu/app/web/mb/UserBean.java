@@ -13,7 +13,6 @@ import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.bean.ViewScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.validator.ValidatorException;
@@ -33,10 +32,10 @@ import edu.app.persistence.Picture;
 import edu.app.persistence.Speaker;
 import edu.app.persistence.User;
 
-@ManagedBean(name = "userBean")
+@ManagedBean(name="userBean")
 @SessionScoped
-@ViewScoped
 public class UserBean implements Serializable {
+	
 	@EJB
 	private AnotherEmailSenderRemote anotherEmailSenderRemote;
 	@EJB
@@ -45,8 +44,9 @@ public class UserBean implements Serializable {
 	@EJB
 	private PictureServiceLocal pictureServiceLocal;
 
-	private Picture picture = new Picture();
+	
 	private static final long serialVersionUID = 6710404278650523921L;
+	private Picture picture = new Picture();
 	private User user = new User();
 
 	private String password2;
@@ -62,7 +62,7 @@ public class UserBean implements Serializable {
 	private User newuser = new User();
 	private boolean skip;
 	private boolean showFiledUpload = false;
-	@SuppressWarnings("unused")
+
 	private StreamedContent streamedPic;
 	private DefaultStreamedContent streamedPicture;
 
@@ -83,7 +83,7 @@ public class UserBean implements Serializable {
 
 	@PostConstruct
 	public void init() {
-		
+		users = userServiceLocal.findAllUser();
 		picUsers = userServiceLocal.findByStatus("Refuser");
 		loggedIn = false;
 
@@ -167,15 +167,16 @@ public class UserBean implements Serializable {
 		if (selectedTypeUser == 2) {
 
 			newuser = new Speaker();
-
+			
+		
 		}
 		
-
+		
 		
 		newuser.setPicture(picture);
 		newuser.setEtat("attente");
 		userServiceLocal.createUser(newuser);
-		selectedTypeUser = -1;
+		 selectedTypeUser = -1;
 	
 
 		FacesMessage msg = new FacesMessage(
@@ -274,6 +275,10 @@ public class UserBean implements Serializable {
 				"image/png");
 		return streamedPic;
 	}
+	
+	public void setStreamedPic(StreamedContent streamedPic) {
+		this.streamedPic = streamedPic;
+	}
 
 	public User getUser() {
 		return user;
@@ -347,9 +352,7 @@ public class UserBean implements Serializable {
 		this.skip = skip;
 	}
 
-	public void setStreamedPic(StreamedContent streamedPic) {
-		this.streamedPic = streamedPic;
-	}
+	
 
 	public DefaultStreamedContent getStreamedPicture() {
 		return streamedPicture;
