@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.ejb.Local;
 
+import edu.app.persistence.Speaker;
 import edu.app.persistence.User;
 
 @Local
@@ -38,6 +39,8 @@ public interface UserServiceLocal {
 	public List<User> findByKeywordLastNameAndStatus(String lastName,
 			String status);
 	public boolean usernameExists(String login);
+
+	List<Speaker> findAllSpeakers();
 	
 
 

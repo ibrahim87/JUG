@@ -13,6 +13,7 @@ import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.validator.ValidatorException;
@@ -26,16 +27,15 @@ import org.primefaces.model.StreamedContent;
 import edu.app.business.AnotherEmailSenderRemote;
 import edu.app.business.PictureServiceLocal;
 import edu.app.business.UserServiceLocal;
+import edu.app.persistence.Leader;
 import edu.app.persistence.Member;
 import edu.app.persistence.Picture;
 import edu.app.persistence.Speaker;
 import edu.app.persistence.User;
-import edu.app.persistence.Vip;
-
-import edu.app.persistence.Leader;
 
 @ManagedBean(name = "userBean")
 @SessionScoped
+@ViewScoped
 public class UserBean implements Serializable {
 	@EJB
 	private AnotherEmailSenderRemote anotherEmailSenderRemote;
@@ -59,26 +59,31 @@ public class UserBean implements Serializable {
 	private boolean imJUGLeader = false;
 	private boolean imJUGMember = false;
 	private boolean imSpeaker = false;
-	private boolean imVip = false;
+	private User newuser = new User();
 	private boolean skip;
 	private boolean showFiledUpload = false;
 	@SuppressWarnings("unused")
 	private StreamedContent streamedPic;
 	private DefaultStreamedContent streamedPicture;
-	private String Email;
+
 	private String mail;
 	private String userType = "";
 
 	private int selectedTypeUser = -1;
 
 	private String destinationTemp = "E:\\jee\\servers\\s05\\jboss-as-7.1.1\\welcome-content\\temp\\";
+	private String nom;
+	private String prenom;
+	private String sexe;
+
+	
 
 	public UserBean() {
 	}
 
 	@PostConstruct
 	public void init() {
-		users = userServiceLocal.findAllUser();
+		
 		picUsers = userServiceLocal.findByStatus("Refuser");
 		loggedIn = false;
 
@@ -110,8 +115,7 @@ public class UserBean implements Serializable {
 					navigateTo = "/pages/JUGLeader/Home";
 					imJUGLeader = true;
 				}
-				user = found;
-				loggedIn = true;
+				
 
 				if (user instanceof Member) {
 
@@ -119,23 +123,13 @@ public class UserBean implements Serializable {
 					navigateTo = "/pages/JUGMember/Home";
 					imJUGMember = true;
 				}
-				user = found;
-				loggedIn = true;
+				
 
 				if (user instanceof Speaker) {
 
 					setUserType("Speaker");
 					navigateTo = "/pages/JUGSpeaker/Home";
 					imSpeaker = true;
-				}
-				user = found;
-				loggedIn = true;
-
-				if (user instanceof Vip) {
-
-					setUserType("Vip");
-					navigateTo = "/pages/JUGVip/Home";
-					imVip = true;
 				}
 				user = found;
 				loggedIn = true;
@@ -161,40 +155,33 @@ public class UserBean implements Serializable {
 	}
 
 	public String createUser() {
+		
 		String navigateTo = null;
 
 		if (selectedTypeUser == 1) {
 
-			user = new Member();
+			newuser = new Member();
 
 		}
 
 		if (selectedTypeUser == 2) {
 
-			user = new Vip();
+			newuser = new Speaker();
 
 		}
-		if (selectedTypeUser == 3) {
+		
 
-			user = new Speaker();
-
-		}
-		user.setEtat("attente");
-		user.setPicture(picture);
-		userServiceLocal.createUser(user);
-		anotherEmailSenderRemote
-				.sendMail(
-						user.getMail(),
-						"Register",
-						" Hello Mr , and Mrs. felicitation you registered in our website, you have access to our site crossing   \n Your UserName is :=  "
-								+ user.getLogin()
-								+ "\n Your Password is :=    "
-								+ user.getPassword());
+		
+		newuser.setPicture(picture);
+		newuser.setEtat("attente");
+		userServiceLocal.createUser(newuser);
+		selectedTypeUser = -1;
+	
 
 		FacesMessage msg = new FacesMessage(
 				"Success! , Your inscription is Done ");
 		FacesContext.getCurrentInstance().addMessage(null, msg);
-		user = new User();
+		newuser = new User();
 		navigateTo = "/index";
 		return navigateTo;
 
@@ -207,38 +194,7 @@ public class UserBean implements Serializable {
 
 	}
 
-	// public String createrCallOfPaper(){
-	// String navigateTo =null;
-	//
-	// userCall=new User();
-	// role = roleServiceLocal.findByRoleName(nameRole);
-	// userCall.setRole(role);
-	// userCall.setEtat("attente");
-	// userCall.setPrenom(prenom);
-	// userCall.setNom(nom);
-	// userCall.setOrganisation(organisation);
-	// userCall.setPosition(position);
-	// userCall.setPersonalProfile(personalProfile);
-	// userCall.setCompanyProfile(companyProfile);
-	// userCall.setTitleOfPaper(titleOfPaper);
-	// userCall.setDetailsOfPaper(detailsOfPaper);
-	// userCall.setPicture(picture);
-	//
-	//
-	// System.out.println();
-	//
-	// userServiceLocal.createUser(userCall);
-	//
-	// FacesMessage msg = new FacesMessage(
-	// "Success! , Your inscription is Done ");
-	// FacesContext.getCurrentInstance().addMessage(null, msg);
-	// userCall = new User();
-	// navigateTo = "/index";
-	//
-	// return navigateTo;
-	//
-	//
-	// }
+	
 
 	public void upload(FileUploadEvent event) throws IOException {
 
@@ -427,14 +383,6 @@ public class UserBean implements Serializable {
 		this.showFiledUpload = showFiledUpload;
 	}
 
-	public String getEmail() {
-		return Email;
-	}
-
-	public void setEmail(String email) {
-		Email = email;
-	}
-
 	public boolean isImJUGLeader() {
 		return imJUGLeader;
 	}
@@ -467,14 +415,6 @@ public class UserBean implements Serializable {
 		this.imSpeaker = imSpeaker;
 	}
 
-	public boolean isImVip() {
-		return imVip;
-	}
-
-	public void setImVip(boolean imVip) {
-		this.imVip = imVip;
-	}
-
 	public String getUserType() {
 		return userType;
 	}
@@ -491,4 +431,41 @@ public class UserBean implements Serializable {
 		this.selectedTypeUser = selectedTypeUser;
 	}
 
+	
+	
+	public String getNom() {
+		return nom;
+	}
+
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+
+	public String getPrenom() {
+		return prenom;
+	}
+
+	public void setPrenom(String prenom) {
+		this.prenom = prenom;
+	}
+
+	public String getSexe() {
+		return sexe;
+	}
+
+	public void setSexe(String sexe) {
+		this.sexe = sexe;
+	}
+
+	
+
+	public User getNewuser() {
+		return newuser;
+	}
+
+	public void setNewuser(User newuser) {
+		this.newuser = newuser;
+	}
+	
+	
 }

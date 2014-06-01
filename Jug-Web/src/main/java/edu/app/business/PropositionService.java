@@ -41,7 +41,7 @@ public class PropositionService implements PropositionServiceRemote,
 	@SuppressWarnings("unchecked")
 	public List<Proposition> findAllProposition() {
 		Query query = em.createQuery("select pro from Proposition pro");
-		return query.getResultList();
+		return (List<Proposition>)query.getResultList();
 	}
 
 	@SuppressWarnings("unchecked")

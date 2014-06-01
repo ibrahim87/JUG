@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import edu.app.persistence.Speaker;
 import edu.app.persistence.User;
 
 /**
@@ -39,7 +40,11 @@ public class UserService implements UserServiceRemote, UserServiceLocal {
 	}
 
 	public List<User> findAllUser() {
-		return em.createQuery("select u from User u ").getResultList();
+		return (List<User>)em.createQuery("select u from User u ").getResultList();
+	}
+	@Override
+	public List<Speaker> findAllSpeakers() {
+		return (List<Speaker>)em.createQuery("select u from Speaker u ").getResultList();
 	}
 
 	public List<User> findByKeywordUser(String keyword) {

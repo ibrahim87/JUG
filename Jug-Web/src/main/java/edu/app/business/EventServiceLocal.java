@@ -6,7 +6,6 @@ import javax.ejb.Local;
 
 import edu.app.persistence.Event;
 import edu.app.persistence.User;
-import edu.app.persistence.Vip;
 
 @Local
 public interface EventServiceLocal {
@@ -23,11 +22,11 @@ public interface EventServiceLocal {
 
 	List<Event> findAllEventNotDone();
 
-	List<Event> findVipInvited(Vip vip);
+	List<Event> findVipInvited(User user);
 
-	List<Event> findVipHaveNotEvent(Vip vip);
+	List<Event> findVipHaveNotEvent(User user);
 
-	List<Event> findEventSubscribed(Vip vip);
+	List<Event> findEventSubscribed(User user);
 
 	Event StartHungOut(User JUGLeader);
 

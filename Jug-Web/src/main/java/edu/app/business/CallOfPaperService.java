@@ -8,6 +8,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import edu.app.persistence.CallForPaper;
+import edu.app.persistence.Event;
 
 /**
  * Session Bean implementation class CallOfPaperService
@@ -43,7 +44,7 @@ public class CallOfPaperService implements CallOfPaperServiceRemote,
 	@SuppressWarnings("unchecked")
 	public List<CallForPaper> findAllCallForPaper() {
 		Query query = em.createQuery("select c from CallForPaper c");
-		return query.getResultList();
+		return (List<CallForPaper>)query.getResultList();
 	}
 
 	@SuppressWarnings("unchecked")
@@ -62,6 +63,12 @@ public class CallOfPaperService implements CallOfPaperServiceRemote,
 		query.setParameter("param", "%" + keyword.toUpperCase() + "%");
 		toFind = query.getResultList();
 		return toFind;
+	}
+
+	@Override
+	public CallForPaper findCallForPaperByEvent(Event event) {
+	
+		return null;
 	}
 
 }

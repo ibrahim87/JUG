@@ -5,6 +5,7 @@ import java.util.List;
 import javax.ejb.Remote;
 
 import edu.app.persistence.CallForPaper;
+import edu.app.persistence.Event;
 
 @Remote
 public interface CallOfPaperServiceRemote {
@@ -23,4 +24,7 @@ public interface CallOfPaperServiceRemote {
 
 	List<CallForPaper> findByKeywordCallForPaper(String keyword);
 
+	 CallForPaper findCallForPaperByEvent(Event event);
+	
+	
 }

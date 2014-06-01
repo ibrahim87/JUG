@@ -3,7 +3,7 @@ package edu.app.persistence;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
-@Entity(name="t_leader")
+@Entity
 public class Leader  extends User implements Serializable{
 
 	/**
@@ -13,6 +13,8 @@ public class Leader  extends User implements Serializable{
 	
 	
 	public Leader() {
+		
+		super();
 	}
 
 }

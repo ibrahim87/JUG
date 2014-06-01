@@ -31,7 +31,7 @@ public class Article implements Serializable {
 	private Date datecration;
 	private User user;
 	private List<Page> pages;
-
+	private List<Picture>pictures ;
 	public Article() {
 	}
 
@@ -97,6 +97,14 @@ public class Article implements Serializable {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+	@OneToMany(mappedBy ="article")
+	public List<Picture> getPictures() {
+		return pictures;
+	}
+
+	public void setPictures(List<Picture> pictures) {
+		this.pictures = pictures;
 	}
 
 }

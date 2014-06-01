@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.ejb.Remote;
 
+import edu.app.persistence.Speaker;
 import edu.app.persistence.User;
 
 @Remote
@@ -40,7 +41,7 @@ public interface UserServiceRemote {
 			String status);
 	public boolean usernameExists(String login);
 	
-
+	List<Speaker> findAllSpeakers();
 
 
 	

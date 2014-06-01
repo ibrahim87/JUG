@@ -86,22 +86,7 @@ public class Proposition implements Serializable {
 	}
 
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	
 	
 	@Override

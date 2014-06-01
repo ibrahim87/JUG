@@ -23,7 +23,7 @@ public class Picture implements Serializable {
 	private CallForPaper callForPaper;
 	private Event event ;
 	private static final long serialVersionUID = 1L;
-	
+	private Article article ;
 	@Id   
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	public int getIdPicture() {
@@ -88,6 +88,15 @@ public class Picture implements Serializable {
 
 	public void setEvent(Event event) {
 		this.event = event;
+	}
+	
+	@ManyToOne
+	public Article getArticle() {
+		return article;
+	}
+
+	public void setArticle(Article article) {
+		this.article = article;
 	}
 	
 	

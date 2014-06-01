@@ -9,7 +9,6 @@ import javax.persistence.Query;
 
 import edu.app.persistence.Event;
 import edu.app.persistence.User;
-import edu.app.persistence.Vip;
 
 /**
  * Session Bean implementation class EventService
@@ -43,9 +42,10 @@ public class EventService implements EventServiceRemote, EventServiceLocal {
 		return event;
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<Event> findAllEvent() {
 		Query query = em.createQuery("select e from Event e");
-		return query.getResultList();
+		return (List<Event>)query.getResultList();
 	}
 
 	public List<Event> findAllEventNotDone() {
@@ -54,26 +54,26 @@ public class EventService implements EventServiceRemote, EventServiceLocal {
 		return query.getResultList();
 	}
 
-	public List<Event> findVipInvited(Vip vip) {
-		Query query = em
-				.createQuery("select e from InvitationEvent i join i.event e where i.vip=:vip and i.confirm=1 and  i.subscribe=0 ");
-		query.setParameter("vip", vip);
-		return query.getResultList();
-	}
-
-	public List<Event> findVipHaveNotEvent(Vip vip) {
-		Query query = em
-				.createQuery("select e from Vip v join v.invitationEvents i join i.event e where v  =:vip and i.confirm=0  and i.subscribe=0");
-		query.setParameter("vip", vip);
-		return query.getResultList();
-	}
-
-	public List<Event> findEventSubscribed(Vip vip) {
-		Query query = em
-				.createQuery("select e from Vip v join v.invitationEvents i join i.event e where v  =:vip and  i.subscribe=1");
-		query.setParameter("vip", vip);
-		return query.getResultList();
-	}
+//	public List<Event> findVipInvited(Vip vip) {
+//		Query query = em
+//				.createQuery("select e from InvitationEvent i join i.event e where i.vip=:vip and i.confirm=1 and  i.subscribe=0 ");
+//		query.setParameter("vip", vip);
+//		return query.getResultList();
+//	}
+//
+//	public List<Event> findVipHaveNotEvent(Vip vip) {
+//		Query query = em
+//				.createQuery("select e from Vip v join v.invitationEvents i join i.event e where v  =:vip and i.confirm=0  and i.subscribe=0");
+//		query.setParameter("vip", vip);
+//		return query.getResultList();
+//	}
+//
+//	public List<Event> findEventSubscribed(Vip vip) {
+//		Query query = em
+//				.createQuery("select e from Vip v join v.invitationEvents i join i.event e where v  =:vip and  i.subscribe=1");
+//		query.setParameter("vip", vip);
+//		return query.getResultList();
+//	}
 
 	public Event StartHungOut(User Leader) {
 		Query query = em
@@ -91,6 +91,24 @@ public class EventService implements EventServiceRemote, EventServiceLocal {
 		query.setParameter("vip", vip);
 		event = (Event) query.getSingleResult();
 		return event;
+	}
+
+	@Override
+	public List<Event> findVipInvited(User user) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Event> findVipHaveNotEvent(User user) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Event> findEventSubscribed(User user) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

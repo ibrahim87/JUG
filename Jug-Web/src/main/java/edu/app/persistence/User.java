@@ -58,26 +58,6 @@ public class User implements Serializable {
 	private Picture picture;
 	private List<Article>articles;
 
-
-	
-	
-	public User(String nom, String prenom, String mail, String etat,
-			String login, String password, String sexe, Date dateNaiss,
-			String organisation, String position, String personalProfile,
-			String companyProfile, String titleOfPaper, String detailsOfPaper) {
-		super();
-		this.nom = nom;
-		this.prenom = prenom;
-		this.mail = mail;
-		this.etat = etat;
-		this.login = login;
-		this.password = password;
-		this.sexe = sexe;
-		this.dateNaiss = dateNaiss;
-		
-	}
-
-
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -251,51 +231,7 @@ public class User implements Serializable {
 		this.dateNaiss = dateNaiss;
 	}
 
-	/**
-	 * Instantiates a new user.
-	 * 
-	 * @param nom
-	 *            the nom
-	 * @param prenom
-	 *            the prenom
-	 * @param cin
-	 *            the cin
-	 * @param mail
-	 *            the mail
-	 * @param etat
-	 *            the etat
-	 * @param login
-	 *            the login
-	 * @param password
-	 *            the password
-	 * @param sexe
-	 *            the sexe
-	 * @param dateNaiss
-	 *            the date naiss
-	 */
-	public User(String nom, String prenom, String mail, String etat,
-			String login, String password, String sexe, Date dateNaiss) {
-		super();
-		this.nom = nom;
-		this.prenom = prenom;
-
-		this.mail = mail;
-	this.etat = etat;
-		this.login = login;
-		this.password = password;
-		this.sexe = sexe;
-		this.dateNaiss = dateNaiss;
-	}
-		
 	
-	
-	
-	
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#hashCode()
-	 */
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;

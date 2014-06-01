@@ -6,12 +6,110 @@
                 template="/template/template.xhtml">
                 	
 			<ui:define name="pageTitle">Register</ui:define>		
-			<ui:define name="pageContent">
+			<ui:define name="pageSid">
+			
+			
+			<h:form>
+			<div class="widget widget_latestpost">
+				<h3 class="title"><span>Recent Posts</span></h3>
+				<div class="latest-posts widget">
+					<div class="latest-post clearfix">
+						<h:graphicImage   width="225" height="136" library="images/dummy" name="shutterstock_134257640-225x136.jpg" class="thumb fl" alt="shutterstock_134257640" title=""/>
+						<h4><a href="#" rel="bookmark" title="Lectus non rutrum pulvinar urna leo dignissim lorem">Lectus non rutrum pulvinar urna leo</a></h4>
+						<div class="post-time">August 12, 2013</div>
+						<div class="ratings" style="float: none">
+							<input class="star" type="radio" name="recent-post-1" value="1" disabled="disabled"/>
+							<input class="star" type="radio" name="recent-post-1" value="2" disabled="disabled"/>
+							<input class="star" type="radio" name="recent-post-1" value="3" disabled="disabled"/>
+							<input class="star" type="radio" name="recent-post-1" value="4" disabled="disabled" checked="checked"/>
+							<input class="star" type="radio" name="recent-post-1" value="5" disabled="disabled"/>
+						</div>
+					</div>
+					
+					<div class="latest-post clearfix">
+					<h:graphicImage   width="225" height="136" library="images/dummy" name="shutterstock_70184773-225x136.jpg" class="thumb fl" alt="shutterstock_70184773" title="" />
+						<h4><a href="#" rel="bookmark" title="Suspen disse auctor dapibus neque pulvinar urna leo">Suspen disse auctor dapibus neque</a></h4>
+						<div class="post-time">August 11, 2013</div>
+						<div class="ratings" style="float: none">
+							<input class="star" type="radio" name="recent-post-2" value="1" disabled="disabled"/>
+							<input class="star" type="radio" name="recent-post-2" value="2" disabled="disabled"/>
+							<input class="star" type="radio" name="recent-post-2" value="3" disabled="disabled"/>
+							<input class="star" type="radio" name="recent-post-2" value="4" disabled="disabled" checked="checked"/>
+							<input class="star" type="radio" name="recent-post-2" value="5" disabled="disabled"/>
+						</div>
+					</div>
+
+					<div class="latest-post clearfix">
+						<h:graphicImage   width="225" height="136" library="images/dummy" name="shutterstock_70787161-225x136.jpg" class="thumb fl" alt="shutterstock_70787161" title="" />
+						<h4><a href="#" rel="bookmark" title="Porta lorem ipsum dolor sit amet, consectetur adipiscing risus">Porta lorem ipsum dolor sit amet</a></h4>
+						<div class="post-time">August 2, 2013</div>
+						<div class="ratings" style="float: none">
+							<input class="star" type="radio" name="recent-post-3" value="1" disabled="disabled"/>
+							<input class="star" type="radio" name="recent-post-3" value="2" disabled="disabled"/>
+							<input class="star" type="radio" name="recent-post-3" value="3" disabled="disabled"/>
+							<input class="star" type="radio" name="recent-post-3" value="4" disabled="disabled" checked="checked"/>
+							<input class="star" type="radio" name="recent-post-3" value="5" disabled="disabled"/>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+			<div class="widget widget_latestpost"><h3 class="title"><span>Technology News</span></h3>
+				<div class="latest-posts">
+					<article class="post">
+						<a class="image_thumb_zoom" href="#" title="Permalink to Porta lorem ipsum dolor sit amet, consectetur adipiscing risus" rel="bookmark">
+						<h:graphicImage   width="371" height="177" library="images/dummy" name="shutterstock_70787161-371x177.jpg" class="attachment-post-first wp-post-image" alt="shutterstock_70787161" />
+						</a>
+						<h4 class="post-title">
+						<a href="#" title="Permalink to Porta lorem ipsum dolor sit amet, consectetur adipiscing risus" rel="bookmark">Porta lorem ipsum dolor sit amet, c...</a>
+						<span class="date">August 2, 2013</span>
+						</h4>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer placerat id augue non dapibus. Morbi ut ipsum cond...</p>
+					</article>
+				
+					<article class="post">
+						<div class="entry clearfix">
+							<a href="#" title="Permalink to Donec consectetuer ligula vulputate sem tristique cursus" rel="bookmark">
+							<h:graphicImage   width="225" height="136" library="images/dummy" name="photodune-2043745-college-student-s-225x136.jpg" class="thumb" alt="photodune-2043745-college-student-s" />
+						
+							<h4 class="post-title">Donec consectetuer ligula vulputate...</h4>
+							</a>
+							<p>Nam nibh arcu, tristique eget pretium se...</p>
+							<div class="meta">
+								<span class="date">July 11, 2013</span>
+							</div>
+						</div>
+					</article>
+
+					<article class="post">
+						<div class="entry clearfix">
+							<a href="#" title="Permalink to Quisque sodales viverra ornare vitae libero ac risus" rel="bookmark">
+								<h:graphicImage   width="225" height="136" library="images/dummy" name="shutterstock_123603871-225x136.jpg" class="thumb" alt="gallery-1" />
+							<h4 class="post-title">Quisque sodales viverra ornare vita...</h4></a>
+							<p>Quisque sodales viverra ornare. Aenean p...</p>
+							<div class="meta">
+								<span class="date">July 2, 2013</span>
+							</div>
+						</div>
+					</article>
+				</div>
+			</div>
+			
+		
+			</h:form>
 			
 			
 			
-			<h:form id="insc">  
-  
+			
+		</ui:define>
+		<ui:define name="pageContent">
+		
+		
+		
+		
+ <h:form id="insc">  
+ 
     <p:growl id="growl" sticky="true" showDetail="true"/>  
   
     <p:wizard widgetVar="wiz"  
@@ -26,18 +124,18 @@
                 <h:panelGrid columns="2" columnClasses="label, value" styleClass="grid" cellspacing="12">  
                     <h:outputText value="First name: *" />  
                     <p:inputText required="true" label="Firstname"  
-                            value="#{userBean.user.prenom}" />  
+                            value="#{userBean.newuser.prenom}" />  
                       
                     <h:outputText value="Last name: *" />  
                     <p:inputText required="true" label="Lastname"  
-                      value="#{userBean.user.nom}" />  
+                      value="#{userBean.newuser.nom}" />  
                       
                       
                   <h:outputText value="Date of birth:" />  
-          		  <p:calendar id="dateNaiss" value="#{userBean.user.dateNaiss}" pattern="dd/MM/yyyy" showOn="button" required="true" label="Date of birth"/>	 
+          		  <p:calendar id="dateNaiss" value="#{userBean.newuser.dateNaiss}" pattern="dd/MM/yyyy" showOn="button" required="true" label="Date of birth"/>	 
                       
                  <h:outputText value="Gender: " />  
-       			 <p:selectOneRadio id="gender" value="#{userBean.user.sexe}" required="true" label="Gender">  
+       			 <p:selectOneRadio id="gender" value="#{userBean.newuser.sexe}" required="true" label="Gender">  
             	 <f:selectItem itemLabel="Male" itemValue="Male" />  
            		 <f:selectItem itemLabel="Female" itemValue="Memale" />  
        			 </p:selectOneRadio>
@@ -55,33 +153,23 @@
                   
                 <h:panelGrid columns="2" columnClasses="label, value" cellspacing="12">  
                     <h:outputText value="Username: *" />  
-                  <h:inputText id="lg" value="#{userBean.user.login}" required="true" requiredMessage="login is required">
+                  <h:inputText id="lg" value="#{userBean.newuser.login}" required="true" requiredMessage="login is required">
 						
 					</h:inputText> 
                       
                      <h:outputText value="Password: *: " />  
-          		  <p:password id="password1" value="#{userBean.user.password}" feedback="true" inline="true" required="true" label="Password"/>  
+          		  <p:password id="password1" value="#{userBean.newuser.password}" feedback="true" inline="true" required="true" label="Password"/>  
 		
 				
 				 <h:outputText value="Re-enter password: *: " />  
           		 <p:password id="password2" value="#{userBean.password2}" feedback="true" inline="true" required="true" label="Re-enter password" > 
                   
                       </p:password>
-                    <h:outputText value="Skip to last: " />  
-                    <h:selectBooleanCheckbox value="#{userBean.skip}" />  
-                </h:panelGrid>  
-            </p:panel>  
-        </p:tab>  
-              
-        <p:tab id="contact" title="Other informations">  
-            <p:panel header="Mandatory Informations">  
-                  
-                <h:messages errorClass="error"/>  
-              
-                <h:panelGrid columns="2" columnClasses="label, value" cellspacing="12">  
- 
-					<h:outputText value="Email: *" />  
-         		  <h:inputText id="email1" value="#{userBean.user.mail}" required="true" requiredMessage="email is required" validatorMessage="invalid email">
+                      
+                      
+                      
+					 <h:outputText value="Email: *" />  
+         		  <h:inputText id="email" value="#{userBean.newuser.mail}" required="true" requiredMessage="email is required" validatorMessage="invalid email">
 						<f:validateRegex pattern="^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$" />
 					</h:inputText>
         
@@ -89,29 +177,61 @@
           		 	<h:outputText value="Re-enter Email: *" />  
          		<h:inputText id="email2" value="#{userBean.email2}" required="true" requiredMessage="email is required" validatorMessage="invalid email">
 						<f:validateRegex pattern="^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$" />
-					</h:inputText> 
+					</h:inputText>  
+         		    
+                   <h:outputText value="You are inscribed as : " />  
+       			 <p:selectOneRadio  value="#{userBean.selectedTypeUser}" required="true" label="Type of inscription">  
+            	 <f:selectItem itemLabel="Member" itemValue="1" />  
+           		
+           		  <f:selectItem itemLabel="Speaker" itemValue="2" /> 
+           		  
+           		 </p:selectOneRadio>
+           		 
+                    <h:outputText value="Skip to last: " />  
+                    <h:selectBooleanCheckbox value="#{userBean.skip}" />  
+                </h:panelGrid>  
+            </p:panel>  
+        </p:tab>  
+              
+     <!--  <p:tab id="contactm" title="Other informations">  
+            <p:panel header="Mandatory Informations">  
+                  
+                <h:messages errorClass="error"/>  
+              
+                <h:panelGrid columns="2" columnClasses="label, value" cellspacing="12">  
+ 
+					 <h:outputText value="Email: *" />  
+         		  <h:inputText id="email" value="#{userBean.newuser.mail}" required="true" requiredMessage="email is required" validatorMessage="invalid email">
+						<f:validateRegex pattern="^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$" />
+					</h:inputText>
+        
+          		 
+          		 	<h:outputText value="Re-enter Email: *" />  
+         		<h:inputText id="email2" value="#{userBean.email2}" required="true" requiredMessage="email is required" validatorMessage="invalid email">
+						<f:validateRegex pattern="^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$" />
+					</h:inputText>  
          		    
          		              		 	
              	 <h:outputText value="You are inscribed as : " />  
-       			 <p:selectOneRadio id="role" value="#{userBean.selectedTypeUser}" required="true" label="Type of inscription">  
-            	 <f:selectItem itemLabel="Member" itemValue="Member" />  
-           		 <f:selectItem itemLabel="Vip" itemValue="Vip" />  
-           		  <f:selectItem itemLabel="Speaker" itemValue="Speaker" /> 
+       			 <p:selectOneRadio id="r" value="#{userBean.selectedTypeUser}" required="true" label="Type of inscription">  
+            	 <f:selectItem itemLabel="Member" itemValue="1" />  
+           		
+           		  <f:selectItem itemLabel="Speaker" itemValue="2" /> 
            		  
-           		 </p:selectOneRadio> 
+           		 </p:selectOneRadio>
            		 
-           <h:outputText value="Choose picture For you profil: " />  
+          <h:outputText value="Choose picture For you profil: " />  
        			 
-           <p:fileUpload fileUploadListener="#{userBean.upload}"  
+        <p:fileUpload fileUploadListener="#{userBean.upload}"  
             mode="advanced"  
             update="messages"  
             auto="true"  
             sizeLimit="100000"   
-            allowTypes="/(\.|\/)(gif|jpe?g|png)$/"/>  
-       			 <p:growl id="messages" showDetail="true"/>  
+            allowTypes="/(\.|\/)(gif|jpe?g|png)$/"/> 
+       			 <p:growl id="messages" showDetail="true"/>   
                 </h:panelGrid>  
             </p:panel>  
-        </p:tab>  
+        </p:tab> -->
               
         <p:tab id="confirm" title="Confirmation">  
             <p:panel header="Confirmation">  
@@ -119,47 +239,48 @@
                 <h:panelGrid id="confirmation" columns="2" cellspacing="12" >  
                     <h:outputText value="Firs tname: " />  
                     <h:outputText styleClass="outputLabel"  
-                                value="#{userBean.user.prenom}" />  
+                                value="#{userBean.newuser.prenom}" />  
                       
                     <h:outputText value="Last name: " />  
                     <h:outputText  styleClass="outputLabel"  
-                                value="#{userBean.user.nom}"/>  
+                                value="#{userBean.newuser.nom}"/>  
                       
                     <h:outputText value="Date od birth: " />  
                     <h:outputText styleClass="outputLabel"  
-                                value="#{userBean.user.dateNaiss}" />
+                                value="#{userBean.newuser.dateNaiss}" />
                       
                     <h:outputText value="Gender : " />  
                     <h:outputText styleClass="outputLabel"  
-                                value="#{userBean.user.sexe}" />  
+                                value="#{userBean.newuser.sexe}" />  
+                      
                       
                     <h:outputText value="Username: " />  
                     <h:outputText styleClass="outputLabel"  
-                                value="#{userBean.user.login}" />  
+                                value="#{userBean.newuser.login}" />  
                       
                     <h:outputText value="Password : " />  
                     <h:outputText styleClass="outputLabel"  
-                                value="#{userBean.user.password}" />  
-                      
-                    <h:outputText value="Email: " />  
+                                value="#{userBean.newuser.password}" />  
+                     
+              <h:outputText value="Email: " />  
                     <h:outputText styleClass="outputLabel"  
-                                value="#{userBean.user.mail}" />  
+                                value="#{userBean.newuser.mail}" />   
                       
-                    <h:outputText value="Inscribed as : " />  
+                  <h:outputText value="Inscribed as : " />  
                     <h:outputText styleClass="outputLabel"  
-                                value="#{userBean.selectedTypeUser}"/>  
-                      
+                                value="#{userBean.selectedTypeUser}"/>
+                     
                    
 
-   					<h:outputText />  
+   			  <h:outputText />  
                     <h:outputText />  
                        <h:outputText />  
                     <h:outputText />  
-                        <h:outputText value=" Profil picture : " />    
+                  <!-- <h:outputText value=" Profil picture : " />    
                        <p:graphicImage id="img" width="45px" height="60px" 
-                  		  value="#{userBean.streamedPicture}" styleClass="identityPicture"/>  
-                    <h:outputText />  
-                    <h:outputText />  
+                  		  value="#{userBean.streamedPicture}" styleClass="identityPicture"/> 
+                    <h:outputText /> -->   
+                    <h:outputText />   
                 </h:panelGrid>  
                   
                 <p:commandButton  id="validate" value="Validate" icon="ui-icon-check"   
@@ -169,9 +290,9 @@
         </p:tab>  
           
     </p:wizard>  
-      
+     
 </h:form>  
-      
+   
 			
 			
 			

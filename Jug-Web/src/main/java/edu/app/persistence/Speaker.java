@@ -14,9 +14,12 @@ public class Speaker extends User implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private List<Proposition> propositions;
-
+	
 	
 	public Speaker() {
+		
+		super();
+		
 	}
 	 @OneToMany(mappedBy = "speaker", cascade = CascadeType.PERSIST)
 	public List<Proposition> getPropositions() {
@@ -26,5 +29,14 @@ public class Speaker extends User implements Serializable {
 	public void setPropositions(List<Proposition> propositions) {
 		this.propositions = propositions;
 	}
+	
+	
+	
+	
 
+	
+	
+	
+	
+	
 }
