@@ -89,6 +89,12 @@ public class UserBean implements Serializable {
 
 	}
 
+	
+	
+
+
+
+	
 	// methods
 	public String doLogin() throws IOException {
 		String navigateTo = null;

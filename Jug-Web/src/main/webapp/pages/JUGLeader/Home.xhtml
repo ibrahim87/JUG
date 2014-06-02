@@ -5,13 +5,158 @@
                 xmlns:p="http://primefaces.org/ui"
                 template="/template/template.xhtml">
                 	
-			<ui:define name="pageTitle">HomeJUGLeader</ui:define>		
+			<ui:define name="pageTitle">HomeJUGLeader</ui:define>	
+			
+			
+			<ui:define name="pageSid">
+			
+			
+			<h:form>
+			<div class="widget widget_latestpost">
+				<h3 class="title"><span>Recent Posts</span></h3>
+				<div class="latest-posts widget">
+					<div class="latest-post clearfix">
+						<h:graphicImage   width="225" height="136" library="images/dummy" name="shutterstock_134257640-225x136.jpg" class="thumb fl" alt="shutterstock_134257640" title=""/>
+						<h4><a href="#" rel="bookmark" title="Lectus non rutrum pulvinar urna leo dignissim lorem">Lectus non rutrum pulvinar urna leo</a></h4>
+						<div class="post-time">August 12, 2013</div>
+						<div class="ratings" style="float: none">
+							<input class="star" type="radio" name="recent-post-1" value="1" disabled="disabled"/>
+							<input class="star" type="radio" name="recent-post-1" value="2" disabled="disabled"/>
+							<input class="star" type="radio" name="recent-post-1" value="3" disabled="disabled"/>
+							<input class="star" type="radio" name="recent-post-1" value="4" disabled="disabled" checked="checked"/>
+							<input class="star" type="radio" name="recent-post-1" value="5" disabled="disabled"/>
+						</div>
+					</div>
+					
+					<div class="latest-post clearfix">
+					<h:graphicImage   width="225" height="136" library="images/dummy" name="shutterstock_70184773-225x136.jpg" class="thumb fl" alt="shutterstock_70184773" title="" />
+						<h4><a href="#" rel="bookmark" title="Suspen disse auctor dapibus neque pulvinar urna leo">Suspen disse auctor dapibus neque</a></h4>
+						<div class="post-time">August 11, 2013</div>
+						<div class="ratings" style="float: none">
+							<input class="star" type="radio" name="recent-post-2" value="1" disabled="disabled"/>
+							<input class="star" type="radio" name="recent-post-2" value="2" disabled="disabled"/>
+							<input class="star" type="radio" name="recent-post-2" value="3" disabled="disabled"/>
+							<input class="star" type="radio" name="recent-post-2" value="4" disabled="disabled" checked="checked"/>
+							<input class="star" type="radio" name="recent-post-2" value="5" disabled="disabled"/>
+						</div>
+					</div>
+
+					<div class="latest-post clearfix">
+						<h:graphicImage   width="225" height="136" library="images/dummy" name="shutterstock_70787161-225x136.jpg" class="thumb fl" alt="shutterstock_70787161" title="" />
+						<h4><a href="#" rel="bookmark" title="Porta lorem ipsum dolor sit amet, consectetur adipiscing risus">Porta lorem ipsum dolor sit amet</a></h4>
+						<div class="post-time">August 2, 2013</div>
+						<div class="ratings" style="float: none">
+							<input class="star" type="radio" name="recent-post-3" value="1" disabled="disabled"/>
+							<input class="star" type="radio" name="recent-post-3" value="2" disabled="disabled"/>
+							<input class="star" type="radio" name="recent-post-3" value="3" disabled="disabled"/>
+							<input class="star" type="radio" name="recent-post-3" value="4" disabled="disabled" checked="checked"/>
+							<input class="star" type="radio" name="recent-post-3" value="5" disabled="disabled"/>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+			<div class="widget widget_latestpost"><h3 class="title"><span>Technology News</span></h3>
+				<div class="latest-posts">
+					<article class="post">
+						<a class="image_thumb_zoom" href="#" title="Permalink to Porta lorem ipsum dolor sit amet, consectetur adipiscing risus" rel="bookmark">
+						<h:graphicImage   width="371" height="177" library="images/dummy" name="shutterstock_70787161-371x177.jpg" class="attachment-post-first wp-post-image" alt="shutterstock_70787161" />
+						</a>
+						<h4 class="post-title">
+						<a href="#" title="Permalink to Porta lorem ipsum dolor sit amet, consectetur adipiscing risus" rel="bookmark">Porta lorem ipsum dolor sit amet, c...</a>
+						<span class="date">August 2, 2013</span>
+						</h4>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer placerat id augue non dapibus. Morbi ut ipsum cond...</p>
+					</article>
+				
+					<article class="post">
+						<div class="entry clearfix">
+							<a href="#" title="Permalink to Donec consectetuer ligula vulputate sem tristique cursus" rel="bookmark">
+							<h:graphicImage   width="225" height="136" library="images/dummy" name="photodune-2043745-college-student-s-225x136.jpg" class="thumb" alt="photodune-2043745-college-student-s" />
+						
+							<h4 class="post-title">Donec consectetuer ligula vulputate...</h4>
+							</a>
+							<p>Nam nibh arcu, tristique eget pretium se...</p>
+							<div class="meta">
+								<span class="date">July 11, 2013</span>
+							</div>
+						</div>
+					</article>
+
+					<article class="post">
+						<div class="entry clearfix">
+							<a href="#" title="Permalink to Quisque sodales viverra ornare vitae libero ac risus" rel="bookmark">
+								<h:graphicImage   width="225" height="136" library="images/dummy" name="shutterstock_123603871-225x136.jpg" class="thumb" alt="gallery-1" />
+							<h4 class="post-title">Quisque sodales viverra ornare vita...</h4></a>
+							<p>Quisque sodales viverra ornare. Aenean p...</p>
+							<div class="meta">
+								<span class="date">July 2, 2013</span>
+							</div>
+						</div>
+					</article>
+				</div>
+			</div>
+			
+		
+			</h:form>
+			
+			
+			
+			
+		</ui:define>	
 			<ui:define name="pageContent">
 			
 			
-			JUGLeader
+			<h:form>  
+    <p:growl id="messages"/>
+ 
+    <p:menubar>
+        <p:submenu label="File" icon="ui-icon-document">
+            <p:submenu label="New" icon="ui-icon-contact">
+                <p:menuitem value="Project" url="#" />
+                <p:menuitem value="Other" url="#" />
+            </p:submenu>
+            <p:menuitem value="Open" url="#" />
+            <p:separator />
+            <p:menuitem value="Quit" url="#" />
+        </p:submenu>
+ 
+        <p:submenu label="Edit" icon="ui-icon-pencil">
+            <p:menuitem value="Undo" url="#" icon="ui-icon-arrowreturnthick-1-w" />
+            <p:menuitem value="Redo" url="#" icon="ui-icon-arrowreturnthick-1-e" />
+        </p:submenu>
+ 
+        <p:submenu label="Help" icon="ui-icon-help">
+            <p:menuitem value="Contents" url="#" />
+            <p:submenu label="Search" icon="ui-icon-search">
+                <p:submenu label="Text">
+                    <p:menuitem value="Workspace" url="#" />
+                </p:submenu>
+                <p:menuitem value="File" url="#" />
+            </p:submenu>
+        </p:submenu>
+ 
+        <p:submenu label="Actions" icon="ui-icon-gear">
+            <p:submenu label="Ajax" icon="ui-icon-refresh">
+                <p:menuitem value="Save" actionListener="#" icon="ui-icon-disk" update="messages"/>
+                <p:menuitem value="Update" actionListener="#" icon="ui-icon-arrowrefresh-1-w" update="messages"/>
+            </p:submenu>
+            <p:submenu label="Non-Ajax" icon="ui-icon-newwin">
+                <p:menuitem value="Delete" actionListener="#" icon="ui-icon-close" update="messages" ajax="false"/>
+            </p:submenu>
+        </p:submenu>
+ 
+      
+ 
+        <f:facet name="options">
+            <p:inputText style="margin-right:10px" placeholder="Search"/>
+            <p:commandButton type="button" value="Logout" icon="ui-icon-extlink" />
+        </f:facet>
+    </p:menubar>
+</h:form>
 			
-			
+			<h2>JUGLeader</h2>
 			
 			</ui:define>
 </ui:composition>

@@ -32,6 +32,8 @@ public class Article implements Serializable {
 	private User user;
 	private List<Page> pages;
 	private List<Picture>pictures ;
+	private Categorie categorie ;
+	
 	public Article() {
 	}
 
@@ -106,5 +108,15 @@ public class Article implements Serializable {
 	public void setPictures(List<Picture> pictures) {
 		this.pictures = pictures;
 	}
+	@ManyToOne(cascade = { CascadeType.MERGE, CascadeType.PERSIST })
+	@JoinColumn(name = "categorie_fk")
+	public Categorie getCategorie() {
+		return categorie;
+	}
 
+	public void setCategorie(Categorie categorie) {
+		this.categorie = categorie;
+	}
+
+	
 }
