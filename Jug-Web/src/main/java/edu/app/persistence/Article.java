@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -31,7 +32,7 @@ public class Article implements Serializable {
 	private Date datecration;
 	private User user;
 	private List<Page> pages;
-	private List<Picture>pictures ;
+	private Picture picture;
 	private Categorie categorie ;
 	
 	public Article() {
@@ -91,7 +92,7 @@ public class Article implements Serializable {
 		this.title = title;
 	}
 
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.MERGE)
 	@JoinColumn(name="user_fk")
 	public User getUser() {
 		return user;
@@ -100,15 +101,12 @@ public class Article implements Serializable {
 	public void setUser(User user) {
 		this.user = user;
 	}
-	@OneToMany(mappedBy ="article")
-	public List<Picture> getPictures() {
-		return pictures;
-	}
-
-	public void setPictures(List<Picture> pictures) {
-		this.pictures = pictures;
-	}
-	@ManyToOne(cascade = { CascadeType.MERGE, CascadeType.PERSIST })
+	
+	
+	
+	
+	
+	@ManyToOne
 	@JoinColumn(name = "categorie_fk")
 	public Categorie getCategorie() {
 		return categorie;
@@ -116,6 +114,17 @@ public class Article implements Serializable {
 
 	public void setCategorie(Categorie categorie) {
 		this.categorie = categorie;
+	}
+
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "picture_fk", unique = true)
+	public Picture getPicture() {
+		return picture;
+	}
+
+	public void setPicture(Picture picture) {
+		this.picture = picture;
 	}
 
 	

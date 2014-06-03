@@ -1,0 +1,69 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/template/template.xhtml">
+                	
+			<ui:define name="pageTitle">Adit</ui:define>		
+			<ui:define name="pageContent">
+			
+			<h:form>  
+    <p:growl id="messages"/>
+ 
+    <p:menubar>
+        <p:submenu label="Article" icon="ui-icon-document">
+        
+           <p:menuitem value="All Articles" action="#{articleBean.AllArticles}"  />
+           	 <p:separator />
+              <p:menuitem value="Add" action="#{articleBean.AddArticle}" />
+               <p:separator />
+            <p:menuitem value="Edit" action="#{articleBean.EditArticle}"/>
+            <p:separator />
+           
+            <p:menuitem value="Delete" action="#{articleBean.DeleteArticle}" />
+        </p:submenu>
+ 
+        <p:submenu label="Edit" icon="ui-icon-pencil">
+            <p:menuitem value="Undo" url="#" icon="ui-icon-arrowreturnthick-1-w" />
+            <p:menuitem value="Redo" url="#" icon="ui-icon-arrowreturnthick-1-e" />
+        </p:submenu>
+ 
+        <p:submenu label="Help" icon="ui-icon-help">
+            <p:menuitem value="Contents" url="#" />
+            <p:submenu label="Search" icon="ui-icon-search">
+                <p:submenu label="Text">
+                    <p:menuitem value="Workspace" url="#" />
+                </p:submenu>
+                <p:menuitem value="File" url="#" />
+            </p:submenu>
+        </p:submenu>
+ 
+        <p:submenu label="Actions" icon="ui-icon-gear">
+            <p:submenu label="Ajax" icon="ui-icon-refresh">
+                <p:menuitem value="Save" actionListener="#" icon="ui-icon-disk" update="messages"/>
+                <p:menuitem value="Update" actionListener="#" icon="ui-icon-arrowrefresh-1-w" update="messages"/>
+            </p:submenu>
+            <p:submenu label="Non-Ajax" icon="ui-icon-newwin">
+                <p:menuitem value="Delete" actionListener="#" icon="ui-icon-close" update="messages" ajax="false"/>
+            </p:submenu>
+        </p:submenu>
+ 
+      
+ 
+        <f:facet name="options">
+            <p:inputText style="margin-right:10px" placeholder="Search" />
+           
+        </f:facet>
+    </p:menubar>
+</h:form>
+			
+			
+			
+			
+			aaaaaaaaaaaaaaaa
+			
+			
+			
+			</ui:define>
+</ui:composition>

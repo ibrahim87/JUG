@@ -5,12 +5,9 @@
                 xmlns:p="http://primefaces.org/ui"
                 template="/template/template.xhtml">
                 	
-			<ui:define name="pageTitle">HomeJUGMember</ui:define>
-			
-			
-			
-					
+			<ui:define name="pageTitle"></ui:define>		
 			<ui:define name="pageContent">
+			
 			<h:form>  
     <p:growl id="messages"/>
  
@@ -61,12 +58,162 @@
     </p:menubar>
 </h:form>
 			
-				<h2>JUGMember</h2>
+			<!-- afficher les articles -->
 			
+			<h:form id="master">
+			<p:dataTable rendered="#{not empty articleBean.articles}"
+				value="#{articleBean.articles}" var="ar" rows="4"
+				rowKey="#{ar.idArticle}" paginator="true" paginatorPosition="bottom"
+				filteredValue="#{articleBean.filtredArticles}"
+				selectionMode="single" selection="#{articleBean.article}"
+				widgetVar="arTabW">
+
+
+				<f:facet name="header">
+					<h:outputText value="All Articles" />
+				</f:facet>
+
+				<p:ajax event="rowSelect" listener="#{articleBean.onRowSelect}"
+					update=":details"/>
+
+					<p:column headerText="Status" filterBy="#{ar.status}"
+					filterMatchMode="contains">
+
+					<h:outputText value="#{ar.status}" />
+				</p:column>
+					
+					
+					<p:column headerText="Date Creation" filterBy="#{ar.datecration}"
+					filterMatchMode="contains">
+
+					<h:outputText value="#{ar.datecration}" />
+				</p:column>
+					
+					
+					
+					
+					
+					
+					
+					
+				<p:column headerText="Title : " filterBy="#{ar.title}"
+					filterMatchMode="contains">
+
+					<h:outputText value="#{ar.title}" />
+				</p:column>
+
+				<p:column headerText="description : " filterBy="#{ar.contenu}"
+					filterMatchMode="contains">
+
+					<h:outputText value="#{ar.contenu}" />
+				</p:column>
+
+
+
+
+				<p:column headerText="category : " filterBy="#{ar.categorie.name}"
+					filterMatchMode="exact"
+					filterOptions="#{articleBean.filterOptions}">
+
+					<h:outputText value="#{ar.categorie.name}" />
+				</p:column>
+
+
+			</p:dataTable>
+			
+			
+			
+			
+	 <p:commandButton icon="ui-icon-circle-plus" actionListener="#{articleBean.doNewArticle}" value="new" update=":details"/> 
+	 
+		</h:form>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<p:panel id="details" header="articles details"
+			visible="#{articleBean.formDisplayed}">
+			<h:form rendered="#{articleBean.formDisplayed}">
+				<h:panelGrid columns="3">
+
+					<h:outputText value="name : " />
+					<p:inputText value="#{articleBean.article.title}" />
+					<h:outputText value=""/>
+
+
+					<h:outputText value="description : " />
+					<p:inputTextarea rows="10" cols="50" value="#{articleBean.article.contenu}" queryDelay="1000" minQueryLength="4" />
+					<h:outputText value=""/>
+
+
+					
+					 <h:outputText value="Status: " />  
+       			 <p:selectOneRadio value="#{articleBean.selectedTypeStatus}" required="true" label="Type of inscription">  
+            	 <f:selectItem itemLabel="private" itemValue="1" />  
+           		
+           		  <f:selectItem itemLabel="public" itemValue="2" /> 
+           		  
+           		 </p:selectOneRadio>
+					<h:outputText value="" />
+					
+					
+					
+					<h:outputText value="date Creation : " />
+					<p:calendar id="dateNaiss"
+								value="#{articleBean.article.datecration}"
+								pattern="dd/MM/yyyy" showOn="button" required="true"
+								label="Date of birth" />
+					
+					
+					<h:outputText value="" />
+						
+						
+
+					<h:outputText value=" category : " />
+					<p:selectOneMenu value="#{articleBean.article.categorie}">
+						<f:selectItem itemValue="-1" itemLabel="choose one..." />
+						<f:selectItems
+							value="#{articleBean.article.categorie}" />
+
+
+					</p:selectOneMenu>
+					<h:outputText value="" />
+					
+
+
+
+			
+
+
+
+
+					<p:commandButton actionListener="#{articleBean.doCancel}"
+						value="cancel" update=":details" />
+					<p:commandButton
+						actionListener="#{articleBean.update}" value="save"
+						update=":master :details" oncomplete="movTabW.filter()" />
+						<p:growl id="messages" showDetail="true" />
+					<h:outputText value="" />
+					
+
+
+				
+
+
+
+				</h:panelGrid>
+
+			</h:form>
+		</p:panel>
+			
+
 			
 			</ui:define>
-			
-			
 			<ui:define name="pageSid">
 			
 			
@@ -164,4 +311,7 @@
 			
 			
 		</ui:define>
+			
+			
+			
 </ui:composition>

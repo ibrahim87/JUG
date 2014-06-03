@@ -90,7 +90,8 @@ public class Picture implements Serializable {
 		this.event = event;
 	}
 	
-	@ManyToOne
+	@OneToOne
+	@JoinColumn(name="article_fk")
 	public Article getArticle() {
 		return article;
 	}
