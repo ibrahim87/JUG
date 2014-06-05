@@ -30,8 +30,9 @@ public interface ArticleServiceRemote {
 	
 	List<Article> findAllArticleCustum(int pageIndex, int noOfRecords);
 	
-	 List<Article> findArticleBycategory(Categorie categorie);
+	 List<Article> findArticleByNameCategorie( String name ,int pageIndex, int noOfRecords );
 	
+	 List<Article> findArticleByJUGLeader(User user);
 	
 
 }

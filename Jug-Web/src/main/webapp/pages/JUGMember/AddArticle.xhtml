@@ -82,8 +82,22 @@
 									
 									
 							<h:outputText value="description : " />
-					<p:inputTextarea rows="10" cols="50" value="#{articleBean.newaArticle.contenu}" queryDelay="1000000" minQueryLength="4" />
-					
+							
+							<h:form>           
+   				 <p:editor id="editor" widgetVar="editorWidget" value="#{articleBean.newaArticle.contenu}" width="600" />
+ 
+   					 <h:panelGrid columns="2" style="margin-top: 10px">
+   					   <p:commandButton value="Show" update="display" oncomplete="PF('dlg').show()" icon="ui-icon-disk" />
+    				   <p:commandButton value="Clear" type="button" onclick="PF('editorWidget').clear();" icon="ui-icon-close" />
+    				</h:panelGrid>
+ 
+   						 <p:dialog header="Content" widgetVar="dlg" showEffect="fade" hideEffect="fade">
+   				     <h:outputText id="display" value="#{articleBean.newaArticle.contenu}" escape="false" />
+  						  </p:dialog>
+</h:form> 
+							
+					<!-- <p:inputTextarea rows="10" cols="50" value="#{articleBean.newaArticle.contenu}" queryDelay="1000000" minQueryLength="4" />
+					 -->
 
 
 							<h:outputText value="Date of creation:" />

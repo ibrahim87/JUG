@@ -70,8 +70,8 @@ public class ArticleBean implements Serializable {
 	private List<SelectItem> selectItemsForCategories;
 
 	private Categorie categorie = new Categorie();
+private String contenu;
 
-	
 
 
 
@@ -105,6 +105,29 @@ public class ArticleBean implements Serializable {
 		
 		arts=articleServiceLocal.findAllArticleCustum(0, 2);
 	}
+	
+	
+	
+	
+	public void saveListener() {  
+		contenu = contenu.replaceAll("\\r|\\n", "");  
+  
+      FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Content",  
+    		  contenu.length() > 2000 ? contenu.substring(0, 10000) : contenu);  
+  
+        FacesContext.getCurrentInstance().addMessage(null, msg);  
+    }  
+  
+//    public void secondSaveListener() {  
+//        secondContent = secondContent.replaceAll("\\r|\\n", "");  
+//  
+//        final FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Second Content",  
+//                secondContent.length() > 150 ? secondContent.substring(0, 100) : secondContent);  
+//  
+//        FacesContext.getCurrentInstance().addMessage(null, msg);  
+//    }  
+  
+    
 
 	public String doNew() {
 
@@ -200,14 +223,6 @@ public class ArticleBean implements Serializable {
 		}
 	}
 
-	
-	public String doDetail() {
-		
-		
-		
-		
-		return"";
-	}
 	
 	
 	
@@ -392,6 +407,14 @@ public class ArticleBean implements Serializable {
 
 	public void setArts(List<Article> arts) {
 		this.arts = arts;
+	}
+
+	public String getContenu() {
+		return contenu;
+	}
+
+	public void setContenu(String contenu) {
+		this.contenu = contenu;
 	}
 	
 }

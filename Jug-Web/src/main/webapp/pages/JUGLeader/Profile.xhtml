@@ -17,7 +17,7 @@
   			 <p:graphicImage id="img" width="70px" height="70px" value="#{userBean.streamedPic}"/>  
                 <f:setPropertyActionListener target="#{userBean.showFiledUpload}" value="true"/>  		  
 			</p:commandLink>
-			    <p:fileUpload fileUploadListener="#{userBean.upload}"  mode="advanced"  update="growl"   auto="true"  sizeLimit="100000"   
+			    <p:fileUpload fileUploadListener="#{userBean.upload}"  mode="advanced"  update="growl"   auto="true"  sizeLimit="1000000"   
             allowTypes="/(\.|\/)(gif|jpe?g|png)$/" rendered="#{userBean.showFiledUpload}">
            	
             </p:fileUpload>  
@@ -84,6 +84,9 @@
             
              <p:commandButton  id="validate" value="Validate" icon="ui-icon-check"   
                     style="margin-left:480px" actionListener="#{userBean.update}" update="msgprofil" action="/pages/JUGLeader/Home" />
+				
+				<p:commandButton   >
+		
 		
 		<p:growl id="msgprofil" showDetail="true"/>
 	

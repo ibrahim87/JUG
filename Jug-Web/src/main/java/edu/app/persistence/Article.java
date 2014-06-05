@@ -29,7 +29,7 @@ public class Article implements Serializable {
 	private int idArticle;
 	private String title;
 	private String status;
-	@Column(length=2000)
+	@Column(length=50000)
 	private String contenu;
 	
 	private Date datecration;

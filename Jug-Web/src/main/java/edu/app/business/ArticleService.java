@@ -86,12 +86,21 @@ public class ArticleService implements ArticleServiceRemote, ArticleServiceLocal
 
 
 	@SuppressWarnings("unchecked")
-	public List<Article> findArticleBycategory(Categorie categorie) {
+	public List<Article> findArticleByNameCategorie(String name  ,int pageIndex, int noOfRecords) {
 		Query query = em
-				.createQuery("select ar from Article ar where ar.categorie.id=:cat");
-		query.setParameter("cat", categorie.getId());
+				.createQuery("select ar from Article ar where ar.categorie.name=:cat");
+		query.setParameter("cat", name);
 		return query.getResultList();
 		
+	}
+
+	@Override
+	public List<Article> findArticleByJUGLeader(User user) {
+	
+		Query query = em
+				.createQuery("select a from Article a where a.leader.id=:leader");
+		query.setParameter("member", user.getidUser());
+		return query.getResultList();
 	}
 
 	
