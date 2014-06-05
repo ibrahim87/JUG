@@ -36,4 +36,6 @@ public interface PictureServiceLocal {
 	Picture findByPictureNom(String nom);
 
 	Picture findPictureByUser(User user);
+	
+	Picture findPictureById(int id);
 }

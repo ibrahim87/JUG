@@ -5,6 +5,7 @@ import java.util.List;
 import javax.ejb.Remote;
 
 import edu.app.persistence.Article;
+import edu.app.persistence.Categorie;
 import edu.app.persistence.User;
 
 
@@ -27,8 +28,9 @@ public interface ArticleServiceRemote {
 	
 	List<Article> findArticleByMember(User user);
 	
+	List<Article> findAllArticleCustum(int pageIndex, int noOfRecords);
 	
-	
+	 List<Article> findArticleBycategory(Categorie categorie);
 	
 	
 

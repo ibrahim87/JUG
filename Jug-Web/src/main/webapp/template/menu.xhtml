@@ -14,24 +14,31 @@
 		<ul class="nav">
 			<li><a href="index.html"> <h:graphicImage library="images"
 						name="home.png" alt="Magazine" /></a></li>
-			<li class="dropdown"><h:commandLink value="Home" action="/index" />
+			<li class="dropdown"><h:commandLink value="HOME" action="/index" />
 				</li>
-			<li><h:commandLink value="About" action="/pages/home" /></li>
-			<li><h:commandLink value="Call of paper" action="/pages/CallForPaper" /></li>
+			<li><h:commandLink value="FAQ" action="/pages/FAQ" />
+			<ul class="sub-menu">
+			<li><h:commandLink value="Toute les Questions Frequentes" action="/pages/FAQ" /></li>
 			
-			<li class="dropdown"><h:commandLink value="Page Templates"
-					action="/pages/home" />
+			</ul></li>
+			
+			
+			
+			
+			
+			<li><h:commandLink value="PARTENAIRES" action="/pages/Partenaires" />
 				<ul class="sub-menu">
-					<li><h:commandLink value="Blog" action="/pages/home" /></li>
-					<li><h:commandLink value="Contact" action="/pages/home" /></li>
-					<li><h:commandLink value="Default" action="/pages/home" /></li>
-					<li><h:commandLink value="Error 404" action="/pages/home" /></li>
-					<li><h:commandLink value="Full Width" action="/pages/home" /></li>
-					<li><h:commandLink value="Galleries" action="/pages/home" /></li>
-					<li><h:commandLink value="Galleries1" action="/pages/home" /></li>
-					<li><h:commandLink value="Galleries2" action="/pages/home" /></li>
-					<li><h:commandLink value="Magazine1" action="/pages/home" /></li>
-					<li><h:commandLink value="Magazine2" action="/pages/home" /></li>
+				<li><h:commandLink value="TOUS LES EXPOSANTS" action="/pages/Sponsor" /></li>
+				<li><h:commandLink value="PARTENAIRS COMMUNAUTE" action="/pages/Partenaires" /></li>
+			
+				</ul>
+				</li>
+			<li class="dropdown">
+			<h:commandLink value="PROGRAMME"/>
+				<ul class="sub-menu">
+					<li><h:commandLink value="Presentaion" action="/pages/home" /></li>
+					<li><h:commandLink value="TOUS LES SPEAKSERS" action="/pages/AllSpeakers" /></li>
+					
 				</ul></li>
 			<li class="dropdown"><a href="blog.html">Blog</a>
 				<ul class="sub-menu">
@@ -46,8 +53,11 @@
 							<li><h:commandLink value="Technology" action="/pages/home" /></li>
 						</ul></li>
 				</ul></li>
-			<li><h:commandLink value="register" action="/pages/Register" /></li>
 				
+				<li><h:commandLink value="Call of paper" action="/pages/CallForPaper" /></li>
+			<li><h:commandLink value="register" action="/pages/Register" /></li>
+				<li><h:commandLink value="FORUM" action="/pages/Forum" /></li>
+				<li><h:commandLink value="CONTACT" action="/pages/MemberJUG" /></li>
 				
 			<li>
 			<h:commandLink  rendered="#{userBean.loggedIn}" value="Articles" action="/pages/home" />
@@ -56,7 +66,7 @@
 					<li><h:commandLink value="new Article" action="/pages/JUGMember/AddArticle" /></li>
 					<li><h:commandLink value="Edit Article" action="/pages/home" /></li>
 					<li><h:commandLink value="Delete Article" action="/pages/home" /></li>
-					<li><h:commandLink value="All Article" action="/pages/home" /></li>
+					<li><h:commandLink value="All Article" action="/pages/JUGMember/AllArticles" /></li>
 			
 			</ul></li>
 		

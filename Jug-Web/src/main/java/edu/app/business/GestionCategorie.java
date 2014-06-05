@@ -44,21 +44,22 @@ public class GestionCategorie implements GestionCategorieRemote,
 		return true;
 	}
 
-	@Override
+
 	public Categorie findCategorieById(int idCategorie) {
 		Categorie categorie = null;
 		categorie = em.find(Categorie.class, idCategorie);
 		return categorie;
 	}
 
-	@Override
+	@SuppressWarnings("unchecked")
+
 	public List<Categorie> findAllCategorie() {
 		Query query = em.createQuery("select c from Categorie c ");
 		return query.getResultList();
 
 	}
 
-	@Override
+	
 	public Categorie findCategorieByName(String name) {
 		Categorie categorie = null;
 		Query query = em

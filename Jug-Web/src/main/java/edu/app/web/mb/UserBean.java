@@ -12,6 +12,7 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
@@ -25,6 +26,7 @@ import org.primefaces.model.StreamedContent;
 
 import edu.app.business.AnotherEmailSenderRemote;
 import edu.app.business.PictureServiceLocal;
+import edu.app.business.SessionProvider;
 import edu.app.business.UserServiceLocal;
 import edu.app.persistence.Leader;
 import edu.app.persistence.Member;
@@ -45,6 +47,9 @@ public class UserBean implements Serializable {
 	private PictureServiceLocal pictureServiceLocal;
 
 	
+	@ManagedProperty("#{SP}")
+	private SessionProvider sessionProvider;
+	
 	private static final long serialVersionUID = 6710404278650523921L;
 	private Picture picture = new Picture();
 	private User user = new User();
@@ -63,6 +68,7 @@ public class UserBean implements Serializable {
 	private boolean skip;
 	private boolean showFiledUpload = false;
 
+	@SuppressWarnings("unused")
 	private StreamedContent streamedPic;
 	private DefaultStreamedContent streamedPicture;
 
@@ -137,8 +143,11 @@ public class UserBean implements Serializable {
 					navigateTo = "/pages/JUGSpeaker/Home";
 					imSpeaker = true;
 				}
+				
 				user = found;
 				loggedIn = true;
+				sessionProvider.setConnectedUser(user);
+				
 
 			}
 		} else {
@@ -476,5 +485,12 @@ public class UserBean implements Serializable {
 		this.newuser = newuser;
 	}
 	
+	public void setSessionProvider(SessionProvider sessionProvider) {
+		this.sessionProvider = sessionProvider;
+	}
+	
+	public SessionProvider getSessionProvider() {
+		return sessionProvider;
+	}
 	
 }

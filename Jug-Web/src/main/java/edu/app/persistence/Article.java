@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -28,7 +29,9 @@ public class Article implements Serializable {
 	private int idArticle;
 	private String title;
 	private String status;
+	@Column(length=2000)
 	private String contenu;
+	
 	private Date datecration;
 	private User user;
 	private List<Page> pages;
@@ -55,7 +58,7 @@ public class Article implements Serializable {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-
+	
 	public String getContenu() {
 		return contenu;
 	}

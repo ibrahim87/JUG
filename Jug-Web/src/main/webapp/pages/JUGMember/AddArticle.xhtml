@@ -79,18 +79,21 @@
 							<h:outputText value="Title: *" />
 							<p:inputText required="true" label="Title"
 								value="#{articleBean.newaArticle.title}" />
-
-							<h:outputText value="Content: *" />
-							<p:inputText required="true" label="Content"
-								value="#{articleBean.newaArticle.contenu}" />
+									
+									
+							<h:outputText value="description : " />
+					<p:inputTextarea rows="10" cols="50" value="#{articleBean.newaArticle.contenu}" queryDelay="1000000" minQueryLength="4" />
 					
+
 
 							<h:outputText value="Date of creation:" />
 							<p:calendar id="dateNaiss"
 								value="#{articleBean.newaArticle.datecration}"
 								pattern="dd/MM/yyyy" showOn="button" required="true"
 								label="Date of birth" />
-							
+								
+								
+								
 						 <h:outputText value="You are inscribed as : " />  
        			 <p:selectOneRadio value="#{articleBean.selectedTypeStatus}" required="true" label="Type of inscription">  
             	 <f:selectItem itemLabel="private" itemValue="1" />  
@@ -99,7 +102,7 @@
            		  
            		 </p:selectOneRadio>
 					
-
+									
 							<h:form>
 								<h:outputText value="Choose picture For you profil: " />
 
@@ -114,7 +117,6 @@
 
 
 
-					<h:outputText value="category : " />
 
 				<h:outputText value="category : " />
 				
@@ -125,7 +127,7 @@
 
 
 					</p:selectOneMenu>
-				
+								
 
 						</h:panelGrid>
 					</p:panel>
@@ -159,13 +161,11 @@
 
 							<h:outputText value="cathegorie  : " />  
                  			   <h:outputText styleClass="outputLabel"  
-                                value="#{articleBean.newaArticle.categorie}"/>
+                                value="#{articleBean.newaArticle.categorie.name}"/>
 
 
-							<h:outputText />
-							<h:outputText />
-							<h:outputText />
-							<h:outputText />
+							
+							
 							<h:outputText value=" Profil picture : " />
 							<p:graphicImage id="img" width="45px" height="60px"
 								value="#{articleBean.streamedPicture}"

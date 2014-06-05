@@ -8,6 +8,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import edu.app.persistence.Article;
+import edu.app.persistence.Categorie;
 import edu.app.persistence.User;
 
 
@@ -72,6 +73,25 @@ public class ArticleService implements ArticleServiceRemote, ArticleServiceLocal
 				.createQuery("select a from Article a where a.member.id=:member");
 		query.setParameter("member", user.getidUser());
 		return query.getResultList();
+	}
+
+
+	@SuppressWarnings("unchecked")
+	public List<Article> findAllArticleCustum(int pageIndex, int noOfRecords) {
+	
+		Query query = em.createQuery("select ar from Article ar ");
+		return query.setMaxResults(noOfRecords)
+				.setFirstResult(noOfRecords * pageIndex).getResultList();
+	}
+
+
+	@SuppressWarnings("unchecked")
+	public List<Article> findArticleBycategory(Categorie categorie) {
+		Query query = em
+				.createQuery("select ar from Article ar where ar.categorie.id=:cat");
+		query.setParameter("cat", categorie.getId());
+		return query.getResultList();
+		
 	}
 
 	

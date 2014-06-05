@@ -12,7 +12,8 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 
@@ -24,19 +25,24 @@ import org.primefaces.model.StreamedContent;
 
 import edu.app.business.ArticleServiceLocal;
 import edu.app.business.GestionCategorieLocal;
+import edu.app.business.SessionProvider;
 import edu.app.persistence.Article;
 import edu.app.persistence.Categorie;
-import edu.app.persistence.Member;
 import edu.app.persistence.Picture;
 import edu.app.persistence.User;
 
 @ManagedBean(name = "articleBean")
-@ViewScoped
+@SessionScoped
 
 public class ArticleBean implements Serializable {
+	
 
-	private User user = new Member();
+	
+	private User user ;
 
+	@ManagedProperty("#{SP}")
+	private SessionProvider sessionProvider;
+	
 	@EJB
 	ArticleServiceLocal articleServiceLocal;
 
@@ -52,6 +58,8 @@ public class ArticleBean implements Serializable {
 	private Article article = new Article();
 	private boolean showFiledUpload = false;
 	private List<Article> articles;
+	
+	private List<Article> arts ;
 	private StreamedContent streamedPic;
 	private DefaultStreamedContent streamedPicture;
 	private String destinationTemp = "E:\\jee\\servers\\s05\\jboss-as-7.1.1\\welcome-content\\temp\\";
@@ -62,6 +70,14 @@ public class ArticleBean implements Serializable {
 	private List<SelectItem> selectItemsForCategories;
 
 	private Categorie categorie = new Categorie();
+
+	
+
+
+
+	
+
+	
 
 	public ArticleBean() {
 
@@ -86,12 +102,16 @@ public class ArticleBean implements Serializable {
 			filterOptions.add(new SelectItem(category.getName(), category
 					.getName()));
 		}
+		
+		arts=articleServiceLocal.findAllArticleCustum(0, 2);
 	}
 
 	public String doNew() {
 
 		String navigateTo = null;
 
+		
+		user=sessionProvider.getConnectedUser();
 		// pictures.add(picture);
 
 		if (selectedTypeStatus == 1) {
@@ -111,6 +131,11 @@ public class ArticleBean implements Serializable {
 		newaArticle.setPicture(picture);
 		//newaArticle.setPictures(pictures);
 
+		
+		//
+	
+		
+		//
 		newaArticle.setCategorie(categorie);
 		categorie.getArticles().add(newaArticle);
 		newaArticle.setUser(user);
@@ -175,6 +200,20 @@ public class ArticleBean implements Serializable {
 		}
 	}
 
+	
+	public String doDetail() {
+		
+		
+		
+		
+		return"";
+	}
+	
+	
+	
+	
+	
+	
 	public String AllArticles() {
 		return "/pages/JUGMember/AllArticles";
 	}
@@ -266,8 +305,15 @@ public class ArticleBean implements Serializable {
 	public void setStreamedPicture(DefaultStreamedContent streamedPicture) {
 		this.streamedPicture = streamedPicture;
 	}
-
+	
 	public StreamedContent getStreamedPic() {
+	
+//		DefaultStreamedContent streamedPic = new DefaultStreamedContent(
+//				new ByteArrayInputStream(pictur.getContent()),
+//				"image/png");
+//		
+		
+		
 		return streamedPic;
 	}
 
@@ -332,6 +378,20 @@ public class ArticleBean implements Serializable {
 		this.selectedTypeStatus = selectedTypeStatus;
 	}
 
+	public void setSessionProvider(SessionProvider sessionProvider) {
+		this.sessionProvider = sessionProvider;
+	}
 	
+	public SessionProvider getSessionProvider() {
+		return sessionProvider;
+	}
+
+	public List<Article> getArts() {
+		return arts;
+	}
+
+	public void setArts(List<Article> arts) {
+		this.arts = arts;
+	}
 	
 }

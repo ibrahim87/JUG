@@ -11,6 +11,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import edu.app.persistence.Event;
 import edu.app.persistence.Picture;
 import edu.app.persistence.User;
 
@@ -152,4 +153,12 @@ public class PictureService implements PictureServiceRemote,
 		return p;
 	}
 
+	@Override
+	public Picture findPictureById(int id) {
+		Picture picture = null;
+		picture = em.find(Picture.class, id);
+		return picture;
+	}
+
+	
 }

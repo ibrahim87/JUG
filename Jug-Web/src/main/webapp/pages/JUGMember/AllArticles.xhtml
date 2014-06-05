@@ -24,7 +24,7 @@
             <p:menuitem value="Delete" action="#{articleBean.DeleteArticle}" />
         </p:submenu>
  
-        <p:submenu label="Edit" icon="ui-icon-pencil">
+        <p:submenu label="All Users" icon="ui-icon-pencil">
             <p:menuitem value="Undo" url="#" icon="ui-icon-arrowreturnthick-1-w" />
             <p:menuitem value="Redo" url="#" icon="ui-icon-arrowreturnthick-1-e" />
         </p:submenu>
@@ -123,7 +123,7 @@
 			
 			
 			
-			
+			<h:outputText value="" /><h:outputText value="" />
 	 <p:commandButton icon="ui-icon-circle-plus" actionListener="#{articleBean.doNewArticle}" value="new" update=":details"/> 
 	 
 		</h:form>
@@ -160,7 +160,7 @@
            		  
            		 </p:selectOneRadio>
 					<h:outputText value="" />
-					
+
 					
 					
 					<h:outputText value="date Creation : " />
@@ -178,7 +178,7 @@
 					<p:selectOneMenu value="#{articleBean.article.categorie}">
 						<f:selectItem itemValue="-1" itemLabel="choose one..." />
 						<f:selectItems
-							value="#{articleBean.article.categorie}" />
+							value="#{articleBean.selectItemsForCategories}" />
 
 
 					</p:selectOneMenu>
