@@ -1,0 +1,54 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/template/template.xhtml">
+                	
+			<ui:define name="pageTitle"></ui:define>		
+			<ui:define name="pageContent">
+			
+			
+			<h:form>
+		<p:dataTable id="Tar-Tab" value="#{userBean.users}" var="use"
+			border="1" paginator="true" rows="10" scrollable="true"
+			scrollWidth="660" scrollHeight="75">
+
+			<f:facet name="header">
+				<h:outputText value="Liste des Tarifs enregistrs" />
+			</f:facet>
+
+			<p:column
+				style="background-image: linear-gradient(180deg, #E1E6FA, white, #E1E6FA);">
+				<f:facet name="header">
+					<h:outputText value="#" />
+				</f:facet>
+				<h:outputText value="#{use.idUser}" />
+			</p:column>
+
+			<p:column
+				style="background-image: linear-gradient(180deg, #E1E6FA, white, #E1E6FA);">
+				<f:facet name="header">
+					<h:outputText value="Date_Deb" />
+				</f:facet>
+				<h:outputText value="#{use.nom}" />
+			</p:column>
+
+			<p:column
+				style="background-image: linear-gradient(180deg, #E1E6FA, white, #E1E6FA);">
+				<f:facet name="header">
+					<h:outputText value="Date_Fin" />
+				</f:facet>
+				<h:outputText value="#{use.prenom}" />
+			</p:column>
+
+			
+			
+			
+			
+			
+			</p:dataTable>
+			
+			</h:form>
+			</ui:define>
+</ui:composition>

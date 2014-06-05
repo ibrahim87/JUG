@@ -113,7 +113,7 @@ public class UserBean implements Serializable {
 						"Registredin waiting ! ");
 				FacesContext.getCurrentInstance().addMessage(null, message);
 
-			} else {
+			} else 
 				if (found.getEtat().equals("Refuser")) {
 					FacesMessage message = new FacesMessage(
 							"Registredin refused ! ");
@@ -122,16 +122,19 @@ public class UserBean implements Serializable {
 				} else
 
 				if (user instanceof Leader) {
+					
 
 					setUserType("Leader");
+					System.out.println("  " + user.getNom());
 					navigateTo = "/pages/JUGLeader/Home";
 					imJUGLeader = true;
 				}
 				
 
 				if (user instanceof Member) {
-
+						
 					setUserType("Member");
+					System.out.println("  " + user.getNom());
 					navigateTo = "/pages/JUGMember/Home";
 					imJUGMember = true;
 				}
@@ -140,6 +143,7 @@ public class UserBean implements Serializable {
 				if (user instanceof Speaker) {
 
 					setUserType("Speaker");
+					System.out.println("  " + user.getNom());
 					navigateTo = "/pages/JUGSpeaker/Home";
 					imSpeaker = true;
 				}
@@ -150,7 +154,7 @@ public class UserBean implements Serializable {
 				
 
 			}
-		} else {
+		 else {
 			FacesMessage message = new FacesMessage("Bad credentials ! ");
 			FacesContext.getCurrentInstance().addMessage(null, message);
 			navigateTo = null;

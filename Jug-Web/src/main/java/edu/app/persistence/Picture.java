@@ -18,6 +18,7 @@ public class Picture implements Serializable {
 	private int idPicture;
 	private String pictureName;
 	private String path;
+	
 	private byte[] content;
 	private User user;
 	private CallForPaper callForPaper;
