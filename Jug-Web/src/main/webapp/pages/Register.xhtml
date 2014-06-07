@@ -175,26 +175,25 @@
          		    
          		    
          		   
-         		  <!--   <h:outputText value="You are inscribed as : " />  
-       			 <p:selectOneRadio value="#{userBean.selectedTypeUser}" required="true" label="Type of inscription">  
-            	 <f:selectItem itemLabel="Member" itemValue="1" />  
-           		
-           		  <f:selectItem itemLabel="Speaker" itemValue="2" /> 
+         	<!--   <h:outputText value="You are inscribed as : " />  
+       			 <p:selectOneRadio id="se" value="#{userBean.selectedTypeUser}" required="true" label="Se">  
+            	 <f:selectItem itemValue="1"  itemLabel="Member"/>  
+           		 <f:selectItem itemValue="2"  itemLabel="Speaker"/>  
            		  
-           		 </p:selectOneRadio> -->
-         		    
-         	<h:form>	
+           		 </p:selectOneRadio>
+         		     -->
+      	<h:form>	
            <h:outputText value="Choose picture For you profil: " />  
        			 
-      	  <p:fileUpload fileUploadListener="#{userBean.upload}"  
+      	 <p:fileUpload fileUploadListener="#{userBean.upload}"  
             mode="advanced"  
             update="messages"  
             auto="true"  
-            sizeLimit="100000"   
+            sizeLimit="10000000"   
             allowTypes="/(\.|\/)(gif|jpe?g|png)$/"/> 
        			 <p:growl id="messages" showDetail="true"/>  
-                   </h:form>   
-                      
+                   </h:form>    
+                       
                     <h:outputText value="Skip to last: " />  
                     <h:selectBooleanCheckbox value="#{userBean.skip}" />  
                 </h:panelGrid>  
@@ -237,11 +236,14 @@
               <h:outputText value="Email: " />  
                     <h:outputText styleClass="outputLabel"  
                                 value="#{userBean.newuser.mail}" />   
-                     
-              <!--  <h:outputText value="Inscribed as : " />  
+          <!--            
+           <h:outputText value="you are : " />  
                     <h:outputText styleClass="outputLabel"  
-                                value="#{userBean.selectedTypeUser}"/>
-                      -->
+                                value="#{userBean.selectedTypeUser}" />  
+                     
+               -->
+                      
+                      
                   
    			  <h:outputText />  
                     <h:outputText />  

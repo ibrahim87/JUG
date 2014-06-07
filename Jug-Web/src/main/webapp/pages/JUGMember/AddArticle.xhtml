@@ -76,39 +76,27 @@
 
 						<h:panelGrid columns="2" columnClasses="label, value"
 							styleClass="grid" cellspacing="12">
+							
 							<h:outputText value="Title: *" />
 							<p:inputText required="true" label="Title"
-								value="#{articleBean.newaArticle.title}" />
+								value="#{articleBean.newaArticle.title}" style="width:400px" />
 									
 									
 							<h:outputText value="description : " />
-							
-							<h:form>           
-   				 <p:editor id="editor" widgetVar="editorWidget" value="#{articleBean.newaArticle.contenu}" width="600" />
- 
-   					 <h:panelGrid columns="2" style="margin-top: 10px">
-   					   <p:commandButton value="Show" update="display" oncomplete="PF('dlg').show()" icon="ui-icon-disk" />
-    				   <p:commandButton value="Clear" type="button" onclick="PF('editorWidget').clear();" icon="ui-icon-close" />
-    				</h:panelGrid>
- 
-   						 <p:dialog header="Content" widgetVar="dlg" showEffect="fade" hideEffect="fade">
-   				     <h:outputText id="display" value="#{articleBean.newaArticle.contenu}" escape="false" />
-  						  </p:dialog>
-</h:form> 
-							
-					<!-- <p:inputTextarea rows="10" cols="50" value="#{articleBean.newaArticle.contenu}" queryDelay="1000000" minQueryLength="4" />
-					 -->
+						<p:inputTextarea rows="10" cols="80" value="#{articleBean.newaArticle.contenu}"
+						 queryDelay="1000000" minQueryLength="4" style="width:400px"  />
+					
 
-
+						
 							<h:outputText value="Date of creation:" />
 							<p:calendar id="dateNaiss"
 								value="#{articleBean.newaArticle.datecration}"
 								pattern="dd/MM/yyyy" showOn="button" required="true"
-								label="Date of birth" />
+								label="Date of birth" style="width:400px"/>
 								
 								
 								
-						 <h:outputText value="You are inscribed as : " />  
+						 <h:outputText value="Statu of Article : " />  
        			 <p:selectOneRadio value="#{articleBean.selectedTypeStatus}" required="true" label="Type of inscription">  
             	 <f:selectItem itemLabel="private" itemValue="1" />  
            		
@@ -116,13 +104,13 @@
            		  
            		 </p:selectOneRadio>
 					
-									
+							<h:outputText value="Choose picture For Article  : "/>
 							<h:form>
-								<h:outputText value="Choose picture For you profil: " />
+								
 
 								<p:fileUpload fileUploadListener="#{articleBean.upload}"
 									mode="advanced" update="messages" auto="true"
-									sizeLimit="100000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+									sizeLimit="10000000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
 								<p:growl id="messages" showDetail="true" />
 							</h:form>
 
@@ -191,7 +179,7 @@
 						<p:commandButton id="validate" value="Validate"
 							icon="ui-icon-check" style="margin:0"
 							action="#{articleBean.doNew()}" update="growl Add" />
-<p:growl id="messages" showDetail="true" />
+							<p:growl id="messages" showDetail="true" />
 					</p:panel>
 				</p:tab>
 
@@ -200,7 +188,7 @@
 		</h:form>
 
 
-<h2>Aaddd</h2>
+
 
 	</ui:define>
 </ui:composition>

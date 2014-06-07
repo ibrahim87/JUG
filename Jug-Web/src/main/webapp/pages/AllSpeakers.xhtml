@@ -7,7 +7,9 @@
                 	
 			<ui:define name="pageTitle"></ui:define>		
 			<ui:define name="pageContent">
-			<script>
+			
+<h:head>			
+<script>
 	jQuery(document).ready(function() {
 	    jQuery("a[rel^='prettyPhoto']").prettyPhoto({
 			social_tools : false,
@@ -26,66 +28,39 @@
 								});							
 							});
 						</script>
-			
+	</h:head>		
 			<div id="main" class="row-fluid">
 		<div class="row-fluid">
-	      
+	      	<ui:repeat var="spk" value="#{articlesBean2.speakers}">
 			<div class="kontengal4 span3">
+			
+		
 				<article class="galleries">
-					<a href="images/dummy/shutterstock_58382248.jpg" title="shutterstock_58382248" rel="prettyPhoto"><img width="570" height="360" src="images/dummy/shutterstock_58382248-570x360.jpg" alt="shutterstock_58382248" /></a>
-					<h3 class="gal-title"><a href="#" title="Permalink to Fusce pellentesque suscipit nibh massa porta molestie iaculis" rel="bookmark">Fusce pellentesque suscipit nibh massa porta molestie iaculi...</a></h3>
+					<a href="images/dummy/shutterstock_58382248.jpg" title="shutterstock_58382248" rel="prettyPhoto">
+				
+										 <p:graphicImage 
+                                     value="#{articlesBean2.streamedPic}" style="with:'570px'; height:'100px'">
+                                     <f:param name="photo" value="#{spk.picture.idPicture}"></f:param>
+ 								
+ 									</p:graphicImage> 
+ 									
+ 									
+					
+					</a>
+					<h3 class="gal-title">
+					<a href="#" title="Permalink to Fusce pellentesque suscipit nibh massa porta molestie iaculis" rel="bookmark">
+					Fusce pellentesque suscipit nibh massa porta molestie iaculi...
+					
+					
+					</a>
+					
+					</h3>
 				</article>
+				
 			</div>
 			
-		 
-			<div class="kontengal4 span3">
-				<article class="galleries">
-					<a href="images/dummy/shutterstock_70184773.jpg" title="shutterstock_70184773" rel="prettyPhoto"><img width="570" height="360" src="images/dummy/shutterstock_70184773-570x360.jpg" alt="shutterstock_70184773" /></a>
-					<h3 class="gal-title"><a href="#" title="Permalink to Praesent placerat risus quis pellentesque suscipit nibh ultricies nulla" rel="bookmark">Praesent placerat risus quis pellentesque suscipit nibh ultr...</a></h3>
-				</article>
-			</div>
-	 
-			<div class="kontengal4 span3">
-				<article class="galleries">
-					<a href="images/dummy/shutterstock_109209743.jpg" title="shutterstock_109209743" rel="prettyPhoto"><img width="570" height="360" src="images/dummy/shutterstock_109209743-570x360.jpg" alt="shutterstock_109209743" /></a>
-					<h3 class="gal-title"><a href="#" title="Permalink to Integer malesuada commodo nulla ligula vulputate sem tristique" rel="bookmark">Integer malesuada commodo nulla ligula vulputate sem tristiq...</a></h3>
-				</article>
-			</div>
-		 
-			<div class="kontengal4 span3">
-				<article class="galleries">
-					<a href="images/dummy/photodune-3517559-idea-s.jpg" title="photodune-3517559-idea-s" rel="prettyPhoto"><img width="570" height="360" src="images/dummy/photodune-3517559-idea-s-570x360.jpg" alt="photodune-3517559-idea-s" /></a>
-					<h3 class="gal-title"><a href="#" title="Permalink to Vestibulum volutpat tortor libero sodales leo mauris ut lectus" rel="bookmark">Vestibulum volutpat tortor libero sodales leo mauris ut lect...</a></h3>
-				</article>
-			</div>
-		 
-			<div class="kontengal4 span3">
-				<article class="galleries">
-					<a href="images/dummy/shutterstock_2114081.jpg" title="shutterstock_2114081" rel="prettyPhoto"><img width="570" height="360" src="images/dummy/shutterstock_2114081-570x360.jpg" alt="shutterstock_2114081" /></a>
-					<h3 class="gal-title"><a href="#" title="Permalink to Fusce accumsan mollis eros amet interdum consectetuer" rel="bookmark">Fusce accumsan mollis eros amet interdum consectetuer...</a></h3>
-				</article>
-			</div>
-		 
-			<div class="kontengal4 span3">
-				<article class="galleries">
-					<a href="images/dummy/shutterstock_58382248.jpg" title="shutterstock_58382248" rel="prettyPhoto"><img width="570" height="360" src="images/dummy/shutterstock_58382248-570x360.jpg" alt="shutterstock_58382248" /></a>
-					<h3 class="gal-title"><a href="#" title="Permalink to Quisque fermentum penatibus et magnis dis parturient montes" rel="bookmark">Quisque fermentum penatibus et magnis dis parturient montes...</a></h3>
-				</article>
-			</div>
-		 
-			<div class="kontengal4 span3">
-				<article class="galleries">
-					<a href="images/dummy/shutterstock_134257640.jpg" title="shutterstock_134257640" rel="prettyPhoto"><img width="570" height="360" src="images/dummy/shutterstock_134257640-570x360.jpg" alt="shutterstock_134257640" /></a>
-					<h3 class="gal-title"><a href="#" title="Permalink to Proin malesuada adipiscing lacus imperdiet nibh feugiat" rel="bookmark">Proin malesuada adipiscing lacus imperdiet nibh feugiat...</a></h3>
-				</article>
-			</div>
-		 
-			<div class="kontengal4 span3">
-				<article class="galleries">
-					<a href="images/dummy/photodune-2043745-college-student-s.jpg" title="photodune-2043745-college-student-s" rel="prettyPhoto"><img width="570" height="360" src="images/dummy/photodune-2043745-college-student-s-570x360.jpg" alt="photodune-2043745-college-student-s" /></a>
-					<h3 class="gal-title"><a href="#" title="Permalink to Vivamus ultrices luctus nunc sem sit amet interdum consectetuer" rel="bookmark">Vivamus ultrices luctus nunc sem sit amet interdum consectet...</a></h3>
-				</article>
-			</div>
+		 </ui:repeat>
+			
 					
 		</div>
 			

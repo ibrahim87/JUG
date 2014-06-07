@@ -58,7 +58,7 @@ public class ArticleBean implements Serializable {
 	private Article article = new Article();
 	private boolean showFiledUpload = false;
 	private List<Article> articles;
-	
+	 private String secondContent;  
 	private List<Article> arts ;
 	private StreamedContent streamedPic;
 	private DefaultStreamedContent streamedPicture;
@@ -108,6 +108,15 @@ private String contenu;
 	
 	
 	
+	  
+	    public void secondSaveListener() {  
+	        secondContent = secondContent.replaceAll("\\r|\\n", "");  
+	  
+	        final FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Second Content",  
+	                secondContent.length() > 150 ? secondContent.substring(0, 100) : secondContent);  
+	  
+	        FacesContext.getCurrentInstance().addMessage(null, msg);  
+	    }  
 	
 	public void saveListener() {  
 		contenu = contenu.replaceAll("\\r|\\n", "");  
@@ -118,16 +127,7 @@ private String contenu;
         FacesContext.getCurrentInstance().addMessage(null, msg);  
     }  
   
-//    public void secondSaveListener() {  
-//        secondContent = secondContent.replaceAll("\\r|\\n", "");  
-//  
-//        final FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Second Content",  
-//                secondContent.length() > 150 ? secondContent.substring(0, 100) : secondContent);  
-//  
-//        FacesContext.getCurrentInstance().addMessage(null, msg);  
-//    }  
-  
-    
+
 
 	public String doNew() {
 
@@ -415,6 +415,14 @@ private String contenu;
 
 	public void setContenu(String contenu) {
 		this.contenu = contenu;
+	}
+
+	public String getSecondContent() {
+		return secondContent;
+	}
+
+	public void setSecondContent(String secondContent) {
+		this.secondContent = secondContent;
 	}
 	
 }

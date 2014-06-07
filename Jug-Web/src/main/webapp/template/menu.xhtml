@@ -55,23 +55,23 @@
 				</ul></li>
 				
 				<li><h:commandLink value="Call of paper" action="/pages/CallForPaper" /></li>
-			<li><h:commandLink value="register" action="/pages/Register" /></li>
-				<li><h:commandLink value="FORUM" action="/pages/Forum" /></li>
-				<li><h:commandLink value="CONTACT" action="/pages/MemberJUG" /></li>
+			<li><h:commandLink value="register" action="/pages/Register?faces-redirect=true" /></li>
+				<li><h:commandLink value="FORUM" action="/pages/Forum?faces-redirect=true" /></li>
+				<li><h:commandLink value="CONTACT" action="/pages/MemberJUG?faces-redirect=true" /></li>
 				
 			<li>
 			<h:commandLink  rendered="#{userBean.loggedIn}" value="Articles" action="/pages/home" />
 				<ul class="sub-menu">	
 					
-					<li><h:commandLink value="new Article" action="/pages/JUGMember/AddArticle" /></li>
+					<li><h:commandLink value="new Article" action="/pages/JUGMember/AddArticle?faces-redirect=true" /></li>
 					<li><h:commandLink value="Edit Article" action="/pages/home" /></li>
 					<li><h:commandLink value="Delete Article" action="/pages/home" /></li>
-					<li><h:commandLink value="All Article" action="/pages/JUGMember/AllArticles" /></li>
+					<li><h:commandLink value="All Article" action="/pages/JUGMember/AllArticles?faces-redirect=true" /></li>
 			
 			</ul></li>
 		
 
-		<li><h:commandLink rendered="#{userBean.loggedIn}" >
+		<li><h:commandLink rendered="#{userBean.loggedIn}"  >
 			<p:graphicImage id="img" width="37px" height="20px"
 					value="#{userBean.streamedPic}" />	</h:commandLink>
 						<ul class="sub-menu">

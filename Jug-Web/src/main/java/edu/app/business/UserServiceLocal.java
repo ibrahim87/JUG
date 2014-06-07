@@ -40,8 +40,9 @@ public interface UserServiceLocal {
 			String status);
 	public boolean usernameExists(String login);
 
-	List<Speaker> findAllSpeakers();
+	public List<Speaker> findAllSpeakers();
 	
+
 
 
 

@@ -79,7 +79,7 @@ public class ArticleService implements ArticleServiceRemote, ArticleServiceLocal
 	@SuppressWarnings("unchecked")
 	public List<Article> findAllArticleCustum(int pageIndex, int noOfRecords) {
 	
-		Query query = em.createQuery("select ar from Article ar ");
+		Query query = em.createQuery("select ar from Article ar ORDER BY ar.idArticle DESC ");
 		return query.setMaxResults(noOfRecords)
 				.setFirstResult(noOfRecords * pageIndex).getResultList();
 	}

@@ -14,6 +14,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.validator.ValidatorException;
@@ -36,6 +37,7 @@ import edu.app.persistence.User;
 
 @ManagedBean(name="userBean")
 @SessionScoped
+@ViewScoped
 public class UserBean implements Serializable {
 	
 	@EJB
@@ -75,12 +77,10 @@ public class UserBean implements Serializable {
 	private String mail;
 	private String userType = "";
 
-	private int selectedTypeUser = -1;
+	private int selectedTypeUser = -1; ;
 
 	private String destinationTemp = "E:\\jee\\servers\\s05\\jboss-as-7.1.1\\welcome-content\\temp\\";
-	private String nom;
-	private String prenom;
-	private String sexe;
+	private List<Speaker> speakers;
 
 	
 
@@ -92,7 +92,8 @@ public class UserBean implements Serializable {
 		users = userServiceLocal.findAllUser();
 		picUsers = userServiceLocal.findByStatus("Refuser");
 		loggedIn = false;
-
+		
+		speakers=userServiceLocal.findAllSpeakers();
 	}
 
 	
@@ -153,7 +154,7 @@ public class UserBean implements Serializable {
 				sessionProvider.setConnectedUser(user);
 				
 
-			}
+		}
 		 else {
 			FacesMessage message = new FacesMessage("Bad credentials ! ");
 			FacesContext.getCurrentInstance().addMessage(null, message);
@@ -178,13 +179,20 @@ public class UserBean implements Serializable {
 		String navigateTo = null;
 
 		if (selectedTypeUser == 1) {
+			
+			System.out.println("  "+selectedTypeUser);
+			
+			//System.out.println(""+newuser.getLogin());
 
 			newuser = new Member();
 
 		}
 
-		if (selectedTypeUser == 2) {
-
+	if (selectedTypeUser == 2) {
+			
+		System.out.println("  "+selectedTypeUser);
+			//System.out.println(""+newuser.getLogin());
+		
 			newuser = new Speaker();
 			
 		
@@ -195,7 +203,7 @@ public class UserBean implements Serializable {
 		newuser.setPicture(picture);
 		newuser.setEtat("attente");
 		userServiceLocal.createUser(newuser);
-		 selectedTypeUser = -1;
+		selectedTypeUser = -1;
 	
 
 		FacesMessage msg = new FacesMessage(
@@ -453,33 +461,7 @@ public class UserBean implements Serializable {
 		this.selectedTypeUser = selectedTypeUser;
 	}
 
-	
-	
-	public String getNom() {
-		return nom;
-	}
 
-	public void setNom(String nom) {
-		this.nom = nom;
-	}
-
-	public String getPrenom() {
-		return prenom;
-	}
-
-	public void setPrenom(String prenom) {
-		this.prenom = prenom;
-	}
-
-	public String getSexe() {
-		return sexe;
-	}
-
-	public void setSexe(String sexe) {
-		this.sexe = sexe;
-	}
-
-	
 
 	public User getNewuser() {
 		return newuser;
@@ -495,6 +477,14 @@ public class UserBean implements Serializable {
 	
 	public SessionProvider getSessionProvider() {
 		return sessionProvider;
+	}
+
+	public List<Speaker> getSpeakers() {
+		return speakers;
+	}
+
+	public void setSpeakers(List<Speaker> speakers) {
+		this.speakers = speakers;
 	}
 	
 }

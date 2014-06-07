@@ -15,7 +15,9 @@ import org.primefaces.model.StreamedContent;
 
 import edu.app.business.ArticleServiceLocal;
 import edu.app.business.PictureServiceLocal;
+import edu.app.business.UserServiceLocal;
 import edu.app.persistence.Article;
+import edu.app.persistence.Speaker;
 
 @ManagedBean
 @javax.faces.bean.RequestScoped
@@ -30,9 +32,12 @@ public class ArticlesBean2 implements Serializable {
 	 ArticleServiceLocal articleServiceLocal;
 	@EJB
 	PictureServiceLocal pictureServiceLocal;
+	
+	@EJB
+	UserServiceLocal userServiceLocal ;
 	private List<Article> arts ;
 	private List<Article>arts2;
-	
+	private List<Speaker> speakers;
 	private Article article = new Article() ;
 	private List<Article>articles;
 
@@ -43,23 +48,22 @@ public class ArticlesBean2 implements Serializable {
 	@PostConstruct
 	public void init() {
 		
-		picture = pictureServiceLocal.findPictureById(27).getContent();
+		
+	picture = pictureServiceLocal.findPictureById(31).getContent();
+		
 		if (picture != null)
 			streamedPic = new DefaultStreamedContent(new ByteArrayInputStream(
 					picture));
-
-		arts=articleServiceLocal.findAllArticleCustum(0, 8);
+		
+		
+		
+		
+		arts=articleServiceLocal.findAllArticleCustum(0, 5);
 		articles=articleServiceLocal.findArticleByNameCategorie(name, 0, 8);
 		
+		speakers=userServiceLocal.findAllSpeakers();
 		
-//		for(int i = 0 ; i < arts.size() ; i++){
-//			try{
-//				arts.get(i).setContenu(arts.get(i).getContenu().substring(10));
-//			}catch(Exception e){
-//				//arts.get(i).setContenu("");
-//			}
-//		}
-		
+
 		
 	}
 
@@ -234,7 +238,19 @@ public class ArticlesBean2 implements Serializable {
 
 
 
+	public List<Speaker> getSpeakers() {
+		return speakers;
+	}
 
+
+
+	public void setSpeakers(List<Speaker> speakers) {
+		this.speakers = speakers;
+	}
+
+
+
+	
 
 
 	

@@ -17,7 +17,7 @@ import edu.app.persistence.CallForPaper;
 import edu.app.persistence.Proposition;
 import edu.app.persistence.Speaker;
 
-@ViewScoped
+
 @SessionScoped
 @ManagedBean
 public class Test implements Serializable {
