@@ -112,14 +112,16 @@
     <p:growl id="messages"/>
  
     <p:menubar>
-        <p:submenu label="File" icon="ui-icon-document">
-            <p:submenu label="New" icon="ui-icon-contact">
-                <p:menuitem value="Project" url="#" />
-                <p:menuitem value="Other" url="#" />
-            </p:submenu>
-            <p:menuitem value="Open" url="#" />
+        <p:submenu label="Article" icon="ui-icon-document">
+        
+           <p:menuitem value="All Articles" action="#{articleBean.AllArticles}"  />
+           	 <p:separator />
+              <p:menuitem value="Add" action="#{articleBean.AddArticle}" />
+               <p:separator />
+            <p:menuitem value="Edit" action="#{articleBean.EditArticle}"/>
             <p:separator />
-            <p:menuitem value="Quit" url="#" />
+           
+            <p:menuitem value="Delete" action="#{articleBean.DeleteArticle}" />
         </p:submenu>
  
         <p:submenu label="Edit" icon="ui-icon-pencil">
@@ -150,8 +152,8 @@
       
  
         <f:facet name="options">
-            <p:inputText style="margin-right:10px" placeholder="Search"/>
-            <p:commandButton type="button" value="Logout" icon="ui-icon-extlink" />
+            <p:inputText style="margin-right:10px" placeholder="Search" />
+           
         </f:facet>
     </p:menubar>
 </h:form>

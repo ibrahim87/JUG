@@ -7,6 +7,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import edu.app.persistence.Leader;
+import edu.app.persistence.Member;
 import edu.app.persistence.Speaker;
 import edu.app.persistence.User;
 
@@ -28,7 +30,7 @@ public class UserService implements UserServiceRemote, UserServiceLocal {
     }
 
 	public void createUser(User user) {
-		em.persist(user);
+		em.merge(user);
 	}
 
 	public void updateUser(User user) {
@@ -202,6 +204,17 @@ public class UserService implements UserServiceRemote, UserServiceLocal {
 
 	public User findUserById(int id) {
 		return em.find(User.class, id);
+	}
+
+	@Override
+	public List<Member> findAllMembers() {
+		
+		return (List<Member>)em.createQuery("select u from Member u ").getResultList();
+	}
+
+	@Override
+	public List<Leader> findAllLeaders() {
+		return (List<Leader>)em.createQuery("select u from Leader u ").getResultList();
 	}
 	
 

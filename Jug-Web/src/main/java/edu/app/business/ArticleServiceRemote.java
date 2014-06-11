@@ -6,6 +6,7 @@ import javax.ejb.Remote;
 
 import edu.app.persistence.Article;
 import edu.app.persistence.Categorie;
+import edu.app.persistence.Leader;
 import edu.app.persistence.User;
 
 
@@ -30,9 +31,10 @@ public interface ArticleServiceRemote {
 	
 	List<Article> findAllArticleCustum(int pageIndex, int noOfRecords);
 	
-	 List<Article> findArticleByNameCategorie( String name ,int pageIndex, int noOfRecords );
+	 List<Article> findArticleByCategorie( Categorie categorie ,int pageIndex, int noOfRecords );
 	
-	 List<Article> findArticleByJUGLeader(User user);
+		
+	 List<Article> findArticleByJUGLeader(int pageIndex, int noOfRecords);
 	
 
 }

@@ -14,7 +14,6 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
-import javax.faces.bean.ViewScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.validator.ValidatorException;
@@ -37,7 +36,6 @@ import edu.app.persistence.User;
 
 @ManagedBean(name="userBean")
 @SessionScoped
-@ViewScoped
 public class UserBean implements Serializable {
 	
 	@EJB
@@ -177,32 +175,40 @@ public class UserBean implements Serializable {
 	public String createUser() {
 		
 		String navigateTo = null;
-
-		if (selectedTypeUser == 1) {
-			
-			System.out.println("  "+selectedTypeUser);
-			
-			//System.out.println(""+newuser.getLogin());
-
-			newuser = new Member();
-
-		}
-
-	if (selectedTypeUser == 2) {
-			
-		System.out.println("  "+selectedTypeUser);
-			//System.out.println(""+newuser.getLogin());
-		
-			newuser = new Speaker();
-			
-		
-		}
-		
+//
+//		if (selectedTypeUser == 1) {
+//			
+//			System.out.println("  "+selectedTypeUser);
+//			
+//			//System.out.println(""+newuser.getLogin());
+//
+//			newuser = new Member();
+//
+//		}
+//
+//	if (selectedTypeUser == 2) {
+//			
+//		System.out.println("  "+selectedTypeUser);
+//			//System.out.println(""+newuser.getLogin());
+//		
+//			newuser = new Speaker();
+//			
+//		
+//		}
+//		
 		
 		
 		newuser.setPicture(picture);
 		newuser.setEtat("attente");
 		userServiceLocal.createUser(newuser);
+//		anotherEmailSenderRemote.sendMail(
+//				
+//				
+//				
+//				newuser.getMail(), "Register"," Hello Mr , and Mrs. felicitation you registered in our website, you have access to our site crossing   \n Your UserName is :=  " 
+//		       + newuser.getLogin()
+//					+ "\n Your Password is :=    "
+//					+ newuser.getPassword());
 		selectedTypeUser = -1;
 	
 

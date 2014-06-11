@@ -28,6 +28,7 @@ import edu.app.business.GestionCategorieLocal;
 import edu.app.business.SessionProvider;
 import edu.app.persistence.Article;
 import edu.app.persistence.Categorie;
+import edu.app.persistence.Leader;
 import edu.app.persistence.Picture;
 import edu.app.persistence.User;
 
@@ -72,8 +73,8 @@ public class ArticleBean implements Serializable {
 	private Categorie categorie = new Categorie();
 private String contenu;
 
-
-
+private List<Article> arts2;
+private User uLeader = new Leader();
 
 	
 
@@ -103,7 +104,9 @@ private String contenu;
 					.getName()));
 		}
 		
-		arts=articleServiceLocal.findAllArticleCustum(0, 2);
+		//arts=articleServiceLocal.findAllArticleCustum(0, 2);
+		//arts2=articleServiceLocal.findArticleByJUGLeader(uLeader);
+		
 	}
 	
 	
@@ -148,17 +151,8 @@ private String contenu;
 
 		}
 		categorie = gestionCategorieLocal.findCategorieById(selectedCategoryId);
-//		System.out.println("////////////////" + categorie.getName());
-//		
-//		System.out.println(getArticle().getCategorie() +  "  aaaa  ");
 		newaArticle.setPicture(picture);
-		//newaArticle.setPictures(pictures);
-
-		
-		//
 	
-		
-		//
 		newaArticle.setCategorie(categorie);
 		categorie.getArticles().add(newaArticle);
 		newaArticle.setUser(user);
@@ -166,11 +160,13 @@ private String contenu;
 		System.out.println("--------------------"+user);
 		gestionCategorieLocal.updateCategorie(categorie);
 
+		
+		newaArticle = new Article();
+		
 		FacesMessage msg = new FacesMessage(
 				"Success! , Your inscription is Done ");
 		FacesContext.getCurrentInstance().addMessage(null, msg);
 
-		newaArticle = new Article();
 		navigateTo = "/pages/JUGMember/Home";
 		return navigateTo;
 	}
@@ -423,6 +419,14 @@ private String contenu;
 
 	public void setSecondContent(String secondContent) {
 		this.secondContent = secondContent;
+	}
+
+	public List<Article> getArts2() {
+		return arts2;
+	}
+
+	public void setArts2(List<Article> arts2) {
+		this.arts2 = arts2;
 	}
 	
 }

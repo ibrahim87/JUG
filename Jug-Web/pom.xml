@@ -3,12 +3,12 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.esprit</groupId>
+	  <groupId>com.esprit</groupId>
 	<artifactId>jug-web</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<name>jug-web</name>
-	<description>jug web</description>
+	<description>jug web</description>  
 
 	<url>http://jboss.org/jbossas</url>
 	<licenses>

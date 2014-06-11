@@ -25,7 +25,7 @@ public class Article implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
+	
 	private int idArticle;
 	private String title;
 	private String status;
@@ -37,7 +37,7 @@ public class Article implements Serializable {
 	private List<Page> pages;
 	private Picture picture;
 	private Categorie categorie ;
-	
+	//private Leader leader;
 	public Article() {
 	}
 
@@ -130,5 +130,16 @@ public class Article implements Serializable {
 		this.picture = picture;
 	}
 
+	
+//	@ManyToOne(cascade = { CascadeType.MERGE, CascadeType.PERSIST })
+//	@JoinColumn(name = "leader")
+//	public Leader getLeader() {
+//		return leader;
+//	}
+//
+//	public void setLeader(Leader leader) {
+//		this.leader = leader;
+//	}
+//	
 	
 }

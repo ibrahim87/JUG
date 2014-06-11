@@ -9,6 +9,7 @@ import javax.persistence.Query;
 
 import edu.app.persistence.Article;
 import edu.app.persistence.Categorie;
+import edu.app.persistence.Leader;
 import edu.app.persistence.User;
 
 
@@ -86,23 +87,26 @@ public class ArticleService implements ArticleServiceRemote, ArticleServiceLocal
 
 
 	@SuppressWarnings("unchecked")
-	public List<Article> findArticleByNameCategorie(String name  ,int pageIndex, int noOfRecords) {
+	public List<Article> findArticleByCategorie( Categorie categorie ,int pageIndex, int noOfRecords) {
 		Query query = em
-				.createQuery("select ar from Article ar where ar.categorie.name=:cat");
-		query.setParameter("cat", name);
+				.createQuery("select ar from Article ar where ar.categorie=:cat");
+		query.setParameter("cat", categorie);
 		return query.getResultList();
 		
 	}
 
-	@Override
-	public List<Article> findArticleByJUGLeader(User user) {
 	
+	
+	@SuppressWarnings("unchecked")
+	public List<Article> findArticleByJUGLeader(int pageIndex, int noOfRecords) {
 		Query query = em
-				.createQuery("select a from Article a where a.leader.id=:leader");
-		query.setParameter("member", user.getidUser());
+				.createQuery("select ar from Article ar where ar.user.idUser=30");
+		//query.setParameter("leader", leader.getidUser());
 		return query.getResultList();
+		
 	}
 
+	
 	
 
 }

@@ -12,7 +12,7 @@ Tags:white,two-columns,flexible-width,custom-background,threaded-comments
 body {
   background-color:#09151f;
   background: url("#{resource['images:background-new.jpg']}") no-repeat top center fixed;
-  color: #939ead;
+  color: #0F0F0F;
   font-family: Roboto, sans-serif;
   font-weight: normal;
   font-size: 13px;

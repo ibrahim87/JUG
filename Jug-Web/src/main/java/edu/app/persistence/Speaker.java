@@ -14,6 +14,9 @@ public class Speaker extends User implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private List<Proposition> propositions;
+	private String nationality;
+	private String job ;
+	
 	
 	
 	public Speaker() {
@@ -29,13 +32,18 @@ public class Speaker extends User implements Serializable {
 	public void setPropositions(List<Proposition> propositions) {
 		this.propositions = propositions;
 	}
-	
-	
-	
-	
-
-	
-	
+	public String getNationality() {
+		return nationality;
+	}
+	public void setNationality(String nationality) {
+		this.nationality = nationality;
+	}
+	public String getJob() {
+		return job;
+	}
+	public void setJob(String job) {
+		this.job = job;
+	}
 	
 	
 	

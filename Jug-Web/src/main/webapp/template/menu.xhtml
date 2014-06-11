@@ -14,11 +14,11 @@
 		<ul class="nav">
 			<li><a href="index.html"> <h:graphicImage library="images"
 						name="home.png" alt="Magazine" /></a></li>
-			<li class="dropdown"><h:commandLink value="HOME" action="/index" />
+			<li class="dropdown"><h:commandLink value="HOME" action="/index?faces-redirect=true" />
 				</li>
-			<li><h:commandLink value="FAQ" action="/pages/FAQ" />
+			<li><h:commandLink value="FAQ" action="/pages/FAQ?faces-redirect=true" />
 			<ul class="sub-menu">
-			<li><h:commandLink value="Toute les Questions Frequentes" action="/pages/FAQ" /></li>
+			<li><h:commandLink value="ALL FREQUENT QUETIONS" action="/pages/FAQ?faces-redirect=true" /></li>
 			
 			</ul></li>
 			
@@ -26,26 +26,26 @@
 			
 			
 			
-			<li><h:commandLink value="PARTENAIRES" action="/pages/Partenaires" />
+			<li><h:commandLink value="PARTENAIRES" action="/pages/Partenaires?faces-redirect=true" />
 				<ul class="sub-menu">
-				<li><h:commandLink value="TOUS LES EXPOSANTS" action="/pages/Sponsor" /></li>
-				<li><h:commandLink value="PARTENAIRS COMMUNAUTE" action="/pages/Partenaires" /></li>
+				<li><h:commandLink value="ALL EXHIBITORS" action="/pages/Sponsor?faces-redirect=true" /></li>
+				<li><h:commandLink value=" PARTNERS COMMUNITY" action="/pages/Partenaires?faces-redirect=true" /></li>
 			
 				</ul>
 				</li>
 			<li class="dropdown">
 			<h:commandLink value="PROGRAMME"/>
 				<ul class="sub-menu">
-					<li><h:commandLink value="Presentaion" action="/pages/home" /></li>
-					<li><h:commandLink value="TOUS LES SPEAKSERS" action="/pages/AllSpeakers" /></li>
+					<li><h:commandLink value="PRESENTATION" action="/pages/home?faces-redirect=true" /></li>
+					<li><h:commandLink value="ALL SPEAKSERS" action="/pages/AllSpeakers?faces-redirect=true" /></li>
 					
 				</ul></li>
 			<li class="dropdown"><a href="blog.html">Blog</a>
 				<ul class="sub-menu">
-					<li><h:commandLink value="Photos" action="/pages/home" /></li>
-					<li><h:commandLink value="Video" action="/pages/home" /></li>
+					<li><h:commandLink value="Photos" action="/pages/home?faces-redirect=true" /></li>
+					<li><h:commandLink value="Video" action="/pages/home?faces-redirect=true" /></li>
 					
-					<li class="dropdown"><h:commandLink value="Technology" action="/pages/home" />
+					<li class="dropdown"><h:commandLink value="Technology" action="/pages/home?faces-redirect=true" />
 						<ul class="sub-menu">
 							<li><h:commandLink value="Fashion News" action="/pages/home" /></li>
 							<li><h:commandLink value="Game News" action="/pages/home" /></li>
@@ -54,30 +54,34 @@
 						</ul></li>
 				</ul></li>
 				
-				<li><h:commandLink value="Call of paper" action="/pages/CallForPaper" /></li>
+				<li><h:commandLink value="Call of paper" action="/pages/CallForPaper?faces-redirect=true" /></li>
 			<li><h:commandLink value="register" action="/pages/Register?faces-redirect=true" /></li>
 				<li><h:commandLink value="FORUM" action="/pages/Forum?faces-redirect=true" /></li>
-				<li><h:commandLink value="CONTACT" action="/pages/MemberJUG?faces-redirect=true" /></li>
+				<li><h:commandLink value="CONTACT" action="/pages/MemberJUG?faces-redirect=true" />
+				<ul class="sub-menu">
+				<li><h:commandLink value="TEAM" action="/pages/TEAMJUG?faces-redirect=true" /></li>
+				</ul>
+				</li>
 				
 			<li>
-			<h:commandLink  rendered="#{userBean.loggedIn}" value="Articles" action="/pages/home" />
+			<h:commandLink  rendered="#{userBean.loggedIn}" value="Articles" action="/pages/home?faces-redirect=true" />
 				<ul class="sub-menu">	
 					
 					<li><h:commandLink value="new Article" action="/pages/JUGMember/AddArticle?faces-redirect=true" /></li>
-					<li><h:commandLink value="Edit Article" action="/pages/home" /></li>
-					<li><h:commandLink value="Delete Article" action="/pages/home" /></li>
+					<li><h:commandLink value="Edit Article" action="/pages/home?faces-redirect=true" /></li>
+					<li><h:commandLink value="Delete Article" action="/pages/home?faces-redirect=true" /></li>
 					<li><h:commandLink value="All Article" action="/pages/JUGMember/AllArticles?faces-redirect=true" /></li>
 			
 			</ul></li>
 		
 
-		<li><h:commandLink rendered="#{userBean.loggedIn}"  >
+		<li><h:commandLink rendered="#{userBean.loggedIn}"   >
 			<p:graphicImage id="img" width="37px" height="20px"
-					value="#{userBean.streamedPic}" />	</h:commandLink>
+					value="#{userBean.streamedPic}"  />	</h:commandLink>
 						<ul class="sub-menu">
 
 						
-					<li><h:commandLink action="/pages/JUGLeader/Profile" value="Edit Profile" /></li>
+					<li><h:commandLink action="/pages/JUGLeader/Profile?faces-redirect=true" value="Edit Profile" /></li>
 					<li><h:commandLink action="#{userBean.logout}" value="LOG OUT" /></li>
 				</ul></li>
 

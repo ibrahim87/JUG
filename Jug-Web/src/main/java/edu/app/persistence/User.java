@@ -121,7 +121,7 @@ public class User implements Serializable {
 	 * 
 	 * @return the mail
 	 */
-
+	
 	public String getMail() {
 		return this.mail;
 	}

@@ -17,6 +17,9 @@ import edu.app.business.ArticleServiceLocal;
 import edu.app.business.PictureServiceLocal;
 import edu.app.business.UserServiceLocal;
 import edu.app.persistence.Article;
+import edu.app.persistence.Categorie;
+import edu.app.persistence.Leader;
+import edu.app.persistence.Member;
 import edu.app.persistence.Speaker;
 
 @ManagedBean
@@ -38,11 +41,20 @@ public class ArticlesBean2 implements Serializable {
 	private List<Article> arts ;
 	private List<Article>arts2;
 	private List<Speaker> speakers;
+	private List<Member> members ;
 	private Article article = new Article() ;
 	private List<Article>articles;
-
+private List<Leader> leaders ;
 	private int clickId;
-	private String name;
+	
+
+	
+	private Categorie categorie;
+	
+//private User user = new Leader();
+	
+//private Leader  =new Leader();
+	
 	
 	
 	@PostConstruct
@@ -58,17 +70,36 @@ public class ArticlesBean2 implements Serializable {
 		
 		
 		
-		arts=articleServiceLocal.findAllArticleCustum(0, 5);
-		articles=articleServiceLocal.findArticleByNameCategorie(name, 0, 8);
+		arts=articleServiceLocal.findAllArticleCustum(0, 3);
+		//articles=articleServiceLocal.findArticleByNameCategorie(name, 0, 8);
 		
 		speakers=userServiceLocal.findAllSpeakers();
 		
-
+		//arts2=articleServiceLocal.findArticleByNameCategorie(categorie, 0, 3);
+			//arts2=articleServiceLocal.findArticleByNameCategorie(categorie, 0, 3);
+		
+		
+		articles= articleServiceLocal.findArticleByJUGLeader(0,4);
+		members= userServiceLocal.findAllMembers();
+		leaders = userServiceLocal.findAllLeaders();
+		
 		
 	}
 
 	
 	
+	public Categorie getCategorie() {
+		return categorie;
+	}
+
+
+
+	public void setCategorie(Categorie categorie) {
+		this.categorie = categorie;
+	}
+
+
+
 	public String modifDetail(String contenu)
 	{
 		String tempDetail = null;
@@ -87,22 +118,23 @@ public class ArticlesBean2 implements Serializable {
 	
 	
 	
-//	 public List<Article> findArticleBycathegorieName(Categorie nameCategorie, int pageIndex, int noOfRecords){
-//		 arts2=findArticleBycathegorieName(nameCategorie , 0 ,4);
+//	 public List<Article> findArticleBycathegorieName(Categorie categorie, int pageIndex, int noOfRecords){
+//		 
+//		 arts2=findArticleBycathegorieName(categorie , 0 ,4);
 //		 List<Article> temp = new ArrayList<Article>() ;
 //		 
 //			 for (Article artic :arts2){
-//				 if(artic.getCategorie().getName().equals(nameCategorie.getName()))
+//				 if(artic.getCategorie().getName().equals(categorie.getName()))
 //						 {
 //					 temp.add(artic);
-//						 }
+//					 }
 //				 
 //				 
 //			 }
 //			 
 //		 return temp;
 //	 }
-//	
+	
 	
 	public StreamedContent getStreamedPic() {
 		
@@ -249,6 +281,38 @@ public class ArticlesBean2 implements Serializable {
 	}
 
 
+
+	public List<Member> getMembers() {
+		return members;
+	}
+
+
+
+	public void setMembers(List<Member> members) {
+		this.members = members;
+	}
+
+
+
+	public List<Leader> getLeaders() {
+		return leaders;
+	}
+
+
+
+	public void setLeaders(List<Leader> leaders) {
+		this.leaders = leaders;
+	}
+
+
+
+	
+
+
+	
+
+
+	
 
 	
 

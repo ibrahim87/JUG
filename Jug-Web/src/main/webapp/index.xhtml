@@ -14,63 +14,59 @@
 				
 			<div id="slider" class="clearfix">
 					<div id="slide-left" class="flexslider span8">
+					
 						<ul class="slides">
-							<li   data-thumb="resources/images/dummy/photodune-3834701-laughing-girl-xs-546x291.jpg">
-								<a href="#" title="Permalink to Morbi est est lectus non rutrum commodo felis quis tortor" rel="bookmark">
-								<h:graphicImage   width="546" height="291" library="images/dummy"  name="photodune-3834701-laughing-girl-xs-546x291.jpg" alt="photodune-3834701-laughing-girl-xs" />
-									</a>
+						<ui:repeat var="artcat" value="#{articlesBean2.articles}">
+							<li   data-thumb="resources/images/dummy/photodune-3834701-laughing-girl-xs-546x291.jpg" >
+								
+								<h:commandLink action="#{articlesBean2.doDetail}">
+										 <p:graphicImage 
+                                     value="#{articlesBean2.streamedPic}">
+ 									<f:param name="photo" value="#{artcat.picture.idPicture}"></f:param>
+ 									</p:graphicImage> 
+ 									
+ 									<f:param name="clickId" value="#{artcat.idArticle}" />
+ 									</h:commandLink>
+								
+								
+								
+								
 								<div class="entry">
-									<h4>Morbi est est lectus non rutrum commodo felis quis tortor...</h4>
-									<p>Fusce aliquet non ipsum vitae scelerisque. Nullam ultricies adipiscing erat, qui...</p>
+									<h4><h:commandLink action="#{articlesBean2.doDetail}">
+									<h:outputText value="#{artcat.title}" />
+									
+										<f:param name="clickId" value="#{artcat.idArticle}" />
+ 									</h:commandLink></h4>
+									<p><h:outputText value="#{articlesBean2.modifDetail(artcat.contenu)}" /></p>
+									
 								</div>
 							</li>
 
-							<li data-thumb="resources/images/dummy/photodune-2043745-college-student-s-546x291.jpg">
-								<a href="#" title="Permalink to Donec consectetuer ligula vulputate sem tristique cursus" rel="bookmark">
-								<h:graphicImage   width="546" height="291" library="images/dummy"  name="photodune-2043745-college-student-s-546x291.jpg" alt="photodune-2043745-college-student-s" />
-								
-								</a>
-								<div class="entry">
-									<h4>Donec consectetuer ligula vulputate sem tristique cursus...</h4>
-									<p>Nam nibh arcu, tristique eget pretium sed, porta id quam. Praesent dignissim ant...</p>
-								</div>
-							</li>
-							
-							<li data-thumb="resources/images/dummy/shutterstock_123603871-546x291.jpg">
-								<a href="#" title="Permalink to Quisque sodales viverra ornare vitae libero ac risus" rel="bookmark">
-								<h:graphicImage   width="546" height="291" library="images/dummy"  name="shutterstock_123603871-546x291.jpg" alt="gallery-1" />
-			
-								</a>
-								<div class="entry">
-									<h4>Quisque sodales viverra ornare vitae libero ac risus...</h4>
-									<p>Quisque sodales viverra ornare. Aenean posuere lacus sed facilisis gravida. Morb...</p>
-								</div>
-							</li>
-							
-							<li data-thumb="resources/images/dummy/shutterstock_109209743-546x291.jpg">
-								<a href="#" title="Permalink to Vestibulum auctor dapibus neque pulvinar urna leo" rel="bookmark">
-								<h:graphicImage   width="546" height="291" library="images/dummy"  name="shutterstock_109209743-546x291.jpg" alt="shutterstock_109209743" />
-			
-								</a>
-								<div class="entry">
-									<h4>Vestibulum auctor dapibus neque pulvinar urna leo...</h4>
-									<p>Fusce aliquet non ipsum vitae scelerisque. Nullam ultricies adipiscing erat, qui...</p>
-								</div>
-							</li>
+							</ui:repeat>
 						</ul>
+						
+						
 					</div>
 
 					<div id="slide-right" class="span4">
 						<h3>Most Popular News</h3>
 							<ul>
-								<li><a href="#" title="Permalink to Lectus non rutrum pulvinar urna leo dignissim lorem" rel="bookmark"><h4 class="post-title">Lectus non rutrum pulvinar urna leo dignissim lore...</h4></a></li>
-								<li><a href="#" title="Permalink to Donec consectetuer ligula vulputate sem tristique cursus" rel="bookmark">
-								<h4 class="post-title">Donec consectetuer ligula vulputate sem tristique ...</h4></a></li>
-								<li><a href="#" title="Permalink to Quisque sodales viverra ornare vitae libero ac risus" rel="bookmark">
-								<h4 class="post-title">Quisque sodales viverra ornare vitae libero ac ris...</h4></a></li>
-								<li><a href="#" title="Permalink to Nam nibh arcu tristique eget pretium vitae libero ac risus" rel="bookmark">
-								<h4 class="post-title">Nam nibh arcu tristique eget pretium vitae libero ...</h4></a></li>
-							</ul><div class="clear"></div>
+							<ui:repeat var="artcat" value="#{articlesBean2.articles}">
+							
+							
+								<li>
+								<h4 class="post-title">
+								
+											<h:commandLink action="#{articlesBean2.doDetail}">
+									<h:outputText value="#{artcat.title}" /></h:commandLink>
+								
+								
+								</h4></li>
+								
+								</ui:repeat>
+							</ul>
+							
+							<div class="clear"></div>
 					</div>
 				</div>
 			
@@ -86,6 +82,38 @@
 			
 				<div id="home-top">
 					<h3 class="title"><span>Hot Stuff</span></h3>
+					
+					
+					<!--  <ui:repeat var="artcat" value="#{articlesBean2.articles}">
+								
+								
+								
+							
+							
+								
+							
+							
+							<h4 class="post-title">
+								
+							<h7> by <h:outputText value="#{artcat.user.nom}"/></h7> on<span class="date"><h:outputText value="#{artcat.datecration}"/></span>
+							
+								</h4>
+								
+								
+								
+								<p><h:outputText value="#{artcat.contenu}" >
+								
+								
+									
+									</h:outputText>
+								
+								</p>
+									
+								
+							</ui:repeat> -->
+					
+					
+					
 				
 				</div>
 				
@@ -95,7 +123,7 @@
 						<div class="row-fluid">	
 							<article class="post">
 							 
-							<!-- <ui:repeat var="art" value="#{articlesBean2.arts}">
+							  <!-- <ui:repeat var="artcat" value="#{articlesBean2.articles}">
 								
 							<a class="image_thumb_zoom"  title="Permalink to Integer vitae libero ac risus egestas placerat urna" rel="bookmark">
 								
@@ -103,7 +131,7 @@
 	
  									 <p:graphicImage  style= "height:171px; width:371px" 
                                      value="#{articlesBean2.streamedPic}">
- 									<f:param name="photo" value="#{art.picture.idPicture}"></f:param>
+ 									<f:param name="photo" value="#{artcat.picture.idPicture}"></f:param>
  									</p:graphicImage> 
  									
  									
@@ -117,13 +145,13 @@
 							
 							<h4 class="post-title">
 								
-							<h7> by <h:outputText value="#{art.user.prenom}"/></h7> on<span class="date"><h:outputText value="#{art.datecration}"/></span>
+							<h7> by <h:outputText value="#{artcat.user.prenom}"/></h7> on<span class="date"><h:outputText value="#{artcat.datecration}"/></span>
 							
 								</h4>
 								
 								
 								
-								<p><h:outputText value="#{art.contenu}" >
+								<p><h:outputText value="#{artcat.contenu}" >
 								
 								
 									
@@ -132,7 +160,7 @@
 								</p>
 									
 								
-							</ui:repeat> -->
+							</ui:repeat>  -->
 							
 								
 							</article>
@@ -176,19 +204,7 @@
 								
 							</article>
 							</ui:repeat>
-							<article class="post">
-								<div class="entry clearfix">
-									<a href="#" title="Permalink to Donec consectetuer ligula vulputate sem tristique cursus" rel="bookmark">
-								<h:graphicImage library="images/dummy"  width="225" height="136" name="photodune-2043745-college-student-s-225x136.jpg" class="thumb" alt="photodune-2043745-college-student-s" />
-				
-									<h4 class="post-title">Donec consectetuer ligula vulputate...</h4>
-									</a>
-									<p>Nam nibh arcu, tristique eget pretium se...</p>
-									<div class="meta">
-										<span class="date">July 11, 2013</span>
-									</div>
-								</div>
-							</article>
+							
 
 							<div class="clearfix"></div>
 						</div>
