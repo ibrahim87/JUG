@@ -9,13 +9,11 @@ import javax.persistence.OneToMany;
 @Entity
 public class Speaker extends User implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private List<Proposition> propositions;
 	private String nationality;
-	private String job ;
+	private String job;
+	private String company;
 	
 	
 	
@@ -43,6 +41,12 @@ public class Speaker extends User implements Serializable {
 	}
 	public void setJob(String job) {
 		this.job = job;
+	}
+	public String getCompany() {
+		return company;
+	}
+	public void setCompany(String company) {
+		this.company = company;
 	}
 	
 	

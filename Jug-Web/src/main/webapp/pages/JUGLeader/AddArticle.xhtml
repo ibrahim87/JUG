@@ -1,0 +1,194 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/template/template.xhtml">
+
+	<ui:define name="pageTitle"></ui:define>
+	<ui:define name="pageContent">
+		<h:form>  
+    <p:growl id="messages"/>
+ 
+    <p:menubar>
+        <p:submenu label="Article" icon="ui-icon-document">
+        
+           <p:menuitem value="All Articles" action="#{articleBean.AllArticles}"  />
+           	 <p:separator />
+              <p:menuitem value="Add" action="#{articleBean.AddArticle}" />
+               <p:separator />
+            <p:menuitem value="Edit" action="#{articleBean.EditArticle}"/>
+            <p:separator />
+           
+            <p:menuitem value="Delete" action="#{articleBean.DeleteArticle}" />
+        </p:submenu>
+ 
+        <p:submenu label="Edit" icon="ui-icon-pencil">
+            <p:menuitem value="Undo" url="#" icon="ui-icon-arrowreturnthick-1-w" />
+            <p:menuitem value="Redo" url="#" icon="ui-icon-arrowreturnthick-1-e" />
+        </p:submenu>
+ 
+        <p:submenu label="Help" icon="ui-icon-help">
+            <p:menuitem value="Contents" url="#" />
+            <p:submenu label="Search" icon="ui-icon-search">
+                <p:submenu label="Text">
+                    <p:menuitem value="Workspace" url="#" />
+                </p:submenu>
+                <p:menuitem value="File" url="#" />
+            </p:submenu>
+        </p:submenu>
+ 
+        <p:submenu label="Actions" icon="ui-icon-gear">
+            <p:submenu label="Ajax" icon="ui-icon-refresh">
+                <p:menuitem value="Save" actionListener="#" icon="ui-icon-disk" update="messages"/>
+                <p:menuitem value="Update" actionListener="#" icon="ui-icon-arrowrefresh-1-w" update="messages"/>
+            </p:submenu>
+            <p:submenu label="Non-Ajax" icon="ui-icon-newwin">
+                <p:menuitem value="Delete" actionListener="#" icon="ui-icon-close" update="messages" ajax="false"/>
+            </p:submenu>
+        </p:submenu>
+ 
+      
+ 
+        <f:facet name="options">
+            <p:inputText style="margin-right:10px" placeholder="Search" />
+           
+        </f:facet>
+    </p:menubar>
+</h:form>
+			
+
+
+
+
+
+
+		<h:form id="Add">
+
+			<p:growl id="growl" sticky="true" showDetail="true" />
+
+			<p:wizard widgetVar="wiz">
+
+				<p:tab id="personal" title="Article">
+
+					<p:panel header="Description from Article">
+
+						<h:messages errorClass="error" />
+
+						<h:panelGrid columns="2" columnClasses="label, value"
+							styleClass="grid" cellspacing="12">
+							
+							<h:outputText value="Title: *" />
+							<p:inputText required="true" label="Title"
+								value="#{articleBean.newaArticle.title}" style="width:400px" />
+									
+									
+							<h:outputText value="description : " />
+						<p:inputTextarea rows="10" cols="80" value="#{articleBean.newaArticle.contenu}"
+						 queryDelay="1000000" minQueryLength="4" style="width:400px"  />
+					
+
+						
+							<h:outputText value="Date of creation:" />
+							<p:calendar id="dateNaiss"
+								value="#{articleBean.newaArticle.datecration}"
+								pattern="dd/MM/yyyy" showOn="button" required="true"
+								label="Date of birth" style="width:400px"/>
+								
+								
+								
+						 <h:outputText value="Statu of Article : " />  
+       			 <p:selectOneRadio value="#{articleBean.selectedTypeStatus}" required="true" label="Type of inscription">  
+            	 <f:selectItem itemLabel="private" itemValue="1" />  
+           		
+           		  <f:selectItem itemLabel="public" itemValue="2" /> 
+           		  
+           		 </p:selectOneRadio>
+					
+							<h:outputText value="Choose picture For Article  : "/>
+							<h:form>
+								
+
+								<p:fileUpload fileUploadListener="#{articleBean.upload}"
+									mode="advanced" update="messages" auto="true"
+									sizeLimit="10000000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+								<p:growl id="messages" showDetail="true" />
+							</h:form>
+
+
+								
+
+
+
+
+				<h:outputText value="category : " />
+				
+					<p:selectOneMenu value="#{articleBean.selectedCategoryId}">
+						<f:selectItem itemValue="-1" itemLabel="choose one..." />
+						<f:selectItems
+							value="#{articleBean.selectItemsForCategories}" />
+
+
+					</p:selectOneMenu>
+								
+
+						</h:panelGrid>
+					</p:panel>
+				</p:tab>
+
+
+
+
+
+				<p:tab id="confirm" title="Confirmation">
+					<p:panel header="Confirmation">
+
+						<h:panelGrid id="confirmation" columns="2" cellspacing="12">
+							<h:outputText value="Title: " />
+							<h:outputText styleClass="outputLabel"
+								value="#{articleBean.newaArticle.title}" />
+
+							<h:outputText value="Content: " />
+							<h:outputText styleClass="outputLabel"
+								value="#{articleBean.newaArticle.contenu}" />
+
+							<h:outputText value="date of creation " />
+							<h:outputText styleClass="outputLabel"
+								value="#{articleBean.newaArticle.datecration}" />
+
+
+							<h:outputText value="Status of Article  : " />  
+                    <h:outputText styleClass="outputLabel"  
+                                value="#{articleBean.selectedTypeStatus}"/>
+
+
+							<h:outputText value="cathegorie  : " />  
+                 			   <h:outputText styleClass="outputLabel"  
+                                value="#{articleBean.newaArticle.categorie.name}"/>
+
+
+							
+							
+							<h:outputText value=" Profil picture : " />
+							<p:graphicImage id="img" width="45px" height="60px"
+								value="#{articleBean.streamedPicture}"
+								styleClass="identityPicture" />
+							<h:outputText />
+							<h:outputText />
+						</h:panelGrid>
+
+						<p:commandButton id="validate" value="Validate"
+							icon="ui-icon-check" style="margin:0"
+							action="#{articleBean.doNew()}" update="growl Add" />
+							<p:growl id="messages" showDetail="true" />
+					</p:panel>
+				</p:tab>
+
+			</p:wizard>
+
+		</h:form>
+
+
+
+
+	</ui:define>
+</ui:composition>

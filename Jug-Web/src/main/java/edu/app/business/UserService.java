@@ -206,15 +206,21 @@ public class UserService implements UserServiceRemote, UserServiceLocal {
 		return em.find(User.class, id);
 	}
 
-	@Override
-	public List<Member> findAllMembers() {
+	
+	public List<Member> findAllMembers(String etat) {
 		
-		return (List<Member>)em.createQuery("select u from Member u ").getResultList();
+		return (List<Member>)em.createQuery("select u from Member u where u.etat='Accepter'").getResultList();
 	}
 
 	@Override
 	public List<Leader> findAllLeaders() {
 		return (List<Leader>)em.createQuery("select u from Leader u ").getResultList();
+	}
+
+	@Override
+	public List<Member> findAllMembers() {
+		
+		return (List<Member>)em.createQuery("select u from Member u where u.etat='attente'").getResultList();
 	}
 	
 

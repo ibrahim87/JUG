@@ -16,6 +16,8 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
+import javax.faces.model.DataModel;
+import javax.faces.model.ListDataModel;
 import javax.faces.validator.ValidatorException;
 
 import org.apache.commons.io.IOUtils;
@@ -79,8 +81,9 @@ public class UserBean implements Serializable {
 
 	private String destinationTemp = "E:\\jee\\servers\\s05\\jboss-as-7.1.1\\welcome-content\\temp\\";
 	private List<Speaker> speakers;
-
-	
+	private DataModel dataModel = new ListDataModel();
+	private Member member = new Member();
+	private List<Member>members = new ArrayList<Member>();
 
 	public UserBean() {
 	}
@@ -92,6 +95,7 @@ public class UserBean implements Serializable {
 		loggedIn = false;
 		
 		speakers=userServiceLocal.findAllSpeakers();
+		dataModel = getDataModel();
 	}
 
 	
@@ -220,7 +224,34 @@ public class UserBean implements Serializable {
 		return navigateTo;
 
 	}
+	
+	
+	
+	public String voirDetail() {
+		member = (Member) dataModel.getRowData();
+		
+		return "";
+	}
+	
+	public String updateMember() {
+		member = (Member) dataModel.getRowData();
+		member.setEtat("Accepter");
+		userServiceLocal.updateUser(member);
+		return "";
+	}
+	
 
+	
+	public String deleteClient() {
+		member = (Member) dataModel.getRowData();
+
+		member.setEtat("refuse");
+		userServiceLocal.updateUser(member);
+		return "";
+	}
+	
+	
+	
 	public void forgetPassword() {
 		anotherEmailSenderRemote.sendMail(user.getMail(),
 				"  hello your user name is :   ", "    " + user.getLogin()
@@ -356,7 +387,6 @@ public class UserBean implements Serializable {
 	public Picture getPicture() {
 		return picture;
 	}
-
 	public void setPicture(Picture picture) {
 		this.picture = picture;
 	}
@@ -491,6 +521,31 @@ public class UserBean implements Serializable {
 
 	public void setSpeakers(List<Speaker> speakers) {
 		this.speakers = speakers;
+	}
+
+	public DataModel getDataModel() {
+		dataModel.setWrappedData(userServiceLocal.findAllMembers());
+		return dataModel;
+	}
+
+	public void setDataModel(DataModel dataModel) {
+		this.dataModel = dataModel;
+	}
+
+	public Member getMember() {
+		return member;
+	}
+
+	public void setMember(Member member) {
+		this.member = member;
+	}
+
+	public List<Member> getMembers() {
+		return members;
+	}
+
+	public void setMembers(List<Member> members) {
+		this.members = members;
 	}
 	
 }

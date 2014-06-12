@@ -44,10 +44,11 @@ public interface UserServiceLocal {
 
 	public List<Speaker> findAllSpeakers();
 	
-	public List<Member> findAllMembers();
+	public List<Member> findAllMembers(String etat);
 	public List<Leader> findAllLeaders();
-	
 
+	
+	public List<Member> findAllMembers();
 
 
 

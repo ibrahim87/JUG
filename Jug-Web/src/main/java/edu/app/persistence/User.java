@@ -51,7 +51,7 @@ public class User implements Serializable {
 
 	/** The date naiss. */
 	private Date dateNaiss;
-
+	private String contact;
 
 
 
@@ -345,6 +345,14 @@ public class User implements Serializable {
 
 	public void setArticles(List<Article> articles) {
 		this.articles = articles;
+	}
+
+	public String getContact() {
+		return contact;
+	}
+
+	public void setContact(String contact) {
+		this.contact = contact;
 	}
 
 

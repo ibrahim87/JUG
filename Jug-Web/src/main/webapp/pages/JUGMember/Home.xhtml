@@ -75,16 +75,17 @@
 				<h3 class="title"><span>Recent Posts</span></h3>
 				<div class="latest-posts widget">
 					<div class="latest-post clearfix">
-						<h:graphicImage   width="225" height="136" library="images/dummy" name="shutterstock_134257640-225x136.jpg" class="thumb fl" alt="shutterstock_134257640" title=""/>
-						<h4><a href="#" rel="bookmark" title="Lectus non rutrum pulvinar urna leo dignissim lorem">Lectus non rutrum pulvinar urna leo</a></h4>
-						<div class="post-time">August 12, 2013</div>
-						<div class="ratings" style="float: none">
-							<input class="star" type="radio" name="recent-post-1" value="1" disabled="disabled"/>
-							<input class="star" type="radio" name="recent-post-1" value="2" disabled="disabled"/>
-							<input class="star" type="radio" name="recent-post-1" value="3" disabled="disabled"/>
-							<input class="star" type="radio" name="recent-post-1" value="4" disabled="disabled" checked="checked"/>
-							<input class="star" type="radio" name="recent-post-1" value="5" disabled="disabled"/>
-						</div>
+						<h:form>
+    <p:growl id="messages" />
+ 
+    <p:splitButton value="Save" actionListener="#{buttonView.save}" update="messages" icon="ui-icon-disk">
+        <p:menuitem value="Update" actionListener="#{buttonView.update}" update="messages" icon="ui-icon-arrowrefresh-1-w" />
+        <p:menuitem value="Delete" actionListener="#{buttonView.delete}" ajax="false" icon="ui-icon-close" />
+        <p:separator />
+        <p:menuitem value="Homepage" url="http://www.primefaces.org" icon="ui-icon-extlink" />
+    </p:splitButton>
+</h:form>
+							
 					</div>
 					
 					<div class="latest-post clearfix">

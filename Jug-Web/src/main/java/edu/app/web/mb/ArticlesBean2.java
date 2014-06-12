@@ -50,6 +50,9 @@ private List<Leader> leaders ;
 
 	
 	private Categorie categorie;
+	private String etat;
+	private String status;
+	
 	
 //private User user = new Leader();
 	
@@ -70,7 +73,7 @@ private List<Leader> leaders ;
 		
 		
 		
-		arts=articleServiceLocal.findAllArticleCustum(0, 3);
+		arts=articleServiceLocal.findAllArticleCustum(status,0, 2);
 		//articles=articleServiceLocal.findArticleByNameCategorie(name, 0, 8);
 		
 		speakers=userServiceLocal.findAllSpeakers();
@@ -80,7 +83,7 @@ private List<Leader> leaders ;
 		
 		
 		articles= articleServiceLocal.findArticleByJUGLeader(0,4);
-		members= userServiceLocal.findAllMembers();
+		members= userServiceLocal.findAllMembers(etat);
 		leaders = userServiceLocal.findAllLeaders();
 		
 		
@@ -88,6 +91,18 @@ private List<Leader> leaders ;
 
 	
 	
+	public String getStatus() {
+		return status;
+	}
+
+
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+
+
 	public Categorie getCategorie() {
 		return categorie;
 	}
@@ -96,6 +111,18 @@ private List<Leader> leaders ;
 
 	public void setCategorie(Categorie categorie) {
 		this.categorie = categorie;
+	}
+
+
+
+	public String getEtat() {
+		return etat;
+	}
+
+
+
+	public void setEtat(String etat) {
+		this.etat = etat;
 	}
 
 

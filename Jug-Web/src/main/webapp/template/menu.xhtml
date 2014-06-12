@@ -55,7 +55,7 @@
 				</ul></li>
 				
 				<li><h:commandLink value="Call of paper" action="/pages/CallForPaper?faces-redirect=true" /></li>
-			<li><h:commandLink value="register" action="/pages/Register?faces-redirect=true" /></li>
+			<li><h:commandLink rendered="#{not userBean.imJUGLeader}" value="register" action="/pages/Register?faces-redirect=true" /></li>
 				<li><h:commandLink value="FORUM" action="/pages/Forum?faces-redirect=true" /></li>
 				<li><h:commandLink value="CONTACT" action="/pages/MemberJUG?faces-redirect=true" />
 				<ul class="sub-menu">
@@ -64,7 +64,7 @@
 				</li>
 				
 			<li>
-			<h:commandLink  rendered="#{userBean.loggedIn}" value="Articles" action="/pages/home?faces-redirect=true" />
+			<h:commandLink  rendered="#{userBean.imJUGMember}" value="Articles" action="/pages/home?faces-redirect=true" />
 				<ul class="sub-menu">	
 					
 					<li><h:commandLink value="new Article" action="/pages/JUGMember/AddArticle?faces-redirect=true" /></li>

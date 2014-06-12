@@ -1,0 +1,57 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/template/template.xhtml">
+                	
+			<ui:define name="pageTitle"></ui:define>		
+			<ui:define name="pageContent">
+			
+			<div id="home-middle" class="clearfix">
+				
+							<div class="row-fluid">	
+							<article class="post">
+								
+								<div class="entry clearfix">
+								
+									
+									
+                                   
+ 									<h2 class="post-title" >
+									
+									<h:outputText value="#{artcat.title}"/>
+									
+										
+ 									</h2>
+									
+										 <p:graphicImage  
+                                     value="#{articlesBean2.streamedPic}">
+ 									<f:param name="photo" value="#{artcat.picture.idPicture}"></f:param>
+ 									</p:graphicImage> 
+ 									
+									<div class="meta">
+										<h7> by <h:outputText value="#{artcat.user.prenom}"/></h7> on<span class="date"><h:outputText value="#{artcat.datecration}"/></span>
+									</div>
+ 									
+ 									
+ 									
+ 									
+									
+									
+									<p><h:outputText value="#{artcat.contenu}" /></p>
+									
+									
+								</div>
+								
+							</article>
+							</div>
+							</div>
+			
+			
+			
+			
+			
+			
+			</ui:define>
+</ui:composition>

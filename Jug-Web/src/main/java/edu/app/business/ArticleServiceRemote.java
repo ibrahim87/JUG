@@ -29,7 +29,7 @@ public interface ArticleServiceRemote {
 	
 	List<Article> findArticleByMember(User user);
 	
-	List<Article> findAllArticleCustum(int pageIndex, int noOfRecords);
+	List<Article> findAllArticleCustum(  String status, int pageIndex, int noOfRecords);
 	
 	 List<Article> findArticleByCategorie( Categorie categorie ,int pageIndex, int noOfRecords );
 	

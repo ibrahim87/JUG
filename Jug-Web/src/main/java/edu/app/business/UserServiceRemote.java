@@ -44,9 +44,12 @@ public interface UserServiceRemote {
 	public boolean usernameExists(String login);
 	
 	List<Speaker> findAllSpeakers();
-	List<Member> findAllMembers();
+	public List<Member> findAllMembers(String etat);
 
 	public List<Leader> findAllLeaders();
+	
+
+	public List<Member> findAllMembers();
 	
 	
 
