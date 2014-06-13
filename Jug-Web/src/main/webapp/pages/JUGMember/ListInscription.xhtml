@@ -5,22 +5,54 @@
                 xmlns:p="http://primefaces.org/ui"
                 template="/template/template.xhtml">
                 	
-			<ui:define name="pageTitle">test</ui:define>		
+			<ui:define name="pageTitle">List of JUG Member</ui:define>		
 			<ui:define name="pageContent">
 			
+			
+			<h:form>  
+    <p:growl id="messages"/>
+ 
+    <p:menubar>
+        <p:submenu label="Article" icon="ui-icon-document">
+        
+           <p:menuitem value="All Articles" action="#{articleBean.AllArticles}"  />
+           	 <p:separator />
+              <p:menuitem value="Add" action="#{articleBean.AddArticle}" />
+               <p:separator />
+            <p:menuitem value="Edit" action="#{articleBean.EditArticle}"/>
+            <p:separator />
+           
+            <p:menuitem value="Delete" action="#{articleBean.DeleteArticle}" />
+        </p:submenu>
+ 
+        <p:submenu label="Users" icon="ui-icon-disk">
+            <p:menuitem value="All Users" action="#{userBean.AllUSERMember}" />
+            
+        </p:submenu>
+    
+    </p:menubar>
+</h:form>
+			
+			
+			
+			
+			
+			
+			
+			
 			<h:form>
-<h2>Enrollment management for new member</h2>
+<center><h2>Enrollment management for new JUGMember</h2></center>
 
 <p:dataTable  value="#{userBean.dataModel}"  border="1"  > 
 <p:column>
 <f:facet name="header">
-<h:outputText value="Nom" />
+<h:outputText value="First Name" />
 </f:facet>
 <h:outputText value="#{userBean.member.nom}" />
 </p:column>
 <p:column>
 <f:facet name="header">
-<h:outputText value="Prenom" />
+<h:outputText value="Last Name" />
 </f:facet>
 <h:outputText value="#{userBean.member.prenom}" />
 </p:column>

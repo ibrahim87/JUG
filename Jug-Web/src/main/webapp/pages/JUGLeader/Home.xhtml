@@ -124,40 +124,13 @@
             <p:menuitem value="Delete" action="#{articleBean.DeleteArticle}" />
         </p:submenu>
  
-        <p:submenu label="Edit" icon="ui-icon-pencil">
-            <p:menuitem value="Undo" url="#" icon="ui-icon-arrowreturnthick-1-w" />
-            <p:menuitem value="Redo" url="#" icon="ui-icon-arrowreturnthick-1-e" />
+        <p:submenu label="Users" icon="ui-icon-disk">
+            <p:menuitem value="All Users" action="#{userBean.AllUSERMember}" />
+            
         </p:submenu>
- 
-        <p:submenu label="Help" icon="ui-icon-help">
-            <p:menuitem value="Contents" url="#" />
-            <p:submenu label="Search" icon="ui-icon-search">
-                <p:submenu label="Text">
-                    <p:menuitem value="Workspace" url="#" />
-                </p:submenu>
-                <p:menuitem value="File" url="#" />
-            </p:submenu>
-        </p:submenu>
- 
-        <p:submenu label="Actions" icon="ui-icon-gear">
-            <p:submenu label="Ajax" icon="ui-icon-refresh">
-                <p:menuitem value="Save" actionListener="#" icon="ui-icon-disk" update="messages"/>
-                <p:menuitem value="Update" actionListener="#" icon="ui-icon-arrowrefresh-1-w" update="messages"/>
-            </p:submenu>
-            <p:submenu label="Non-Ajax" icon="ui-icon-newwin">
-                <p:menuitem value="Delete" actionListener="#" icon="ui-icon-close" update="messages" ajax="false"/>
-            </p:submenu>
-        </p:submenu>
- 
-      
- 
-        <f:facet name="options">
-            <p:inputText style="margin-right:10px" placeholder="Search" />
-           
-        </f:facet>
+    
     </p:menubar>
-</h:form>
-			
+</h:form>	
 			<h2>JUGLeader</h2>
 			
 			</ui:define>

@@ -34,16 +34,13 @@ import edu.app.persistence.User;
 
 @ManagedBean(name = "articleBean")
 @SessionScoped
-
 public class ArticleBean implements Serializable {
-	
 
-	
-	private User user ;
+	private User user;
 
 	@ManagedProperty("#{SP}")
 	private SessionProvider sessionProvider;
-	
+
 	@EJB
 	ArticleServiceLocal articleServiceLocal;
 
@@ -59,26 +56,27 @@ public class ArticleBean implements Serializable {
 	private Article article = new Article();
 	private boolean showFiledUpload = false;
 	private List<Article> articles;
-	 private String secondContent;  
-	private List<Article> arts ;
+	private String secondContent;
+	private List<Article> arts;
 	private StreamedContent streamedPic;
 	private DefaultStreamedContent streamedPicture;
 	private String destinationTemp = "E:\\jee\\servers\\s05\\jboss-as-7.1.1\\welcome-content\\temp\\";
 	private List<Article> filtredArticles;
 	private int selectedTypeStatus = -1;
+	private String selcet;
 
 	private List<SelectItem> filterOptions;
 	private List<SelectItem> selectItemsForCategories;
 
+	// private String categotie;
+	// private String[] categoties={"java","jEE","Android"};
+	//
+
 	private Categorie categorie = new Categorie();
-private String contenu;
+	private String contenu;
 
-private List<Article> arts2;
-private User uLeader = new Leader();
-
-	
-
-	
+	private List<Article> arts2;
+	private User uLeader = new Leader();
 
 	public ArticleBean() {
 
@@ -103,41 +101,38 @@ private User uLeader = new Leader();
 			filterOptions.add(new SelectItem(category.getName(), category
 					.getName()));
 		}
-		
-		//arts=articleServiceLocal.findAllArticleCustum(0, 2);
-		//arts2=articleServiceLocal.findArticleByJUGLeader(uLeader);
-		
-	}
-	
-	
-	
-	  
-	    public void secondSaveListener() {  
-	        secondContent = secondContent.replaceAll("\\r|\\n", "");  
-	  
-	        final FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Second Content",  
-	                secondContent.length() > 150 ? secondContent.substring(0, 100) : secondContent);  
-	  
-	        FacesContext.getCurrentInstance().addMessage(null, msg);  
-	    }  
-	
-	public void saveListener() {  
-		contenu = contenu.replaceAll("\\r|\\n", "");  
-  
-      FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Content",  
-    		  contenu.length() > 2000 ? contenu.substring(0, 10000) : contenu);  
-  
-        FacesContext.getCurrentInstance().addMessage(null, msg);  
-    }  
-  
 
+		// arts=articleServiceLocal.findAllArticleCustum(0, 2);
+		// arts2=articleServiceLocal.findArticleByJUGLeader(uLeader);
+
+	}
+
+	public void secondSaveListener() {
+		secondContent = secondContent.replaceAll("\\r|\\n", "");
+
+		final FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO,
+				"Second Content",
+				secondContent.length() > 150 ? secondContent.substring(0, 100)
+						: secondContent);
+
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+	}
+
+	public void saveListener() {
+		contenu = contenu.replaceAll("\\r|\\n", "");
+
+		FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO,
+				"Content",
+				contenu.length() > 2000 ? contenu.substring(0, 10000) : contenu);
+
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+	}
 
 	public String doNew() {
 
 		String navigateTo = null;
 
-		
-		user=sessionProvider.getConnectedUser();
+		user = sessionProvider.getConnectedUser();
 		// pictures.add(picture);
 
 		if (selectedTypeStatus == 1) {
@@ -152,17 +147,16 @@ private User uLeader = new Leader();
 		}
 		categorie = gestionCategorieLocal.findCategorieById(selectedCategoryId);
 		newaArticle.setPicture(picture);
-	
+
 		newaArticle.setCategorie(categorie);
 		categorie.getArticles().add(newaArticle);
 		newaArticle.setUser(user);
-		
-		System.out.println("--------------------"+user);
+
+		System.out.println("--------------------" + user);
 		gestionCategorieLocal.updateCategorie(categorie);
 
-		
 		newaArticle = new Article();
-		
+
 		FacesMessage msg = new FacesMessage(
 				"Success! , Your inscription is Done ");
 		FacesContext.getCurrentInstance().addMessage(null, msg);
@@ -170,11 +164,9 @@ private User uLeader = new Leader();
 		navigateTo = "/pages/JUGMember/Home";
 		return navigateTo;
 	}
-	
-	
+
 	public void doNewArticle() {
 
-		
 		if (selectedTypeStatus == 1) {
 
 			newaArticle.setStatus("private");
@@ -187,7 +179,7 @@ private User uLeader = new Leader();
 		}
 		selectedCategoryId = -1;
 		article = new Article();
-	
+
 		formDisplayed = true;
 
 	}
@@ -200,12 +192,14 @@ private User uLeader = new Leader();
 
 	}
 
-	public void update() {
-
+	public String update() {
+		String navigateTo = null;
 		articleServiceLocal.updateArticle(article);
-
 		FacesMessage msg = new FacesMessage("Update! , Update done successfuly");
 		FacesContext.getCurrentInstance().addMessage(null, msg);
+		navigateTo = "/pages/JUGMember/Home?faces-redirect=true";
+		return navigateTo;
+
 	}
 
 	public void onRowSelect(SelectEvent event) {
@@ -219,29 +213,23 @@ private User uLeader = new Leader();
 		}
 	}
 
-	
-	
-	
-	
-	
-	
 	public String AllArticles() {
-		return "/pages/JUGMember/AllArticles";
+		return "/pages/JUGMember/AllArticles?faces-redirect=true";
 	}
 
 	public String EditArticle() {
 
-		return "/page/JUGMember/EditArticle";
+		return "/page/JUGMember/EditArticle?faces-redirect=true";
 	}
 
 	public String AddArticle() {
 
-		return "/pages/JUGMember/AddArticle";
+		return "/pages/JUGMember/AddArticle?faces-redirect=true";
 	}
 
 	public String DeleteArticle() {
 
-		return "/pages/JUGMember/DeleteArticle";
+		return "/pages/JUGMember/DeleteArticle?faces-redirect=true";
 
 	}
 
@@ -316,15 +304,14 @@ private User uLeader = new Leader();
 	public void setStreamedPicture(DefaultStreamedContent streamedPicture) {
 		this.streamedPicture = streamedPicture;
 	}
-	
+
 	public StreamedContent getStreamedPic() {
-	
-//		DefaultStreamedContent streamedPic = new DefaultStreamedContent(
-//				new ByteArrayInputStream(pictur.getContent()),
-//				"image/png");
-//		
-		
-		
+
+		// DefaultStreamedContent streamedPic = new DefaultStreamedContent(
+		// new ByteArrayInputStream(pictur.getContent()),
+		// "image/png");
+		//
+
 		return streamedPic;
 	}
 
@@ -392,7 +379,7 @@ private User uLeader = new Leader();
 	public void setSessionProvider(SessionProvider sessionProvider) {
 		this.sessionProvider = sessionProvider;
 	}
-	
+
 	public SessionProvider getSessionProvider() {
 		return sessionProvider;
 	}
@@ -428,5 +415,29 @@ private User uLeader = new Leader();
 	public void setArts2(List<Article> arts2) {
 		this.arts2 = arts2;
 	}
-	
+
+	public String getSelcet() {
+		return selcet;
+	}
+
+	public void setSelcet(String selcet) {
+		this.selcet = selcet;
+	}
+
+	// public String getCategotie() {
+	// return categotie;
+	// }
+	//
+	// public void setCategotie(String categotie) {
+	// this.categotie = categotie;
+	// }
+	//
+	// public String[] getCategoties() {
+	// return categoties;
+	// }
+	//
+	// public void setCategoties(String[] categoties) {
+	// this.categoties = categoties;
+	// }
+
 }

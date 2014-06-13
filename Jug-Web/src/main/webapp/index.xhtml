@@ -7,8 +7,7 @@
                 	
 			<ui:define name="pageTitle">index</ui:define>		
 			<ui:define name="pageContent">
-			
-			
+
 			
 			<h:form>
 				
@@ -16,16 +15,16 @@
 					<div id="slide-left" class="flexslider span8">
 					
 						<ul class="slides">
-						<ui:repeat var="artcat" value="#{articlesBean2.articles}">
+						<ui:repeat var="art" value="#{articlesBean2.articles}">
 							<li   data-thumb="resources/images/dummy/photodune-3834701-laughing-girl-xs-546x291.jpg" >
 								
 								<h:commandLink action="#{articlesBean2.doDetail}">
 										 <p:graphicImage 
                                      value="#{articlesBean2.streamedPic}">
- 									<f:param name="photo" value="#{artcat.picture.idPicture}"></f:param>
+ 									<f:param name="photo" value="#{art.picture.idPicture}"></f:param>
  									</p:graphicImage> 
  									
- 									<f:param name="clickId" value="#{artcat.idArticle}" />
+ 									<f:param name="clickId" value="#{art.idArticle}" />
  									</h:commandLink>
 								
 								
@@ -33,11 +32,11 @@
 								
 								<div class="entry">
 									<h4><h:commandLink action="#{articlesBean2.doDetail}">
-									<h:outputText value="#{artcat.title}" />
+									<h:outputText value="#{art.title}" />
 									
-										<f:param name="clickId" value="#{artcat.idArticle}" />
+										<f:param name="clickId" value="#{art.idArticle}" />
  									</h:commandLink></h4>
-									<p><h:outputText value="#{articlesBean2.modifDetail(artcat.contenu)}" /></p>
+									<p><h:outputText value="#{articlesBean2.modifDetail(art.contenu)}" /></p>
 									
 								</div>
 							</li>
@@ -51,14 +50,14 @@
 					<div id="slide-right" class="span4">
 						<h3>Most Popular News</h3>
 							<ul>
-							<ui:repeat var="artcat" value="#{articlesBean2.articles}">
+							<ui:repeat var="art" value="#{articlesBean2.articles}">
 							
 							
 								<li>
 								<h4 class="post-title">
 								
 											<h:commandLink action="#{articlesBean2.doDetail}">
-									<h:outputText value="#{artcat.title}" /></h:commandLink>
+									<h:outputText value="#{art.title}" /></h:commandLink>
 								
 								
 								</h4></li>
@@ -121,52 +120,9 @@
 					<div class="left span6">
 						<h3 class="title"><a href="#" title="Game News"><span>Game News</span></a></h3>
 						<div class="row-fluid">	
-							<article class="post">
-							 
-							  <!-- <ui:repeat var="artcat" value="#{articlesBean2.articles}">
-								
-							<a class="image_thumb_zoom"  title="Permalink to Integer vitae libero ac risus egestas placerat urna" rel="bookmark">
-								
-								<h:form>
-	
- 									 <p:graphicImage  style= "height:171px; width:371px" 
-                                     value="#{articlesBean2.streamedPic}">
- 									<f:param name="photo" value="#{artcat.picture.idPicture}"></f:param>
- 									</p:graphicImage> 
- 									
- 									
- 						 			
-									
-								</h:form>
-							
-							
-								</a>
-							
-							
-							<h4 class="post-title">
-								
-							<h7> by <h:outputText value="#{artcat.user.prenom}"/></h7> on<span class="date"><h:outputText value="#{artcat.datecration}"/></span>
-							
-								</h4>
-								
-								
-								
-								<p><h:outputText value="#{artcat.contenu}" >
-								
-								
-									
-									</h:outputText>
-								
-								</p>
-									
-								
-							</ui:repeat>  -->
-							
-								
-							</article>
-							
 							
 								<ui:repeat var="art" value="#{articlesBean2.arts}">
+								
 							<article class="post">
 								
 								<div class="entry clearfix">
@@ -211,49 +167,50 @@
 					</div>
 
 					<div class="right span6">
-						<h3 class="title"><a href="#" title="Sport News"><span>Sport News</span></a></h3>
+						<h3 class="title"><a href="#" title="Sport News"><span>JEE</span></a></h3>
+						
 							<div class="row-fluid">
-								<article class="post">
-									<a class="image_thumb_zoom" href="#" title="Permalink to Quisque sodales viverra ornare vitae libero ac risus" rel="bookmark">
-									<h:graphicImage library="images/dummy" name="shutterstock_123603871-371x177.jpg" class="attachment-post-first wp-post-image" alt="shutterstock_58382248"  width="371" height="177"/>
-				
-									</a>
+								<ui:repeat var="art" value="#{articlesBean2.articlesJEE}">
+								
+							<article class="post">
+								
+								<div class="entry clearfix">
+								
+									
+									<a href="#" title="Permalink to Morbi est est lectus non rutrum commodo felis quis tortor" rel="bookmark">
+										
+
+                                   
+ 									
+									<h:commandLink action="#{articlesBean2.doDetail}">
+										 <p:graphicImage 
+                                     value="#{articlesBean2.streamedPic}">
+ 									<f:param name="photo" value="#{art.picture.idPicture}"></f:param>
+ 									</p:graphicImage> 
+ 									
+ 									<f:param name="clickId" value="#{art.idArticle}" />
+ 									</h:commandLink>
+ 									
+									
 									<h4 class="post-title">
-									<a href="#" title="Permalink to Quisque sodales viverra ornare vitae libero ac risus" rel="bookmark">Quisque sodales viverra ornare vita...</a>
-									<span class="date">July 2, 2013</span>
-									</h4>
-									<p>Quisque sodales viverra ornare. Aenean posuere lacus sed facilisis gravida. Morbi auctor consectetur mauris a ultri...</p>
-								</article>
-
-								<article class="post">
-									<div class="entry clearfix">
-										<a href="#" title="Permalink to Nam nibh arcu tristique eget pretium vitae libero ac risus" rel="bookmark">
-											<h:graphicImage library="images/dummy" name="photodune-3517559-idea-s-225x136.jpg" class="thumb wp-post-image" alt="shutterstock_109209743"  width="225" height="136"/>
-				
-				
-										<h4 class="post-title">Nam nibh arcu tristique eget pretiu...</h4>
-										</a>
-										<p>Nam nibh arcu, tristique eget pretium se...</p>
-										<div class="meta">
-											<span class="date">July 2, 2013</span>
-										</div>
+									<h:commandLink action="#{articlesBean2.doDetail}">
+									<h:outputText value="#{art.title}" />
+									
+										<f:param name="clickId" value="#{art.idArticle}" />
+ 									</h:commandLink>
+ 									</h4>
+									</a>
+									<p><h:outputText value="#{articlesBean2.modifDetail(art.contenu)}" /></p>
+									<div class="meta">
+										<h7> by <h:outputText value="#{art.user.prenom}"/></h7> on<span class="date"><h:outputText value="#{art.datecration}"/></span>
 									</div>
-								</article>
-
-								<article class="post">
-									<div class="entry clearfix">
-										<a href="#" title="Permalink to Vestibulum auctor dapibus neque pulvinar urna leo" rel="bookmark">
-										<h:graphicImage library="images/dummy" name="shutterstock_109209743-225x136.jpg" class="thumb wp-post-image" alt="shutterstock_109209743"   width="225" height="136"/>
-				
-										<h4 class="post-title">Vestibulum auctor dapibus neque pul...</h4>
-										</a>
-										<p>Fusce aliquet non ipsum vitae scelerisqu...</p>
-										<div class="meta">
-											<span class="date">June 14, 2013</span>
-										</div>
-									</div>
-								</article>
-
+									
+								</div>
+								
+							</article>
+							</ui:repeat>
+							
+								
 								<div class="clearfix"></div>
 
 							</div>
@@ -262,7 +219,7 @@
 				</div>
 
 				<div id="home-bottom" class="clearfix">
-					<h3 class="title"><a href="#" title="Fashion News"><span>Fashion News</span></a></h3>	
+					<h3 class="title"><a href="#" title="Fashion News"><span>JAVA</span></a></h3>	
 					<div class="row-fluid">	
 						<div class="span6">
 							<article class="post">
@@ -279,45 +236,46 @@
 						</div>
 
 						<div class="span6">
+						
+						
+						
+						<ui:repeat var="art" value="#{articlesBean2.articleCategorie}">
+						
 							<article class="post">
 								<div class="entry clearfix">
 									<a href="#" title="Permalink to Suspen disse auctor dapibus neque pulvinar urna leo" rel="bookmark">
-											<h:graphicImage library="images/dummy" name="shutterstock_70184773-225x136.jpg" class="thumb" alt="shutterstock_58382248" width="225" height="136"/>
-									<h4 class="post-title">Suspen disse auctor dapibus neque p...</h4>
+									
+									<h:commandLink action="#{articlesBean2.doDetail}">
+										 <p:graphicImage 
+                                     value="#{articlesBean2.streamedPic}">
+ 									<f:param name="photo" value="#{art.picture.idPicture}"></f:param>
+ 									</p:graphicImage> 
+ 									
+ 									<f:param name="clickId" value="#{art.idArticle}" />
+ 									</h:commandLink>
+ 									
+											
+									<h4 class="post-title">
+									
+									<h:commandLink action="#{articlesBean2.doDetail}">
+									<h:outputText value="#{art.title}" />
+									
+										<f:param name="clickId" value="#{art.idArticle}" />
+ 									</h:commandLink>
+									</h4>
 									</a>
-									<p>Fusce aliquet non ipsum vitae scelerisqu...</p>
+									<p><h:outputText value="#{articlesBean2.modifDetail(art.contenu)}" /></p>
 									<div class="meta">
-										<span class="date">August 11, 2013</span>
+										<span class="date"><h:outputText value="#{art.datecration}" /></span>
 									</div>
 								</div>
 							</article>
-							<article class="post">
-								<div class="entry clearfix">
-									<a href="#" title="Permalink to Aenean dignissim dignissim lorem pellentesque felis risus" rel="bookmark">
-									<h:graphicImage library="images/dummy" name="shutterstock_58382248-225x136.jpg" class="thumb" alt="shutterstock_58382248" width="225" height="136"/>
-				
-								<h4 class="post-title">Aenean dignissim dignissim lorem pe...</h4>
-									</a>
-									<p>Fusce aliquet non ipsum vitae scelerisqu...</p>
-									<div class="meta">
-										<span class="date">July 2, 2013</span>
-									</div>
-								</div>
-							</article>
-							<article class="post">
-									<div class="entry clearfix">
-										<a href="#" title="Permalink to Quisque sodales viverra ornare vitae libero ac risus" rel="bookmark">
-											<h:graphicImage library="images/dummy" name="shutterstock_123603871-225x136.jpg" class="thumb" alt="shutterstock_58382248" width="225" height="136"/>
-				
-										<h4 class="post-title">Quisque sodales viverra ornare vita...</h4>
-										</a>
-										<p>Quisque sodales viverra ornare. Aenean p...</p>
-										<div class="meta">
-											<span class="date">July 2, 2013</span>
-										</div>
-									</div>
-							</article>
-
+							
+							</ui:repeat>
+							
+							
+							
+							
 							<div class="clearfix"></div>
 						</div>
 					</div>
@@ -511,57 +469,66 @@
 
 			<div class="widget widget_latestpost">
 				<h3 class="title">
-				<span>Recent Posts</span>
+				<span>FOLLOW US  </span>
 				</h3>
 				<div class="latest-posts widget">
-				<ui:repeat var="art" value="#{articlesBean2.articles}">
+				
 					<div class="latest-post clearfix">
-					<p:graphicImage value="#{articlesBean2.streamedPic}">
- 					<f:param name="photo" value="#{art.picture.idPicture}"></f:param>
- 					</p:graphicImage> 
- 					
-						<h4>
-						<h:commandLink action="#{articlesBean2.doDetail}">
-						<a><h:outputText value="#{art.title}" /></a>
-						<f:param name="clickId" value="#{art.idArticle}" />
-						</h:commandLink>
-						</h4>
-						<p><h:outputText value="#{articlesBean2.modifDetail(art.contenu)}" /></p>
-						<div class="post-time"><h:outputText value="#{art.datecration}"/></div>
-						<!-- <div class="ratings" style="float: none">
-							<input class="star" type="radio" name="recent-post-1" value="1" disabled="disabled"/>
-							<input class="star" type="radio" name="recent-post-1" value="2" disabled="disabled"/>
-							<input class="star" type="radio" name="recent-post-1" value="3" disabled="disabled"/>
-							<input class="star" type="radio" name="recent-post-1" value="4" disabled="disabled" checked="checked"/>
-							<input class="star" type="radio" name="recent-post-1" value="5" disabled="disabled"/>
-						</div> -->
-					</div>
 					
-					</ui:repeat>
+					<a class="twitter-timeline" href="https://twitter.com/ESPRITJUG" data-widget-id="477152419625697280">Tweets de @ESPRITJUG</a>
+				<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+					
+				<br/>
+				</div>
+				<br/>
+				<h3 class="title">
+				<span>FOLLOW US ON GOOGLE + </span>
+				</h3>
+					
 					<div class="latest-post clearfix">
-					<h:graphicImage   width="225" height="136" library="images/dummy" name="shutterstock_70184773-225x136.jpg" class="thumb fl" alt="shutterstock_70184773" title="" />
-						<h4><a href="#" rel="bookmark" title="Suspen disse auctor dapibus neque pulvinar urna leo">Suspen disse auctor dapibus neque</a></h4>
-						<div class="post-time">August 11, 2013</div>
-						<div class="ratings" style="float: none">
-							<input class="star" type="radio" name="recent-post-2" value="1" disabled="disabled"/>
-							<input class="star" type="radio" name="recent-post-2" value="2" disabled="disabled"/>
-							<input class="star" type="radio" name="recent-post-2" value="3" disabled="disabled"/>
-							<input class="star" type="radio" name="recent-post-2" value="4" disabled="disabled" checked="checked"/>
-							<input class="star" type="radio" name="recent-post-2" value="5" disabled="disabled"/>
-						</div>
+					
+
+<div class="g-person" data-width="357" data-href="//plus.google.com/u/0/100791758860254788612" data-showcoverphoto="false" data-rel="author"></div>
+
+
+<script type="text/javascript">
+  window.___gcfg = {lang: 'fr'};
+
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/platform.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>	
+					
 					</div>
 
+
+
+				<br/>
+				<h3 class="title">
+				<span> SUBSCRIBE TO OUR CHANNEL </span>
+				</h3>
+
+
 					<div class="latest-post clearfix">
-						<h:graphicImage   width="225" height="136" library="images/dummy" name="shutterstock_70787161-225x136.jpg" class="thumb fl" alt="shutterstock_70787161" title="" />
-						<h4><a href="#" rel="bookmark" title="Porta lorem ipsum dolor sit amet, consectetur adipiscing risus">Porta lorem ipsum dolor sit amet</a></h4>
-						<div class="post-time">August 2, 2013</div>
-						<div class="ratings" style="float: none">
-							<input class="star" type="radio" name="recent-post-3" value="1" disabled="disabled"/>
-							<input class="star" type="radio" name="recent-post-3" value="2" disabled="disabled"/>
-							<input class="star" type="radio" name="recent-post-3" value="3" disabled="disabled"/>
-							<input class="star" type="radio" name="recent-post-3" value="4" disabled="disabled" checked="checked"/>
-							<input class="star" type="radio" name="recent-post-3" value="5" disabled="disabled"/>
-						</div>
+						<script src="https://apis.google.com/js/platform.js"></script>
+
+<script>
+  function onYtEvent(payload) {
+    if (payload.eventType == 'subscribe') {
+      // Add code to handle subscribe event.
+    } else if (payload.eventType == 'unsubscribe') {
+      // Add code to handle unsubscribe event.
+    }
+    if (window.console) { // for debugging only
+      window.console.log('YT event: ', payload);
+    }
+  }
+</script>
+
+<div class="g-ytsubscribe" data-channelid="UC10N-qcuO8sdXYjdwoK36GQ" data-layout="full" data-count="default" data-onytevent="onYtEvent"></div>
 					</div>
 
 				</div>

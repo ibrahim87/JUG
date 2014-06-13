@@ -39,20 +39,21 @@ public class ArticlesBean2 implements Serializable {
 	@EJB
 	UserServiceLocal userServiceLocal ;
 	private List<Article> arts ;
-	private List<Article>arts2;
+	private List<Article>articleCategorie;
 	private List<Speaker> speakers;
 	private List<Member> members ;
 	private Article article = new Article() ;
 	private List<Article>articles;
-private List<Leader> leaders ;
+	private List<Leader> leaders ;
 	private int clickId;
 	
-
+	private List<Article>artilesCategorie;
 	
 	private Categorie categorie;
 	private String etat;
 	private String status;
-	
+	private String name ;
+	private List<Article>articlesJEE;
 	
 //private User user = new Leader();
 	
@@ -73,23 +74,48 @@ private List<Leader> leaders ;
 		
 		
 		
-		arts=articleServiceLocal.findAllArticleCustum(status,0, 2);
+		arts=articleServiceLocal.findAllArticleCustum(status,0, 4);
 		//articles=articleServiceLocal.findArticleByNameCategorie(name, 0, 8);
 		
 		speakers=userServiceLocal.findAllSpeakers();
 		
 		//arts2=articleServiceLocal.findArticleByNameCategorie(categorie, 0, 3);
-			//arts2=articleServiceLocal.findArticleByNameCategorie(categorie, 0, 3);
+		articleCategorie=articleServiceLocal.findArticleJava(0, 4);
 		
 		
 		articles= articleServiceLocal.findArticleByJUGLeader(0,4);
 		members= userServiceLocal.findAllMembers(etat);
 		leaders = userServiceLocal.findAllLeaders();
 		
+		articlesJEE=articleServiceLocal.findArticleByJEE(0, 4);
 		
 	}
 
 	
+	
+	public String getName() {
+		return name;
+	}
+
+
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
+
+	public String Searsh(){
+		@SuppressWarnings("unused")
+		String navigateTo = null;
+		
+		artilesCategorie= articleServiceLocal.findArticlebycategorie(name);
+		
+		
+		
+		
+		return navigateTo ="/pages/articlecat";
+	}
 	
 	public String getStatus() {
 		return status;
@@ -268,16 +294,7 @@ private List<Leader> leaders ;
 	}
 
 
-	public List<Article> getArts2() {
-		return arts2;
-	}
-
-
-	public void setArts2(List<Article> arts2) {
-		this.arts2 = arts2;
-	}
-
-
+	
 
 
 
@@ -329,6 +346,42 @@ private List<Leader> leaders ;
 
 	public void setLeaders(List<Leader> leaders) {
 		this.leaders = leaders;
+	}
+
+
+
+	public List<Article> getArticleCategorie() {
+		return articleCategorie;
+	}
+
+
+
+	public void setArticleCategorie(List<Article> articleCategorie) {
+		this.articleCategorie = articleCategorie;
+	}
+
+
+
+	public List<Article> getArtilesCategorie() {
+		return artilesCategorie;
+	}
+
+
+
+	public void setArtilesCategorie(List<Article> artilesCategorie) {
+		this.artilesCategorie = artilesCategorie;
+	}
+
+
+
+	public List<Article> getArticlesJEE() {
+		return articlesJEE;
+	}
+
+
+
+	public void setArticlesJEE(List<Article> articlesJEE) {
+		this.articlesJEE = articlesJEE;
 	}
 
 

@@ -99,7 +99,9 @@ public class UserBean implements Serializable {
 	}
 
 	
-	
+	public String AllUSERMember() {
+		return "/pages/JUGMember/ListInscription?faces-redirect=true";
+	}
 
 
 
@@ -179,17 +181,17 @@ public class UserBean implements Serializable {
 	public String createUser() {
 		
 		String navigateTo = null;
-//
-//		if (selectedTypeUser == 1) {
-//			
-//			System.out.println("  "+selectedTypeUser);
-//			
-//			//System.out.println(""+newuser.getLogin());
-//
-//			newuser = new Member();
-//
-//		}
-//
+
+		if (selectedTypeUser == 1) {
+			
+			System.out.println("  "+selectedTypeUser);
+			
+			//System.out.println(""+newuser.getLogin());
+
+			newuser = new Member();
+
+		}
+
 //	if (selectedTypeUser == 2) {
 //			
 //		System.out.println("  "+selectedTypeUser);
@@ -242,7 +244,7 @@ public class UserBean implements Serializable {
 	
 
 	
-	public String deleteClient() {
+	public String deleteMember() {
 		member = (Member) dataModel.getRowData();
 
 		member.setEtat("refuse");

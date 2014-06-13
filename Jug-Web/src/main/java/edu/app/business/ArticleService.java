@@ -1,5 +1,6 @@
 package edu.app.business;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -105,8 +106,50 @@ public class ArticleService implements ArticleServiceRemote, ArticleServiceLocal
 		return query.getResultList();
 		
 	}
+	 
+	@SuppressWarnings("unchecked")
+	public List<Article> findArticleJava( int pageIndex, int noOfRecords) {
+		
+		Query query = em
+				.createQuery("select ar from Article ar where ar.status='public' and ar.categorie.name='java' ORDER BY ar.idArticle DESC ");
+		
+		return query.setMaxResults(noOfRecords)
+				.setFirstResult(noOfRecords * pageIndex).getResultList();
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Article> findArticlebycategorie(String name) {
+
+		Categorie categorie =new Categorie();
+
+		 String jpql1 = "select a from Categorie a where a.name=:s";
+	        
+	        Query query1 = em.createQuery(jpql1);
+	        query1.setParameter("s", name);
+	        categorie=(Categorie) query1.getSingleResult();
+		List<Article> articles=new ArrayList<Article>();
+		
+		 String jpql = "select a from Artilce a where a.categorie=:s";
+		        
+		        Query query = em.createQuery(jpql);
+		        query.setParameter("s", categorie);
+		        articles = query.getResultList();
+		        
+		       
+		        
+		        return articles;
+		        
+		    }
 
 	
+	@SuppressWarnings("unchecked")
+	public List<Article> findArticleByJEE(int pageIndex, int noOfRecords) {
+		
+Query query = em.createQuery("select ar from Article ar where ar.status='public' and ar.categorie.name='JEE' ORDER BY ar.idArticle DESC ");
+		return query.setMaxResults(noOfRecords)
+				.setFirstResult(noOfRecords * pageIndex).getResultList();
+		
+	}
 	
 
 }
