@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import edu.app.persistence.Article;
 import edu.app.persistence.Leader;
 import edu.app.persistence.Member;
 import edu.app.persistence.Speaker;
@@ -202,9 +203,12 @@ public class UserService implements UserServiceRemote, UserServiceLocal {
 		return exists;
 	}
 
-	public User findUserById(int id) {
-		return em.find(User.class, id);
-	}
+//	public User findUserById(int id) {
+//		return em.find(User.class, id);
+//		
+//		
+//		
+//	}
 
 	
 	public List<Member> findAllMembers(String etat) {
@@ -221,6 +225,15 @@ public class UserService implements UserServiceRemote, UserServiceLocal {
 	public List<Member> findAllMembers() {
 		
 		return (List<Member>)em.createQuery("select u from Member u where u.etat='attente'").getResultList();
+	}
+
+	@Override
+	public User findUserById(int idUser) {
+		User user =null;
+	
+		user = em.find(User.class, idUser);
+		return user;
+		
 	}
 	
 

@@ -10,10 +10,32 @@
 				
 			<ui:define name="pageContent">
 			
+			
+			<h:form>  
+    <p:growl id="messages"/>
+ 
+    <p:menubar>
+        <p:submenu label="Article" icon="ui-icon-document">
+        
+           <p:menuitem value="All Articles" action="#{articleBean.AllArticlesJUG}"  />
+           	 <p:separator />
+              <p:menuitem value="Add" action="#{articleBean.AddArticleJUG}" />
+               <p:separator />
+               
+        </p:submenu>
+ 
+        <p:submenu label="Users" icon="ui-icon-disk">
+            <p:menuitem value="All Users" action="#{userBean.AllUSERMemberJUG}" />
+            
+        </p:submenu>
+    
+    </p:menubar>
+</h:form>
+			
 				<h:form>
 							<h2>Enrollment management for new JUGMember</h2>
 				
-				<p:dataTable  value="#{userBean.dataModel}"  border="1"  > 
+				<p:dataTable  value="#{userBean.dataModel}"  border="1"  id="mydata" > 
 							<p:column>
 							<f:facet name="header">
 							<h:outputText value="First Name" />
@@ -44,8 +66,21 @@
 							<h:commandButton value="Refuser" action="#{userBean.deleteMember}" />
 							<p:commandButton value="Details" id="submit" action="#{userBean.voirDetail}"  oncomplete="PF('dialog').show()" />  
 							</p:column>
+								
+		
 				
-				</p:dataTable>
+							</p:dataTable>
+			<p:panel header="Export All Data">
+            <h:commandLink>
+                <p:graphicImage value="/icons/excel.jpg" />
+                <p:dataExporter type="xls" postProcessor="#{articleBean.postProcessXLS}"
+                    target="mydata" fileName="myexcel" />
+            </h:commandLink>
+            <h:commandLink>
+                <p:graphicImage value="/icons/pdf.png" />
+                <p:dataExporter type="pdf" target="mydata" fileName="mypdf" />
+            </h:commandLink>
+        </p:panel>
 								<p:dialog header="Details" widgetVar="dialog" showEffect="fold" hideEffect="fold" >  
 								            <h:panelGrid id="display" columns="2" cellpadding="5">
 								          

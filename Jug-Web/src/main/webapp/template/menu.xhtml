@@ -28,9 +28,11 @@
 			
 			<li><h:commandLink value="PARTENAIRES" action="/pages/Partenaires?faces-redirect=true" />
 				<ul class="sub-menu">
+				<li><h:commandLink value=" BEACOME A SPONSOR" action="/pages/BecomeSponsor?faces-redirect=true" /></li>
+		
 				<li><h:commandLink value="ALL EXHIBITORS" action="/pages/Sponsor?faces-redirect=true" /></li>
 				<li><h:commandLink value=" PARTNERS COMMUNITY" action="/pages/Partenaires?faces-redirect=true" /></li>
-			
+				
 				</ul>
 				</li>
 			<li class="dropdown">
@@ -55,11 +57,13 @@
 				</ul></li>
 				
 				<li><h:commandLink value="Call of paper" action="/pages/CallForPaper?faces-redirect=true" /></li>
-			<li><h:commandLink rendered="#{not userBean.imJUGLeader}" value="register" action="/pages/Register?faces-redirect=true" /></li>
+				<li><h:commandLink rendered="#{not userBean.imJUGLeader}" value="JOIN NOW " action="/pages/Regist?faces-redirect=true" />
+				
+				</li>
 				<li><h:commandLink value="FORUM" action="/pages/Forum?faces-redirect=true" /></li>
 				<li><h:commandLink value="CONTACT" action="/pages/MemberJUG?faces-redirect=true" />
 				<ul class="sub-menu">
-				<li><h:commandLink value="TEAM" action="/pages/TEAMJUG?faces-redirect=true" /></li>
+				<li><h:commandLink value="TEAM" action="/pages/JUGTEAM?faces-redirect=true" /></li>
 				</ul>
 				</li>
 				
@@ -81,7 +85,7 @@
 						<ul class="sub-menu">
 
 						
-					<li><h:commandLink action="/pages/JUGLeader/Profile?faces-redirect=true" value="Edit Profile" /></li>
+					<li><h:commandLink action="/pages/Profile?faces-redirect=true" value="Edit Profile" /></li>
 					<li><h:commandLink action="#{userBean.logout}" value="LOG OUT" /></li>
 				</ul></li>
 

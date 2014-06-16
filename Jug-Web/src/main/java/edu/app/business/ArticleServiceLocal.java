@@ -35,6 +35,17 @@ public interface ArticleServiceLocal {
 	 List<Article> findArticleByJUGLeader(int pageIndex, int noOfRecords);
 	 
 	 List<Article> findArticleByJEE(  int pageIndex, int noOfRecords);
+	 
+	
 	 public List<Article> findArticlebycategorie(String name);
-
+	 
+	 List<Article> findOneArticleJava(  int pageIndex, int noOfRecords);
+	 
+	 List<Article> findOneOtherArticle(  int pageIndex, int noOfRecords);
+	 
+	 List<Article> findArticleOther(  int pageIndex, int noOfRecords);
+	 
+	 List<Article> findarticleBySpaker( int pageIndex, int noOfRecords);
+	 
+	 
 }

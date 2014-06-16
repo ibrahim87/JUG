@@ -1,0 +1,135 @@
+package edu.app.web.mb;
+
+import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
+import org.primefaces.context.RequestContext;
+import org.primefaces.push.PushContext;
+import org.primefaces.push.PushContextFactory;
+
+import edu.app.persistence.User;
+
+@ManagedBean
+@ViewScoped
+public class ChatView {
+    
+    private final PushContext pushContext = PushContextFactory.getDefault().getPushContext();
+    
+    @ManagedProperty("#{chatUsers}")
+    private ChatUsers users;
+
+	private String privateMessage;
+    
+    private String globalMessage;
+    
+	private String username;
+	
+    @ManagedProperty("#{userBean.user}")
+	private User user;
+	
+	private boolean loggedIn;
+    
+    private String privateUser;
+    
+    private final static String CHANNEL = "/chat/";
+
+	@PostConstruct
+	public void init() {
+		username=user.getLogin();
+		}
+    
+    public void setUsers(ChatUsers users) {
+        this.users = users;
+    }
+
+    public String getPrivateUser() {
+        return privateUser;
+    }
+
+    public void setPrivateUser(String privateUser) {
+        this.privateUser = privateUser;
+    }
+
+    public String getGlobalMessage() {
+        return globalMessage;
+    }
+
+    public void setGlobalMessage(String globalMessage) {
+        this.globalMessage = globalMessage;
+    }
+
+    public String getPrivateMessage() {
+        return privateMessage;
+    }
+
+    public void setPrivateMessage(String privateMessage) {
+        this.privateMessage = privateMessage;
+    }
+    
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	
+	public boolean isLoggedIn() {
+		return loggedIn;
+	}
+	public void setLoggedIn(boolean loggedIn) {
+		this.loggedIn = loggedIn;
+	}
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
+	
+
+	public void sendGlobal() {
+        pushContext.push(CHANNEL + "*", username + ": " + globalMessage);
+		
+		globalMessage = null;
+	}
+    
+    public void sendPrivate() {
+        pushContext.push(CHANNEL + privateUser, "[PM] " + username + ": " + privateMessage);
+        
+        privateMessage = null;
+    }
+	
+	public void login() {
+		init();
+        RequestContext requestContext = RequestContext.getCurrentInstance();
+        
+		if(users.contains(username)) {
+            loggedIn = false;
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Username taken", "Try with another username."));
+            
+            requestContext.update("growl");
+        }
+        else {
+            users.addUser(username);
+            pushContext.push(CHANNEL + "*", username + " joined the channel.");
+            requestContext.execute("subscriber.connect('/" + username + "')");
+            loggedIn = true;
+        }
+	}
+    
+    public void disconnect() {
+        //remove user and update ui
+        users.removeUser(username);
+        RequestContext.getCurrentInstance().update("form:users");
+        
+        //push leave information
+        pushContext.push(CHANNEL + "*", username + " left the channel.");
+        
+        //reset state
+        loggedIn = false;
+        username = null;
+    }
+}

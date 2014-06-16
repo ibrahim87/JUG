@@ -9,9 +9,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 
-@Entity(name="t_proposition")
+@Entity
+@Table(name="t_proposition")
 public class Proposition implements Serializable {
 
 	/**
@@ -26,6 +28,7 @@ public class Proposition implements Serializable {
 	private Speaker speaker;
 	private CallForPaper callForPaper;
 	private boolean accepted ;
+	
 	public Proposition() {
 	}
 
@@ -138,6 +141,7 @@ public class Proposition implements Serializable {
 	}
 
 	@ManyToOne
+	@JoinColumn(name="callforpaper_fk")
 	public CallForPaper getCallForPaper() {
 		return callForPaper;
 	}

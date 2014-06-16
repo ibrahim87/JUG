@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -49,6 +50,10 @@ public class UserBean implements Serializable {
 	private PictureServiceLocal pictureServiceLocal;
 
 	
+	
+	
+	
+	
 	@ManagedProperty("#{SP}")
 	private SessionProvider sessionProvider;
 	
@@ -59,7 +64,7 @@ public class UserBean implements Serializable {
 	private String password2;
 
 	private String email2;
-
+	private boolean formDisplayed = false;
 	private List<User> users = new ArrayList<User>();
 	private List<User> picUsers = new ArrayList<User>();
 	private boolean loggedIn = false;
@@ -74,7 +79,7 @@ public class UserBean implements Serializable {
 	private StreamedContent streamedPic;
 	private DefaultStreamedContent streamedPicture;
 
-	private String mail;
+
 	private String userType = "";
 
 	private int selectedTypeUser = -1; ;
@@ -83,8 +88,36 @@ public class UserBean implements Serializable {
 	private List<Speaker> speakers;
 	private DataModel dataModel = new ListDataModel();
 	private Member member = new Member();
+	private Speaker newSpeaker = new Speaker();
 	private List<Member>members = new ArrayList<Member>();
+	private String nom;
 
+
+	private String prenom;
+
+
+	private String mail;
+
+
+	private String etat;
+
+
+	private String login;
+
+
+	private String password;
+
+
+	private String sexe;
+	private String description;
+	
+	private Date dateNaiss;
+	private String contact;
+	private String nationality;
+	private String job;
+	private String company;
+	
+	
 	public UserBean() {
 	}
 
@@ -104,6 +137,9 @@ public class UserBean implements Serializable {
 	}
 
 
+	public String AllUSERMemberJUG() {
+		return "/pages/JUGLeader/ListMemberJUG?faces-redirect=true";
+	}
 
 	
 	// methods
@@ -177,6 +213,68 @@ public class UserBean implements Serializable {
 		navigateTo = "/index";
 		return navigateTo;
 	}
+	
+	
+	
+	public String cretNewUser(){
+		String navigateTo=null;
+		
+		
+		if (selectedTypeUser == 1) {
+
+			user = new  Speaker();
+		}
+		
+		
+		if (selectedTypeUser == 2) {
+
+			user = new  Member();
+		}
+		user.setNationality("incomlit");
+		user.setJob("incomlit");
+		user.setLogin(login);
+		user.setPicture(picture);
+		user.setNom(nom);
+		user.setPrenom(prenom);
+		user.setMail(mail);
+		user.setPassword(password);
+		user.setCompany("incomlit");
+		user.setContact("incomlit");
+		user.setDateNaiss(dateNaiss);
+		user.setSexe(sexe);
+		user.setDescription(description);
+		user.setEtat("attente");
+		userServiceLocal.createUser(user);
+		
+	anotherEmailSenderRemote.sendMail( 
+	
+	
+		
+		user.getMail(), "Register"," Hello Mr , and Mrs. felicitation you registered in our website, \n you have access to our site crossing   \n Your UserName is :=  " 
+       + user.getLogin()
+			+ "\n Your Password is :=    "
+			+ user.getPassword());
+		selectedTypeUser = -1;
+		formDisplayed = true;
+	
+		
+		FacesMessage msg = new FacesMessage(
+				"Success! , Your inscription is Done ");
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+		user = new User();
+		
+		
+		return navigateTo="/index?faces-redirect=true";
+		
+		
+	}
+	
+	public void doCancel() {
+		
+		
+		formDisplayed=false;
+	}
+	
 
 	public String createUser() {
 		
@@ -188,20 +286,23 @@ public class UserBean implements Serializable {
 			
 			//System.out.println(""+newuser.getLogin());
 
+			
+			
+			
 			newuser = new Member();
 
 		}
 
-//	if (selectedTypeUser == 2) {
-//			
-//		System.out.println("  "+selectedTypeUser);
-//			//System.out.println(""+newuser.getLogin());
-//		
-//			newuser = new Speaker();
-//			
-//		
-//		}
-//		
+if (selectedTypeUser == 2) {
+		
+	System.out.println("  "+selectedTypeUser);
+		//System.out.println(""+newuser.getLogin());
+	
+		newuser = new Speaker();
+		
+	
+	}
+	
 		
 		
 		newuser.setPicture(picture);
@@ -226,6 +327,46 @@ public class UserBean implements Serializable {
 		return navigateTo;
 
 	}
+	
+	
+	
+//public String createNewSpeker() {
+//		
+//		String navigateTo = null;
+//
+//
+//		
+//		
+//		
+//		
+//		newSpeaker.setPicture(picture);
+//		newSpeaker.setEtat("attente");
+//		userServiceLocal.createUser(newSpeaker);
+////		anotherEmailSenderRemote.sendMail(
+////				
+////				
+////				
+////				newuser.getMail(), "Register"," Hello Mr , and Mrs. felicitation you registered in our website, you have access to our site crossing   \n Your UserName is :=  " 
+////		       + newuser.getLogin()
+////					+ "\n Your Password is :=    "
+////					+ newuser.getPassword());
+//		
+//	
+//
+//		FacesMessage msg = new FacesMessage(
+//				"Success! , Your inscription is Done ");
+//		FacesContext.getCurrentInstance().addMessage(null, msg);
+//		
+//		navigateTo = "/index";
+//		return navigateTo;
+//
+//	}
+//	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -549,5 +690,122 @@ public class UserBean implements Serializable {
 	public void setMembers(List<Member> members) {
 		this.members = members;
 	}
+
+	public Speaker getNewSpeaker() {
+		return newSpeaker;
+	}
+
+	public void setNewSpeaker(Speaker newSpeaker) {
+		this.newSpeaker = newSpeaker;
+	}
+
+	public String getNom() {
+		return nom;
+	}
+
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+
+	public String getPrenom() {
+		return prenom;
+	}
+
+	public void setPrenom(String prenom) {
+		this.prenom = prenom;
+	}
+
+	public String getEtat() {
+		return etat;
+	}
+
+	public void setEtat(String etat) {
+		this.etat = etat;
+	}
+
+	public String getLogin() {
+		return login;
+	}
+
+	public void setLogin(String login) {
+		this.login = login;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getSexe() {
+		return sexe;
+	}
+
+	public void setSexe(String sexe) {
+		this.sexe = sexe;
+	}
+
+	public Date getDateNaiss() {
+		return dateNaiss;
+	}
+
+	public void setDateNaiss(Date dateNaiss) {
+		this.dateNaiss = dateNaiss;
+	}
+
+	public String getContact() {
+		return contact;
+	}
+
+	public void setContact(String contact) {
+		this.contact = contact;
+	}
+
+	public String getNationality() {
+		return nationality;
+	}
+
+	public void setNationality(String nationality) {
+		this.nationality = nationality;
+	}
+
+	public String getJob() {
+		return job;
+	}
+
+	public void setJob(String job) {
+		this.job = job;
+	}
+
+	public String getCompany() {
+		return company;
+	}
+
+	
+	
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public void setCompany(String company) {
+		this.company = company;
+	}
+
+	public boolean isFormDisplayed() {
+		return formDisplayed;
+	}
+
+	public void setFormDisplayed(boolean formDisplayed) {
+		this.formDisplayed = formDisplayed;
+	}
+
+	
+
 	
 }

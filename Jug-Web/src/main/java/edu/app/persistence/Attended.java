@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 
 @Entity(name="t_attended")
@@ -41,6 +42,7 @@ public class Attended  implements Serializable {
 	}
 
 	@ManyToMany
+	@JoinColumn(name = "event_fk")
 	public List<Event> getEvents() {
 		return events;
 	}

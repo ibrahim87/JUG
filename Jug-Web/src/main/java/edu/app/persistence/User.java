@@ -52,8 +52,10 @@ public class User implements Serializable {
 	/** The date naiss. */
 	private Date dateNaiss;
 	private String contact;
-
-
+	private String nationality;
+	private String job;
+	private String company;
+	private String description ;
 
 	private Picture picture;
 	private List<Article>articles;
@@ -353,6 +355,38 @@ public class User implements Serializable {
 
 	public void setContact(String contact) {
 		this.contact = contact;
+	}
+
+	public String getNationality() {
+		return nationality;
+	}
+
+	public void setNationality(String nationality) {
+		this.nationality = nationality;
+	}
+
+	public String getJob() {
+		return job;
+	}
+
+	public void setJob(String job) {
+		this.job = job;
+	}
+
+	public String getCompany() {
+		return company;
+	}
+
+	public void setCompany(String company) {
+		this.company = company;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 

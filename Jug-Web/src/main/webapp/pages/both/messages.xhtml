@@ -1,0 +1,136 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/template/template.xhtml">
+                	
+			<ui:define name="pageTitle"></ui:define>		
+			<ui:define name="pageContent">
+			
+			<div class="subMenu">
+			<h:form>
+			<h:commandLink  action="/pages/both/messageSent" style="margin-left:220px !important">
+			 <p:graphicImage value="/resources/images/bttnsent.jpg" height="21px"></p:graphicImage>
+			</h:commandLink>
+			</h:form>
+			</div>
+			<br/><br/><br/><br/>
+			
+			<h:form id="messagesForm">
+			 <p:layoutUnit position="north" size="40">
+            <p:commandButton value="Compose" onclick="composeDlg.show()" type="button" image="ui-icon ui-icon-document"/>
+        </p:layoutUnit>
+ <p:dialog widgetVar="composeDlg" modal="true" header="New Email" width="530" showEffect="fade" hideEffect="fade">
+
+                <h:form>
+
+                    <h:panelGrid columns="2" cellspacing="5">
+                    	   <h:outputLabel for="to" value="To: " />     
+       					 <p:selectOneMenu value="#{messageBean.selectedUserId}">  
+        				    <f:selectItem itemLabel="Select user" itemValue="-1" />  
+       					     <f:selectItems value="#{messageBean.selectUsers}"/>  
+      					  </p:selectOneMenu> 
+
+                        <h:outputLabel for="cc" value="CC: " />
+                        <p:inputText id="cc" value="#{messageBean.message.subject}"/>
+
+                       
+                    </h:panelGrid>
+
+                    <p:separator />
+
+                    <p:editor widgetVar="editor" value="#{messageBean.message.message}"/>
+
+                    <p:separator />
+
+                    <p:commandButton value="Send" actionListener="#{messageBean.sendMessage()}"  update="messages" oncomplete="composeDlg.hide()"/>
+                    <p:commandLink actionListener="#{messageBean.sendMessageGmail()}"  update="messages" oncomplete="composeDlg.hide()" style="margin:0 0 -6px 30px">
+                     <p:graphicImage id="img" 
+                  		  value="/resources/images/gmail.jpg" width="50px" height="40px"/> 
+		         </p:commandLink>
+                    
+                    <p:commandButton value="Cancel" onclick="composeDlg.hide()" type="button" style="margin-left:270px"/>
+					<p:growl id="messages" showDetail="true"/>
+                </h:form>	
+            </p:dialog>
+	</h:form>
+
+
+       
+
+             
+
+  <h:form>
+    <p:dataTable id="dataTable" var="msg" value="#{messageBean.receivedMessages}" sortMode="multiple" rows="10" paginator="true" rowStyleClass="#{msg.etat le false ? 'rowMessageUnread' : null}">  
+        <f:facet name="header">  
+           Inbox  
+        </f:facet>  
+  
+        <p:column sortBy="#{msg.sender.nom}" headerText="Sender">  
+            <h:outputText value="#{msg.sender.nom} #{msg.sender.prenom}" />  
+        </p:column>  
+  
+        <p:column sortBy="#{msg.subject}" headerText="Subject">  
+            <h:outputText value="#{msg.subject}" />  
+        </p:column>  
+  
+        <p:column sortBy="#{msg.messagePK.date}" headerText="Date">  
+            <h:outputText value="#{msg.messagePK.date}" />  
+        </p:column>  
+  
+        <p:column  headerText="Show Message">  
+      <center>   <h:commandLink action="#{messageBean.changeMessageStatus}" update="@(form)">
+       <f:setPropertyActionListener target="#{messageBean.showMessageDetail}" value="true"></f:setPropertyActionListener>
+        <f:setPropertyActionListener target="#{messageBean.message}" value="#{msg}"></f:setPropertyActionListener>
+           <p:graphicImage id="img" 
+                  		  value="/resources/images/read_more.gif"/> 
+                  		  </h:commandLink></center> 
+        </p:column>  
+    </p:dataTable>  
+  </h:form>
+
+           
+<h:form id="messageDetail" rendered="#{messageBean.showMessageDetail}" styleClass="messageAnswer">
+<div class="msgContent"> 
+<p:fieldset legend="#{messageBean.message.subject}">  
+<h:panelGrid columns="2">
+ <p:graphicImage url="http://localhost:2000/temp/#{messageBean.message.sender.picture.pictureName}" width="28px" height="28px" />
+ <h:form>
+<h:outputText value="Message sent by #{messageBean.message.sender.nom} #{messageBean.message.sender.prenom} 	" style="font-weight:bold"/>
+<h:outputText value="    (#{messageBean.message.sender.login})  :" style="font-weight:bold;color:#000480"/></h:form>
+</h:panelGrid>
+
+<br/><br/>
+<h:outputText value="#{messageBean.message.message}" style="margin-left:30px" /><br/><br/>
+<p:commandLink  onclick="AnswerDlg.show()" style="float:right">
+ <p:graphicImage value="/resources/images/msg_send.png" width="60px" height="60px"/>
+</p:commandLink>
+</p:fieldset>
+</div>     
+<p:dialog widgetVar="AnswerDlg" modal="true" header="New Email" width="530" showEffect="fade" hideEffect="fade">
+
+                <h:form>
+
+                    <h:panelGrid columns="2" cellspacing="5">
+                     
+                    <p:editor widgetVar="editor" value="#{messageBean.text}"/>
+					</h:panelGrid>
+                    <p:separator />
+
+                    <p:commandButton value="Send"  actionListener="#{messageBean.sendMessageAnswer()}"  update="message" oncomplete="AnswerDlg.hide()"/>
+                    <p:commandButton value="Cancel" onclick="AnswerDlg.hide()" type="button"/>
+					<p:growl id="message" showDetail="true"/>
+                </h:form>	
+            </p:dialog>
+           </h:form>
+           
+			
+			
+			
+			
+			
+			
+			
+			</ui:define>
+</ui:composition>

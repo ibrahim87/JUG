@@ -21,6 +21,7 @@ import edu.app.persistence.Categorie;
 import edu.app.persistence.Leader;
 import edu.app.persistence.Member;
 import edu.app.persistence.Speaker;
+import edu.app.persistence.User;
 
 @ManagedBean
 @javax.faces.bean.RequestScoped
@@ -46,7 +47,7 @@ public class ArticlesBean2 implements Serializable {
 	private List<Article>articles;
 	private List<Leader> leaders ;
 	private int clickId;
-	
+	private User user = new User();
 	private List<Article>artilesCategorie;
 	
 	private Categorie categorie;
@@ -54,6 +55,9 @@ public class ArticlesBean2 implements Serializable {
 	private String status;
 	private String name ;
 	private List<Article>articlesJEE;
+	private List<Article>OneArticleJava;
+	private List<Article>OneArticleOther;
+	private List<Article>allArtileOther;
 	
 //private User user = new Leader();
 	
@@ -84,11 +88,18 @@ public class ArticlesBean2 implements Serializable {
 		
 		
 		articles= articleServiceLocal.findArticleByJUGLeader(0,4);
+		
 		members= userServiceLocal.findAllMembers(etat);
 		leaders = userServiceLocal.findAllLeaders();
 		
 		articlesJEE=articleServiceLocal.findArticleByJEE(0, 4);
 		
+		OneArticleJava= articleServiceLocal.findOneArticleJava(0, 1);
+		
+		
+		
+		OneArticleOther=articleServiceLocal.findOneOtherArticle(0, 1);
+		allArtileOther=articleServiceLocal.findArticleOther(0, 4);
 	}
 
 	
@@ -166,8 +177,31 @@ public class ArticlesBean2 implements Serializable {
 		return tempDetail;
 		}
 	
+	public String modifDetailTitle(String title)
+	{
+		String tempDetail = null;
+		try{
+		
+		
+		tempDetail=title.substring(0,30);
+		tempDetail=tempDetail+" ...";
+		
+		}catch(Exception e){}
+		return tempDetail;
+		}
 	
-	
+	public String modifDetailContenu(String contenu)
+	{
+		String tempDetail = null;
+		try{
+		
+		
+		tempDetail=contenu.substring(0,150);
+		tempDetail=tempDetail+" ...";
+		
+		}catch(Exception e){}
+		return tempDetail;
+		}
 	
 	
 	
@@ -228,6 +262,25 @@ public class ArticlesBean2 implements Serializable {
 	navigateTo = "/pages/Articledetail";
 	return navigateTo;
 }
+	
+	public String doDetailUSER() {
+		
+		String navigateTo = null;
+			
+			
+		String test = FacesContext.getCurrentInstance().getExternalContext()
+				.getRequestParameterMap().get("clickId");
+		clickId = Integer.parseInt(test);
+		
+		
+		user= userServiceLocal.findUserById(clickId);
+		
+		
+		navigateTo = "/pages/Userdetail";
+		return navigateTo;
+	}
+	
+	
 	
 	
 	
@@ -385,6 +438,56 @@ public class ArticlesBean2 implements Serializable {
 	}
 
 
+
+	public List<Article> getOneArticleJava() {
+		return OneArticleJava;
+	}
+
+
+
+	public void setOneArticleJava(List<Article> oneArticleJava) {
+		OneArticleJava = oneArticleJava;
+	}
+
+
+
+	public List<Article> getOneArticleOther() {
+		return OneArticleOther;
+	}
+
+
+
+	public void setOneArticleOther(List<Article> oneArticleOther) {
+		OneArticleOther = oneArticleOther;
+	}
+
+
+
+	public List<Article> getAllArtileOther() {
+		return allArtileOther;
+	}
+
+
+
+	public void setAllArtileOther(List<Article> allArtileOther) {
+		this.allArtileOther = allArtileOther;
+	}
+
+
+
+	public User getUser() {
+		return user;
+	}
+
+
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+
+
+	
 
 	
 

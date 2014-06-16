@@ -23,6 +23,8 @@ public interface UserServiceLocal {
 	
 	User findByUserLogin(String nom);
 	
+	User findUserById(int idUser);
+	
 	public User findByLoginAndPass(String login, String password);
 	
 	public List<User> findByKeywordLogin(String login);

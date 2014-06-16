@@ -13,7 +13,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-@Entity(name="t_callforpaper") 
+import javax.persistence.Table;
+@Entity
+@Table(name="t_callforpaper") 
 public class CallForPaper  implements Serializable{
 
 	/**
@@ -29,6 +31,8 @@ public class CallForPaper  implements Serializable{
 	private Picture picture ;
 	private Event event;
 	private List<Proposition>propositions;
+	
+	
 	public CallForPaper() {
 	}
 	

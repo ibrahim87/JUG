@@ -76,6 +76,39 @@
 					</h:inputText> 
                    </p:inplace>
                    
+                   
+                    <h:outputText value="Company : " />  
+         		     <p:inplace id="company" editor="true">  
+                      		<h:inputText id="comy" value="#{userBean.user.company}" required="true" requiredMessage="username should not be empty">
+						<f:ajax event="blur" execute="@this" render="msgprofil"/>
+					</h:inputText> 
+                   </p:inplace>
+                    <h:outputText value="Nationality : " />  
+         		     <p:inplace id="nationality" editor="true">  
+                      		<h:inputText id="nation" value="#{userBean.user.nationality}" required="true" requiredMessage="username should not be empty">
+						<f:ajax event="blur" execute="@this" render="msgprofil"/>
+					</h:inputText> 
+                   </p:inplace>
+                   
+                   <h:outputText value="Job : " />  
+         		     <p:inplace id="job" editor="true">  
+                      		<h:inputText id="jb" value="#{userBean.user.job}" required="true" requiredMessage="username should not be empty">
+						<f:ajax event="blur" execute="@this" render="msgprofil"/>
+					</h:inputText> 
+                   </p:inplace>
+                   
+                   
+                   
+                   
+                   <h:outputText value="Description : " />
+                   <p:inplace id="description" editor="true">
+						<p:inputTextarea rows="5" cols="30" value="#{userBean.user.description}" required="true" requiredMessage="username should not be empty"
+						 queryDelay="1000000" minQueryLength="4"   >
+						 <f:ajax event="blur" execute="@this" render="msgprofil"/>
+						 </p:inputTextarea>
+					
+			</p:inplace>
+  
              </h:panelGrid>
                     
                     <h:outputText/>

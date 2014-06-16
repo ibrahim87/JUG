@@ -1,0 +1,68 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/template/template.xhtml">
+                	
+			<ui:define name="pageTitle"></ui:define>		
+			<ui:define name="pageContent">
+			
+			
+			
+			 <h:form>
+    <p:dataTable id="dataTable" var="msg" value="#{messageBean.sentMessages}" sortMode="multiple" rows="10" paginator="true" >  
+        <f:facet name="header">  
+           Inbox  
+        </f:facet>  
+  
+ 
+  
+        <p:column sortBy="#{msg.subject}" headerText="Subject">  
+            <h:outputText value="#{msg.subject}" />  
+        </p:column>  
+        
+          <p:column sortBy="#{msg.sender.nom}" headerText="To">  
+            <h:outputText value="#{msg.receiver.nom} #{msg.receiver.prenom}" />  
+        </p:column> 
+        <p:column sortBy="#{msg.messagePK.date}" headerText="Date">  
+            <h:outputText value="#{msg.messagePK.date}" />  
+        </p:column>  
+  
+        <p:column  headerText="Show Message">  
+      <center>   <h:commandLink update="@(form)">
+       <f:setPropertyActionListener target="#{messageBean.showMessageDetail}" value="true"></f:setPropertyActionListener>
+        <f:setPropertyActionListener target="#{messageBean.message}" value="#{msg}"></f:setPropertyActionListener>
+           <p:graphicImage id="img" 
+                  		  value="/resources/images/read_more.gif"/> 
+                  		  </h:commandLink></center> 
+        </p:column>  
+                <p:column >  
+            <h:outputText value="seen" style="color:#00A61C" rendered="#{msg.etat}"/>  
+        </p:column>  
+    </p:dataTable>  
+  </h:form>
+
+                 
+<h:form id="messageDetail" rendered="#{messageBean.showMessageDetail}" styleClass="messageAnswer">
+<div class="msgContent"> 
+<p:fieldset legend="#{messageBean.message.subject}">  
+<h:panelGrid columns="2">
+ <p:graphicImage url="http://localhost:2000/temp/#{messageBean.message.receiver.picture.pictureName}" width="28px" height="28px" />
+ <h:form>
+<h:outputText value="Message sent to #{messageBean.message.receiver.nom} #{messageBean.message.receiver.prenom} 	" style="font-weight:bold"/>
+<h:outputText value="    (#{messageBean.message.receiver.login})  :" style="font-weight:bold;color:#000480"/></h:form></h:panelGrid><br/><br/>
+<h:outputText value="#{messageBean.message.message}" style="margin-left:30px" /><br/><br/>
+</p:fieldset>
+</div>
+           </h:form>
+			
+			
+			
+			
+			
+			
+			
+			
+			</ui:define>
+</ui:composition>

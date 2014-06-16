@@ -18,10 +18,17 @@ import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 
 import org.apache.commons.io.IOUtils;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.IndexedColors;
+import org.apache.poi.ss.usermodel.Row;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
+
 
 import edu.app.business.ArticleServiceLocal;
 import edu.app.business.GestionCategorieLocal;
@@ -106,6 +113,21 @@ public class ArticleBean implements Serializable {
 		// arts2=articleServiceLocal.findArticleByJUGLeader(uLeader);
 
 	}
+	
+	 public void postProcessXLS(Object document) {
+	        HSSFWorkbook wb = (HSSFWorkbook) document;
+	        HSSFSheet sheet = wb.getSheetAt(0);
+	        CellStyle style = wb.createCellStyle();
+	        style.setFillBackgroundColor(IndexedColors.AQUA.getIndex());
+
+	        for (Row row : sheet) {
+	            for (Cell cell : row) {
+	                cell.setCellValue(cell.getStringCellValue().toUpperCase());
+	                cell.setCellStyle(style);
+	            }
+	        }
+	    }
+	
 
 	public void secondSaveListener() {
 		secondContent = secondContent.replaceAll("\\r|\\n", "");
@@ -217,21 +239,26 @@ public class ArticleBean implements Serializable {
 		return "/pages/JUGMember/AllArticles?faces-redirect=true";
 	}
 
-	public String EditArticle() {
-
-		return "/page/JUGMember/EditArticle?faces-redirect=true";
-	}
+	
 
 	public String AddArticle() {
 
 		return "/pages/JUGMember/AddArticle?faces-redirect=true";
 	}
 
-	public String DeleteArticle() {
-
-		return "/pages/JUGMember/DeleteArticle?faces-redirect=true";
-
+	
+	
+	public String AllArticlesJUG() {
+		return "/pages/JUGLeader/AllArticles?faces-redirect=true";
 	}
+
+	
+
+	public String AddArticleJUG() {
+
+		return "/pages/JUGLeader/AddArticle?faces-redirect=true";
+	}
+
 
 	public void upload(FileUploadEvent event) throws IOException {
 

@@ -9,64 +9,113 @@
 			<ui:define name="pageContent">
 			
 			
-			<div id="home-middle" class="clearfix">
-				
-							<div class="row-fluid">	
-							<article class="post">
-								
-								<div class="entry clearfix">
-								
-									
-									
-                                   
- 									<h2 class="post-title" >
-									
-									<h:outputText value="#{art.title}"/>
-									
-										
- 									</h2>
-									
-										 <p:graphicImage  
-                                     value="#{articlesBean2.streamedPic}">
- 									<f:param name="photo" value="#{art.picture.idPicture}"></f:param>
- 									</p:graphicImage> 
- 									
-									<div class="meta">
-										<h7> by <h:outputText value="#{art.user.prenom}"/></h7> on<span class="date"><h:outputText value="#{art.datecration}"/></span>
-									</div>
- 									
- 									
- 									
- 									
-									
-									
-									<p><h:outputText value="#{art.contenu}" /></p>
-									
-									
-								</div>
-								
-							</article>
-							</div>
-							</div>
-							
 			
+				<div id="slide-left" class="flexslider span8">
 			
-			<div id="disqus_thread"></div>
-    <script type="text/javascript">
-        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-        var disqus_shortname = 'jug'; // required: replace example with your forum shortname
+			<h:form id="login_form">
+				<p:growl id="growl" sticky="true" showDetail="true"/>  
+  
+			<p:panel  header="Subscribe Now  ">
 
-        /* * * DON'T EDIT BELOW THIS LINE * * */
-        (function() {
-            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-        })();
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-    
+ 				<h:messages errorClass="error"/>  
+ 				
+				<h:panelGrid columns="2">
+					<p:outputLabel for="firstname" value="Firstname:" />
+					<p:inputText id="firstname" value="#{userBean.nom}"
+						required="true">
+						<f:validateLength minimum="2" />
+						<p:watermark value="first name" for="firstname"></p:watermark>
+					</p:inputText>
+
+					<p:outputLabel for="lastname" value="LastName:" />
+					<p:inputText id="lastname" value="#{userBean.prenom}"
+						required="true">
+						<p:watermark value="last name" for="lastname"></p:watermark>
+					</p:inputText>
+						
+							<h:outputText value="Gender: " />  
+       			 <p:selectOneRadio id="gender" value="#{userBean.sexe}" required="true" label="Gender">  
+            	 <f:selectItem itemLabel="Male" itemValue="Male" />  
+           		 <f:selectItem itemLabel="Female" itemValue="Memale" />  
+       			 </p:selectOneRadio>
+                      
+					
+					 <p:outputLabel value="Birthday:" />
+					<p:calendar value="#{userBean.dateNaiss}" id="popupButtonCal" />
+					
+					
+					<p:outputLabel for="eMail" value="eMail:" required="true" requiredMessage="email is required" validatorMessage="invalid email" />
+					<p:inputText id="eMail" value="#{userBean.mail}" required="true"
+						label="eMail">
+						<f:validateRegex pattern="^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$" />
+						<p:watermark value="e-mail" for="eMail"></p:watermark>
+					</p:inputText>
+
+
+					
+
+					<p:outputLabel for="login" value="Login" />
+					<p:inputText id="login" value="#{userBean.login}"
+						required="true">
+						<p:watermark value="login" for="login"></p:watermark>
+					</p:inputText>
+					
+				
+
+					<p:outputLabel for="pwd" value="Password:" />
+					<p:password id="pwd" value="#{userBean.password}" required="true"
+						feedback="true" inline="true">
+						<p:watermark value="password" for="pwd"></p:watermark>
+					</p:password>
+
+
+
+					<p:outputLabel for="type" value="type Compte:" />
+					<h:selectOneMenu id="type" value="#{userBean.selectedTypeUser}">
+						<f:selectItem itemValue="-1" itemLabel="choose one.." />
+						<f:selectItem itemValue="1" itemLabel="Speaker" />
+						<f:selectItem itemValue="2" itemLabel="Member" />
+						
+						<p:watermark value="user type" for="type"></p:watermark>
+					</h:selectOneMenu>
+
+					
+				 <h:outputText value="Choose picture For you profil :  " />  
+       			 
+      	 <p:fileUpload fileUploadListener="#{userBean.upload}"  
+            mode="advanced"  
+            update="messages"  
+            auto="true"  
+            sizeLimit="10000000"   
+            allowTypes="/(\.|\/)(gif|jpe?g|png)$/"/> 
+       			 <p:growl id="messages" showDetail="true"/>  
+                       
+   			  <h:outputText />  
+
+			<h:outputText value="description : " />
+						<p:inputTextarea rows="5" cols="30" value="#{userBean.description}"
+						 queryDelay="1000" minQueryLength="4"   />
+					
 			
+  
+
+					
+				</h:panelGrid>
+
+				<br></br>
+				<h:commandButton action="#{userBean.cretNewUser}" value="valider"
+					update="@form" />
+					
+				
+			</p:panel>
+		</h:form>
+			
+			
+			
+			
+			
+			
+		</div>	
 			
 			
 			

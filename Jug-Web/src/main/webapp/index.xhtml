@@ -55,11 +55,11 @@
 							
 								<li>
 								<h4 class="post-title">
-								
-											<h:commandLink action="#{articlesBean2.doDetail}">
-									<h:outputText value="#{art.title}" /></h:commandLink>
-								
-								
+								<h:commandLink action="#{articlesBean2.doDetail}">
+									<h:outputText value="#{art.title}" />
+									
+										<f:param name="clickId" value="#{art.idArticle}" />
+ 									</h:commandLink>
 								</h4></li>
 								
 								</ui:repeat>
@@ -67,6 +67,19 @@
 							
 							<div class="clear"></div>
 					</div>
+					<br/><br/>
+					<div id="slide-right" class="span4">
+						<h3>FACEBOOK</h3>
+						
+				<iframe src="//www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2Fespritjug&amp;width&amp;height=350&amp;colorscheme=light&amp;show_faces=true&amp;header=true&amp;stream=false&amp;show_border=true" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:350px;" allowTransparency="true"></iframe>						
+							
+							<div class="clear"></div>
+							
+							
+							
+					</div>
+					
+					
 				</div>
 			
 			
@@ -82,35 +95,41 @@
 				<div id="home-top">
 					<h3 class="title"><span>Hot Stuff</span></h3>
 					
-					
-					<!--  <ui:repeat var="artcat" value="#{articlesBean2.articles}">
+						<ul class="bxslider">
+						<ui:repeat var="art" value="#{articlesBean2.allArtileOther}">
+						<li>
+						<a class="image_thumb_zoom" href="#" title="Permalink to Donec consectetuer ligula vulputate sem tristique cursus" rel="bookmark">
+						
+						<h:commandLink action="#{articlesBean2.doDetail}">
+										 <p:graphicImage 
+                                     value="#{articlesBean2.streamedPic}">
+ 									<f:param name="photo" value="#{art.picture.idPicture}"></f:param>
+ 									</p:graphicImage> 
+ 									
+ 									<f:param name="clickId" value="#{art.idArticle}" />
+ 									</h:commandLink>
+ 									
+ 						</a>
+							<h4 class="post-title clearfix">
 								
-								
-								
-							
-							
-								
-							
-							
-							<h4 class="post-title">
-								
-							<h7> by <h:outputText value="#{artcat.user.nom}"/></h7> on<span class="date"><h:outputText value="#{artcat.datecration}"/></span>
-							
-								</h4>
-								
-								
-								
-								<p><h:outputText value="#{artcat.contenu}" >
-								
-								
+								<a href="#" title="Permalink to Donec consectetuer ligula vulputate sem tristique cursus" rel="bookmark">
+								<h:commandLink action="#{articlesBean2.doDetail}">
+									<h:outputText value="#{art.title}" />
 									
-									</h:outputText>
-								
-								</p>
-									
-								
-							</ui:repeat> -->
-					
+										<f:param name="clickId" value="#{art.idArticle}" />
+ 									</h:commandLink></a>
+							</h4>
+							<div class="meta clearfix">
+								<span class="date"><h:outputText value="#{art.datecration}"/></span>
+								<div class="ratings">
+									<input class="star" type="radio" name="home-top-rating-1" value="5" disabled="disabled"/>
+								</div>
+							</div>
+						</li>
+						
+						
+						</ui:repeat>
+					</ul>
 					
 					
 				
@@ -144,7 +163,7 @@
  									
 									
 									<h4 class="post-title">
-									<h:commandLink action="#{articlesBean2.doDetail}">
+										<h:commandLink action="#{articlesBean2.doDetail}">
 									<h:outputText value="#{art.title}" />
 									
 										<f:param name="clickId" value="#{art.idArticle}" />
@@ -222,17 +241,32 @@
 					<h3 class="title"><a href="#" title="Fashion News"><span>JAVA</span></a></h3>	
 					<div class="row-fluid">	
 						<div class="span6">
+						<ui:repeat var="art" value="#{articlesBean2.oneArticleJava}">
 							<article class="post">
 								<a class="image_thumb_zoom" href="#" title="Permalink to Lectus non rutrum pulvinar urna leo dignissim lorem" rel="bookmark">
-								<h:graphicImage library="images/dummy" name="shutterstock_134257640-371x177.jpg" alt="shutterstock_134257640" width="371" height="177"/>
-				
+								
+										 <p:graphicImage style= "height:171px; width:371px" 
+                                     value="#{articlesBean2.streamedPic}">
+ 									<f:param name="photo" value="#{art.picture.idPicture}"></f:param>
+ 									</p:graphicImage> 
+ 									
+ 									
 								</a>
 								<h4 class="post-title">
-								<a href="#" title="Permalink to Lectus non rutrum pulvinar urna leo dignissim lorem" rel="bookmark">Lectus non rutrum pulvinar urna leo...</a>
-								<span class="date">August 12, 2013</span>
+								
+								<h:commandLink action="#{articlesBean2.doDetail}">
+									<h:outputText value="#{articlesBean2.modifDetailTitle(art.title)}" />
+									
+										<f:param name="clickId" value="#{art.idArticle}" />
+ 								</h:commandLink>
+ 									
+ 									
+								<span class="date"><h:outputText value="#{art.datecration}" /></span>
 								</h4>
-								<p>Nam nibh arcu, tristique eget pretium sed, porta id quam. Praesent dignissim ante ac tincidunt molestie. Nunc quis ...</p>
+								<p><h:outputText value="#{articlesBean2.modifDetailContenu(art.contenu)}" /></p>
+								
 							</article>
+							</ui:repeat>
 						</div>
 
 						<div class="span6">
@@ -466,6 +500,10 @@
 			</div>
 
 			</div>
+
+
+
+
 
 			<div class="widget widget_latestpost">
 				<h3 class="title">

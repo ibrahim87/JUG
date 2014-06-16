@@ -8,7 +8,7 @@
 			<ui:define name="pageTitle"></ui:define>		
 			<ui:define name="pageContent">
 			
-<h:head>			
+<!-- <h:head>			
 <script>
 	jQuery(document).ready(function() {
 	    jQuery("a[rel^='prettyPhoto']").prettyPhoto({
@@ -28,29 +28,43 @@
 								});							
 							});
 						</script>
-	</h:head>		
+	</h:head>		 -->
+	
+	
+	<h:form>
 			<div id="main" class="row-fluid">
 		<div class="row-fluid">
-	      	<ui:repeat var="spk" value="#{articlesBean2.speakers}">
+		
+			
+			
+				<ui:repeat var="spk" value="#{articlesBean2.speakers}">
 			<div class="kontengal4 span3">
 			
 		
 				<article class="galleries">
-					<a href="images/dummy/shutterstock_58382248.jpg" title="shutterstock_58382248" rel="prettyPhoto">
-				
+					<a href="#" >
+									
+										<h:commandLink action="#{articlesBean2.doDetailUSER}">
 										 <p:graphicImage 
                                      value="#{articlesBean2.streamedPic}" style="with:570px; height:100px">
                                      <f:param name="photo" value="#{spk.picture.idPicture}"></f:param>
  								
  									</p:graphicImage> 
+ 									<f:param name="clickId" value="#{spk.idUser}" />
+ 									</h:commandLink>
  									
  									
-					
+ 									
+ 									
 					</a>
 					<h3 class="gal-title">
-					<a href="#" title="Permalink to Fusce pellentesque suscipit nibh massa porta molestie iaculis" rel="bookmark">
-					Fusce pellentesque suscipit nibh massa porta molestie iaculi...
-					
+					<a href="#"  >
+					<h:commandLink action="#{articlesBean2.doDetailUSER}">
+									<h:outputText value="#{spk.nom}" />
+									<br/>
+										<h:outputText value="#{spk.prenom}" />
+										<f:param name="clickId" value="#{spk.idUser}" />
+ 									</h:commandLink>
 					
 					</a>
 					
@@ -68,6 +82,7 @@
 			
 			</div>
 			
-			
+			</h:form>
+	      
 			</ui:define>
 </ui:composition>
