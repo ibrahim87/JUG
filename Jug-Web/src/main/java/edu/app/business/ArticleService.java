@@ -116,29 +116,29 @@ public class ArticleService implements ArticleServiceRemote, ArticleServiceLocal
 				.setFirstResult(noOfRecords * pageIndex).getResultList();
 	}
 
-	@SuppressWarnings("unchecked")
-	public List<Article> findArticlebycategorie(String name) {
-
-		Categorie categorie =new Categorie();
-
-		 String jpql1 = "select a from Categorie a where a.name=:s";
-	        
-	        Query query1 = em.createQuery(jpql1);
-	        query1.setParameter("s", name);
-	        categorie=(Categorie) query1.getSingleResult();
-		List<Article> articles=new ArrayList<Article>();
-		
-		 String jpql = "select a from Artilce a where a.categorie=:s";
-		        
-		        Query query = em.createQuery(jpql);
-		        query.setParameter("s", categorie);
-		        articles = query.getResultList();
-		        
-		       
-		        
-		        return articles;
-		        
-		    }
+//	@SuppressWarnings("unchecked")
+//	public List<Article> findArticlebycategorie(String name) {
+//
+//		Categorie categorie =new Categorie();
+//
+//		 String jpql1 = "select a from Categorie a where a.name=:s";
+//	        
+//	        Query query1 = em.createQuery(jpql1);
+//	        query1.setParameter("s", name);
+//	        categorie=(Categorie) query1.getSingleResult();
+//		List<Article> articles=new ArrayList<Article>();
+//		
+//		 String jpql = "select a from Artilce a where a.categorie=:s";
+//		        
+//		        Query query = em.createQuery(jpql);
+//		        query.setParameter("s", categorie);
+//		        articles = query.getResultList();
+//		        
+//		       
+//		        
+//		        return articles;
+//		        
+//		    }
 
 	
 	@SuppressWarnings("unchecked")
@@ -187,6 +187,25 @@ Query query = em.createQuery("select ar from Article ar where ar.status='public'
 		return query.setMaxResults(noOfRecords)
 				.setFirstResult(noOfRecords * pageIndex).getResultList();
 
+	}
+
+	
+	@SuppressWarnings("unchecked")
+	public List<Article> findAllMoviesByCategorie(Categorie categorie) {
+		
+		Query query = em
+				.createQuery("select a from Categorie c join c.article a where c=:categorie");
+		query.setParameter("categorie", categorie);
+		return query.getResultList();
+	}    
+
+	@Override
+	public List<Article> findArticleByTitle(String title) {
+		
+		Query query = em
+				.createQuery("select c from Article c where c.title LIKE :title");
+		query.setParameter("title", title);
+		return query.getResultList();
 	}
 
 	

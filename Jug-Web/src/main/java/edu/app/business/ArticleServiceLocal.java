@@ -5,6 +5,7 @@ import java.util.List;
 import javax.ejb.Local;
 
 import edu.app.persistence.Article;
+import edu.app.persistence.Categorie;
 import edu.app.persistence.User;
 
 @Local
@@ -37,7 +38,7 @@ public interface ArticleServiceLocal {
 	 List<Article> findArticleByJEE(  int pageIndex, int noOfRecords);
 	 
 	
-	 public List<Article> findArticlebycategorie(String name);
+	 public List<Article> findArticleByTitle(String title);
 	 
 	 List<Article> findOneArticleJava(  int pageIndex, int noOfRecords);
 	 
@@ -46,6 +47,9 @@ public interface ArticleServiceLocal {
 	 List<Article> findArticleOther(  int pageIndex, int noOfRecords);
 	 
 	 List<Article> findarticleBySpaker( int pageIndex, int noOfRecords);
+	 
+	 List<Article> findAllMoviesByCategorie(Categorie categorie);
+	 
 	 
 	 
 }

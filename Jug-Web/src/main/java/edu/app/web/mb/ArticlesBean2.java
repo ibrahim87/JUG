@@ -2,6 +2,7 @@ package edu.app.web.mb;
 
 import java.io.ByteArrayInputStream;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -49,7 +50,7 @@ public class ArticlesBean2 implements Serializable {
 	private int clickId;
 	private User user = new User();
 	private List<Article>artilesCategorie;
-	
+	private List<Article> ArtileFormCategorie = new ArrayList<Article>();
 	private Categorie categorie;
 	private String etat;
 	private String status;
@@ -58,13 +59,26 @@ public class ArticlesBean2 implements Serializable {
 	private List<Article>OneArticleJava;
 	private List<Article>OneArticleOther;
 	private List<Article>allArtileOther;
-	
+	private String searchMovie;
+	private List<Article>AllArticle;
 //private User user = new Leader();
 	
 //private Leader  =new Leader();
 	
 	
 	
+	public String getSearchMovie() {
+		return searchMovie;
+	}
+
+
+
+	public void setSearchMovie(String searchMovie) {
+		this.searchMovie = searchMovie;
+	}
+
+
+
 	@PostConstruct
 	public void init() {
 		
@@ -95,11 +109,9 @@ public class ArticlesBean2 implements Serializable {
 		articlesJEE=articleServiceLocal.findArticleByJEE(0, 4);
 		
 		OneArticleJava= articleServiceLocal.findOneArticleJava(0, 1);
-		
-		
-		
 		OneArticleOther=articleServiceLocal.findOneOtherArticle(0, 1);
 		allArtileOther=articleServiceLocal.findArticleOther(0, 4);
+		
 	}
 
 	
@@ -114,19 +126,112 @@ public class ArticlesBean2 implements Serializable {
 		this.name = name;
 	}
 
+	
+	 public String doSearshMovies() {
+	 String navigateTo = null;
+	
+	 try {
+	 if ("".equals(searchMovie) || searchMovie == null)
+	
+	 {
+	 return "";
+	 }
+	
+	 else {
+		 AllArticle =  articleServiceLocal.findArticleByTitle(searchMovie);
+		 if (AllArticle.size() != 0) {
+			return navigateTo = "/pages/AfficheArtiles?faces-redirect=true";
+
+			} else
+				
+			{
+				ArtileFormCategorie.clear();
+		 ArtileFormCategorie =  articleServiceLocal.findAllMoviesByCategorie(categorie);
+	System.out.println("aaaaaaaaaaaa"+article.getCategorie());
+	for (Article article : ArtileFormCategorie){
+		 if(article.getCategorie().getName().equals(categorie.getName()))
+				 {
+			 ArtileFormCategorie.add(article);
+		 }
+		 return navigateTo = "/pages/AfficheArtiles?faces-redirect=true";
+		 
+	 }
+	 
+	 return navigateTo = "/pages/AfficheArtiles?faces-redirect=true";
+	 }
+	 }
+	 
+	 
+	 }
+	 
+	 
+	 catch (Exception e) {
+	e.printStackTrace();
+	 }
+	
+	 return navigateTo = "/pages/error?faces-redirect=true";
+	
+	 }
+	
+	
+//	public String doSearshMovies() {
+//		String navigateTo = null;
+//
+//		try {
+//			if ("".equals(searchMovie) || searchMovie == null) {
+//				return "";
+//			} else {
+//
+//				articlesSearch =  articleServiceLocal.findArticlebycategorie(searchMovie);
+//				if (articlesSearch.size() != 0) {
+//					return navigateTo = "/pages/videolisting?faces-redirect=true";
+//
+//				} else {
+//					moviesFromTechnicalStaff.clear();
+//					System.out.println("****alll movieeeee*****"
+//							+ allMovies.size());
+//					actor = gestionTechnicalStaffLocal
+//							.findActorByName(searchMovie);
+//
+//					technicalStaff = actor;
+//					RoleFromTechnicalStaff.clear();
+//					moviesFromTechnicalStaff = gestionMovieLocal
+//							.findAllMoviesFromTechnicalStaff(technicalStaff);
+//
+//					for (Movie movie : moviesFromTechnicalStaff) {
+//
+//						Role role = null;
+//						RolePK rolePK = new RolePK(movie.getId(),
+//								technicalStaff.getId());
+//						role = gestionRoleLocal.findRoleById(rolePK);
+//						RoleFromTechnicalStaff.add(role);
+//
+//					}
+//
+//					return navigateTo = "/pages/actorsheet?faces-redirect=true";
+//
+//				}
+//			}
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//
+//		return navigateTo = "/pages/error?faces-redirect=true";
+//
+//	}
 
 
-	public String Searsh(){
-		@SuppressWarnings("unused")
-		String navigateTo = null;
-		
-		artilesCategorie= articleServiceLocal.findArticlebycategorie(name);
-		
-		
-		
-		
-		return navigateTo ="/pages/articlecat";
-	}
+//	public String Searsh(){
+//		@SuppressWarnings("unused")
+//		String navigateTo = null;
+//		
+//		artilesCategorie= articleServiceLocal.findArticlebycategorie(name);
+//		
+//		
+//		
+//		
+//		return navigateTo ="/pages/articlecat";
+//	}
 	
 	public String getStatus() {
 		return status;
@@ -483,6 +588,32 @@ public class ArticlesBean2 implements Serializable {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+
+
+	
+
+	public List<Article> getAllArticle() {
+		return AllArticle;
+	}
+
+
+
+	public void setAllArticle(List<Article> allArticle) {
+		AllArticle = allArticle;
+	}
+
+
+
+	public List<Article> getArtileFormCategorie() {
+		return ArtileFormCategorie;
+	}
+
+
+
+	public void setArtileFormCategorie(List<Article> artileFormCategorie) {
+		ArtileFormCategorie = artileFormCategorie;
 	}
 
 

@@ -7,9 +7,18 @@
                 	
 			<ui:define name="pageTitle"></ui:define>		
 			<ui:define name="pageContent">
+				
+			<h:form id="grp">
+		<p:dataList id="lis" value="#" var="group" type="definition" styleClass="groups"> 
 			
+			  				
+			<p:commandLink value="#" action="#{groupBean.displayPicUserOfPublication}">
+			<f:setPropertyActionListener target="#" value="#"/>
+			</p:commandLink>	
+		
 			
-			
+			</p:dataList>
+				</h:form>
 			
 			cfp
 			

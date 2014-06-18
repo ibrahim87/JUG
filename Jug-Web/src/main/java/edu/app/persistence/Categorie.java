@@ -64,7 +64,7 @@ public class Categorie  implements Serializable {
 	}
 
 
-	@OneToMany(mappedBy="categorie", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy="categorie")
 	public List<Article> getArticles() {
 		return articles;
 	}

@@ -8,7 +8,7 @@
 			<ui:define name="pageTile"></ui:define>		
 			<ui:define name="pageContent">
 			
-			
+			<h:form>
 			
 			<div id="home-middle" class="clearfix">
 				
@@ -31,7 +31,17 @@
 										 <p:graphicImage   style="with:570px; height:100px"
                                      value="#{articlesBean2.streamedPic}">
  									<f:param name="photo" value="#{spk.picture.idPicture}"></f:param>
- 									</p:graphicImage><p:spacer width="20" height="20" /> <p>  	</p>
+ 									</p:graphicImage><p:spacer width="20" height="20" /> <p> 
+ 									
+ 									<br/><br/>
+ 									
+ 									<span><h7><h:graphicImage library="images" name="twitter.png" /> <h:commandLink url="http://www.twitter.com/" value="#{spk.contact}" />
+ 									<br/><br/>
+ 									Blog :<h:commandLink url="http://www.twitter.com/" value="#{spk.blog}" /></h7></span>
+ 									</p>
+ 									
+ 									
+											
  									
  									<h:outputText/> 
  									<h:outputText/>
@@ -41,15 +51,16 @@
 								
 								
 									<div class="meta">
-										<h7> by <h:outputText value="#{spk.prenom}"/></h7> on<span class="date"><h:outputText value="#{art.datecration}"/></span>
+										<br/><br/>
+										<P><h:outputText value="#{spk.description}"/></P>
 									</div>
 									
-									<p></p>
+									 
 							</article>
 							</div>
 							</div>
 			
 			
-			
+			</h:form>
 			</ui:define>
 </ui:composition>

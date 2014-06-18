@@ -39,6 +39,7 @@ import edu.app.persistence.User;
 
 @ManagedBean(name="userBean")
 @SessionScoped
+
 public class UserBean implements Serializable {
 	
 	@EJB
@@ -116,7 +117,7 @@ public class UserBean implements Serializable {
 	private String nationality;
 	private String job;
 	private String company;
-	
+	private String blog;
 	
 	public UserBean() {
 	}
@@ -230,30 +231,31 @@ public class UserBean implements Serializable {
 
 			user = new  Member();
 		}
-		user.setNationality("incomlit");
-		user.setJob("incomlit");
+		user.setNationality("No Completed");
+		user.setJob("No Completed");
 		user.setLogin(login);
 		user.setPicture(picture);
 		user.setNom(nom);
 		user.setPrenom(prenom);
 		user.setMail(mail);
 		user.setPassword(password);
-		user.setCompany("incomlit");
-		user.setContact("incomlit");
-		user.setDateNaiss(dateNaiss);
+		user.setCompany("No Completed");
+		user.setContact("No Completed");
+		
 		user.setSexe(sexe);
 		user.setDescription(description);
 		user.setEtat("attente");
+		user.setBlog("No Completed");
 		userServiceLocal.createUser(user);
 		
-	anotherEmailSenderRemote.sendMail( 
-	
-	
-		
-		user.getMail(), "Register"," Hello Mr , and Mrs. felicitation you registered in our website, \n you have access to our site crossing   \n Your UserName is :=  " 
-       + user.getLogin()
-			+ "\n Your Password is :=    "
-			+ user.getPassword());
+//	anotherEmailSenderRemote.sendMail( 
+//	
+//	
+//		
+//		user.getMail(), "Register"," Hello Mr , and Mrs. felicitation you registered in our website, \n you have access to our site crossing   \n Your UserName is :=  " 
+//       + user.getLogin()
+//			+ "\n Your Password is :=    "
+//			+ user.getPassword());
 		selectedTypeUser = -1;
 		formDisplayed = true;
 	
@@ -803,6 +805,14 @@ if (selectedTypeUser == 2) {
 
 	public void setFormDisplayed(boolean formDisplayed) {
 		this.formDisplayed = formDisplayed;
+	}
+
+	public String getBlog() {
+		return blog;
+	}
+
+	public void setBlog(String blog) {
+		this.blog = blog;
 	}
 
 	

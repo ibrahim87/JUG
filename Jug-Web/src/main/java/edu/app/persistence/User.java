@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -50,13 +51,14 @@ public class User implements Serializable {
 	private String sexe;
 
 	/** The date naiss. */
-	private Date dateNaiss;
+	
 	private String contact;
 	private String nationality;
 	private String job;
 	private String company;
+	@Column(length=50000)
 	private String description ;
-
+	private String blog ;
 	private Picture picture;
 	private List<Article>articles;
 
@@ -219,19 +221,7 @@ public class User implements Serializable {
 	 * 
 	 * @return the date naiss
 	 */
-	public Date getDateNaiss() {
-		return this.dateNaiss;
-	}
-
-	/**
-	 * Sets the date naiss.
-	 * 
-	 * @param dateNaiss
-	 *            the new date naiss
-	 */
-	public void setDateNaiss(Date dateNaiss) {
-		this.dateNaiss = dateNaiss;
-	}
+	
 
 	
 	public int hashCode() {
@@ -389,6 +379,13 @@ public class User implements Serializable {
 		this.description = description;
 	}
 
+	public String getBlog() {
+		return blog;
+	}
+
+	public void setBlog(String blog) {
+		this.blog = blog;
+	}
 
 	
 

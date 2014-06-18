@@ -36,6 +36,15 @@ public class Event implements Serializable {
 	private List<Picture> pictures;
 	private CallForPaper callForPaper;
 	private List<Attended> attendeds;
+	
+	
+	
+	
+	public Event(String title) {
+		super();
+		this.title = title;
+	}
+
 	public Event() {
 
 	}

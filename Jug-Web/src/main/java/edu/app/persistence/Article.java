@@ -25,19 +25,18 @@ public class Article implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	private int idArticle;
 	private String title;
 	private String status;
 	@Column(length=50000)
 	private String contenu;
-	
 	private Date datecration;
 	private User user;
 	private List<Page> pages;
 	private Picture picture;
 	private Categorie categorie ;
-	//private Leader leader;
+	
 	public Article() {
 	}
 
@@ -58,7 +57,7 @@ public class Article implements Serializable {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	
+
 	public String getContenu() {
 		return contenu;
 	}
@@ -95,7 +94,7 @@ public class Article implements Serializable {
 		this.title = title;
 	}
 
-	@ManyToOne(cascade=CascadeType.MERGE)
+	@ManyToOne
 	@JoinColumn(name="user_fk")
 	public User getUser() {
 		return user;
@@ -109,7 +108,7 @@ public class Article implements Serializable {
 	
 	
 	
-	@ManyToOne
+	@ManyToOne(cascade = { CascadeType.MERGE, CascadeType.PERSIST })
 	@JoinColumn(name = "categorie_fk")
 	public Categorie getCategorie() {
 		return categorie;
@@ -130,16 +129,5 @@ public class Article implements Serializable {
 		this.picture = picture;
 	}
 
-	
-//	@ManyToOne(cascade = { CascadeType.MERGE, CascadeType.PERSIST })
-//	@JoinColumn(name = "leader")
-//	public Leader getLeader() {
-//		return leader;
-//	}
-//
-//	public void setLeader(Leader leader) {
-//		this.leader = leader;
-//	}
-//	
 	
 }

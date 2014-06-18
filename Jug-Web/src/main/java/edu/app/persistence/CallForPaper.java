@@ -23,7 +23,7 @@ public class CallForPaper  implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	private int idCfp;
-	private String name ;
+	private String TitleCFP ;
 	private String description;
 	private Date startDatecall;
 	private Date endDatecall;
@@ -47,13 +47,7 @@ public class CallForPaper  implements Serializable{
 		this.idCfp = idCfp;
 	}
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
+	
 
 	public String getDescription() {
 		return description;
@@ -111,6 +105,16 @@ public class CallForPaper  implements Serializable{
 
 	public void setPropositions(List<Proposition> propositions) {
 		this.propositions = propositions;
+	}
+
+
+	public String getTitleCFP() {
+		return TitleCFP;
+	}
+
+
+	public void setTitleCFP(String titleCFP) {
+		TitleCFP = titleCFP;
 	}
 	
 	

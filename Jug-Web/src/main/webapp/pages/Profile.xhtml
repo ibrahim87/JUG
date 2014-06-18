@@ -28,9 +28,11 @@
     
   			 <h:form id="profil">
 			
+				
 				<h:outputText value=" #{userBean.user.nom}" styleClass="profilRow"/>
   						
-  						<h:outputText value="E-mail : #{userBean.user.mail}" styleClass="profilRow"/><br/>
+  				<h:outputText value="E-mail : #{userBean.user.mail}" styleClass="profilRow"/>
+  						
 			
 
 
@@ -40,13 +42,13 @@
   			
   		<h:panelGrid columns="2" rowClasses="panelGridProfilRows" styleClass="panelGridProfil" cellpadding="6px" cellspacing="20px" >
   			
-            <h:outputText value="Last name : " />  
+            <h:outputText value="Last name : "/>  
             <p:inplace id="lastName" editor="true">  
                 <p:inputText value="#{userBean.user.nom}"  
                             required="true" label="text"/>  
             </p:inplace>
             
-             <h:outputText value="First name : " />  
+             <h:outputText value="First name : "/>  
            	 <p:inplace id="firstName" editor="true">  
                 <p:inputText value="#{userBean.user.prenom}"  
                             required="true" label="text"/>  
@@ -56,10 +58,7 @@
       
 
             
-          	    <h:outputText value="Date of birth :" />  
-       		   <p:inplace id="dateBirth" editor="true">  
-         	 	  <p:calendar id="dateNaiss" value="#{userBean.user.dateNaiss}" pattern="dd/MM/yyyy" showOn="button" required="true" label="Date of birth"/>
-            	</p:inplace>
+          	    
             
              <h:outputText value="Gender : " />  
                   <p:inplace id="Gnederupdate" editor="true">  

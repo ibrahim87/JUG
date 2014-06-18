@@ -42,7 +42,7 @@ public class Attended  implements Serializable {
 	}
 
 	@ManyToMany
-	@JoinColumn(name = "event_fk")
+	@JoinColumn(name = "event")
 	public List<Event> getEvents() {
 		return events;
 	}
