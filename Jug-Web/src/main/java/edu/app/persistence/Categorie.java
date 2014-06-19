@@ -1,6 +1,7 @@
 package edu.app.persistence;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -23,7 +24,7 @@ public class Categorie  implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private int id;
 	private String name;
-	private List<Article>articles;
+	private List<Article>articles= new ArrayList<Article>();
 
 	
 	
@@ -64,7 +65,7 @@ public class Categorie  implements Serializable {
 	}
 
 
-	@OneToMany(mappedBy="categorie")
+	@OneToMany(mappedBy="categorie", fetch=FetchType.EAGER)
 	public List<Article> getArticles() {
 		return articles;
 	}

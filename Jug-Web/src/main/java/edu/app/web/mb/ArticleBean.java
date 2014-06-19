@@ -8,6 +8,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javassist.expr.NewArray;
+
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
@@ -75,15 +77,13 @@ public class ArticleBean implements Serializable {
 	private List<SelectItem> filterOptions;
 	private List<SelectItem> selectItemsForCategories;
 
-	// private String categotie;
-	// private String[] categoties={"java","jEE","Android"};
-	//
+	
 
 	private Categorie categorie = new Categorie();
 	private String contenu;
 
 	private List<Article> arts2;
-	private User uLeader = new Leader();
+
 
 	public ArticleBean() {
 
@@ -109,6 +109,11 @@ public class ArticleBean implements Serializable {
 					.getName()));
 		}
 
+		
+		
+		
+		
+		
 		// arts=articleServiceLocal.findAllArticleCustum(0, 2);
 		// arts2=articleServiceLocal.findArticleByJUGLeader(uLeader);
 
@@ -170,20 +175,26 @@ public class ArticleBean implements Serializable {
 		categorie = gestionCategorieLocal.findCategorieById(selectedCategoryId);
 		newaArticle.setPicture(picture);
 
-		newaArticle.setCategorie(categorie);
+		//newaArticle.setCategorie(categorie);
+		
+		System.out.println("categoriiie111111111111111"+categorie);
+		
+		
 		categorie.getArticles().add(newaArticle);
+		
+		System.out.println("categoriiie222222222222"+categorie);
 		newaArticle.setUser(user);
-
+		
 		System.out.println("--------------------" + user);
 		gestionCategorieLocal.updateCategorie(categorie);
-
+		articleServiceLocal.createArticle(newaArticle);
 		newaArticle = new Article();
 
 		FacesMessage msg = new FacesMessage(
 				"Success! , Your inscription is Done ");
 		FacesContext.getCurrentInstance().addMessage(null, msg);
 
-		navigateTo = "/pages/JUGMember/Home";
+		navigateTo = "/pages/JUGMember/Home?faces-redirect=true";
 		return navigateTo;
 	}
 
@@ -270,7 +281,7 @@ public class ArticleBean implements Serializable {
 		// Do what you want with the file
 		picture.setContent(event.getFile().getContents());
 		picture.setPictureName(event.getFile().getFileName());
-		user.setPicture(picture);
+		newaArticle.setPicture(picture);
 		streamedPicture = new DefaultStreamedContent(new ByteArrayInputStream(
 				event.getFile().getContents()), "image/png");
 
@@ -451,20 +462,6 @@ public class ArticleBean implements Serializable {
 		this.selcet = selcet;
 	}
 
-	// public String getCategotie() {
-	// return categotie;
-	// }
-	//
-	// public void setCategotie(String categotie) {
-	// this.categotie = categotie;
-	// }
-	//
-	// public String[] getCategoties() {
-	// return categoties;
-	// }
-	//
-	// public void setCategoties(String[] categoties) {
-	// this.categoties = categoties;
-	// }
+	
 
 }

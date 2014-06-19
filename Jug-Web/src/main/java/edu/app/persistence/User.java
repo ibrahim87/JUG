@@ -330,7 +330,7 @@ public class User implements Serializable {
 	}
 
 	
-	@OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
+	@OneToMany(mappedBy ="user", cascade = CascadeType.PERSIST)
 	public List<Article> getArticles() {
 		return articles;
 	}

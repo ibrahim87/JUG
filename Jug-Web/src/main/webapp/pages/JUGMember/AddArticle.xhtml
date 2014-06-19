@@ -16,10 +16,7 @@
            	 <p:separator />
               <p:menuitem value="Add" action="#{articleBean.AddArticle}" />
                <p:separator />
-            <p:menuitem value="Edit" action="#{articleBean.EditArticle}"/>
-            <p:separator />
-           
-            <p:menuitem value="Delete" action="#{articleBean.DeleteArticle}" />
+         
         </p:submenu>
  
         <p:submenu label="Users" icon="ui-icon-disk">
@@ -76,13 +73,13 @@
            		  
            		 </p:selectOneRadio>
 					
-							<h:outputText value="Choose picture For Article  : "/>
+					 	<h:outputText value="Choose picture For Article  : "/>
 							<h:form>
 								
 
 								<p:fileUpload fileUploadListener="#{articleBean.upload}"
 									mode="advanced" update="messages" auto="true"
-									sizeLimit="100000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+									sizeLimit="10000000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
 								<p:growl id="messages" showDetail="true" />
 							</h:form>
 
@@ -92,7 +89,7 @@
 
 
 
-				<h:outputText value="category : " />
+			<h:outputText value="category : " />
 				
 					<p:selectOneMenu value="#{articleBean.selectedCategoryId}">
 						<f:selectItem itemValue="-1" itemLabel="choose one..." />
@@ -131,7 +128,6 @@
 							<h:outputText value="Status of Article  : " />  
                     <h:outputText styleClass="outputLabel"  
                                 value="#{articleBean.selectedTypeStatus}"/>
-
 
 							<h:outputText value="cathegorie  : " />  
                  			   <h:outputText styleClass="outputLabel"  
