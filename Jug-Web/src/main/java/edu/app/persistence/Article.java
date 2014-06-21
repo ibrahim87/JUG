@@ -8,15 +8,14 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
 
 @Entity
 @Table(name = "t_article")
@@ -36,7 +35,7 @@ public class Article implements Serializable {
 	private User user;
 	private List<Page> pages;
 	private Picture picture;
-	private Categorie categorie ;
+	private String categorie ;
 	
 	public Article() {
 	}
@@ -106,20 +105,6 @@ public class Article implements Serializable {
 	}
 	
 	
-	
-	
-	
-	@ManyToOne(cascade = { CascadeType.MERGE, CascadeType.PERSIST })
-	@JoinColumn(name = "categorie_fk")
-	public Categorie getCategorie() {
-		return categorie;
-	}
-
-	public void setCategorie(Categorie categorie) {
-		this.categorie = categorie;
-	}
-
-	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "picture_fk", unique = true)
 	public Picture getPicture() {
@@ -128,6 +113,14 @@ public class Article implements Serializable {
 
 	public void setPicture(Picture picture) {
 		this.picture = picture;
+	}
+
+	public String getCategorie() {
+		return categorie;
+	}
+
+	public void setCategorie(String categorie) {
+		this.categorie = categorie;
 	}
 
 	

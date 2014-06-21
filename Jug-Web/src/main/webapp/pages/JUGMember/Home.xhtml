@@ -21,10 +21,7 @@
            	 <p:separator />
               <p:menuitem value="Add" action="#{articleBean.AddArticle}" />
                <p:separator />
-            <p:menuitem value="Edit" action="#{articleBean.EditArticle}"/>
-            <p:separator />
-           
-            <p:menuitem value="Delete" action="#{articleBean.DeleteArticle}" />
+            
         </p:submenu>
  
         <p:submenu label="Users" icon="ui-icon-disk">
@@ -49,8 +46,27 @@
 				<h3 class="title"><span>Recent Posts</span></h3>
 				<div class="latest-posts widget">
 					<div class="latest-post clearfix">
-										
-							
+								<h:form>  
+    <p:growl id="messages"/>
+ 
+    <p:menubar>
+        <p:submenu label="Article" icon="ui-icon-document">
+        
+           <p:menuitem value="All Articles" action="#{articleBean.AllArticles}"  />
+           	 <p:separator />
+              <p:menuitem value="Add" action="#{articleBean.AddArticle}" />
+               <p:separator />
+          
+        </p:submenu>
+ 
+        <p:submenu label="Users" icon="ui-icon-disk">
+            <p:menuitem value="All Users" action="#{userBean.AllUSERMember}" />
+            
+        </p:submenu>
+    
+    </p:menubar>
+</h:form>		
+						<h:commandButton action="articleBean.DeleteArticle" value="valider" />	
 					</div>
 					
 					<div class="latest-post clearfix">

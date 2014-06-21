@@ -5,10 +5,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
-
-import javassist.expr.NewArray;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -31,13 +28,9 @@ import org.primefaces.event.SelectEvent;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 
-
 import edu.app.business.ArticleServiceLocal;
-import edu.app.business.GestionCategorieLocal;
 import edu.app.business.SessionProvider;
 import edu.app.persistence.Article;
-import edu.app.persistence.Categorie;
-import edu.app.persistence.Leader;
 import edu.app.persistence.Picture;
 import edu.app.persistence.User;
 
@@ -52,9 +45,6 @@ public class ArticleBean implements Serializable {
 
 	@EJB
 	ArticleServiceLocal articleServiceLocal;
-
-	@EJB
-	GestionCategorieLocal gestionCategorieLocal;
 
 	private List<Picture> pictures;
 	private Picture picture = new Picture();
@@ -77,13 +67,11 @@ public class ArticleBean implements Serializable {
 	private List<SelectItem> filterOptions;
 	private List<SelectItem> selectItemsForCategories;
 
-	
-
-	private Categorie categorie = new Categorie();
 	private String contenu;
 
 	private List<Article> arts2;
 
+	private String categorie;
 
 	public ArticleBean() {
 
@@ -93,66 +81,21 @@ public class ArticleBean implements Serializable {
 	public void init() {
 
 		articles = articleServiceLocal.findAllArticle();
-		List<Categorie> categories = gestionCategorieLocal.findAllCategorie();
-
-		selectItemsForCategories = new ArrayList<SelectItem>(
-				categories.size() + 1);
-
-		for (Categorie category : categories) {
-			selectItemsForCategories.add(new SelectItem(category.getId(),
-					category.getName()));
-		}
-		filterOptions = new ArrayList<SelectItem>(categories.size());
-		filterOptions.add(new SelectItem("", "select"));
-		for (Categorie category : categories) {
-			filterOptions.add(new SelectItem(category.getName(), category
-					.getName()));
-		}
-
-		
-		
-		
-		
-		
-		// arts=articleServiceLocal.findAllArticleCustum(0, 2);
-		// arts2=articleServiceLocal.findArticleByJUGLeader(uLeader);
 
 	}
-	
-	 public void postProcessXLS(Object document) {
-	        HSSFWorkbook wb = (HSSFWorkbook) document;
-	        HSSFSheet sheet = wb.getSheetAt(0);
-	        CellStyle style = wb.createCellStyle();
-	        style.setFillBackgroundColor(IndexedColors.AQUA.getIndex());
 
-	        for (Row row : sheet) {
-	            for (Cell cell : row) {
-	                cell.setCellValue(cell.getStringCellValue().toUpperCase());
-	                cell.setCellStyle(style);
-	            }
-	        }
-	    }
-	
+	public void postProcessXLS(Object document) {
+		HSSFWorkbook wb = (HSSFWorkbook) document;
+		HSSFSheet sheet = wb.getSheetAt(0);
+		CellStyle style = wb.createCellStyle();
+		style.setFillBackgroundColor(IndexedColors.AQUA.getIndex());
 
-	public void secondSaveListener() {
-		secondContent = secondContent.replaceAll("\\r|\\n", "");
-
-		final FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO,
-				"Second Content",
-				secondContent.length() > 150 ? secondContent.substring(0, 100)
-						: secondContent);
-
-		FacesContext.getCurrentInstance().addMessage(null, msg);
-	}
-
-	public void saveListener() {
-		contenu = contenu.replaceAll("\\r|\\n", "");
-
-		FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO,
-				"Content",
-				contenu.length() > 2000 ? contenu.substring(0, 10000) : contenu);
-
-		FacesContext.getCurrentInstance().addMessage(null, msg);
+		for (Row row : sheet) {
+			for (Cell cell : row) {
+				cell.setCellValue(cell.getStringCellValue().toUpperCase());
+				cell.setCellStyle(style);
+			}
+		}
 	}
 
 	public String doNew() {
@@ -160,7 +103,6 @@ public class ArticleBean implements Serializable {
 		String navigateTo = null;
 
 		user = sessionProvider.getConnectedUser();
-		// pictures.add(picture);
 
 		if (selectedTypeStatus == 1) {
 
@@ -172,21 +114,32 @@ public class ArticleBean implements Serializable {
 			newaArticle.setStatus("public");
 
 		}
-		categorie = gestionCategorieLocal.findCategorieById(selectedCategoryId);
+
+		if (selectedCategoryId == 1)
+
+		{
+			newaArticle.setCategorie("java");
+
+		}
+
+		if (selectedCategoryId == 2) {
+			newaArticle.setCategorie("JEE");
+		}
+
+		if (selectedCategoryId == 3) {
+
+			newaArticle.setCategorie("Android");
+		}
+
+		if (selectedCategoryId == 4) {
+
+			newaArticle.setCategorie("Other");
+		}
+
 		newaArticle.setPicture(picture);
 
-		//newaArticle.setCategorie(categorie);
-		
-		System.out.println("categoriiie111111111111111"+categorie);
-		
-		
-		categorie.getArticles().add(newaArticle);
-		
-		System.out.println("categoriiie222222222222"+categorie);
 		newaArticle.setUser(user);
-		
-		System.out.println("--------------------" + user);
-		gestionCategorieLocal.updateCategorie(categorie);
+
 		articleServiceLocal.createArticle(newaArticle);
 		newaArticle = new Article();
 
@@ -228,6 +181,7 @@ public class ArticleBean implements Serializable {
 	public String update() {
 		String navigateTo = null;
 		articleServiceLocal.updateArticle(article);
+
 		FacesMessage msg = new FacesMessage("Update! , Update done successfuly");
 		FacesContext.getCurrentInstance().addMessage(null, msg);
 		navigateTo = "/pages/JUGMember/Home?faces-redirect=true";
@@ -250,26 +204,19 @@ public class ArticleBean implements Serializable {
 		return "/pages/JUGMember/AllArticles?faces-redirect=true";
 	}
 
-	
-
 	public String AddArticle() {
 
 		return "/pages/JUGMember/AddArticle?faces-redirect=true";
 	}
 
-	
-	
 	public String AllArticlesJUG() {
 		return "/pages/JUGLeader/AllArticles?faces-redirect=true";
 	}
-
-	
 
 	public String AddArticleJUG() {
 
 		return "/pages/JUGLeader/AddArticle?faces-redirect=true";
 	}
-
 
 	public void upload(FileUploadEvent event) throws IOException {
 
@@ -344,12 +291,6 @@ public class ArticleBean implements Serializable {
 	}
 
 	public StreamedContent getStreamedPic() {
-
-		// DefaultStreamedContent streamedPic = new DefaultStreamedContent(
-		// new ByteArrayInputStream(pictur.getContent()),
-		// "image/png");
-		//
-
 		return streamedPic;
 	}
 
@@ -462,6 +403,12 @@ public class ArticleBean implements Serializable {
 		this.selcet = selcet;
 	}
 
-	
+	public String getCategorie() {
+		return categorie;
+	}
+
+	public void setCategorie(String categorie) {
+		this.categorie = categorie;
+	}
 
 }

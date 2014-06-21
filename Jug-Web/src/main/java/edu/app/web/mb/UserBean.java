@@ -15,6 +15,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.model.DataModel;
@@ -37,11 +38,10 @@ import edu.app.persistence.Picture;
 import edu.app.persistence.Speaker;
 import edu.app.persistence.User;
 
-@ManagedBean(name="userBean")
+@ManagedBean(name = "userBean")
 @SessionScoped
-
 public class UserBean implements Serializable {
-	
+
 	@EJB
 	private AnotherEmailSenderRemote anotherEmailSenderRemote;
 	@EJB
@@ -50,14 +50,9 @@ public class UserBean implements Serializable {
 	@EJB
 	private PictureServiceLocal pictureServiceLocal;
 
-	
-	
-	
-	
-	
 	@ManagedProperty("#{SP}")
 	private SessionProvider sessionProvider;
-	
+
 	private static final long serialVersionUID = 6710404278650523921L;
 	private Picture picture = new Picture();
 	private User user = new User();
@@ -80,45 +75,38 @@ public class UserBean implements Serializable {
 	private StreamedContent streamedPic;
 	private DefaultStreamedContent streamedPicture;
 
-
 	private String userType = "";
 
-	private int selectedTypeUser = -1; ;
+	private int selectedTypeUser = -1;;
 
 	private String destinationTemp = "E:\\jee\\servers\\s05\\jboss-as-7.1.1\\welcome-content\\temp\\";
 	private List<Speaker> speakers;
 	private DataModel dataModel = new ListDataModel();
 	private Member member = new Member();
 	private Speaker newSpeaker = new Speaker();
-	private List<Member>members = new ArrayList<Member>();
+	private List<Member> members = new ArrayList<Member>();
 	private String nom;
-
 
 	private String prenom;
 
-
 	private String mail;
-
 
 	private String etat;
 
-
 	private String login;
-
 
 	private String password;
 
-
 	private String sexe;
 	private String description;
-	
+
 	private Date dateNaiss;
 	private String contact;
 	private String nationality;
 	private String job;
 	private String company;
 	private String blog;
-	
+
 	public UserBean() {
 	}
 
@@ -127,22 +115,19 @@ public class UserBean implements Serializable {
 		users = userServiceLocal.findAllUser();
 		picUsers = userServiceLocal.findByStatus("Refuser");
 		loggedIn = false;
-		
-		speakers=userServiceLocal.findAllSpeakers();
+
+		speakers = userServiceLocal.findAllSpeakers();
 		dataModel = getDataModel();
 	}
 
-	
 	public String AllUSERMember() {
 		return "/pages/JUGMember/ListInscription?faces-redirect=true";
 	}
-
 
 	public String AllUSERMemberJUG() {
 		return "/pages/JUGLeader/ListMemberJUG?faces-redirect=true";
 	}
 
-	
 	// methods
 	public String doLogin() throws IOException {
 		String navigateTo = null;
@@ -155,48 +140,42 @@ public class UserBean implements Serializable {
 						"Registredin waiting ! ");
 				FacesContext.getCurrentInstance().addMessage(null, message);
 
-			} else 
-				if (found.getEtat().equals("Refuser")) {
-					FacesMessage message = new FacesMessage(
-							"Registredin refused ! ");
-					FacesContext.getCurrentInstance().addMessage(null, message);
+			} else if (found.getEtat().equals("Refuser")) {
+				FacesMessage message = new FacesMessage(
+						"Registredin refused ! ");
+				FacesContext.getCurrentInstance().addMessage(null, message);
 
-				} else
+			} else
 
-				if (user instanceof Leader) {
-					
+			if (user instanceof Leader) {
 
-					setUserType("Leader");
-					System.out.println("  " + user.getNom());
-					navigateTo = "/pages/JUGLeader/Home";
-					imJUGLeader = true;
-				}
-				
+				setUserType("Leader");
+				System.out.println("  " + user.getNom());
+				navigateTo = "/pages/JUGLeader/Home?faces-redirect=true";
+				imJUGLeader = true;
+			}
 
-				if (user instanceof Member) {
-						
-					setUserType("Member");
-					System.out.println("  " + user.getNom());
-					navigateTo = "/pages/JUGMember/Home";
-					imJUGMember = true;
-				}
-				
+			if (user instanceof Member) {
 
-				if (user instanceof Speaker) {
+				setUserType("Member");
+				System.out.println("  " + user.getNom());
+				navigateTo = "/pages/JUGMember/Home?faces-redirect=true";
+				imJUGMember = true;
+			}
 
-					setUserType("Speaker");
-					System.out.println("  " + user.getNom());
-					navigateTo = "/pages/JUGSpeaker/Home";
-					imSpeaker = true;
-				}
-				
-				user = found;
-				loggedIn = true;
-				sessionProvider.setConnectedUser(user);
-				
+			if (user instanceof Speaker) {
 
-		}
-		 else {
+				setUserType("Speaker");
+				System.out.println("  " + user.getNom());
+				navigateTo = "/pages/JUGSpeaker/Home?faces-redirect=true";
+				imSpeaker = true;
+			}
+
+			user = found;
+			loggedIn = true;
+			sessionProvider.setConnectedUser(user);
+
+		} else {
 			FacesMessage message = new FacesMessage("Bad credentials ! ");
 			FacesContext.getCurrentInstance().addMessage(null, message);
 			navigateTo = null;
@@ -214,22 +193,18 @@ public class UserBean implements Serializable {
 		navigateTo = "/index";
 		return navigateTo;
 	}
-	
-	
-	
-	public String cretNewUser(){
-		String navigateTo=null;
-		
-		
+
+	public String cretNewUser() {
+		String navigateTo = null;
+
 		if (selectedTypeUser == 1) {
 
-			user = new  Speaker();
+			user = new Speaker();
 		}
-		
-		
+
 		if (selectedTypeUser == 2) {
 
-			user = new  Member();
+			user = new Member();
 		}
 		user.setNationality("No Completed");
 		user.setJob("No Completed");
@@ -241,85 +216,75 @@ public class UserBean implements Serializable {
 		user.setPassword(password);
 		user.setCompany("No Completed");
 		user.setContact("No Completed");
-		
+
 		user.setSexe(sexe);
 		user.setDescription(description);
 		user.setEtat("attente");
 		user.setBlog("No Completed");
 		userServiceLocal.createUser(user);
-		
-//	anotherEmailSenderRemote.sendMail( 
-//	
-//	
-//		
-//		user.getMail(), "Register"," Hello Mr , and Mrs. felicitation you registered in our website, \n you have access to our site crossing   \n Your UserName is :=  " 
-//       + user.getLogin()
-//			+ "\n Your Password is :=    "
-//			+ user.getPassword());
+
+		// anotherEmailSenderRemote.sendMail(
+		//
+		//
+		//
+		// user.getMail(),
+		// "Register"," Hello Mr , and Mrs. felicitation you registered in our website, \n you have access to our site crossing   \n Your UserName is :=  "
+		// + user.getLogin()
+		// + "\n Your Password is :=    "
+		// + user.getPassword());
 		selectedTypeUser = -1;
 		formDisplayed = true;
-	
-		
+
 		FacesMessage msg = new FacesMessage(
 				"Success! , Your inscription is Done ");
 		FacesContext.getCurrentInstance().addMessage(null, msg);
 		user = new User();
-		
-		
-		return navigateTo="/index?faces-redirect=true";
-		
-		
+
+		return navigateTo = "/index?faces-redirect=true";
+
 	}
-	
+
 	public void doCancel() {
-		
-		
-		formDisplayed=false;
+
+		formDisplayed = false;
 	}
-	
 
 	public String createUser() {
-		
+
 		String navigateTo = null;
 
 		if (selectedTypeUser == 1) {
-			
-			System.out.println("  "+selectedTypeUser);
-			
-			//System.out.println(""+newuser.getLogin());
 
-			
-			
-			
+			System.out.println("  " + selectedTypeUser);
+
+			// System.out.println(""+newuser.getLogin());
+
 			newuser = new Member();
 
 		}
 
-if (selectedTypeUser == 2) {
-		
-	System.out.println("  "+selectedTypeUser);
-		//System.out.println(""+newuser.getLogin());
-	
-		newuser = new Speaker();
-		
-	
-	}
-	
-		
-		
+		if (selectedTypeUser == 2) {
+
+			System.out.println("  " + selectedTypeUser);
+			// System.out.println(""+newuser.getLogin());
+
+			newuser = new Speaker();
+
+		}
+
 		newuser.setPicture(picture);
 		newuser.setEtat("attente");
 		userServiceLocal.createUser(newuser);
-//		anotherEmailSenderRemote.sendMail(
-//				
-//				
-//				
-//				newuser.getMail(), "Register"," Hello Mr , and Mrs. felicitation you registered in our website, you have access to our site crossing   \n Your UserName is :=  " 
-//		       + newuser.getLogin()
-//					+ "\n Your Password is :=    "
-//					+ newuser.getPassword());
+		// anotherEmailSenderRemote.sendMail(
+		//
+		//
+		//
+		// newuser.getMail(),
+		// "Register"," Hello Mr , and Mrs. felicitation you registered in our website, you have access to our site crossing   \n Your UserName is :=  "
+		// + newuser.getLogin()
+		// + "\n Your Password is :=    "
+		// + newuser.getPassword());
 		selectedTypeUser = -1;
-	
 
 		FacesMessage msg = new FacesMessage(
 				"Success! , Your inscription is Done ");
@@ -329,64 +294,54 @@ if (selectedTypeUser == 2) {
 		return navigateTo;
 
 	}
-	
-	
-	
-//public String createNewSpeker() {
-//		
-//		String navigateTo = null;
-//
-//
-//		
-//		
-//		
-//		
-//		newSpeaker.setPicture(picture);
-//		newSpeaker.setEtat("attente");
-//		userServiceLocal.createUser(newSpeaker);
-////		anotherEmailSenderRemote.sendMail(
-////				
-////				
-////				
-////				newuser.getMail(), "Register"," Hello Mr , and Mrs. felicitation you registered in our website, you have access to our site crossing   \n Your UserName is :=  " 
-////		       + newuser.getLogin()
-////					+ "\n Your Password is :=    "
-////					+ newuser.getPassword());
-//		
-//	
-//
-//		FacesMessage msg = new FacesMessage(
-//				"Success! , Your inscription is Done ");
-//		FacesContext.getCurrentInstance().addMessage(null, msg);
-//		
-//		navigateTo = "/index";
-//		return navigateTo;
-//
-//	}
-//	
-	
-	
-	
-	
-	
-	
-	
-	
+
+	// public String createNewSpeker() {
+	//
+	// String navigateTo = null;
+	//
+	//
+	//
+	//
+	//
+	//
+	// newSpeaker.setPicture(picture);
+	// newSpeaker.setEtat("attente");
+	// userServiceLocal.createUser(newSpeaker);
+	// // anotherEmailSenderRemote.sendMail(
+	// //
+	// //
+	// //
+	// // newuser.getMail(),
+	// "Register"," Hello Mr , and Mrs. felicitation you registered in our website, you have access to our site crossing   \n Your UserName is :=  "
+	// // + newuser.getLogin()
+	// // + "\n Your Password is :=    "
+	// // + newuser.getPassword());
+	//
+	//
+	//
+	// FacesMessage msg = new FacesMessage(
+	// "Success! , Your inscription is Done ");
+	// FacesContext.getCurrentInstance().addMessage(null, msg);
+	//
+	// navigateTo = "/index";
+	// return navigateTo;
+	//
+	// }
+	//
+
 	public String voirDetail() {
 		member = (Member) dataModel.getRowData();
-		
+
 		return "";
 	}
-	
+
 	public String updateMember() {
 		member = (Member) dataModel.getRowData();
 		member.setEtat("Accepter");
 		userServiceLocal.updateUser(member);
 		return "";
 	}
-	
 
-	
 	public String deleteMember() {
 		member = (Member) dataModel.getRowData();
 
@@ -394,17 +349,13 @@ if (selectedTypeUser == 2) {
 		userServiceLocal.updateUser(member);
 		return "";
 	}
-	
-	
-	
+
 	public void forgetPassword() {
 		anotherEmailSenderRemote.sendMail(user.getMail(),
 				"  hello your user name is :   ", "    " + user.getLogin()
 						+ "  \n your password is   " + user.getPassword());
 
 	}
-
-	
 
 	public void upload(FileUploadEvent event) throws IOException {
 
@@ -484,7 +435,7 @@ if (selectedTypeUser == 2) {
 				"image/png");
 		return streamedPic;
 	}
-	
+
 	public void setStreamedPic(StreamedContent streamedPic) {
 		this.streamedPic = streamedPic;
 	}
@@ -532,6 +483,7 @@ if (selectedTypeUser == 2) {
 	public Picture getPicture() {
 		return picture;
 	}
+
 	public void setPicture(Picture picture) {
 		this.picture = picture;
 	}
@@ -559,8 +511,6 @@ if (selectedTypeUser == 2) {
 	public void setSkip(boolean skip) {
 		this.skip = skip;
 	}
-
-	
 
 	public DefaultStreamedContent getStreamedPicture() {
 		return streamedPicture;
@@ -642,8 +592,6 @@ if (selectedTypeUser == 2) {
 		this.selectedTypeUser = selectedTypeUser;
 	}
 
-
-
 	public User getNewuser() {
 		return newuser;
 	}
@@ -651,11 +599,11 @@ if (selectedTypeUser == 2) {
 	public void setNewuser(User newuser) {
 		this.newuser = newuser;
 	}
-	
+
 	public void setSessionProvider(SessionProvider sessionProvider) {
 		this.sessionProvider = sessionProvider;
 	}
-	
+
 	public SessionProvider getSessionProvider() {
 		return sessionProvider;
 	}
@@ -785,8 +733,6 @@ if (selectedTypeUser == 2) {
 		return company;
 	}
 
-	
-	
 	public String getDescription() {
 		return description;
 	}
@@ -815,7 +761,4 @@ if (selectedTypeUser == 2) {
 		this.blog = blog;
 	}
 
-	
-
-	
 }

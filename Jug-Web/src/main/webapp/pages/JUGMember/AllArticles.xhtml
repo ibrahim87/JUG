@@ -14,14 +14,11 @@
     <p:menubar>
         <p:submenu label="Article" icon="ui-icon-document">
         
-           <p:menuitem value="All Articles" action="#{articleBean.AllArticles}"  />
+           <p:menuitem value="All Articles" action="#{articleBean.articles}"  />
            	 <p:separator />
               <p:menuitem value="Add" action="#{articleBean.AddArticle}" />
                <p:separator />
-            <p:menuitem value="Edit" action="#{articleBean.EditArticle}"/>
-            <p:separator />
-           
-            <p:menuitem value="Delete" action="#{articleBean.DeleteArticle}" />
+    
         </p:submenu>
  
         <p:submenu label="Users" icon="ui-icon-disk">
@@ -34,156 +31,56 @@
 			
 			<!-- afficher les articles -->
 			
-			<h:form id="master">
-			<p:dataTable rendered="#{not empty articleBean.articles}"
-				value="#{articleBean.articles}" var="ar" rows="4"
-				rowKey="#{ar.idArticle}" paginator="true" paginatorPosition="bottom"
-				filteredValue="#{articleBean.filtredArticles}"
-				selectionMode="single" selection="#{articleBean.article}"
-				widgetVar="arTabW">
-
-
-				<f:facet name="header">
-					<h:outputText value="All Articles" />
-				</f:facet>
-
-				<p:ajax event="rowSelect" listener="#{articleBean.onRowSelect}"
-					update=":details"/>
-
-					<p:column headerText="Status" filterBy="#{ar.status}"
-					filterMatchMode="contains">
-
-					<h:outputText value="#{ar.status}" />
-				</p:column>
-					
-					
-					<p:column headerText="Date Creation" filterBy="#{ar.datecration}"
-					filterMatchMode="contains">
-
-					<h:outputText value="#{ar.datecration}" />
-				</p:column>
-					
-					
-					
-					
-					
-					
-					
-					
-				<p:column headerText="Title : " filterBy="#{ar.title}"
-					filterMatchMode="contains">
-
-					<h:outputText value="#{ar.title}" />
-				</p:column>
-
-			<!-- 	<p:column headerText="description : " filterBy="#{ar.contenu}"
-					filterMatchMode="contains">
-
-					<h:outputText value="#{ar.contenu}" />
-				</p:column>
- -->
-
-
-
-				<p:column headerText="category : " filterBy="#{ar.categorie.name}"
-					filterMatchMode="exact"
-					filterOptions="#{articleBean.filterOptions}">
-
-					<h:outputText value="#{ar.categorie.name}" />
-				</p:column>
-
-
-			</p:dataTable>
 			
 			
+			<h:form id="form">  
+  
+    		<p:dataTable var="art" value="#{articlesBean2.articles}" rowKey="#{art.idArticle}" paginator="true" rows="5"  
+               id="artTable" selection="#{articlesBean2.article}" styleClass="ui-widget-content">  
+  
+       
+  
+        <f:facet name="header">  
+            List of artciles 
+        </f:facet>  
+        <p:column headerText="Article name" filterBy="#{art.title}" id="title">  
+            #{art.title}  
+        </p:column>  
+  
+        <p:column headerText="Date" filterBy="#{art.datecration}" id="type">  
+            #{art.datecration}  
+        </p:column>  
+  
+        <p:column headerText="created by" filterBy="  #{art.user.nom}" id="user">  
+            #{art.user.nom} #{art.user.prenom}    
+        </p:column>  
+                <p:column headerText="Status" filterBy=" #{art.status}" id="status">  
+               #{art.status}
+        </p:column>  
+	
+	
+	<p:column headerText="Details" id="detail">  
+           
+            <p:graphicImage id="img" width="37px" height="28px"
+                  		  value="/resources/images/show.png"/> 
+                  		   <p:commandLink update="detail" action="#{articlesBean2.displayDetails}"> 
+            <f:setPropertyActionListener target="#{articlesBean2.displayDetails}" value="true"/>
+                               </p:commandLink>
+           
+        </p:column> 
+      
+  
+    </p:dataTable>  
+  
+</h:form> 
 			
-			<h:outputText value="" /><h:outputText value="" />
-	 <p:commandButton icon="ui-icon-circle-plus" actionListener="#{articleBean.doNewArticle}" value="new" update=":details"/> 
-	 
-		</h:form>
+			<ui:include src="/pages/JUGMember/articleDetail.xhtml"/>
 			
 			
 			
 			
 			
 			
-			
-			
-			
-			<p:panel id="details" header="articles details"
-			visible="#{articleBean.formDisplayed}">
-			<h:form rendered="#{articleBean.formDisplayed}">
-				<h:panelGrid columns="3">
-
-					<h:outputText value="name : " />
-					<p:inputText value="#{articleBean.article.title}" style="width:400px"/>
-					<h:outputText value=""/>
-
-
-					<h:outputText value="description : " />
-					<p:inputTextarea rows="10" cols="80" value="#{articleBean.article.contenu}"  queryDelay="1000000" minQueryLength="4" style="width:400px" />
-					<h:outputText value=""/>
-
-
-					
-					 <h:outputText value="Status: " />  
-       			 <p:selectOneRadio value="#{articleBean.article.status}" required="true" label="Type of inscription">  
-            	 <f:selectItem itemLabel="private" itemValue="private" />  
-           		
-           		  <f:selectItem itemLabel="public" itemValue="public" /> 
-           		  
-           		 </p:selectOneRadio>
-					<h:outputText value="" />
-
-					
-					
-					<h:outputText value="date Creation : " />
-					<p:calendar id="dateNaiss"
-								value="#{articleBean.article.datecration}"
-								pattern="dd/MM/yyyy" showOn="button" required="true"
-								label="Date of birth" />
-					
-					
-					<h:outputText value="" />
-						
-						
-
-					<h:outputText value=" category : " />
-					<p:selectOneMenu value="#{articleBean.article.categorie.name}">
-						<f:selectItem itemValue="-1" itemLabel="choose one..." />
-						<f:selectItems
-							value="#{articleBean.selectItemsForCategories}" />
-
-
-					</p:selectOneMenu>
-					<h:outputText value="" />
-					
-
-
-
-			
-
-
-
-
-					<p:commandButton actionListener="#{articleBean.doCancel}"
-						value="cancel" update=":details" />
-					<p:commandButton
-						actionListener="#{articleBean.update}" value="save" ajax="false"
-						update=":master :details" oncomplete="movTabW.filter()" />
-						<p:growl id="messages" showDetail="true" />
-					<h:outputText value="" />
-					
-
-
-				
-
-
-
-				</h:panelGrid>
-
-			</h:form>
-		</p:panel>
 			
 
 			

@@ -1,6 +1,5 @@
 package edu.app.business;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -9,7 +8,6 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import edu.app.persistence.Article;
-import edu.app.persistence.Categorie;
 import edu.app.persistence.User;
 
 
@@ -86,21 +84,13 @@ public class ArticleService implements ArticleServiceRemote, ArticleServiceLocal
 	}
 
 
-	@SuppressWarnings("unchecked")
-	public List<Article> findArticleByCategorie( Categorie categorie ,int pageIndex, int noOfRecords) {
-		Query query = em
-				.createQuery("select ar from Article ar where ar.categorie=:cat");
-		query.setParameter("cat", categorie);
-		return query.getResultList();
-		
-	}
-
+	
 	
 	
 	@SuppressWarnings("unchecked")
 	public List<Article> findArticleByJUGLeader(int pageIndex, int noOfRecords) {
 		Query query = em
-				.createQuery("select ar from Article ar where ar.user.idUser=30");
+				.createQuery("select ar from Article ar where ar.user.idUser=1");
 		//query.setParameter("leader", leader.getidUser());
 		return query.getResultList();
 		
@@ -110,7 +100,7 @@ public class ArticleService implements ArticleServiceRemote, ArticleServiceLocal
 	public List<Article> findArticleJava( int pageIndex, int noOfRecords) {
 		
 		Query query = em
-				.createQuery("select ar from Article ar where ar.status='public' and ar.categorie.name='java' ORDER BY ar.idArticle DESC ");
+				.createQuery("select ar from Article ar where ar.status='public' and ar.categorie='java' ORDER BY ar.idArticle DESC ");
 		
 		return query.setMaxResults(noOfRecords)
 				.setFirstResult(noOfRecords * pageIndex).getResultList();
@@ -144,7 +134,7 @@ public class ArticleService implements ArticleServiceRemote, ArticleServiceLocal
 	@SuppressWarnings("unchecked")
 	public List<Article> findArticleByJEE(int pageIndex, int noOfRecords) {
 		
-Query query = em.createQuery("select ar from Article ar where ar.status='public' and ar.categorie.name='JEE' ORDER BY ar.idArticle DESC ");
+Query query = em.createQuery("select ar from Article ar where ar.status='public' and ar.categorie='JEE' ORDER BY ar.idArticle DESC ");
 		return query.setMaxResults(noOfRecords)
 				.setFirstResult(noOfRecords * pageIndex).getResultList();
 		
@@ -154,7 +144,7 @@ Query query = em.createQuery("select ar from Article ar where ar.status='public'
 	@Override
 	public List<Article> findOneArticleJava(int pageIndex, int noOfRecords) {
 		Query query = em
-				.createQuery("select ar from Article ar where ar.status='public' and ar.categorie.name='java'");
+				.createQuery("select ar from Article ar where ar.status='public' and ar.categorie='java'");
 		
 		return query.setMaxResults(noOfRecords)
 				.setFirstResult(noOfRecords * pageIndex).getResultList();
@@ -164,7 +154,7 @@ Query query = em.createQuery("select ar from Article ar where ar.status='public'
 	@Override
 	public List<Article> findOneOtherArticle(int pageIndex, int noOfRecords) {
 		Query query = em
-				.createQuery("select ar from Article ar where ar.status='public' and ar.categorie.name='Other'");
+				.createQuery("select ar from Article ar where ar.status='public' and ar.categorie='Other'");
 		
 		return query.setMaxResults(noOfRecords)
 				.setFirstResult(noOfRecords * pageIndex).getResultList();
@@ -173,7 +163,7 @@ Query query = em.createQuery("select ar from Article ar where ar.status='public'
 	@SuppressWarnings("unchecked")
 
 	public List<Article> findArticleOther(int pageIndex, int noOfRecords) {
-		Query query = em.createQuery("select ar from Article ar where ar.status='public' and ar.categorie.name='Other' ORDER BY ar.idArticle DESC ");
+		Query query = em.createQuery("select ar from Article ar where ar.status='public' and ar.categorie='Other' ORDER BY ar.idArticle DESC ");
 		return query.setMaxResults(noOfRecords)
 				.setFirstResult(noOfRecords * pageIndex).getResultList();
 
@@ -190,16 +180,7 @@ Query query = em.createQuery("select ar from Article ar where ar.status='public'
 	}
 
 	
-	@SuppressWarnings("unchecked")
-	public List<Article> findAllMoviesByCategorie(Categorie categorie) {
-		
-		Query query = em
-				.createQuery("select a from Categorie c join c.article a where c=:categorie");
-		query.setParameter("categorie", categorie);
-		return query.getResultList();
-	}    
-
-	@Override
+	
 	public List<Article> findArticleByTitle(String title) {
 		
 		Query query = em
