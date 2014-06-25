@@ -49,7 +49,7 @@ public interface UserServiceRemote {
 	public List<Leader> findAllLeaders();
 	
 
-	public List<Member> findAllMembers();
+	public List<Member> findAllMembersJUG();
 	
 	
 

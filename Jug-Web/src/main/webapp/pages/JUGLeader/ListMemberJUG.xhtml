@@ -9,8 +9,6 @@
 			
 				
 			<ui:define name="pageContent">
-			
-			
 			<h:form>  
     <p:growl id="messages"/>
  
@@ -32,69 +30,62 @@
     </p:menubar>
 </h:form>
 			
-				<h:form>
-							<h2>Enrollment management for new JUGMember</h2>
+			 <p:panel style="width:750px">
+			<h:form id="form">
+				<p:growl id="growl"></p:growl>
 				
-				<p:dataTable  value="#{userBean.dataModel}"  border="1"  id="mydata" > 
-							<p:column>
-							<f:facet name="header">
-							<h:outputText value="First Name" />
-							</f:facet>
-							<h:outputText value="#{userBean.member.nom}" />
-							</p:column>
-							<p:column>
-							<f:facet name="header">
-							<h:outputText value="Last Name" />
-							</f:facet>
-							<h:outputText value="#{userBean.member.prenom}" />
-							</p:column>
-							
-							
-							<p:column>
-							<f:facet name="header">
-							<h:outputText value="Status" />
-							</f:facet>
-							<h:outputText value="#{userBean.member.etat}" />
-							</p:column>
-							
-							
-							<p:column>
-							<f:facet name="header">
-							<h:outputText value="Action" />
-							</f:facet>
-							<h:commandButton value="Valider" action="#{userBean.updateMember}" />
-							<h:commandButton value="Refuser" action="#{userBean.deleteMember}" />
-							<p:commandButton value="Details" id="submit" action="#{userBean.voirDetail}"  oncomplete="PF('dialog').show()" />  
-							</p:column>
-								
-		
+				<h1>Converter</h1>
+					   <p:dataTable value="#{userBean.allMembersJUG}" var="mjg"
+					paginator="true" rows="10"
+					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					rowsPerPageTemplate="5,10,15">
+					<p:column headerText="Picture">
+					<h:form>
+					<p:graphicImage value="#{articlesBean2.streamedPic}"  style= "height:60px; width:60px" >
+ 					<f:param name="photo" value="#{mjg.picture.idPicture}"></f:param>
+ 					</p:graphicImage>
+ 					</h:form>
+					</p:column>
+					<p:column headerText="first Name">
+					<h:outputText value="#{mjg.nom}" />
+					</p:column>
+					<p:column headerText="last Name">
+					<h:outputText value="#{mjg.prenom}" />
+					</p:column>
+					v<p:column headerText="Status">
+					<h:outputText value="#{mjg.etat}" />
+					</p:column>
+					<p:column>
+					<p:commandButton value="valider" icon="ui-icon-pencil" update=":formEmp" oncomplete="dialogEmp.show()">
+					<f:setPropertyActionListener target="#{userBean.member}" value="#{mjg}" ></f:setPropertyActionListener>
+					</p:commandButton>
+					</p:column>
+					</p:dataTable>
+					</h:form>
+					<p:dialog widgetVar="dialogEmp" header="Update Developpeur" modal="true">
+					<h:form id="formEmp">
+					<h:panelGrid columns="2">
+					<p:outputLabel value="First name"></p:outputLabel>
+					<p:inputText value="#{userBean.member.nom}"></p:inputText>
+					<p:outputLabel value="Last name"></p:outputLabel>
+					<p:inputText value="#{userBean.member.prenom}"></p:inputText>
+					
+					</h:panelGrid>
+					<p:commandButton value="valider" action="#{userBean.updateMember()}" oncomplete="dialogEmp.hide()" update=":form"></p:commandButton>
+					</h:form>
+					</p:dialog>
+						<h:commandButton  immediate="true" action="/index?faces-redirect=true"" value="CANCEL" />
 				
-							</p:dataTable>
-			<p:panel header="Export All Data">
-            <h:commandLink>
-                <p:graphicImage value="/icons/excel.jpg" />
-                <p:dataExporter type="xls" postProcessor="#{articleBean.postProcessXLS}"
-                    target="mydata" fileName="myexcel" />
-            </h:commandLink>
-            <h:commandLink>
-                <p:graphicImage value="/icons/pdf.png" />
-                <p:dataExporter type="pdf" target="mydata" fileName="mypdf" />
-            </h:commandLink>
-        </p:panel>
-								<p:dialog header="Details" widgetVar="dialog" showEffect="fold" hideEffect="fold" >  
-								            <h:panelGrid id="display" columns="2" cellpadding="5">
-								          
-								            <h:outputText value="Nom : " />
-								            <h:outputText value="#{userBean.member.nom}" />
-								            <h:outputText value="Prenom : " />
-								            <h:outputText value="#{userBean.member.prenom}" />
-								            
-								            <h:outputText value="Status : " />
-								            <h:outputText value="#{userBean.member.etat}" />
-								           </h:panelGrid>
-								</p:dialog>
-				</h:form>
-				
+			</p:panel>
+			
+			
+			
+			
+			
+			
+			
+			
+			
 				
 
 </ui:define>

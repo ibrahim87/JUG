@@ -222,7 +222,7 @@ public class UserService implements UserServiceRemote, UserServiceLocal {
 	}
 
 	@Override
-	public List<Member> findAllMembers() {
+	public List<Member> findAllMembersJUG() {
 		
 		return (List<Member>)em.createQuery("select u from Member u where u.etat='attente'").getResultList();
 	}

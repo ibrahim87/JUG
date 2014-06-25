@@ -15,7 +15,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
-import javax.faces.bean.ViewScoped;
+
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.model.DataModel;
@@ -58,6 +58,8 @@ public class UserBean implements Serializable {
 	private User user = new User();
 
 	private String password2;
+		private List<Member>AllMembersJUG;
+	
 
 	private String email2;
 	private boolean formDisplayed = false;
@@ -81,7 +83,7 @@ public class UserBean implements Serializable {
 
 	private String destinationTemp = "E:\\jee\\servers\\s05\\jboss-as-7.1.1\\welcome-content\\temp\\";
 	private List<Speaker> speakers;
-	private DataModel dataModel = new ListDataModel();
+
 	private Member member = new Member();
 	private Speaker newSpeaker = new Speaker();
 	private List<Member> members = new ArrayList<Member>();
@@ -117,7 +119,7 @@ public class UserBean implements Serializable {
 		loggedIn = false;
 
 		speakers = userServiceLocal.findAllSpeakers();
-		dataModel = getDataModel();
+		AllMembersJUG=userServiceLocal.findAllMembersJUG();
 	}
 
 	public String AllUSERMember() {
@@ -140,41 +142,48 @@ public class UserBean implements Serializable {
 						"Registredin waiting ! ");
 				FacesContext.getCurrentInstance().addMessage(null, message);
 
-			} else if (found.getEtat().equals("Refuser")) {
+			} else {
+				
+				
+				if (found.getEtat().equals("Refuser")) {
 				FacesMessage message = new FacesMessage(
 						"Registredin refused ! ");
 				FacesContext.getCurrentInstance().addMessage(null, message);
 
-			} else
-
+			} else{
+				
+				user = found;
+				loggedIn = true;
+				sessionProvider.setConnectedUser(user);
+			
 			if (user instanceof Leader) {
 
 				setUserType("Leader");
 				System.out.println("  " + user.getNom());
 				navigateTo = "/pages/JUGLeader/Home?faces-redirect=true";
 				imJUGLeader = true;
-			}
-
-			if (user instanceof Member) {
+				
+				
+			}else if (user instanceof Member) {
 
 				setUserType("Member");
 				System.out.println("  " + user.getNom());
 				navigateTo = "/pages/JUGMember/Home?faces-redirect=true";
 				imJUGMember = true;
 			}
-
+			else{
 			if (user instanceof Speaker) {
 
 				setUserType("Speaker");
 				System.out.println("  " + user.getNom());
 				navigateTo = "/pages/JUGSpeaker/Home?faces-redirect=true";
 				imSpeaker = true;
-			}
+			}}
 
-			user = found;
-			loggedIn = true;
-			sessionProvider.setConnectedUser(user);
-
+//			user = found;
+//			loggedIn = true;
+//			sessionProvider.setConnectedUser(user);
+			}}
 		} else {
 			FacesMessage message = new FacesMessage("Bad credentials ! ");
 			FacesContext.getCurrentInstance().addMessage(null, message);
@@ -190,7 +199,7 @@ public class UserBean implements Serializable {
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap()
 				.clear();
 
-		navigateTo = "/index";
+		navigateTo = "/index?faces-redirect=true";
 		return navigateTo;
 	}
 
@@ -223,16 +232,16 @@ public class UserBean implements Serializable {
 		user.setBlog("No Completed");
 		userServiceLocal.createUser(user);
 
-		// anotherEmailSenderRemote.sendMail(
-		//
-		//
-		//
-		// user.getMail(),
-		// "Register"," Hello Mr , and Mrs. felicitation you registered in our website, \n you have access to our site crossing   \n Your UserName is :=  "
-		// + user.getLogin()
-		// + "\n Your Password is :=    "
-		// + user.getPassword());
-		selectedTypeUser = -1;
+//		 anotherEmailSenderRemote.sendMail(
+//		
+//		
+//		
+//		 user.getMail(),
+//		 "Register"," Hello Mr , and Mrs. felicitation you registered in our website, \n you have access to our site crossing   \n Your UserName is :=  "
+//		 + user.getLogin()
+//		 + "\n Your Password is :=    "
+//		 + user.getPassword());
+//		selectedTypeUser = -1;
 		formDisplayed = true;
 
 		FacesMessage msg = new FacesMessage(
@@ -249,106 +258,23 @@ public class UserBean implements Serializable {
 		formDisplayed = false;
 	}
 
-	public String createUser() {
-
-		String navigateTo = null;
-
-		if (selectedTypeUser == 1) {
-
-			System.out.println("  " + selectedTypeUser);
-
-			// System.out.println(""+newuser.getLogin());
-
-			newuser = new Member();
-
-		}
-
-		if (selectedTypeUser == 2) {
-
-			System.out.println("  " + selectedTypeUser);
-			// System.out.println(""+newuser.getLogin());
-
-			newuser = new Speaker();
-
-		}
-
-		newuser.setPicture(picture);
-		newuser.setEtat("attente");
-		userServiceLocal.createUser(newuser);
-		// anotherEmailSenderRemote.sendMail(
-		//
-		//
-		//
-		// newuser.getMail(),
-		// "Register"," Hello Mr , and Mrs. felicitation you registered in our website, you have access to our site crossing   \n Your UserName is :=  "
-		// + newuser.getLogin()
-		// + "\n Your Password is :=    "
-		// + newuser.getPassword());
-		selectedTypeUser = -1;
-
-		FacesMessage msg = new FacesMessage(
-				"Success! , Your inscription is Done ");
-		FacesContext.getCurrentInstance().addMessage(null, msg);
-		newuser = new User();
-		navigateTo = "/index";
-		return navigateTo;
-
-	}
-
-	// public String createNewSpeker() {
-	//
-	// String navigateTo = null;
-	//
-	//
-	//
-	//
-	//
-	//
-	// newSpeaker.setPicture(picture);
-	// newSpeaker.setEtat("attente");
-	// userServiceLocal.createUser(newSpeaker);
-	// // anotherEmailSenderRemote.sendMail(
-	// //
-	// //
-	// //
-	// // newuser.getMail(),
-	// "Register"," Hello Mr , and Mrs. felicitation you registered in our website, you have access to our site crossing   \n Your UserName is :=  "
-	// // + newuser.getLogin()
-	// // + "\n Your Password is :=    "
-	// // + newuser.getPassword());
-	//
-	//
-	//
-	// FacesMessage msg = new FacesMessage(
-	// "Success! , Your inscription is Done ");
-	// FacesContext.getCurrentInstance().addMessage(null, msg);
-	//
-	// navigateTo = "/index";
-	// return navigateTo;
-	//
-	// }
-	//
-
-	public String voirDetail() {
-		member = (Member) dataModel.getRowData();
-
-		return "";
-	}
+	
+	
 
 	public String updateMember() {
-		member = (Member) dataModel.getRowData();
+		
 		member.setEtat("Accepter");
 		userServiceLocal.updateUser(member);
 		return "";
 	}
 
-	public String deleteMember() {
-		member = (Member) dataModel.getRowData();
-
-		member.setEtat("refuse");
-		userServiceLocal.updateUser(member);
-		return "";
-	}
+//	public String deleteMember() {
+//		member = (Member) dataModel.getRowData();
+//
+//		member.setEtat("refuse");
+//		userServiceLocal.updateUser(member);
+//		return "";
+//	}
 
 	public void forgetPassword() {
 		anotherEmailSenderRemote.sendMail(user.getMail(),
@@ -616,14 +542,7 @@ public class UserBean implements Serializable {
 		this.speakers = speakers;
 	}
 
-	public DataModel getDataModel() {
-		dataModel.setWrappedData(userServiceLocal.findAllMembers());
-		return dataModel;
-	}
-
-	public void setDataModel(DataModel dataModel) {
-		this.dataModel = dataModel;
-	}
+	
 
 	public Member getMember() {
 		return member;
@@ -759,6 +678,14 @@ public class UserBean implements Serializable {
 
 	public void setBlog(String blog) {
 		this.blog = blog;
+	}
+
+	public List<Member> getAllMembersJUG() {
+		return AllMembersJUG;
+	}
+
+	public void setAllMembersJUG(List<Member> allMembersJUG) {
+		AllMembersJUG = allMembersJUG;
 	}
 
 }

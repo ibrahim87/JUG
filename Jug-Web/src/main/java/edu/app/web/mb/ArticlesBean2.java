@@ -9,6 +9,7 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
@@ -68,7 +69,8 @@ public class ArticlesBean2 implements Serializable {
 	private List<Article> allArtileOther;
 	private String searchMovie;
 	private List<Article> AllArticle;
-
+private List<Article>filtredArticle;
+private List<Article> AllArticles;
 	private DataModel dataModel = new ListDataModel();
 
 	// private User user = new Leader();
@@ -96,7 +98,8 @@ public class ArticlesBean2 implements Serializable {
 
 		arts = articleServiceLocal.findAllArticleCustum(status, 0, 4);
 		
-
+		AllArticles= articleServiceLocal.findAllArticle();
+		
 		speakers = userServiceLocal.findAllSpeakers();
 
 	
@@ -104,7 +107,7 @@ public class ArticlesBean2 implements Serializable {
 
 		articles = articleServiceLocal.findArticleByJUGLeader(0, 4);
 
-		members = userServiceLocal.findAllMembers(etat);
+	//	members = userServiceLocal.findAllMembers(etat);
 		leaders = userServiceLocal.findAllLeaders();
 
 		articlesJEE = articleServiceLocal.findArticleByJEE(0, 4);
@@ -112,10 +115,19 @@ public class ArticlesBean2 implements Serializable {
 		OneArticleJava = articleServiceLocal.findOneArticleJava(0, 1);
 		OneArticleOther = articleServiceLocal.findOneOtherArticle(0, 1);
 		allArtileOther = articleServiceLocal.findArticleOther(0, 4);
+		
+		//members=userServiceLocal.findAllMembers();
 
 	}
 
-	
+	public String update(){
+		
+		articleServiceLocal.updateArticle(article);
+	System.out.println("l'article"+article);
+		return null;
+		
+		
+	}
 	
 	public String getName() {
 		return name;
@@ -192,20 +204,36 @@ public class ArticlesBean2 implements Serializable {
 	}
 
 	public String updateArticle() {
-		article = (Article) dataModel.getRowData();
-		article.setStatus("public");
+		//article = (Article) dataModel.getRowData();
+		//article.setStatus("public");
 		articleServiceLocal.updateArticle(article);
 
 		return "";
 	}
 
 	public String deleteArticle() {
-		article = (Article) dataModel.getRowData();
+		//article = (Article) dataModel.getRowData();
 
 		articleServiceLocal.deleteArticle(article);
 		return "";
 	}
 
+	
+	
+	
+	public String deleteAtticle( Article article1){
+		
+		
+		article=articleServiceLocal.findArticleById(article1.getIdArticle());
+		articleServiceLocal.deleteArticle(article);
+		article= new Article();
+		AllArticles=articleServiceLocal.findAllArticle();
+	
+		
+		
+		return null;
+		
+	}
 	// public List<Article> findArticleBycathegorieName(Categorie categorie, int
 	// pageIndex, int noOfRecords){
 	//
@@ -432,6 +460,22 @@ public class ArticlesBean2 implements Serializable {
 
 	public void setDisplayDetails(boolean displayDetails) {
 		this.displayDetails = displayDetails;
+	}
+
+	public List<Article> getFiltredArticle() {
+		return filtredArticle;
+	}
+
+	public void setFiltredArticle(List<Article> filtredArticle) {
+		this.filtredArticle = filtredArticle;
+	}
+
+	public List<Article> getAllArticles() {
+		return AllArticles;
+	}
+
+	public void setAllArticles(List<Article> allArticles) {
+		AllArticles = allArticles;
 	}
 
 }

@@ -9,57 +9,67 @@
 			<ui:define name="pageContent">
 			
 			
-			
-				<div id="slide-left" class="flexslider span8">
-			
-			<h:form id="login_form">
+			<div id="slide-left" class="flexslider span8">
+					
+				
+			<h:form id="register">
 				<p:growl id="growl" sticky="true" showDetail="true"/>  
   
-			<p:panel  header="Subscribe Now  ">
+			<p:panel  header="Subscribe Now">
 
- 				<h:messages errorClass="error"/>  
+ 				
  				
 				<h:panelGrid columns="2">
 					<p:outputLabel for="firstname" value="Firstname:" />
 					<p:inputText id="firstname" value="#{userBean.nom}"
-						required="true">
-						<f:validateLength minimum="2" />
+						required="true" validatorMessage="between 3 and 10">
+						
+						<f:validateLength minimum="3" maximum="10"/>
+						<f:ajax event="blur" execute="@this" render="mlsg"/>
 						<p:watermark value="first name" for="firstname"></p:watermark>
 					</p:inputText>
-
+					<h:message  id="mlsg" for="firstname" styleClass="error" style="BACKGROUND-COLOR: #ff0000;" />	
+					
+					
 					<p:outputLabel for="lastname" value="LastName:" />
 					<p:inputText id="lastname" value="#{userBean.prenom}"
-						required="true">
-						<p:watermark value="last name" for="lastname"></p:watermark>
+						required="true"  validatorMessage="between 3 and 10">
+						<f:validateLength minimum="3" maximum="20"/>
+						<f:ajax event="blur" execute="@this" render="mlasg"/>
+						<p:watermark value="last name" for="lastname"/>
+							
 					</p:inputText>
+					<h:message id ="mlasg" for="lastname" styleClass="error"/>
 						
-							<h:outputText value="Gender: " />  
+						
+					<h:outputText value="Gender: " />  
        			 <p:selectOneRadio id="gender" value="#{userBean.sexe}" required="true" label="Gender">  
             	 <f:selectItem itemLabel="Male" itemValue="Male" />  
            		 <f:selectItem itemLabel="Female" itemValue="Memale" />  
        			 </p:selectOneRadio>
                       
-					
-					
+			
+				
 					
 					<p:outputLabel for="eMail" value="eMail:" required="true" requiredMessage="email is required" validatorMessage="invalid email" />
 					<p:inputText id="eMail" value="#{userBean.mail}" required="true"
 						label="eMail">
 						<f:validateRegex pattern="^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$" />
-						<p:watermark value="e-mail" for="eMail"></p:watermark>
+						<f:ajax event="blur" execute="@this" render="mEmailg"/>
+						
 					</p:inputText>
+						<h:message  id ="mEmailg" for="eMail" styleClass="error" />
+						
+			
 
-
-					
-
-					<p:outputLabel for="login" value="Login" />
+					<p:outputLabel  value="Login" />
 					<p:inputText id="login" value="#{userBean.login}"
-						required="true">
+						required="true" requiredMessage="login is required" validator="#{userBean.validateLogin}">
+						<f:ajax event="blur" execute="@this" render="mlg"/>
 						<p:watermark value="login" for="login"></p:watermark>
 					</p:inputText>
+					<h:message id="mlg" for="login" styleClass="error"/>
 					
-				
-
 					<p:outputLabel for="pwd" value="Password:" />
 					<p:password id="pwd" value="#{userBean.password}" required="true"
 						feedback="true" inline="true">
@@ -110,11 +120,7 @@
 			
 			
 			
-			
-			
-			
-		</div>	
-			
+			</div>
 			
 			
 			

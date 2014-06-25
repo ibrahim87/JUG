@@ -1,18 +1,42 @@
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:h="http://java.sun.com/jsf/html"
-                xmlns:f="http://java.sun.com/jsf/core"
-                xmlns:ui="http://java.sun.com/jsf/facelets"
-                xmlns:p="http://primefaces.org/ui"
-                template="/template/template.xhtml">
-                	
-			<ui:define name="pageTitle"></ui:define>		
-			<ui:define name="pageContent">
-			 
-			<script>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"> 
+
+<h:head>
+
+        <title>ESPRIT JUG DAY 2014 - CALL FOR PAPERS</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="description" content=""/>
+        <meta name="author" content=""/>
+
+		<!-- ICON -->
+		<link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico" />
+
+        <!-- CSS -->
+        <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=PT+Sans:400,700'/>
+        <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Oleo+Script:400,700'/>
+        <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="assets/css1/style.css"/>
+        
+        <!-- Javascript -->
+        <script src="assets/js/jquery-1.8.2.min.js"></script>
+        <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+        <script src="assets/js/jquery.backstretch.min.js"></script>
+        <script src="assets/js/scripts.js"></script>        
+   
+		<!-- COUNTDOWN BEGIN -->  
+		<!-- Stylesheets -->
+		<link rel="stylesheet" href="css/styles.css" />  
+		<!-- JS -->
+		<script src="js/countdown.js"></script>
+		<script>
 			
 				$(document).ready(function(){
 					$("#countdown").countdown({
-						date: "6/27/2014 8:00:00",
+						date: "6/25/2014 9:00:00",
 						format: "on"
 					},
 					
@@ -22,18 +46,38 @@
 				});
 			
 		</script>
+		<!-- COUNTDOWN END --> 
+   
 
+        <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
 
-				
-			
-		
-		<div class="register-container container">
+</h:head> 
+<body> 
+
+     <div class="header">
+            <div class="container">
+                <div class="row">
+                    <div class="logo span4">
+                        <h1><a href="">Esprit JUG Day 2014  <span class="red">.</span></a></h1>
+                    </div>
+                    <div class="links span8">
+                        <a class="home" href="http://www.esprit.ens.tn/test/v3/index.php?lang=fr" rel="tooltip" target="_blank"></a>
+                        <a class="blog" href="http://esprit-jug.blogspot.com/" rel="tooltip" target="_blank"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="register-container container">
             <div class="row">
             
                 <div class="iphone span5" >
                     
                     <div class="sideBar">
-                    	<img src="../images/wantyou.png" alt=""/>
+                    	<img src="assets/img/wantyou.png" alt=""/>
                     </div>
                     <br /><br /><br />
 
@@ -42,11 +86,11 @@
 						<div class="timer-area">
 							<h1>We'<span class="red" >re coming </span> soon <span class="red" > ... </span> </h1><br />
 							<ul id="countdown">
-								<li> <span class="days">1</span>
+								<li> <span class="days">2</span>
 									<p class="timeRefDays">days</p>
 								</li>
 								<li> 
-									<span class="hours">20</span>
+									<span class="hours">10</span>
 									<p class="timeRefHours">hours</p>
 								</li>
 								<li> 
@@ -64,17 +108,15 @@
 
                     <!-- Start WOWSlider.com -->
 					<div class="slider">
-						<img src="../images/jugdate.png" alt=""/>
+						<img src="assets/img/jugdate.png" alt=""/>
 					</div>
 					<!-- End WOWSlider.com -->
                     
                 </div>
-               
-                    
-               
-             <div class="register span6">
                 
-                    <!-- <h:form id="CallForPapersForm">
+                <div class="register span6">
+                
+                    <h:form id="CallForPapersForm">
                     
                     	<p:growl id="growl" life="4000" />
                     
@@ -127,29 +169,20 @@
                         </p:blockUI>
 
 					</h:form>
- -->
 
- 				<br/> <br/> <br/> 
 
-					<div>
-					<h:form>
-						<p:commandButton value="submit propral" action="RegisterCallForPaper"  id="cf_send"  style="width:500px" />
-						</h:form>
-					</div>
                 
-                <br/> <br/> <br/>
-               		 
-					<div>
-					<h:form>
-						<p:commandButton value="view My proposal" action="RegisterCallForPaper"  id="cf_send"  style="width:500px" />
-						</h:form>
-					</div>
-                </div> 
+                </div>
             </div>
         </div>
-			
-			
-			
-			
-			</ui:define>
-</ui:composition>
+        
+        
+        
+        <div class="footer">
+        
+        	<img src="assets/img/group.png" alt=""/><br />
+        	Esprit JUG Day 2014 - Call For Papers<br /><br />        	
+        </div>
+
+</body> 
+</html>

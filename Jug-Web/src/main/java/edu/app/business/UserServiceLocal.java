@@ -50,7 +50,7 @@ public interface UserServiceLocal {
 	public List<Leader> findAllLeaders();
 
 	
-	public List<Member> findAllMembers();
+	public List<Member> findAllMembersJUG();
 
 
 

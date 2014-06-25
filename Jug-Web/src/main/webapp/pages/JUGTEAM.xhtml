@@ -10,7 +10,7 @@
 			
 			<div id="main" class="row-fluid">
 		<div class="row-fluid">
-		
+		<h:form>
 		<ui:repeat var="led" value="#{articlesBean2.leaders}">
 			<div class="kontengal4 span3">
 			
@@ -29,7 +29,12 @@
 					</a>
 					<h3 class="gal-title">
 					<a href="#" title="Permalink to Fusce pellentesque suscipit nibh massa porta molestie iaculis" rel="bookmark">
-					Fusce pellentesque suscipit nibh massa porta molestie iaculi...
+					<h:commandLink action="#{articlesBean2.doDetailUSER}">
+									<h:outputText value="#{led.nom}" />
+									
+										<h:outputText value="#{led.prenom}" />
+										<f:param name="clickId" value="#{led.idUser}" />
+ 									</h:commandLink>
 					
 					
 					</a>
@@ -61,7 +66,12 @@
 					</a>
 					<h3 class="gal-title">
 					<a href="#" title="Permalink to Fusce pellentesque suscipit nibh massa porta molestie iaculis" rel="bookmark">
-					Fusce pellentesque suscipit nibh massa porta molestie iaculi...
+					<h:commandLink action="#{articlesBean2.doDetailUSER}">
+									<h:outputText value="#{mebr.nom}" />
+									
+										<h:outputText value="#{mebr.prenom}" />
+										<f:param name="clickId" value="#{mebr.idUser}" />
+ 									</h:commandLink>
 					
 					
 					</a>
@@ -72,7 +82,7 @@
 			</div>
 			
 		 </ui:repeat>
-			
+			</h:form>
 					
 		</div>
 			

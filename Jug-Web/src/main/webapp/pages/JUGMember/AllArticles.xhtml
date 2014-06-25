@@ -8,181 +8,150 @@
 			<ui:define name="pageTitle"></ui:define>		
 			<ui:define name="pageContent">
 			
-			<h:form>  
-    <p:growl id="messages"/>
- 
-    <p:menubar>
-        <p:submenu label="Article" icon="ui-icon-document">
-        
-           <p:menuitem value="All Articles" action="#{articleBean.articles}"  />
-           	 <p:separator />
-              <p:menuitem value="Add" action="#{articleBean.AddArticle}" />
-               <p:separator />
-    
-        </p:submenu>
- 
-        <p:submenu label="Users" icon="ui-icon-disk">
-            <p:menuitem value="All Users" action="#{userBean.AllUSERMember}" />
-            
-        </p:submenu>
-    
-    </p:menubar>
-</h:form>
+			<p:accordionPanel>
+			<p:tab title="All Article">
+			<h:form>
 			
-			<!-- afficher les articles -->
-			
-			
-			
-			<h:form id="form">  
-  
-    		<p:dataTable var="art" value="#{articlesBean2.articles}" rowKey="#{art.idArticle}" paginator="true" rows="5"  
-               id="artTable" selection="#{articlesBean2.article}" styleClass="ui-widget-content">  
-  
-       
-  
-        <f:facet name="header">  
-            List of artciles 
-        </f:facet>  
-        <p:column headerText="Article name" filterBy="#{art.title}" id="title">  
-            #{art.title}  
-        </p:column>  
-  
-        <p:column headerText="Date" filterBy="#{art.datecration}" id="type">  
-            #{art.datecration}  
-        </p:column>  
-  
-        <p:column headerText="created by" filterBy="  #{art.user.nom}" id="user">  
-            #{art.user.nom} #{art.user.prenom}    
-        </p:column>  
-                <p:column headerText="Status" filterBy=" #{art.status}" id="status">  
-               #{art.status}
-        </p:column>  
-	
-	
-	<p:column headerText="Details" id="detail">  
-           
-            <p:graphicImage id="img" width="37px" height="28px"
-                  		  value="/resources/images/show.png"/> 
-                  		   <p:commandLink update="detail" action="#{articlesBean2.displayDetails}"> 
-            <f:setPropertyActionListener target="#{articlesBean2.displayDetails}" value="true"/>
-                               </p:commandLink>
-           
-        </p:column> 
-      
-  
-    </p:dataTable>  
-  
-</h:form> 
-			
-			<ui:include src="/pages/JUGMember/articleDetail.xhtml"/>
-			
-			
-			
-			
-			
-			
-			
+		<p:dataTable id="Tar-Tab" value="#{articlesBean2.allArticles}" var="atc"
+			 paginator="true" rows="10" scrollable="true">
 
+			
+			<p:column>
+			<f:facet name="header">
+			<h:outputText value="picture" />
+			</f:facet>
+			<h:form>
+			<p:graphicImage value="#{articlesBean2.streamedPic}">
+ 			<f:param name="photo" value="#{atc.picture.idPicture}"></f:param>
+ 			</p:graphicImage>
+			</h:form>			
+			</p:column>
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="Title" />
+				</f:facet>
+				<h:outputText value="#{atc.title}" />
+			</p:column>
+
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="Date_Deb" />
+				</f:facet>
+				<h:outputText value="#{atc.datecration}" />
+			</p:column>
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="Date_Deb" />
+				</f:facet>
+				<h:outputText value="#{atc.datecration}" />
+			</p:column>
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="Date_Deb" />
+				</f:facet>
+				<h:outputText value="#{atc.datecration}" />
+			</p:column>
+			<p:column>
+				<p:commandLink title="Supprimer"
+					action="#{articlesBean2.deleteAtticle(atc)}" update="Tar-Tab">
+					<p:confirm header="Confirmation"
+						message="vous etes sure de supprime?" icon="ui-icon-alert" />
+					<p:graphicImage width="20px" height="20px" value="/resources/images/delete.jpg" />
+				</p:commandLink>
+
+				<p:confirmDialog global="true" showEffect="fade"
+					hideEffect="explode">
+					<p:commandButton value="Yes" type="button"
+						styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+					<p:commandButton value="No" type="button"
+						styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+				</p:confirmDialog>
+
+
+
+				<p:commandLink id="ModifierButton1" title="modifier"
+					 oncomplete="PF('dlg11').show();"
+					icon="ui-icon-extlink" process="@this" ajax="true" update="dial1">
+					<f:setPropertyActionListener target="#{articlesBean2.article}"
+						value="#{atc}" />
+					<p:graphicImage   width="20px" height="20px"  value="/resources/images/modifier.jpg" />
+				</p:commandLink>
+
+				<p:dialog id="dial1" header="gerer Article" widgetVar="dlg11"
+					maximizable="true" height="200" width="400">
+					<p:panelGrid columns="2" cellpadding="5" style="border: 0px;">
+						<f:facet name="header">  
+						modifier larticles
+						<h:outputText value="title " />
+							<h:outputText value="#{articlesBean2.article.title}" />
+						</f:facet>
+						<h:outputText value="create by" />
+						<p:inputText value="#{articlesBean2.article.user.prenom}"></p:inputText>
+
+						<h:outputText value="Date creation" />
+						<p:calendar effect="fadeIn"
+							value="#{articlesBean2.article.datecration}">
+							<f:convertDateTime pattern="dd/MM/yyyy" />
+						</p:calendar>
+
+						
+						
+						
+						<h:commandButton value="Confirmer"
+							action="#{articlesBean2.updateArticle(atc)}" update="Tar-Tab" />
+					</p:panelGrid>
+				</p:dialog>
+			</p:column>
+
+		</p:dataTable>
+		
+	</h:form>
+</p:tab></p:accordionPanel>
+	<p:commandButton id="ajoutButton111"
+		rendered="#{tarBean.afficherTarification}" value="Ajouter_Tarif"
+		onclick="PF('dlg111').show();" type="button" icon="ui-icon-extlink" />
+
+	<p:dialog id="dialog111" header="Ajouter Tarification"
+		widgetVar="dlg111" maximizable="true" height="200" width="400">
+		<h:form>
+			<h:panelGrid columns="2" cellpadding="5">
+				<h:outputText value="Taux tarif" />
+				<p:inputText value="#{tarBean.tarification.tauxTarif}"></p:inputText>
+
+				<h:outputText value="Date debut" />
+				<p:calendar effect="fadeIn"
+					value="#{tarBean.tarification.dateDebTarif}">
+					<f:convertDateTime pattern="dd/MM/yyyy" />
+				</p:calendar>
+
+				<h:outputText value="Date fin" />
+				<p:calendar effect="fadeIn"
+					value="#{tarBean.tarification.dateFinTarif}">
+					<f:convertDateTime pattern="dd/MM/yyyy" />
+				</p:calendar>
+
+				<h:outputText value="Capital" />
+				<p:selectOneMenu effect="fold" editable="true"
+					value="#{tarBean.idcap}">
+					<f:convertNumber integerOnly="true" />
+					<f:selectItems value="#{tarBean.caps}" />
+				</p:selectOneMenu>
+				<h:outputText value="age" />
+				<p:selectOneMenu effect="fold" editable="true"
+					value="#{tarBean.idag}">
+					<f:convertNumber pattern="#,##0" />
+					<f:selectItems value="#{tarBean.ags}" />
+				</p:selectOneMenu>
+				<h:commandButton value="ajouter" action="#{tarBean.ajoutTarif()}"
+					update="Tar-Tab" />
+			</h:panelGrid>
+		</h:form>
+	</p:dialog>
+			
+			
+			
+			
+			
 			
 			</ui:define>
-			<ui:define name="pageSid">
-			
-			
-			<h:form>
-			<div class="widget widget_latestpost">
-				<h3 class="title"><span>Recent Posts</span></h3>
-				<div class="latest-posts widget">
-					<div class="latest-post clearfix">
-						<h:graphicImage   width="225" height="136" library="images/dummy" name="shutterstock_134257640-225x136.jpg" class="thumb fl" alt="shutterstock_134257640" title=""/>
-						<h4><a href="#" rel="bookmark" title="Lectus non rutrum pulvinar urna leo dignissim lorem">Lectus non rutrum pulvinar urna leo</a></h4>
-						<div class="post-time">August 12, 2013</div>
-						<div class="ratings" style="float: none">
-							<input class="star" type="radio" name="recent-post-1" value="1" disabled="disabled"/>
-							<input class="star" type="radio" name="recent-post-1" value="2" disabled="disabled"/>
-							<input class="star" type="radio" name="recent-post-1" value="3" disabled="disabled"/>
-							<input class="star" type="radio" name="recent-post-1" value="4" disabled="disabled" checked="checked"/>
-							<input class="star" type="radio" name="recent-post-1" value="5" disabled="disabled"/>
-						</div>
-					</div>
-					
-					<div class="latest-post clearfix">
-					<h:graphicImage   width="225" height="136" library="images/dummy" name="shutterstock_70184773-225x136.jpg" class="thumb fl" alt="shutterstock_70184773" title="" />
-						<h4><a href="#" rel="bookmark" title="Suspen disse auctor dapibus neque pulvinar urna leo">Suspen disse auctor dapibus neque</a></h4>
-						<div class="post-time">August 11, 2013</div>
-						<div class="ratings" style="float: none">
-							<input class="star" type="radio" name="recent-post-2" value="1" disabled="disabled"/>
-							<input class="star" type="radio" name="recent-post-2" value="2" disabled="disabled"/>
-							<input class="star" type="radio" name="recent-post-2" value="3" disabled="disabled"/>
-							<input class="star" type="radio" name="recent-post-2" value="4" disabled="disabled" checked="checked"/>
-							<input class="star" type="radio" name="recent-post-2" value="5" disabled="disabled"/>
-						</div>
-					</div>
-
-					<div class="latest-post clearfix">
-						<h:graphicImage   width="225" height="136" library="images/dummy" name="shutterstock_70787161-225x136.jpg" class="thumb fl" alt="shutterstock_70787161" title="" />
-						<h4><a href="#" rel="bookmark" title="Porta lorem ipsum dolor sit amet, consectetur adipiscing risus">Porta lorem ipsum dolor sit amet</a></h4>
-						<div class="post-time">August 2, 2013</div>
-						<div class="ratings" style="float: none">
-							<input class="star" type="radio" name="recent-post-3" value="1" disabled="disabled"/>
-							<input class="star" type="radio" name="recent-post-3" value="2" disabled="disabled"/>
-							<input class="star" type="radio" name="recent-post-3" value="3" disabled="disabled"/>
-							<input class="star" type="radio" name="recent-post-3" value="4" disabled="disabled" checked="checked"/>
-							<input class="star" type="radio" name="recent-post-3" value="5" disabled="disabled"/>
-						</div>
-					</div>
-
-				</div>
-			</div>
-
-			<div class="widget widget_latestpost"><h3 class="title"><span>Technology News</span></h3>
-				<div class="latest-posts">
-					<article class="post">
-						<a class="image_thumb_zoom" href="#" title="Permalink to Porta lorem ipsum dolor sit amet, consectetur adipiscing risus" rel="bookmark">
-						<h:graphicImage   width="371" height="177" library="images/dummy" name="shutterstock_70787161-371x177.jpg" class="attachment-post-first wp-post-image" alt="shutterstock_70787161" />
-						</a>
-						<h4 class="post-title">
-						<a href="#" title="Permalink to Porta lorem ipsum dolor sit amet, consectetur adipiscing risus" rel="bookmark">Porta lorem ipsum dolor sit amet, c...</a>
-						<span class="date">August 2, 2013</span>
-						</h4>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer placerat id augue non dapibus. Morbi ut ipsum cond...</p>
-					</article>
-				
-					<article class="post">
-						<div class="entry clearfix">
-							<a href="#" title="Permalink to Donec consectetuer ligula vulputate sem tristique cursus" rel="bookmark">
-							<h:graphicImage   width="225" height="136" library="images/dummy" name="photodune-2043745-college-student-s-225x136.jpg" class="thumb" alt="photodune-2043745-college-student-s" />
-						
-							<h4 class="post-title">Donec consectetuer ligula vulputate...</h4>
-							</a>
-							<p>Nam nibh arcu, tristique eget pretium se...</p>
-							<div class="meta">
-								<span class="date">July 11, 2013</span>
-							</div>
-						</div>
-					</article>
-
-					<article class="post">
-						<div class="entry clearfix">
-							<a href="#" title="Permalink to Quisque sodales viverra ornare vitae libero ac risus" rel="bookmark">
-								<h:graphicImage   width="225" height="136" library="images/dummy" name="shutterstock_123603871-225x136.jpg" class="thumb" alt="gallery-1" />
-							<h4 class="post-title">Quisque sodales viverra ornare vita...</h4></a>
-							<p>Quisque sodales viverra ornare. Aenean p...</p>
-							<div class="meta">
-								<span class="date">July 2, 2013</span>
-							</div>
-						</div>
-					</article>
-				</div>
-			</div>
-			
-		
-			</h:form>
-			
-			
-			
-			
-		</ui:define>
-			
-			
-			
 </ui:composition>

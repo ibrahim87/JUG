@@ -1,0 +1,68 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/template/template.xhtml">
+                	
+			<ui:define name="pageTitle"></ui:define>		
+			<ui:define name="pageContent">
+			
+			<h:form>
+<center><h2>All Articles</h2></center>
+
+<p:dataTable  value="#{articlesBean2.dataModel}"  border="1"  > 
+
+
+
+<p:column>
+<f:facet name="header">
+<h:outputText value="Title" />
+</f:facet>
+<h:outputText value="#{articlesBean2.article.title}" />
+</p:column>
+<p:column>
+<f:facet name="header">
+<h:outputText value="Picture " />
+</f:facet>
+ <p:graphicImage 
+                                     value="#{articlesBean2.streamedPic}">
+ 									<f:param name="photo" value="#{articlesBean2.article.picture.idPicture}"></f:param>
+ 									</p:graphicImage> 
+ 									</p:column>
+
+<p:column>
+<f:facet name="header">
+<h:outputText value="Creator" />
+</f:facet>
+<h:outputText value="#{articlesBean2.article.user.nom}" />
+</p:column>
+
+
+<p:column>
+<f:facet name="header" >
+<h:outputText value="Action" />
+</f:facet>
+<h:commandButton value="Publier" action="#{articlesBean2.updateArticle}" />
+<h:commandButton value="Delete" action="#{articlesBean2.deleteArticle}" />
+<p:commandButton value="Details" id="submit" action="#{articlesBean2.voirDetailArticle}"  oncomplete="PF('dialog').show()" />  
+</p:column>
+
+</p:dataTable>
+<p:dialog header="Details" widgetVar="dialog" showEffect="fold" hideEffect="fold" >  
+            <h:panelGrid id="display" columns="2" cellpadding="5">
+          
+            <h:outputText value="Title of Article : " />
+            <h:outputText value="#{articlesBean2.article.user.nom}" />
+            <h:outputText value="Categorie: " />
+            <h:outputText value="#{articlesBean2.article.categorie}" />
+            
+            <h:outputText value="descprition  : " />
+            <h:outputText value="#{articlesBean2.article.contenu}" />
+           </h:panelGrid>
+</p:dialog>
+</h:form>
+			
+			
+			</ui:define>
+</ui:composition>

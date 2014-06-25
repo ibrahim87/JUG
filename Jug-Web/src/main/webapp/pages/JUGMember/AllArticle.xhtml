@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/template/template.xhtml">
+                	
+			<ui:define name="pageTitle"></ui:define>		
+			<ui:define name="pageContent">
+			  <p:panel style="width:980px">
+			
+			
+			<h:form id="form">
+				<p:growl id="growl"></p:growl>
+
+				<p:tabMenu activeIndex="2">
+					<p:menuitem  value="Upload Image In dataBase"  action="/pages/uploadDB?faces-redirect=true">
+					
+					</p:menuitem>
+						<p:menuitem  value="Upload Image In tmp file"  action="/pages/uploadTmp?faces-redirect=true">
+					
+					</p:menuitem>
+						<p:menuitem  value="Converter" >
+					
+					</p:menuitem>
+						<p:menuitem  value="Youtube API"  action="/pages/youtube?faces-redirect=true">
+					
+					</p:menuitem>
+						<p:menuitem  value="Push"  action="/pages/push?faces-redirect=true">
+					
+					</p:menuitem>
+					</p:tabMenu>
+					<p:separator></p:separator>
+					   <h1>Converter</h1>
+					   <p:dataTable value="#{articlesBean2.allArticles}" var="ar"
+					paginator="true" rows="10"
+					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					rowsPerPageTemplate="5,10,15">
+					<p:column headerText="Title">
+					<h:outputText value="#{ar.title}" />
+					</p:column>
+					
+					<p:column>
+					<p:commandButton value="edit" icon="ui-icon-pencil" update=":formEmp" oncomplete="dialogEmp.show()">
+					<f:setPropertyActionListener target="#{articlesBean2.article}" value="#{ar}" ></f:setPropertyActionListener>
+					</p:commandButton>
+					</p:column>
+					</p:dataTable>
+					</h:form>
+					<p:dialog widgetVar="dialogEmp" header="Update Developpeur" modal="true">
+					<h:form id="formEmp">
+					<h:panelGrid columns="2">
+					<p:outputLabel value="Title"></p:outputLabel>
+					<p:inputText value="#{articlesBean2.article.title}"></p:inputText>
+					</h:panelGrid>
+					<p:commandButton value="valider" action="#{articlesBean2.update()}" oncomplete="dialogEmp.hide()" update=":form"></p:commandButton>
+					</h:form>
+					</p:dialog>
+		</p:panel>
+		
+			 
+			
+			
+			
+			
+			</ui:define>
+</ui:composition>

@@ -56,7 +56,12 @@
 						</ul></li>
 				</ul></li>
 				
-				<li><h:commandLink value="CALL FOR PAPER" action="/pages/CallOfPaper?faces-redirect=true" /></li>
+				<li><h:commandLink rendered="#{userBean.imSpeaker}" value="CALL FOR PAPER" action="/pages/CallOfPaper?faces-redirect=true" />
+				<ul class="sub-menu">
+							<li><h:commandLink value="Submit proposal" action="/pages/RegisterCallForPaper" /></li>
+							
+							<li><h:commandLink value="View my proposal" action="/pages/RegisterCallForPaper" /></li>
+						</ul></li>
 				<li><h:commandLink rendered="#{not userBean.imJUGLeader}" value="JOIN NOW " action="/pages/Regist?faces-redirect=true" />
 				
 				</li>
@@ -84,6 +89,7 @@
 					value="#{userBean.streamedPic}"/>	</h:commandLink>
 						<ul class="sub-menu">
 
+						<li><h:commandLink action="/pages/JUGMember/Home?faces-redirect=true" value="Home" /></li>
 						
 					<li><h:commandLink action="/pages/Profile?faces-redirect=true" value="Edit Profile" /></li>
 					<li><h:commandLink action="#{userBean.logout}" value="LOG OUT" /></li>

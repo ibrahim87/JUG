@@ -326,7 +326,7 @@
 			
 			<ui:define name="pageSid">
 			
-					<h:form>
+					
 						
 						<h:form  id="login_form" rendered="#{not userBean.loggedIn}">
 						<h3 class="title"><span>LOGIN</span></h3>
@@ -338,14 +338,14 @@
 						
 						<h:outputText value="  Password  " />
 						<h:inputSecret value="#{userBean.user.password}" />
-						<p:commandButton id="login_submit" action="#{userBean.doLogin}" value="log in" />
+						<p:commandButton id="login_submit" action="#{userBean.doLogin}" value="log in"  update="message"/>
 						<h:message for="login_submit" styleClass="error"/>
 						
 						</h:panelGrid>
-						</h:form>
+					
 						
 						
-						<h:form  rendered="#{not userBean.loggedIn}">
+					
 						<p:commandLink value="forgot your password" styleClass="forgot" onclick="dlgmail.show()"></p:commandLink>
 							<p:ajaxStatus onstart="statusDlg.show()" onsuccess="statusDlg.hide()"></p:ajaxStatus>
 						<p:dialog modal="true" widgetVar="statusDlg" header="Progressing..." draggable="true" closable="false">
@@ -374,7 +374,7 @@
 			
 
 
-</h:form>
+
 			<h:form>
 			
 			
