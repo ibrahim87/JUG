@@ -45,7 +45,7 @@ public class EventService implements EventServiceRemote, EventServiceLocal {
 	@SuppressWarnings("unchecked")
 	public List<Event> findAllEvent() {
 		Query query = em.createQuery("select e from Event e");
-		return (List<Event>)query.getResultList();
+		return query.getResultList();
 	}
 
 	public List<Event> findAllEventNotDone() {
@@ -111,4 +111,12 @@ public class EventService implements EventServiceRemote, EventServiceLocal {
 		return null;
 	}
 
-}
+	@Override
+	public Event findEventByTitle(String title) {
+		Query query = em.createQuery("select e from Event e where e.title=:t");
+		query.setParameter("t", title);
+		return  (Event) query.getSingleResult();
+	}
+	}
+
+

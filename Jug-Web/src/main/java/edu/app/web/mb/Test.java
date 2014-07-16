@@ -40,35 +40,18 @@ public class Test implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	public String fetchSpeakersByEvent(String title)
-	{
-		//List<Speaker> speakers= new ArrayList<Speaker>();
-		List<Proposition> propositions= new ArrayList<Proposition>();
-		
-		  event=new Event(title);
-		  
-		  
-		  callForPaper=event.getCallForPaper();
-		  propositions=callForPaper.getPropositions();
-		  		  
-		return propositions.get(0).getSpeaker().getNom();
-		
-		
-		
-	}
-	
-}
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
+//	public String fetchSpeakersByEvent(String title)
+//	{
+//		//List<Speaker> speakers= new ArrayList<Speaker>();
+//		List<Proposition> propositions= new ArrayList<Proposition>();
 //		
+//		  event=new Event(title);
+//		  
+//		  
+//		  callForPaper=event.getCallForPaper();
+//		  propositions=callForPaper.getPropositions();
+//		  		  
+//		return propositions.get(0).getSpeaker().getNom();
 //		for(Speaker speaker:userServiceRemote.findAllSpeakers()){
 //			
 //			for(Proposition p:speaker.getPropositions()){
@@ -88,6 +71,23 @@ public class Test implements Serializable {
 //				}
 //			}
 //		}
+		
+		
+//	}
+//	
+//}
+//		  
+		  
+		  
+		  
+}	  
+		  
+		  
+		  
+		  
+		  
+//		
+
 //		
 //	}
 //	

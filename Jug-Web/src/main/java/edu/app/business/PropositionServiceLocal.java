@@ -19,7 +19,10 @@ public interface PropositionServiceLocal {
 	Proposition findPropositionById(int idProposition);
 
 	List<Proposition> findAllProposition();
-
+	
+	List<Proposition> findAllPropositionAccepted();
+	List<Proposition> findAllPropositionNotAccepted();
+	
 	List<Proposition> findProposition(String name);
 
 	List<Proposition> findByKeywordProposition(String keyword);

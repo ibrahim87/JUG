@@ -59,7 +59,7 @@ a:hover {
 }
 
 .register-container {
-	margin-top: 50px;
+	margin-top: 0px;
 }
 
 /* ----- iPhone ----- */
@@ -68,7 +68,7 @@ a:hover {
 }
 
 .iphone img {
-	margin-right: 10px;
+	margin-right: 5px;
 }
 
 /* ----- Registration Form ----- */

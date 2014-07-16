@@ -20,7 +20,7 @@ public interface CallOfPaperServiceRemote {
 
 	List<CallForPaper> findAllCallForPaper();
 
-	List<CallForPaper> findCallForPaper(String name);
+	CallForPaper findCallForPaperBYName(String name);
 
 	List<CallForPaper> findByKeywordCallForPaper(String keyword);
 

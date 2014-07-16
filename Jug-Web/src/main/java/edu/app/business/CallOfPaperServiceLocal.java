@@ -19,8 +19,10 @@ public interface CallOfPaperServiceLocal {
 
 	List<CallForPaper> findAllCallForPaper();
 
-	List<CallForPaper> findCallForPaper(String name);
+	CallForPaper findCallForPaperBYName(String name);
 
 	List<CallForPaper> findByKeywordCallForPaper(String keyword);
+	
+	//CallForPaper findCallforPaperByDate(int year);
 
 }

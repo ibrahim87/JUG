@@ -1,23 +1,17 @@
 package edu.app.web.mb;
 
 import java.io.ByteArrayInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-import javax.faces.model.DataModel;
-import javax.faces.model.ListDataModel;
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.commons.io.IOUtils;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 
@@ -47,7 +41,7 @@ public class ArticlesBean2 implements Serializable {
 
 	@EJB
 	UserServiceLocal userServiceLocal;
-	
+
 	private List<Article> arts;
 	private List<Article> articleCategorie;
 	private List<Speaker> speakers;
@@ -69,9 +63,9 @@ public class ArticlesBean2 implements Serializable {
 	private List<Article> allArtileOther;
 	private String searchMovie;
 	private List<Article> AllArticle;
-private List<Article>filtredArticle;
-private List<Article> AllArticles;
-	private DataModel dataModel = new ListDataModel();
+	private List<Article> filtredArticle;
+	private List<Article> AllArticles;
+	private String title;
 
 	// private User user = new Leader();
 
@@ -94,20 +88,17 @@ private List<Article> AllArticles;
 			streamedPic = new DefaultStreamedContent(new ByteArrayInputStream(
 					picture));
 
-		dataModel = getDataModel();
-
 		arts = articleServiceLocal.findAllArticleCustum(status, 0, 4);
-		
-		AllArticles= articleServiceLocal.findAllArticle();
-		
+
+		AllArticles = articleServiceLocal.findAllArticle();
+
 		speakers = userServiceLocal.findAllSpeakers();
 
-	
 		articleCategorie = articleServiceLocal.findArticleJava(0, 4);
 
 		articles = articleServiceLocal.findArticleByJUGLeader(0, 4);
 
-	//	members = userServiceLocal.findAllMembers(etat);
+		//members = userServiceLocal.findAllMembers(etat);
 		leaders = userServiceLocal.findAllLeaders();
 
 		articlesJEE = articleServiceLocal.findArticleByJEE(0, 4);
@@ -115,20 +106,19 @@ private List<Article> AllArticles;
 		OneArticleJava = articleServiceLocal.findOneArticleJava(0, 1);
 		OneArticleOther = articleServiceLocal.findOneOtherArticle(0, 1);
 		allArtileOther = articleServiceLocal.findArticleOther(0, 4);
-		
-		//members=userServiceLocal.findAllMembers();
+
+		// members=userServiceLocal.findAllMembers();
 
 	}
 
-	public String update(){
+	public String update() {
 		
-		articleServiceLocal.updateArticle(article);
-	System.out.println("l'article"+article);
+	articleServiceLocal.updateArticle(article);
+		
 		return null;
-		
-		
+
 	}
-	
+
 	public String getName() {
 		return name;
 	}
@@ -136,6 +126,7 @@ private List<Article> AllArticles;
 	public void setName(String name) {
 		this.name = name;
 	}
+
 	public void cancel() {
 		article = new Article();
 		displayDetails = false;
@@ -181,10 +172,6 @@ private List<Article> AllArticles;
 		return tempDetail;
 	}
 
-	
-
-	
-	
 	public String modifDetailContenu(String contenu) {
 		String tempDetail = null;
 		try {
@@ -197,43 +184,34 @@ private List<Article> AllArticles;
 		return tempDetail;
 	}
 
-	public String voirDetailArticle() {
-		article = (Article) dataModel.getRowData();
-
-		return "";
-	}
-
 	public String updateArticle() {
-		//article = (Article) dataModel.getRowData();
-		//article.setStatus("public");
+		// article = (Article) dataModel.getRowData();
+		// article.setStatus("public");
 		articleServiceLocal.updateArticle(article);
 
 		return "";
 	}
 
-	public String deleteArticle() {
-		//article = (Article) dataModel.getRowData();
-
+	public String deleteArticle(Article article1) {
+		
+		article = articleServiceLocal.findArticleById(article1.getIdArticle());
 		articleServiceLocal.deleteArticle(article);
+		article = new Article();
+		AllArticles = articleServiceLocal.findAllArticle();
 		return "";
 	}
 
-	
-	
-	
-	public String deleteAtticle( Article article1){
-		
-		
-		article=articleServiceLocal.findArticleById(article1.getIdArticle());
+	public String deleteAtticle(Article article1) {
+
+		article = articleServiceLocal.findArticleById(article1.getIdArticle());
 		articleServiceLocal.deleteArticle(article);
-		article= new Article();
-		AllArticles=articleServiceLocal.findAllArticle();
-	
-		
-		
+		article = new Article();
+		AllArticles = articleServiceLocal.findAllArticle();
+
 		return null;
-		
+
 	}
+
 	// public List<Article> findArticleBycathegorieName(Categorie categorie, int
 	// pageIndex, int noOfRecords){
 	//
@@ -445,15 +423,6 @@ private List<Article> AllArticles;
 		ArtileFormCategorie = artileFormCategorie;
 	}
 
-	public DataModel getDataModel() {
-		dataModel.setWrappedData(articleServiceLocal.findAllArticle());
-		return dataModel;
-	}
-
-	public void setDataModel(DataModel dataModel) {
-		this.dataModel = dataModel;
-	}
-
 	public boolean isDisplayDetails() {
 		return displayDetails;
 	}
@@ -476,6 +445,14 @@ private List<Article> AllArticles;
 
 	public void setAllArticles(List<Article> allArticles) {
 		AllArticles = allArticles;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 }

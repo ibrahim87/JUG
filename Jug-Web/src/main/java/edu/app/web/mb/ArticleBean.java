@@ -141,12 +141,13 @@ public class ArticleBean implements Serializable {
 		newaArticle.setUser(user);
 
 		articleServiceLocal.createArticle(newaArticle);
-		newaArticle = new Article();
-
 		FacesMessage msg = new FacesMessage(
 				"Success! , Your inscription is Done ");
 		FacesContext.getCurrentInstance().addMessage(null, msg);
 
+		newaArticle = new Article();
+
+	
 		navigateTo = "/pages/JUGMember/Home?faces-redirect=true";
 		return navigateTo;
 	}
@@ -216,6 +217,14 @@ public class ArticleBean implements Serializable {
 	public String AddArticleJUG() {
 
 		return "/pages/JUGLeader/AddArticle?faces-redirect=true";
+	}
+
+	
+	
+	
+	public String AllArticleLeader() {
+
+		return "/pages/JUGLeader/AllArticleLeader?faces-redirect=true";
 	}
 
 	public void upload(FileUploadEvent event) throws IOException {

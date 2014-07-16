@@ -8,9 +8,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 
-@Entity(name="t_proposition")
+@Entity
+@Table(name="t_proposition")
 public class Proposition implements Serializable {
 
 	/**
@@ -22,9 +24,33 @@ public class Proposition implements Serializable {
 	private Speaker speaker;
 	private CallForPaper callForPaper;
 	private String EtatPro ;
+	private String detail ;
+	private String duration;
 	
 	public Proposition() {
 	}
+
+	
+	
+	
+	
+
+	public Proposition(int idProp, String title, Speaker speaker,
+			CallForPaper callForPaper, String etatPro, String detail,
+			String duration) {
+		super();
+		this.idProp = idProp;
+		this.title = title;
+		this.speaker = speaker;
+		this.callForPaper = callForPaper;
+		EtatPro = etatPro;
+		this.detail = detail;
+		this.duration = duration;
+	}
+
+
+
+
 
 
 	@Id
@@ -87,6 +113,32 @@ public class Proposition implements Serializable {
 
 	public void setEtatPro(String etatPro) {
 		EtatPro = etatPro;
+	}
+
+
+	public String getDetail() {
+		return detail;
+	}
+
+
+	public void setDetail(String detail) {
+		this.detail = detail;
+	}
+
+
+	public String getDuration() {
+		return duration;
+	}
+
+
+	public void setDuration(String duration) {
+		this.duration = duration;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Proposition [idProp=" + idProp + ", title=" + title + "]";
 	}
 
 

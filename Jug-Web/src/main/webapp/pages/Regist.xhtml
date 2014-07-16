@@ -9,8 +9,8 @@
 			<ui:define name="pageContent">
 			
 			
-			<div id="slide-left" class="flexslider span8">
-					
+			<!-- <div id="slide-left" class="flexslider span8">
+			 -->		
 				
 			<h:form id="register">
 				<p:growl id="growl" sticky="true" showDetail="true"/>  
@@ -19,7 +19,7 @@
 
  				
  				
-				<h:panelGrid columns="2">
+				<h:panelGrid columns="3">
 					<p:outputLabel for="firstname" value="Firstname:" />
 					<p:inputText id="firstname" value="#{userBean.nom}"
 						required="true" validatorMessage="between 3 and 10">
@@ -29,8 +29,8 @@
 						<p:watermark value="first name" for="firstname"></p:watermark>
 					</p:inputText>
 					<h:message  id="mlsg" for="firstname" styleClass="error" style="BACKGROUND-COLOR: #ff0000;" />	
-					
-					
+						
+				
 					<p:outputLabel for="lastname" value="LastName:" />
 					<p:inputText id="lastname" value="#{userBean.prenom}"
 						required="true"  validatorMessage="between 3 and 10">
@@ -48,7 +48,7 @@
            		 <f:selectItem itemLabel="Female" itemValue="Memale" />  
        			 </p:selectOneRadio>
                       
-			
+			<p:outputLabel />
 				
 					
 					<p:outputLabel for="eMail" value="eMail:" required="true" requiredMessage="email is required" validatorMessage="invalid email" />
@@ -76,6 +76,7 @@
 						<p:watermark value="password" for="pwd"></p:watermark>
 					</p:password>
 
+<p:outputLabel />
 
 
 					<p:outputLabel for="type" value="type Compte:" />
@@ -86,7 +87,7 @@
 						
 						<p:watermark value="user type" for="type"></p:watermark>
 					</h:selectOneMenu>
-
+<p:outputLabel />
 					
 				 <h:outputText value="Choose picture For you profil :  " />  
        			 
@@ -120,8 +121,8 @@
 			
 			
 			
-			</div>
-			
+			<!-- </div>
+			 -->
 			
 			
 			

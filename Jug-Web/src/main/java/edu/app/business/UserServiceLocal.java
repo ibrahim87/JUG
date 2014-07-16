@@ -52,7 +52,9 @@ public interface UserServiceLocal {
 	
 	public List<Member> findAllMembersJUG();
 
-
+		public void verification();
+	
+	
 
 
 	

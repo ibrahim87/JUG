@@ -94,7 +94,7 @@ public class Article implements Serializable {
 		this.title = title;
 	}
 
-	@ManyToOne(cascade={CascadeType.MERGE,CascadeType.PERSIST})
+	@ManyToOne(cascade={CascadeType.MERGE})
 	@JoinColumn(name="user_fk")
 	public User getUser() {
 		return user;

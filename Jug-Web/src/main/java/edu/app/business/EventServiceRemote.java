@@ -32,4 +32,7 @@ public interface EventServiceRemote {
 	Event StartHungOut(User JUGLeader);
 
 	Event findVipHungOut(User vip);
+	
+	Event findEventByTitle(String title);
+	
 }

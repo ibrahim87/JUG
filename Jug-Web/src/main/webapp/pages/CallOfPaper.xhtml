@@ -7,65 +7,19 @@
                 	
 			<ui:define name="pageTitle"></ui:define>		
 			<ui:define name="pageContent">
-			 
-			<script>
-			
-				$(document).ready(function(){
-					$("#countdown").countdown({
-						date: "6/27/2014 8:00:00",
-						format: "on"
-					},
-					
-					function() {
-						// callback function
-					});
-				});
-			
-		</script>
-
-
-				
 			
 		
-		<div class="register-container container">
-            <div class="row">
-            
-                <div class="iphone span5" >
-                    
-                    <div class="sideBar">
-                    	<img src="../images/wantyou.png" alt=""/>
-                    </div>
-                    <br /><br /><br />
-
-					<!-- TIMER -->
-					<div class="slider">
-						<div class="timer-area">
-							<h1>We'<span class="red" >re coming </span> soon <span class="red" > ... </span> </h1><br />
-							<ul id="countdown">
-								<li> <span class="days">1</span>
-									<p class="timeRefDays">days</p>
-								</li>
-								<li> 
-									<span class="hours">20</span>
-									<p class="timeRefHours">hours</p>
-								</li>
-								<li> 
-									<span class="minutes">10</span>
-									<p class="timeRefMinutes">minutes</p>
-								</li>
-								<li> 
-									<span class="seconds">01</span>
-									<p class="timeRefSeconds">seconds</p>
-								</li>
-							</ul>
-						</div>
-					</div><br /><br /><br />
-					<!-- end timer-area --> 
-
-                    <!-- Start WOWSlider.com -->
-					<div class="slider">
-						<img src="../images/jugdate.png" alt=""/>
-					</div>
+			
+			
+				
+			
+	
+		<div class="register-container container" align="center">
+		
+            <div class="row" style=" margin-left: 15px">
+             <div class="iphone span5" >
+             
+               <ui:include src="/pages/TimerCall.xhtml" />
 					<!-- End WOWSlider.com -->
                     
                 </div>
@@ -73,67 +27,12 @@
                     
                
              <div class="register span6">
-                
-                    <!-- <h:form id="CallForPapersForm">
-                    
-                    	<p:growl id="growl" life="4000" />
-                    
-                        <h2>CALL <span class="red"><strong>FOR</strong></span> PAPERS</h2>
-                        
-                        <label for="firstname">First Name *</label>
-                        <p:inputText label="First Name" value="#{c4pController.c4pForm.firstName}" id="firstName" placeholder="enter your first name..." required="true" />
-                       
-                        <label for="lastname">Last Name *</label>
-                        <p:inputText label="Last Name" value="#{c4pController.c4pForm.lastName}" id="lastName" placeholder="enter your last name..." required="true" />
-                        
-                        <label for="email">Email *</label>
-                        <p:inputText label="Email" value="#{c4pController.c4pForm.email}" id="email" placeholder="enter your email..." required="true" validatorMessage="Invalid Email Format.">
-                        	<f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
-                        </p:inputText>
-                        
-                        <label for="password">Organisation</label>
-                        <p:inputText value="#{c4pController.c4pForm.organisation}" id="organisation" placeholder="enter your company name..."  />
-                        
-                        <label for="password">Position</label>
-                        <p:inputText value="#{c4pController.c4pForm.position}" id="position" placeholder="enter your position..."  />         
-                        
-                        <label for="password">Personal Profile *</label>
-                        <p:inputTextarea required="true" maxlength="200"  label="Personal Profile" value="#{c4pController.c4pForm.personalProfile}" styleClass="textArea" id="personalProfile" placeholder="within 200 words..." rows="10" />  
-                        
-                        <label for="password">Company Profile</label>
-                        <p:inputTextarea label="Company Profile" maxlength="200" value="#{c4pController.c4pForm.companyProfile}" styleClass="textArea" id="companyProfile" placeholder="within 200 words..." rows="10" />  
-                        
-                        <br /><br />
-                        <h2>Paper <span class="red"><strong>Information</strong></span> </h2>
-                        
-                        <label for="password">Title of Paper *</label>
-                        <p:inputText required="true" label="Title Of Paper" value="#{c4pController.c4pForm.paperTitle}" id="title" placeholder="enter the paper title..."  />   
-                        
-                        <label for="password">Details *</label>
-                        <p:inputTextarea label="Paper Details" required="true" value="#{c4pController.c4pForm.details}" styleClass="largeTextArea" id="details" placeholder="enter the presentation details..."  />                             
-                       
-                        <label for="password">Estimated Duration * (Minutes)</label>
-						<p:inputText label="Estimated Duration" required="true" value="#{c4pController.c4pForm.duration}" id="duration" placeholder="enter the estimated duration..." >
-							<f:validateDoubleRange />
-						</p:inputText>                                                                       
-                                           
-                        <br />
-                        <p:commandButton id="submitBtn" value="Submit" actionListener="#{c4pController.doSendMail()}" update="growl" />
-                       
-                        <p:blockUI block="CallForPapersForm" trigger="submitBtn" >
-                        	<div style="text-align: center; vertical-align: middle; color: #555; font-size: large; font-weight: bold;">
-                        		<h:outputText value="Submitting your request, Please wait ..." />
-                        	</div>
-                        </p:blockUI>
-
-					</h:form>
- -->
-
+       
  				<br/> <br/> <br/> 
 
 					<div>
 					<h:form>
-						<p:commandButton value="submit propral" action="RegisterCallForPaper"  id="cf_send"  style="width:500px" />
+						<p:commandButton value="submit propral" action="RegisterCallForPaper?faces-redirect=true"  id="cf_send"  style="width:500px" />
 						</h:form>
 					</div>
                 

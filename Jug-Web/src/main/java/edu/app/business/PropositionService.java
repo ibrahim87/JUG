@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import edu.app.persistence.Event;
 import edu.app.persistence.Proposition;
 import edu.app.persistence.User;
 
@@ -36,12 +37,23 @@ public class PropositionService implements PropositionServiceRemote,
 		Proposition proposition = null;
 		proposition = em.find(Proposition.class, idProposition);
 		return proposition;
+		
+		
+		
 	}
 
+	
+	
+	
+
+	
 	@SuppressWarnings("unchecked")
 	public List<Proposition> findAllProposition() {
-		Query query = em.createQuery("select pro from Proposition pro");
-		return (List<Proposition>)query.getResultList();
+		Query query = em.createQuery("select e from Proposition e where e.etatPro like :state");
+		query.setParameter("state", "attente");
+		return query.getResultList();
+		
+		
 	}
 
 	@SuppressWarnings("unchecked")
@@ -70,6 +82,26 @@ public class PropositionService implements PropositionServiceRemote,
 		query.setParameter("cineaste", user.getidUser());
 		return query.getResultList();
 	
+	}
+
+	@Override
+	public List<Proposition> findAllPropositionAccepted() {
+		Query query = em
+				.createQuery("select p from Proposition p where p.etatPro like :state");
+				query.setParameter("state", "Accepter");
+				
+				return query.getResultList();
+		
+	}
+
+	@Override
+	public List<Proposition> findAllPropositionNotAccepted() {
+		Query query = em
+				.createQuery("select p from Proposition p where p.etatPro like :state");
+				query.setParameter("state", "refused");
+				
+				return query.getResultList();
+		
 	}
 
 }

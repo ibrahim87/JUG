@@ -212,8 +212,8 @@ public class UserService implements UserServiceRemote, UserServiceLocal {
 
 	
 	public List<Member> findAllMembers(String etat) {
-		
-		return (List<Member>)em.createQuery("select u from Member u where u.etat='Accepter'").getResultList();
+		Query query = em.createQuery("select u from Member u where u.etat='Accepter'");
+		return query.getResultList();
 	}
 
 	@Override
@@ -223,8 +223,11 @@ public class UserService implements UserServiceRemote, UserServiceLocal {
 
 	@Override
 	public List<Member> findAllMembersJUG() {
-		
-		return (List<Member>)em.createQuery("select u from Member u where u.etat='attente'").getResultList();
+		Query query = em
+				.createQuery("select u from Member u where u.etat like :state");
+				query.setParameter("state", "attente");
+				
+				return query.getResultList();
 	}
 
 	@Override
@@ -233,6 +236,12 @@ public class UserService implements UserServiceRemote, UserServiceLocal {
 	
 		user = em.find(User.class, idUser);
 		return user;
+		
+	}
+
+	@Override
+	public void verification() {
+	
 		
 	}
 	

@@ -21,6 +21,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.validator.ValidatorException;
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.io.IOUtils;
 import org.primefaces.event.FileUploadEvent;
@@ -130,6 +131,23 @@ public class UserBean implements Serializable {
 		return "/pages/JUGLeader/ListMemberJUG?faces-redirect=true";
 	}
 
+	
+	public String AddEvent() {
+		return "/pages/JUGLeader/AddEvent?faces-redirect=true";
+	}
+	public String AllEvent() {
+		return "/pages/JUGLeader/AllEvent?faces-redirect=true";
+	}
+	
+	
+	public String AddCallForPaper() {
+		return "/pages/JUGLeader/AddCallForPaper?faces-redirect=true";
+	}
+	
+	public String AllProposal() {
+		return "/pages/JUGLeader/AllProposal?faces-redirect=true";
+	}
+	
 	// methods
 	public String doLogin() throws IOException {
 		String navigateTo = null;
@@ -242,6 +260,25 @@ public class UserBean implements Serializable {
 //		 + "\n Your Password is :=    "
 //		 + user.getPassword());
 //		selectedTypeUser = -1;
+		
+		
+		
+		
+		
+		
+		
+//		HttpServletRequest req = (HttpServletRequest) FacesContext
+//				.getCurrentInstance().getExternalContext().getRequest();
+//
+//		String cle = "";
+//
+//		cle = (String) req.getAttribute("cle");
+//		
+//
+//	//	user = userServiceLocal.verification();
+//		if (user != null) {
+//		
+//		
 		formDisplayed = true;
 
 		FacesMessage msg = new FacesMessage(
@@ -261,11 +298,11 @@ public class UserBean implements Serializable {
 	
 	
 
-	public String updateMember() {
+	public void updateMember() {
 		
 		member.setEtat("Accepter");
 		userServiceLocal.updateUser(member);
-		return "";
+		
 	}
 
 //	public String deleteMember() {

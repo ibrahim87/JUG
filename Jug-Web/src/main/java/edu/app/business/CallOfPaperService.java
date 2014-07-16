@@ -48,11 +48,11 @@ public class CallOfPaperService implements CallOfPaperServiceRemote,
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<CallForPaper> findCallForPaper(String name) {
+	public CallForPaper findCallForPaperBYName(String name) {
 		Query query = em
-				.createQuery("select c from CallForPaper c where c.name LIKE :name");
-		query.setParameter("name", name);
-		return query.getResultList();
+				.createQuery("select c from CallForPaper c where c.titleCFP LIKE :name");
+		query.setParameter("name", '%'+name+'%');
+		return (CallForPaper) query.getSingleResult();
 	}
 
 	@SuppressWarnings("unchecked")
@@ -70,5 +70,14 @@ public class CallOfPaperService implements CallOfPaperServiceRemote,
 	
 		return null;
 	}
+
+//	@Override
+//	public CallForPaper findCallforPaperByDate(int year) {
+//	
+//		Query query = em
+//				.createQuery("select c from CallForPaper c where c.startDatecall LIKE :year");
+//		query.setParameter("year", year);
+//		return (CallForPaper) query.getSingleResult();
+//	}
 
 }

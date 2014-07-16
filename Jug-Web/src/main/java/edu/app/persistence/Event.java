@@ -5,10 +5,13 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
@@ -17,6 +20,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "t_event")
+@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 public class Event implements Serializable {
 
 	/**
@@ -25,6 +29,7 @@ public class Event implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private int id;
 	private String title;
+	@Column(length=50000)
 	private String description;
 	private Date startDate;
 	private Date endDate;
@@ -33,10 +38,10 @@ public class Event implements Serializable {
 	private Date endliveTalk;
 	private String lienHungOut = null;
 
-	private List<Picture> pictures;
+//	private List<Picture> pictures;
 	private CallForPaper callForPaper;
 	private List<Attended> attendeds;
-	
+	private Picture picture; 
 	
 	
 	
@@ -51,7 +56,7 @@ public class Event implements Serializable {
 
 	public Event(String title, String description, Date startDate,
 			Date endDate, int numberOfPlace, Date startliveTalk,
-			Date endliveTalk, String lienHungOut, List<Picture> pictures,
+			Date endliveTalk, String lienHungOut, 
 			CallForPaper callForPaper) {
 		super();
 		this.title = title;
@@ -63,7 +68,7 @@ public class Event implements Serializable {
 		this.endliveTalk = endliveTalk;
 		this.lienHungOut = lienHungOut;
 
-		this.pictures = pictures;
+		
 		this.callForPaper = callForPaper;
 	}
 
@@ -133,14 +138,14 @@ public class Event implements Serializable {
 		this.lienHungOut = lienHungOut;
 	}
 
-	@OneToMany(mappedBy="event", cascade = CascadeType.ALL)
-	public List<Picture> getPictures() {
-		return pictures;
-	}
-
-	public void setPictures(List<Picture> pictures) {
-		this.pictures = pictures;
-	}
+//	@OneToMany(mappedBy="event", cascade = CascadeType.ALL)
+//	public List<Picture> getPictures() {
+//		return pictures;
+//	}
+//
+//	public void setPictures(List<Picture> pictures) {
+//		this.pictures = pictures;
+//	}
 
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "callofpaper_fk", unique = true)
@@ -167,6 +172,21 @@ public class Event implements Serializable {
 
 	public void setAttendeds(List<Attended> attendeds) {
 		this.attendeds = attendeds;
+	}
+
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "picture_fk", unique = true)
+	public Picture getPicture() {
+		return picture;
+	}
+
+	public void setPicture(Picture picture) {
+		this.picture = picture;
+	}
+
+	@Override
+	public String toString() {
+		return title;
 	}
 
 }

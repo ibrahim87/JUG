@@ -32,4 +32,7 @@ public interface EventServiceLocal {
 
 	Event findVipHungOut(User vip);
 
+	Event findEventByTitle(String title);
+	
+	
 }

@@ -81,7 +81,7 @@ public class Picture implements Serializable {
 	}
 	
 	
-	@ManyToOne
+	@OneToOne
 	@JoinColumn(name="event_fk")
 	public Event getEvent() {
 		return event;
