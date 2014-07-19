@@ -99,99 +99,71 @@
 
 
 
+<!-- ziiiiiiiiddd -->
+
+<h:form>
 
 		<div id="headline" class="container">
 			<div class="row-fluid">
-
+ 
+ 
+ 
+ 
+		 <ui:repeat var="Evt" value="#{eventBean.events}">
 				<div class="span3">
+				
 					<article class="post">
 						<a href="#"
 							title="Permalink to Donec consectetuer ligula vulputate sem tristique cursus"
-							rel="bookmark"> <h:graphicImage library="images"
-								name="JUG2013.jpg" class="thumb"
-								alt="photodune-2043745-college-student-s" width="225"
-								height="136" />
+							rel="bookmark">
+							<h:commandLink action="#{eventBean.doDetailEvent}">
+										 <p:graphicImage style= "height:90px; width:155px" 
+                                     value="#{eventBean.streamedPic}">
+ 									<f:param name="photo" value="#{Evt.logo.idPicture}"></f:param>
+ 									</p:graphicImage> 
+ 									
+ 									<f:param name="clickId" value="#{Evt.id}" />
+ 									</h:commandLink>
+							
+							
 
 						</a>
 						<div class="entry">
 							<h3>
 								<a href="#"
 									title="Permalink to Donec consectetuer ligula vulputate sem tristique cursus"
-									rel="bookmark">Donec consectetuer ligula vulputate...</a>
+									rel="bookmark">
+									
+										<h:commandLink action="#{eventBean.doDetailEvent}">
+										<br/><br/>
+									<h:outputText value="#{Evt.title}" />
+									
+										<f:param name="clickId" value="#{Evt.id}" />
+ 								</h:commandLink>
+									</a>
 							</h3>
-							<p>5 months ago</p>
+							<p><h:outputText value="#{Evt.startDate}" /></p>
 						</div>
 						<div class="clearfix"></div>
 					</article>
+					
+					
 				</div>
 
-				<div class="span3">
-					<article class="post">
-						<a href="#"
-							title="Permalink to Nam nibh arcu tristique eget pretium vitae libero ac risus"
-							rel="bookmark"> <h:graphicImage library="images"
-								name="JUG2014.jpg" class="thumb"
-								alt="photodune-2043745-college-student-s" width="225"
-								height="136" />
-						</a>
-						<div class="entry">
-							<h3>
-								<a href="#"
-									title="Permalink to Nam nibh arcu tristique eget pretium vitae libero ac risus"
-									rel="bookmark">Nam nibh arcu tristique eget pretiu...</a>
-							</h3>
-							<p>5 months ago</p>
-						</div>
-						<div class="clearfix"></div>
-					</article>
-				</div>
-
-				<div class="span3">
-					<article class="post">
-						<a href="#"
-							title="Permalink to Aliquam quam lectus pulvinar urna leo dignissim lorem"
-							rel="bookmark"> <h:graphicImage library="images/dummy"
-								name="shutterstock_2114081-225x136.jpg" class="thumb"
-								alt="shutterstock_2114081" width="225" height="136" />
-						</a>
-						<div class="entry">
-							<h3>
-								<a href="#"
-									title="Permalink to Aliquam quam lectus pulvinar urna leo dignissim lorem"
-									rel="bookmark">Aliquam quam lectus pulvinar urna l...</a>
-							</h3>
-							<p>6 months ago</p>
-						</div>
-						<div class="clearfix"></div>
-					</article>
-				</div>
-
-				<div class="span3">
-					<article class="post">
-						<a href="#"
-							title="Permalink to Phasellus scelerisque massa molestie iaculis lectus pulvinar"
-							rel="bookmark"> <h:graphicImage library="images/dummy"
-								name="photodune-2043745-college-student-s-225x136.jpg"
-								class="thumb" alt="shutterstock_109209743" width="225"
-								height="136" />
-
-						</a>
-						<div class="entry">
-							<h3>
-								<a href="#"
-									title="Permalink to Phasellus scelerisque massa molestie iaculis lectus pulvinar"
-									rel="bookmark">Phasellus scelerisque massa molesti...</a>
-							</h3>
-							<p>6 months ago</p>
-						</div>
-						<div class="clearfix"></div>
-					</article>
-				</div>
-
+				</ui:repeat>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+				
 			</div>
 		</div>
 
-
+</h:form>
 
 
 

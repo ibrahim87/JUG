@@ -8,129 +8,69 @@
 			<ui:define name="pageTitle"></ui:define>		
 			<ui:define name="pageContent">
 			
+			<ui:include src="/pages/JUGLeader/MenuLeader.xhtml" />
 			
-			<!-- <div id="slide-left" class="flexslider span8">
-			 -->		
-				
-			<h:form id="register">
-				<p:growl id="growl" sticky="true" showDetail="true"/>  
-  
-			<p:panel  header="Subscribe Now">
-
- 				
- 				
-				<h:panelGrid columns="3">
-					<p:outputLabel for="firstname" value="Firstname:" />
-					<p:inputText id="firstname" value="#{userBean.nom}"
-						required="true" validatorMessage="between 3 and 10">
-						
-						<f:validateLength minimum="3" maximum="10"/>
-						<f:ajax event="blur" execute="@this" render="mlsg"/>
-						<p:watermark value="first name" for="firstname"></p:watermark>
-					</p:inputText>
-					<h:message  id="mlsg" for="firstname" styleClass="error" style="BACKGROUND-COLOR: #ff0000;" />	
-						
-				
-					<p:outputLabel for="lastname" value="LastName:" />
-					<p:inputText id="lastname" value="#{userBean.prenom}"
-						required="true"  validatorMessage="between 3 and 10">
-						<f:validateLength minimum="3" maximum="20"/>
-						<f:ajax event="blur" execute="@this" render="mlasg"/>
-						<p:watermark value="last name" for="lastname"/>
-							
-					</p:inputText>
-					<h:message id ="mlasg" for="lastname" styleClass="error"/>
-						
-						
-					<h:outputText value="Gender: " />  
-       			 <p:selectOneRadio id="gender" value="#{userBean.sexe}" required="true" label="Gender">  
-            	 <f:selectItem itemLabel="Male" itemValue="Male" />  
-           		 <f:selectItem itemLabel="Female" itemValue="Memale" />  
-       			 </p:selectOneRadio>
-                      
-			<p:outputLabel />
-				
-					
-					<p:outputLabel for="eMail" value="eMail:" required="true" requiredMessage="email is required" validatorMessage="invalid email" />
-					<p:inputText id="eMail" value="#{userBean.mail}" required="true"
-						label="eMail">
-						<f:validateRegex pattern="^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$" />
-						<f:ajax event="blur" execute="@this" render="mEmailg"/>
-						
-					</p:inputText>
-						<h:message  id ="mEmailg" for="eMail" styleClass="error" />
-						
 			
-
-					<p:outputLabel  value="Login" />
-					<p:inputText id="login" value="#{userBean.login}"
-						required="true" requiredMessage="login is required" validator="#{userBean.validateLogin}">
-						<f:ajax event="blur" execute="@this" render="mlg"/>
-						<p:watermark value="login" for="login"></p:watermark>
-					</p:inputText>
-					<h:message id="mlg" for="login" styleClass="error"/>
-					
-					<p:outputLabel for="pwd" value="Password:" />
-					<p:password id="pwd" value="#{userBean.password}" required="true"
-						feedback="true" inline="true">
-						<p:watermark value="password" for="pwd"></p:watermark>
-					</p:password>
-
-<p:outputLabel />
-
-
-					<p:outputLabel for="type" value="type Compte:" />
-					<h:selectOneMenu id="type" value="#{userBean.selectedTypeUser}">
-						<f:selectItem itemValue="-1" itemLabel="choose one.." />
-						<f:selectItem itemValue="1" itemLabel="Speaker" />
-						<f:selectItem itemValue="2" itemLabel="Member" />
-						
-						<p:watermark value="user type" for="type"></p:watermark>
-					</h:selectOneMenu>
-				
-				<p:outputLabel />
-					
-				 <h:outputText value="Choose picture For you profil :  " />  
-       			 
-      	 <p:fileUpload fileUploadListener="#{userBean.upload}"  
-            mode="advanced"  
-            update="messages"  
-            auto="true"  
-            sizeLimit="10000000"   
-            allowTypes="/(\.|\/)(gif|jpe?g|png)$/"/> 
-       			 <p:growl id="messages" showDetail="true"/>  
-                       
-   			  <h:outputText />  
-
-			<h:outputText value="description : " />
-						<p:inputTextarea rows="5" cols="30" value="#{userBean.description}"
-						 queryDelay="1000" minQueryLength="4"   />
-					
 			
-  
-
-					
-				</h:panelGrid>
-
-				<br></br>
-				<h:commandButton action="#{userBean.cretNewUser}" value="valider"
-					update="@form" />
-					
+			<!-- afficher les articles -->
+			
+			<p:panel style="width:750px">
+			<h:form id="form">
+				<p:growl id="growl"></p:growl>
 				
+				<h1>All Articles For Leader</h1>
+					   <p:dataTable value="#{articlesBean2.articles}" var="atc"
+					paginator="true" rows="10"
+					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					rowsPerPageTemplate="5,10,15">
+					<p:column headerText="Picture">
+					<h:form>
+					<p:graphicImage value="#{articlesBean2.streamedPic}"  style= "height:60px; width:60px" >
+ 					<f:param name="photo" value="#{atc.picture.idPicture}"></f:param>
+ 					</p:graphicImage>
+ 					</h:form>
+					</p:column>
+					<p:column headerText="Title">
+					<h:outputText value="#{atc.title}" />
+					</p:column>
+					<p:column headerText="Date creation">
+					<h:outputText value="#{atc.datecration}" />
+					</p:column>
+					<p:column headerText="Status">
+					<h:outputText value="#{atc.status}" />
+					</p:column>
+					<p:column headerText="create  by ">
+					<h:outputText value="#{atc.user.nom} #{atc.user.prenom}" />
+					</p:column>
+					<p:column>
+					<p:commandButton value="Edit" icon="ui-icon-pencil" update=":formEmp" oncomplete="dialogEmp.show()">
+						<p:commandButton value="Delete"  update=":formEmp" action="#{articlesBean2.deleteArticle}" />
+					
+					<f:setPropertyActionListener target="#{articleBean.article}" value="#{atc}" ></f:setPropertyActionListener>
+					</p:commandButton>
+					</p:column>
+					</p:dataTable>
+					</h:form>
+					<p:dialog widgetVar="dialogEmp" header="Update Developpeur" modal="true">
+					<h:form id="formEmp">
+					<h:panelGrid columns="2">
+					<p:outputLabel value="Title"></p:outputLabel>
+					<p:inputText value="#{articleBean.article.title}"></p:inputText>
+					<p:outputLabel value="status"></p:outputLabel>
+					<p:inputText value="#{articleBean.article.status}"></p:inputText>
+					
+					
+					
+					</h:panelGrid>
+					<p:commandButton value="valider" action="#{articlesBean2.update()}" oncomplete="dialogEmp.hide()" update=":form"></p:commandButton>
+					
+					</h:form>
+					</p:dialog>
+						
 			</p:panel>
-		</h:form>
-			
-			
-			
-			<!-- </div>
-			 -->
-			
-			
+
 			
 			</ui:define>
-			
-			
-			
 			<ui:define name="pageSid">
 			
 			
@@ -227,5 +167,15 @@
 			
 			
 			
-		</ui:define>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			</ui:define>
 </ui:composition>

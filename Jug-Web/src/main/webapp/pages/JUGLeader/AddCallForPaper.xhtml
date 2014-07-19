@@ -1,0 +1,152 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/template/template.xhtml">
+                	
+			<ui:define name="pageTitle"></ui:define>		
+			<ui:define name="pageContent">
+			
+			
+			<ui:include src="/pages/JUGLeader/MenuLeader.xhtml" />
+					
+		
+			
+			<h:form id="Add">
+
+			<p:growl id="growl" sticky="true" showDetail="true" />
+
+			<p:wizard widgetVar="wiz">
+
+				<p:tab id="personal" title="Call FOR PAPER">
+
+					<p:panel header="Description from CALL FOR PAPER">
+
+						<h:messages errorClass="error" />
+
+						<h:panelGrid columns="2" columnClasses="label, value"
+							styleClass="grid" cellspacing="12">
+							
+							<h:outputText value="Title: *" />
+							<p:inputText required="true" label="Title"
+								value="#{callforpaperBean.newcall.titleCFP}" />
+									
+									
+							<h:outputText value="description : " />
+						<p:inputTextarea rows="10" cols="80" value="#{callforpaperBean.newcall.description}"
+						 queryDelay="1000000" minQueryLength="4"  />
+					
+
+						
+							<h:outputText value="Start Date:" />
+							<p:calendar 
+								value="#{callforpaperBean.newcall.startDatecall}"
+								pattern="MM/dd/yyyy HH:mm" />
+								
+								
+								
+							<h:outputText value="End Date:" />
+							<p:calendar 
+								value="#{callforpaperBean.newcall.endDatecall}"
+								pattern="MM/dd/yyyy HH:mm" />
+								
+								
+					
+					<h:outputText value="Event : " />
+				
+					<p:selectCheckboxMenu value="#{callforpaperBean.selectItemsForEvent}"
+						label="Events" filter="true" filterText="Filter"
+						filterMatchMode="startsWith" panelStyle="width:220px">
+						<f:selectItems value="#{callforpaperBean.events}" />
+					</p:selectCheckboxMenu>
+
+           		  
+						
+
+
+				
+					
+					
+					
+								
+						
+					 	<h:outputText value="Choose picture For Article  : "/>
+							<h:form>
+								
+
+								<p:fileUpload fileUploadListener="#{callforpaperBean.upload}"
+									mode="advanced" update="messages" auto="true"
+									sizeLimit="10000000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+								<p:growl id="messages" showDetail="true" />
+							</h:form>
+
+
+								
+
+
+
+
+			
+
+						</h:panelGrid>
+					</p:panel>
+				</p:tab>
+
+
+
+
+
+				<p:tab id="confirm" title="Confirmation">
+					<p:panel header="Confirmation">
+
+						<h:panelGrid id="confirmation" columns="2" cellspacing="12">
+							<h:outputText value="Title: " />
+							<h:outputText styleClass="outputLabel"
+								value="#{callforpaperBean.newcall.titleCFP}" />
+
+							<h:outputText value="Description: " />
+							<h:outputText styleClass="outputLabel"
+								value="#{callforpaperBean.newcall.description}" />
+
+							<h:outputText value="Start Date " />
+							<h:outputText styleClass="outputLabel"
+								value="#{callforpaperBean.newcall.startDatecall}" />
+
+
+							<h:outputText value="End Date : " />  
+                  		 	 <h:outputText styleClass="outputLabel"  
+                                value="#{callforpaperBean.newcall.endDatecall}"/>
+
+							
+							
+							<h:outputText value="  picture CALL FOR PAPER : " />
+							<p:graphicImage id="img" width="45px" height="60px"
+								value="#{callforpaperBean.streamedPicture}"
+								styleClass="identityPicture" />
+							<h:outputText />
+							<h:outputText />
+						</h:panelGrid>
+
+						<p:commandButton id="validate" value="Validate"
+							icon="ui-icon-check" style="margin:0"
+							action="#{callforpaperBean.AddNewCallForPaper()}" update="growl Add" />
+							<p:growl id="messages" showDetail="true" />
+					</p:panel>
+				</p:tab>
+
+			</p:wizard>
+
+		</h:form>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			</ui:define>
+</ui:composition>

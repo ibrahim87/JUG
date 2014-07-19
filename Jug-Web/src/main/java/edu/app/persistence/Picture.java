@@ -2,7 +2,9 @@ package edu.app.persistence;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -23,6 +25,7 @@ public class Picture implements Serializable {
 	private User user;
 	private CallForPaper callForPaper;
 	private Event event ;
+
 	private static final long serialVersionUID = 1L;
 	private Article article ;
 	@Id   
@@ -81,7 +84,7 @@ public class Picture implements Serializable {
 	}
 	
 	
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name="event_fk")
 	public Event getEvent() {
 		return event;
@@ -105,8 +108,6 @@ public class Picture implements Serializable {
 	public String toString() {
 		return "Picture [pictureName=" + pictureName + "]";
 	}
-
-	
 
 	
 	

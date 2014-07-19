@@ -5,6 +5,7 @@ import java.util.List;
 import javax.ejb.Local;
 
 import edu.app.persistence.Proposition;
+import edu.app.persistence.Speaker;
 import edu.app.persistence.User;
 
 @Local

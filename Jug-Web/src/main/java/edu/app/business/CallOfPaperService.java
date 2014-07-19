@@ -71,6 +71,17 @@ public class CallOfPaperService implements CallOfPaperServiceRemote,
 		return null;
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<CallForPaper> findOneCallForPaper(int pageIndex, int noOfRecords) {
+
+		Query query = em.createQuery("select c from CallForPaper c ORDER BY c.idCfp DESC ");
+		return query.setMaxResults(noOfRecords)
+				.setFirstResult(noOfRecords * pageIndex).getResultList();
+	
+	
+	}
+
 //	@Override
 //	public CallForPaper findCallforPaperByDate(int year) {
 //	

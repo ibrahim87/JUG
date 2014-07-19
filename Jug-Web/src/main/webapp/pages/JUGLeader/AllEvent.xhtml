@@ -1,0 +1,89 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/template/template.xhtml">
+                	
+			<ui:define name="pageTitle"></ui:define>		
+			<ui:define name="pageContent">
+			
+			
+			<ui:include src="/pages/JUGLeader/MenuLeader.xhtml" />
+			
+			
+			<p:panel style="width:750px">
+			<h:form id="form">
+				<p:growl id="growl"></p:growl>
+				
+						<h1>All Events</h1>
+					   <p:dataTable value="#{eventBean.events}" var="evn"
+					paginator="true" rows="10"
+					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					rowsPerPageTemplate="5,10,15">
+					<p:column headerText="Picture">
+					<h:form>
+					<p:graphicImage value="#{eventBean.streamedPic}"  style= "height:60px; width:60px" >
+ 					<f:param name="photo" value="#{evn.logo.idPicture}"></f:param>
+ 					</p:graphicImage>
+ 					</h:form>
+					</p:column>
+					<p:column headerText="Title">
+					<h:outputText value="#{evn.title}" />
+					</p:column>
+					
+					<p:column headerText="Start date">
+					<h:outputText value="#{evn.startDate}" />
+					</p:column>
+					<p:column headerText="End date">
+					<h:outputText value="#{evn.endDate}" />
+					</p:column>
+					<p:column headerText="Start StartLiveTalk">
+					<h:outputText value="#{evn.startliveTalk}" />
+					</p:column>
+					<p:column headerText="End LiveTalk">
+					<h:outputText value="#{evn.endliveTalk}" />
+					</p:column>
+					<p:column headerText="Number of place ">
+					<h:outputText value="#{evn.numberOfPlace}" />
+					</p:column>
+					<p:column>
+					<p:commandButton value="detail" icon="ui-icon-pencil" update=":formEmp" oncomplete="dialogEmp.show()">
+					<f:setPropertyActionListener target="#{eventBean.event}" value="#{evn}" ></f:setPropertyActionListener>
+					</p:commandButton>
+					</p:column>
+					</p:dataTable>
+					</h:form>
+					<p:dialog widgetVar="dialogEmp" header="Detail" modal="true">
+					<h:form id="formEmp">
+					<h:panelGrid columns="2">
+					<p:outputLabel value="Title"></p:outputLabel>
+					<p:inputText value="#{eventBean.event.title}"></p:inputText>
+					<p:outputLabel value="description"></p:outputLabel>
+					<p:inputText value="#{eventBean.event.description}"></p:inputText>
+					<p:outputLabel value="Start date"></p:outputLabel>
+					<p:calendar value="#{eventBean.event.startDate}" />
+					
+					
+					
+					</h:panelGrid>
+					<p:commandButton value="valider" action="#{eventBean.update()}" oncomplete="dialogEmp.hide()" update=":form"></p:commandButton>
+					<p:commandButton value="delete" actionListener="#{eventBean.deleteEvent()}" oncomplete="dialogEmp.hide()" update=":form"></p:commandButton>
+					
+					</h:form>
+					</p:dialog>
+						
+			</p:panel>
+
+			
+			</ui:define>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+</ui:composition>

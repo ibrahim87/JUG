@@ -25,6 +25,7 @@ public interface CallOfPaperServiceRemote {
 	List<CallForPaper> findByKeywordCallForPaper(String keyword);
 
 	 CallForPaper findCallForPaperByEvent(Event event);
-	
+	 List<CallForPaper> findOneCallForPaper(  int pageIndex, int noOfRecords);
+
 	
 }

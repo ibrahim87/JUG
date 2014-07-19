@@ -1,0 +1,81 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/template/template.xhtml">
+                	
+			<ui:define name="pageTitle"></ui:define>		
+			<ui:define name="pageContent">
+			
+			
+			<div class="register-container container">
+			
+            <div class="row" style=" margin-left: 10px">
+            
+                <div class="iphone span5" >
+                    
+                <ui:include src="/pages/TimerCall.xhtml" />
+			      
+                </div>
+               
+                  <div class="register span6">    
+			
+			
+			
+			<p:panel style="width:680px">
+			<h:form id="form">
+				<p:growl id="growl"></p:growl>
+				
+				<h1>All Proposal</h1>
+					   <p:dataTable value="#{callforpaperBean.propositionsSpeaker}" var="propS"
+					paginator="true" rows="10"
+					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					rowsPerPageTemplate="5,10,15">
+					
+					
+					<p:column headerText="duration">
+					<h:outputText value="#{propS.duration}" />
+					</p:column>
+					
+					<p:column headerText="Title Call For Paper">
+					<h:outputText value="#{propS.callForPaper.titleCFP}" />
+					</p:column>
+					
+					
+					<p:column>
+					<p:commandButton value="detail" icon="ui-icon-pencil" update=":formEmp" oncomplete="dialogEmp.show()">
+					
+					<f:setPropertyActionListener target="#{callforpaperBean.proposition}" value="#{propS}" ></f:setPropertyActionListener>
+					</p:commandButton>
+					</p:column>
+					</p:dataTable>
+					</h:form>
+					<p:dialog widgetVar="dialogEmp" header="Detail" modal="true">
+					<h:form id="formEmp">
+					<h:panelGrid columns="2">
+					<p:outputLabel value="Title : "></p:outputLabel>
+					<p:outputLabel value="##{callforpaperBean.proposition.title}"/>
+					<p:outputLabel value="description : "></p:outputLabel>
+					<p:outputLabel value="#{callforpaperBean.proposition.detail}"/>
+					
+					
+					
+					</h:panelGrid>
+					
+					</h:form>
+					</p:dialog>
+						
+			</p:panel>
+			
+			      </div> 
+            </div>
+        </div>
+			
+			
+			
+		
+			
+			
+			</ui:define>
+</ui:composition>

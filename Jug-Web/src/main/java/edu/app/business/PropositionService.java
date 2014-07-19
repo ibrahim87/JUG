@@ -9,6 +9,7 @@ import javax.persistence.Query;
 
 import edu.app.persistence.Event;
 import edu.app.persistence.Proposition;
+import edu.app.persistence.Speaker;
 import edu.app.persistence.User;
 
 @Stateless
@@ -78,8 +79,8 @@ public class PropositionService implements PropositionServiceRemote,
 
 	public List<Proposition> findPropositionBySpeaker(User user) {
 		Query query = em
-				.createQuery("select p from Proposition p where p.speaker.id=:speaker");
-		query.setParameter("cineaste", user.getidUser());
+				.createQuery("select p from Proposition p where p.speaker.idUser=:user");
+		query.setParameter("user", user.getidUser());
 		return query.getResultList();
 	
 	}

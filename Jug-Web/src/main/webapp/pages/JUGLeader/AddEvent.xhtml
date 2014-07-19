@@ -8,127 +8,143 @@
 			<ui:define name="pageTitle"></ui:define>		
 			<ui:define name="pageContent">
 			
+			<ui:include src="/pages/JUGLeader/MenuLeader.xhtml" />
+					
+		
 			
-			<!-- <div id="slide-left" class="flexslider span8">
-			 -->		
-				
-			<h:form id="register">
-				<p:growl id="growl" sticky="true" showDetail="true"/>  
-  
-			<p:panel  header="Subscribe Now">
+			<h:form id="Add">
 
- 				
- 				
-				<h:panelGrid columns="3">
-					<p:outputLabel for="firstname" value="Firstname:" />
-					<p:inputText id="firstname" value="#{userBean.nom}"
-						required="true" validatorMessage="between 3 and 10">
-						
-						<f:validateLength minimum="3" maximum="10"/>
-						<f:ajax event="blur" execute="@this" render="mlsg"/>
-						<p:watermark value="first name" for="firstname"></p:watermark>
-					</p:inputText>
-					<h:message  id="mlsg" for="firstname" styleClass="error" style="BACKGROUND-COLOR: #ff0000;" />	
-						
-				
-					<p:outputLabel for="lastname" value="LastName:" />
-					<p:inputText id="lastname" value="#{userBean.prenom}"
-						required="true"  validatorMessage="between 3 and 10">
-						<f:validateLength minimum="3" maximum="20"/>
-						<f:ajax event="blur" execute="@this" render="mlasg"/>
-						<p:watermark value="last name" for="lastname"/>
+			<p:growl id="growl" sticky="true" showDetail="true" />
+
+			<p:wizard widgetVar="wiz">
+
+				<p:tab id="personal" title="Event">
+
+					<p:panel header="Description from Event">
+
+						<h:messages errorClass="error" />
+
+						<h:panelGrid columns="2" columnClasses="label, value"
+							styleClass="grid" cellspacing="12">
 							
-					</p:inputText>
-					<h:message id ="mlasg" for="lastname" styleClass="error"/>
-						
-						
-					<h:outputText value="Gender: " />  
-       			 <p:selectOneRadio id="gender" value="#{userBean.sexe}" required="true" label="Gender">  
-            	 <f:selectItem itemLabel="Male" itemValue="Male" />  
-           		 <f:selectItem itemLabel="Female" itemValue="Memale" />  
-       			 </p:selectOneRadio>
-                      
-			<p:outputLabel />
-				
+							<h:outputText value="Title: *" />
+							<p:inputText required="true" label="Title"
+								value="#{eventBean.newEvent.title}" />
+									
+									
+							<h:outputText value="description : " />
+						<p:inputTextarea rows="10" cols="80" value="#{eventBean.newEvent.description}"
+						 queryDelay="1000000" minQueryLength="4"  />
 					
-					<p:outputLabel for="eMail" value="eMail:" required="true" requiredMessage="email is required" validatorMessage="invalid email" />
-					<p:inputText id="eMail" value="#{userBean.mail}" required="true"
-						label="eMail">
-						<f:validateRegex pattern="^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$" />
-						<f:ajax event="blur" execute="@this" render="mEmailg"/>
+
 						
-					</p:inputText>
-						<h:message  id ="mEmailg" for="eMail" styleClass="error" />
+							<h:outputText value="Start Date:" />
+							<p:calendar 
+								value="#{eventBean.newEvent.startDate}"
+								pattern="MM/dd/yyyy HH:mm" />
+								
+								
+								
+							<h:outputText value="End Date:" />
+							<p:calendar 
+								value="#{eventBean.newEvent.endDate}"
+								pattern="MM/dd/yyyy HH:mm" />
+								
+								
+								<h:outputText value="numberOfPlace" />
+								<p:inputText value="#{eventBean.newEvent.numberOfPlace}" />
+					
+					
+					
+					
+					
+								<h:outputText value="start live talk" />
+					<p:calendar value="#{eventBean.newEvent.startliveTalk}"
+						pattern="MM/dd/yyyy HH:mm" />
+					<h:outputText value="end live talk" />
+					<p:calendar value="#{eventBean.newEvent.endliveTalk}"
+						pattern="MM/dd/yyyy HH:mm" />
+
+								
+					
+					
+					
+								
 						
+					 	<h:outputText value="Choose picture For Article  : "/>
+							<h:form>
+								
+
+								<p:fileUpload fileUploadListener="#{eventBean.uploadLogo}"
+									mode="advanced" update="messages" auto="true"
+									sizeLimit="10000000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+								<p:growl id="messages" showDetail="true" />
+							</h:form>
+
+
+								
+
+
+
+
 			
 
-					<p:outputLabel  value="Login" />
-					<p:inputText id="login" value="#{userBean.login}"
-						required="true" requiredMessage="login is required" validator="#{userBean.validateLogin}">
-						<f:ajax event="blur" execute="@this" render="mlg"/>
-						<p:watermark value="login" for="login"></p:watermark>
-					</p:inputText>
-					<h:message id="mlg" for="login" styleClass="error"/>
-					
-					<p:outputLabel for="pwd" value="Password:" />
-					<p:password id="pwd" value="#{userBean.password}" required="true"
-						feedback="true" inline="true">
-						<p:watermark value="password" for="pwd"></p:watermark>
-					</p:password>
-
-<p:outputLabel />
+						</h:panelGrid>
+					</p:panel>
+				</p:tab>
 
 
-					<p:outputLabel for="type" value="type Compte:" />
-					<h:selectOneMenu id="type" value="#{userBean.selectedTypeUser}">
-						<f:selectItem itemValue="-1" itemLabel="choose one.." />
-						<f:selectItem itemValue="1" itemLabel="Speaker" />
-						<f:selectItem itemValue="2" itemLabel="Member" />
-						
-						<p:watermark value="user type" for="type"></p:watermark>
-					</h:selectOneMenu>
-				
-				<p:outputLabel />
-					
-				 <h:outputText value="Choose picture For you profil :  " />  
-       			 
-      	 <p:fileUpload fileUploadListener="#{userBean.upload}"  
-            mode="advanced"  
-            update="messages"  
-            auto="true"  
-            sizeLimit="10000000"   
-            allowTypes="/(\.|\/)(gif|jpe?g|png)$/"/> 
-       			 <p:growl id="messages" showDetail="true"/>  
-                       
-   			  <h:outputText />  
 
-			<h:outputText value="description : " />
-						<p:inputTextarea rows="5" cols="30" value="#{userBean.description}"
-						 queryDelay="1000" minQueryLength="4"   />
-					
-			
-  
 
-					
-				</h:panelGrid>
 
-				<br></br>
-				<h:commandButton action="#{userBean.cretNewUser}" value="valider"
-					update="@form" />
-					
-				
-			</p:panel>
+				<p:tab id="confirm" title="Confirmation">
+					<p:panel header="Confirmation">
+
+						<h:panelGrid id="confirmation" columns="2" cellspacing="12">
+							<h:outputText value="Title: " />
+							<h:outputText styleClass="outputLabel"
+								value="#{eventBean.newEvent.title}" />
+
+							<h:outputText value="Description: " />
+							<h:outputText styleClass="outputLabel"
+								value="#{eventBean.newEvent.description}" />
+
+							<h:outputText value="Start Date " />
+							<h:outputText styleClass="outputLabel"
+								value="#{eventBean.newEvent.startDate}" />
+
+
+							<h:outputText value="End Date : " />  
+                  		 	 <h:outputText styleClass="outputLabel"  
+                                value="#{eventBean.newEvent.endDate}"/>
+
+							
+							
+							<h:outputText value=" Profil picture : " />
+							<p:graphicImage id="img" width="45px" height="60px"
+								value="#{eventBean.streamedPicture}"
+								styleClass="identityPicture" />
+							<h:outputText />
+							<h:outputText />
+						</h:panelGrid>
+
+						<p:commandButton id="validate" value="Validate"
+							icon="ui-icon-check" style="margin:0"
+							action="#{eventBean.doNewEvent()}" update="growl Add" />
+							<p:growl id="messages" showDetail="true" />
+					</p:panel>
+				</p:tab>
+
+			</p:wizard>
+
 		</h:form>
 			
 			
 			
-			<!-- </div>
-			 -->
 			
-			
+		
 			
 			</ui:define>
-			
 			
 			
 			<ui:define name="pageSid">
@@ -228,4 +244,5 @@
 			
 			
 		</ui:define>
+			
 </ui:composition>

@@ -70,7 +70,7 @@ public class PictureService implements PictureServiceRemote,
 	 */
 	@SuppressWarnings("unchecked")
 	public List<Picture> findAllPicture() {
-		return em.createQuery("select p from Picture p").getResultList();
+		return em.createQuery("select p from edu.app.persistence.Picture p").getResultList();
 	}
 
 	/*
@@ -158,6 +158,18 @@ public class PictureService implements PictureServiceRemote,
 		Picture picture = null;
 		picture = em.find(Picture.class, id);
 		return picture;
+	}
+
+
+	@SuppressWarnings("unchecked")
+	public List<Picture> findAllPictureByEvent( Event event) {
+		Query query = em
+				.createQuery("select p from edu.app.persistence.Picture p where p.event=:event");
+		query.setParameter("event", event);
+		return query.getResultList();
+		
+		
+	
 	}
 
 	

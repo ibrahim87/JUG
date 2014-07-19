@@ -14,9 +14,8 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
-import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
-import javax.faces.model.SelectItem;
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.io.IOUtils;
 import org.primefaces.event.FileUploadEvent;
@@ -25,14 +24,18 @@ import org.primefaces.model.StreamedContent;
 
 import edu.app.business.CallOfPaperServiceLocal;
 import edu.app.business.EventServiceLocal;
+import edu.app.business.PictureServiceLocal;
+import edu.app.business.PropositionServiceLocal;
 import edu.app.business.SessionProvider;
 import edu.app.persistence.CallForPaper;
 import edu.app.persistence.Event;
 import edu.app.persistence.Picture;
+import edu.app.persistence.Proposition;
+import edu.app.persistence.Speaker;
 import edu.app.persistence.User;
 
 @ManagedBean(name = "callforpaperBean")
-@ViewScoped
+@SessionScoped
 public class CallForPaperBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -40,13 +43,18 @@ public class CallForPaperBean implements Serializable {
 	private CallOfPaperServiceLocal callOfPaperServiceLocal;
 
 	@EJB
+	private PropositionServiceLocal propositionServiceLocal;
+	
+	@EJB
 	private EventServiceLocal eventServiceLocal;
 
 	@ManagedProperty("#{SP}")
 	private SessionProvider sessionProvider;
 
 	private User user;
-
+	@EJB
+	PictureServiceLocal pictureServiceLocal;
+	
 	private CallForPaper newcall = new CallForPaper();
 
 	private StreamedContent streamedPic;
@@ -56,19 +64,44 @@ public class CallForPaperBean implements Serializable {
 	private byte[] pictures;
 	private List<Event> events;
 	private List<String> selectedEvents;
-	private List<SelectItem> selectItemsForEvent;
+	private List<Event> selectItemsForEvent;
+	private List<Proposition>propositionsSpeaker;
+	private Proposition proposition = new Proposition();
+	private List<CallForPaper>callForPapers;
+
+	private Speaker speaker;
+	
+	public Speaker getSpeaker() {
+		return speaker;
+	}
+
+	public void setSpeaker(Speaker speaker) {
+		this.speaker = speaker;
+	}
+
 	@PostConstruct
 	public void init() {
 		
-		
-		List<Event> events = eventServiceLocal.findAllEvent();
-		setSelectItemsForEvent(new ArrayList<SelectItem>(
-				events.size() + 1));
+		user = sessionProvider.getConnectedUser();
+		pictures = pictureServiceLocal.findPictureById(31).getContent();
 
-		for (Event event : events) {
-			selectItemsForEvent.add(new SelectItem(event.getId(),
-					event.getTitle()));
-		}
+		if (picture != null)
+			streamedPic = new DefaultStreamedContent(new ByteArrayInputStream(
+					pictures));
+		 
+		callForPapers=callOfPaperServiceLocal.findOneCallForPaper(0, 1);
+		
+		propositionsSpeaker=propositionServiceLocal.findPropositionBySpeaker(user);
+		
+		
+		List<Event> events = eventServiceLocal.findAllEvent(0, 8);
+		setSelectItemsForEvent(new ArrayList<Event>(
+				events.size()));
+
+//		for (Event event : events) {
+//			selectItemsForEvent.add(new Event(event.getId(),
+//					event.getTitle()));
+//		}
 	}
 
 	public CallForPaperBean() {
@@ -152,9 +185,23 @@ public class CallForPaperBean implements Serializable {
 		this.callOfPaperServiceLocal = callOfPaperServiceLocal;
 	}
 
+	
 	public StreamedContent getStreamedPic() {
+
+		FacesContext context = FacesContext.getCurrentInstance();
+		HttpServletRequest myRequest = (HttpServletRequest) context
+				.getExternalContext().getRequest();
+
+		Object o = myRequest.getParameter("photo");
+		if (o != null) {
+			int imageID = Integer.parseInt(o.toString());
+			streamedPic = new DefaultStreamedContent(new ByteArrayInputStream(
+					pictureServiceLocal.findPictureById(imageID).getContent()));
+		}
+
 		return streamedPic;
 	}
+	
 
 	public void setStreamedPic(StreamedContent streamedPic) {
 		this.streamedPic = streamedPic;
@@ -216,12 +263,57 @@ public class CallForPaperBean implements Serializable {
 		this.selectedEvents = selectedEvents;
 	}
 
-	public List<SelectItem> getSelectItemsForEvent() {
+	public List<Event> getSelectItemsForEvent() {
 		return selectItemsForEvent;
 	}
 
-	public void setSelectItemsForEvent(List<SelectItem> selectItemsForEvent) {
+	public void setSelectItemsForEvent(List<Event> selectItemsForEvent) {
 		this.selectItemsForEvent = selectItemsForEvent;
 	}
+
+	public List<CallForPaper> getCallForPapers() {
+		return callForPapers;
+	}
+
+	public void setCallForPapers(List<CallForPaper> callForPapers) {
+		this.callForPapers = callForPapers;
+	}
+
+	public PictureServiceLocal getPictureServiceLocal() {
+		return pictureServiceLocal;
+	}
+
+	public void setPictureServiceLocal(PictureServiceLocal pictureServiceLocal) {
+		this.pictureServiceLocal = pictureServiceLocal;
+	}
+
+	public List<Proposition> getPropositionsSpeaker() {
+		return propositionsSpeaker;
+	}
+
+	public void setPropositionsSpeaker(List<Proposition> propositionsSpeaker) {
+		this.propositionsSpeaker = propositionsSpeaker;
+	}
+
+	public PropositionServiceLocal getPropositionServiceLocal() {
+		return propositionServiceLocal;
+	}
+
+	public void setPropositionServiceLocal(
+			PropositionServiceLocal propositionServiceLocal) {
+		this.propositionServiceLocal = propositionServiceLocal;
+	}
+
+	public Proposition getProposition() {
+		return proposition;
+	}
+
+	public void setProposition(Proposition proposition) {
+		this.proposition = proposition;
+	}
+
+
+
+	
 
 }

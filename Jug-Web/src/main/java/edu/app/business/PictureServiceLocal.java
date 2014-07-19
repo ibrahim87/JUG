@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.ejb.Local;
 
+import edu.app.persistence.Event;
 import edu.app.persistence.Picture;
 import edu.app.persistence.User;
 
@@ -22,6 +23,9 @@ public interface PictureServiceLocal {
 
 	List<Picture> findAllPicture();
 
+	List<Picture>findAllPictureByEvent(Event event);
+	
+	
 	/**
 	 * Read image old way.
 	 * 

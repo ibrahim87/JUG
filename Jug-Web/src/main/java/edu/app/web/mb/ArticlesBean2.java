@@ -98,13 +98,17 @@ public class ArticlesBean2 implements Serializable {
 
 		articles = articleServiceLocal.findArticleByJUGLeader(0, 4);
 
+		
 		//members = userServiceLocal.findAllMembers(etat);
+		
 		leaders = userServiceLocal.findAllLeaders();
 
 		articlesJEE = articleServiceLocal.findArticleByJEE(0, 4);
 
 		OneArticleJava = articleServiceLocal.findOneArticleJava(0, 1);
+		
 		OneArticleOther = articleServiceLocal.findOneOtherArticle(0, 1);
+		
 		allArtileOther = articleServiceLocal.findArticleOther(0, 4);
 
 		// members=userServiceLocal.findAllMembers();
@@ -287,7 +291,7 @@ public class ArticlesBean2 implements Serializable {
 
 	public List<Article> getArts() {
 
-		System.out.println(arts.size());
+		//System.out.println(arts.size());
 		return arts;
 	}
 

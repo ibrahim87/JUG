@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.ejb.Local;
 
+import edu.app.persistence.Article;
 import edu.app.persistence.Event;
 import edu.app.persistence.User;
 
@@ -18,7 +19,7 @@ public interface EventServiceLocal {
 
 	Event findEventById(int idEvent);
 
-	List<Event> findAllEvent();
+	List<Event> findAllEvent(int pageIndex, int noOfRecords);
 
 	List<Event> findAllEventNotDone();
 
@@ -34,5 +35,6 @@ public interface EventServiceLocal {
 
 	Event findEventByTitle(String title);
 	
+	Event findEventLogo();
 	
 }

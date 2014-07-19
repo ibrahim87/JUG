@@ -2,6 +2,7 @@ package edu.app.persistence;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,6 +25,7 @@ public class Proposition implements Serializable {
 	private Speaker speaker;
 	private CallForPaper callForPaper;
 	private String EtatPro ;
+	@Column(length=50000)
 	private String detail ;
 	private String duration;
 	

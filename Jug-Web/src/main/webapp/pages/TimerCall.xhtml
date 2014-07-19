@@ -1,0 +1,71 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+            
+            
+            
+             <!-- <script>
+			
+				$(document).ready(function(){
+					$("#countdown").countdown({
+						date: "04/07/2014 2:00:00",
+						format: "on"
+					},
+					
+					function() {
+						// callback function
+					});
+				});
+			</script> -->
+            
+             <h:form>
+                    
+                    <ui:repeat var="call" value="#{callforpaperBean.callForPapers}">
+                    <div class="sideBar">
+                    <h1><span class="red" ><h:outputText value="#{call.titleCFP}" /> </span></h1>
+                    	
+                   			 <p:graphicImage 
+                                     value="#{callforpaperBean.streamedPic}">
+ 									<f:param name="photo" value="#{call.picture.idPicture}"></f:param>
+ 									</p:graphicImage> 
+                    	
+                    </div>
+                    <br /><br /><br />
+
+					<!-- TIMER -->
+					<div class="slider">
+						<div class="timer-area">
+							<h1>We'<span class="red" >re coming </span> soon <span class="red" > ... </span> </h1><br />
+							<ul id="countdown">
+								<li> <span class="days">1</span>
+									<p class="timeRefDays">days</p>
+								</li>
+								<li> 
+									<span class="hours">24</span>
+									<p class="timeRefHours">hours</p>
+								</li>
+								<li> 
+									<span class="minutes">00</span>
+									<p class="timeRefMinutes">minutes</p>
+								</li>
+								<li> 
+									<span class="seconds">00</span>
+									<p class="timeRefSeconds">seconds</p>
+								</li>
+							</ul>
+						</div>
+					</div><br /><br /><br />
+					<!-- end timer-area --> 
+
+                    <!-- Start WOWSlider.com -->
+					<div class="slider">
+					
+						<img src="../images/jugdate.png" alt=""/>
+					</div>  
+					
+					</ui:repeat> 	
+</h:form>
+             
+</ui:composition>

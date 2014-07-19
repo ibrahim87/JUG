@@ -1,0 +1,50 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+                	
+<h:form>  
+    <p:growl id="messages"/>
+ 
+    <p:menubar>
+        <p:submenu label="Article" icon="ui-icon-document">
+         <p:menuitem value="Add" action="#{articleBean.AddArticleJUG}" />
+               <p:separator />
+               <p:menuitem value="All Articles" action="#{articleBean.AllArticleLeader}" />
+             <p:separator />
+              
+           <p:menuitem value="All Articles of MemberJUG" action="#{articleBean.AllArticlesJUG}"  />
+           	 
+        </p:submenu>
+ 
+        <p:submenu label="Users" icon="ui-icon-disk">
+            <p:menuitem value="All Users" action="#{userBean.AllUSERMemberJUG}" />
+            
+        </p:submenu>
+        
+        <p:submenu label="Event" icon="ui-icon-disk">
+            <p:menuitem value="ADD Event" action="#{userBean.AddEvent}" />
+            <p:menuitem value="All Event" action="#{userBean.AllEvent}" />
+        </p:submenu>
+        
+         <p:submenu label="CallFor Paper" icon="ui-icon-disk">
+            <p:menuitem value="ADD Call For Paper" action="#{userBean.AddCallForPaper}" />
+             <p:menuitem value="All proposal" action="#{userBean.AllProposal}" />
+             <p:menuitem value="proposal Accepted" action="#{proposalBean.AllProposalAccepted}" />
+             <p:menuitem value="not proposal Accepted" action="#{proposalBean.AllProposalNotAccepted}" />
+           
+        </p:submenu>
+    
+    
+    
+      <p:submenu label="Message" icon="ui-icon-disk">
+            <p:menuitem value="Inbox" action="#{userBean.AddEvent}" />
+            <p:menuitem value="Compose Message" action="#{userBean.AllEvent}" />
+        </p:submenu>
+        
+    </p:menubar>
+</h:form>
+			
+
+</ui:composition>

@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.ejb.Local;
 
+import edu.app.persistence.Article;
 import edu.app.persistence.CallForPaper;
 
 @Local
@@ -18,6 +19,9 @@ public interface CallOfPaperServiceLocal {
 	CallForPaper findCallOfPaperById(int idCallOfPaper);
 
 	List<CallForPaper> findAllCallForPaper();
+	
+	 List<CallForPaper> findOneCallForPaper(  int pageIndex, int noOfRecords);
+
 
 	CallForPaper findCallForPaperBYName(String name);
 

@@ -7,6 +7,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,6 +18,9 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
 
 @Entity
 @Table(name = "t_event")
@@ -32,16 +36,17 @@ public class Event implements Serializable {
 	@Column(length=50000)
 	private String description;
 	private Date startDate;
+	
 	private Date endDate;
 	private int numberOfPlace;
 	private Date startliveTalk;
 	private Date endliveTalk;
 	private String lienHungOut = null;
-
-//	private List<Picture> pictures;
 	private CallForPaper callForPaper;
 	private List<Attended> attendeds;
-	private Picture picture; 
+	private List<Picture>pictures;
+	private Picture logo;
+	//private Picture picture; 
 	
 	
 	
@@ -89,7 +94,7 @@ public class Event implements Serializable {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
+	@Temporal(TemporalType.DATE)
 	public Date getStartDate() {
 		return startDate;
 	}
@@ -138,14 +143,7 @@ public class Event implements Serializable {
 		this.lienHungOut = lienHungOut;
 	}
 
-//	@OneToMany(mappedBy="event", cascade = CascadeType.ALL)
-//	public List<Picture> getPictures() {
-//		return pictures;
-//	}
-//
-//	public void setPictures(List<Picture> pictures) {
-//		this.pictures = pictures;
-//	}
+
 
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "callofpaper_fk", unique = true)
@@ -174,19 +172,47 @@ public class Event implements Serializable {
 		this.attendeds = attendeds;
 	}
 
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "picture_fk", unique = true)
-	public Picture getPicture() {
-		return picture;
-	}
-
-	public void setPicture(Picture picture) {
-		this.picture = picture;
-	}
+	
+	
+	
+//	@OneToOne(cascade = CascadeType.ALL)
+//	@JoinColumn(name = "picture_fk", unique = true)
+//	public Picture getPicture() {
+//		return picture;
+//	}
+//
+//	public void setPicture(Picture picture) {
+//		this.picture = picture;
+//	}
 
 	@Override
 	public String toString() {
 		return title;
+	}
+	
+	@OneToMany(mappedBy ="event", cascade=CascadeType.ALL)
+	public List<Picture> getPictures() {
+		return pictures;
+	}
+
+	public void setPictures(List<Picture> pictures) {
+		this.pictures = pictures;
+	}
+
+
+	public void addPictures(List<Picture> pictures){
+		for(Picture picture:pictures)
+			picture.setEvent(this);
+		this.pictures=pictures;
+	}
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "picture_fk", unique = true)
+	public Picture getLogo() {
+		return logo;
+	}
+
+	public void setLogo(Picture logo) {
+		this.logo = logo;
 	}
 
 }

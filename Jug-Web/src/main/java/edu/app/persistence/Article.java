@@ -16,6 +16,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "t_article")
@@ -65,7 +67,7 @@ public class Article implements Serializable {
 	public void setContenu(String contenu) {
 		this.contenu = contenu;
 	}
-
+    @Temporal(TemporalType.DATE)
 	public Date getDatecration() {
 		return datecration;
 	}

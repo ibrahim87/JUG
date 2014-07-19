@@ -1,0 +1,88 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/template/template.xhtml">
+                	
+			<ui:define name="pageTitle"></ui:define>		
+			<ui:define name="pageContent">
+			<ui:include src="/pages/JUGLeader/MenuLeader.xhtml" />
+
+			
+			
+			
+			<p:panel style="width:750px">
+			<h:form id="form">
+				<p:growl id="growl"></p:growl>
+				
+				<h1>All Proposal Not Accepted</h1> 
+					   <p:dataTable value="#{proposalBean.propositionsAccepted}" var="prop"
+					paginator="true" rows="10"
+					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					rowsPerPageTemplate="5,10,15">
+					<p:column headerText="Picture">
+					<h:form>
+					<p:graphicImage value="#{proposalBean.streamedPic}"  style= "height:60px; width:60px" >
+ 					<f:param name="photo" value="#{prop.speaker.picture.idPicture}"></f:param>
+ 					</p:graphicImage>
+ 					</h:form>
+ 					</p:column>
+ 					<p:column headerText="Speaker">
+					<h:outputText value="#{prop.speaker.nom}#{prop.speaker.prenom}" />
+					
+					</p:column>
+					<p:column headerText="Call for paper">
+					<h:outputText value="#{prop.callForPaper.titleCFP}" />
+					
+					</p:column>
+					<p:column headerText="Title">
+					<h:outputText value="#{prop.title}" />
+					</p:column>
+					
+					<p:column headerText="Status">
+					<h:outputText value="#{prop.etatPro}" />
+					</p:column>
+					<p:column headerText="Duration">
+					<h:outputText value="#{prop.duration}" />
+					</p:column>
+					
+					<p:column>
+					<p:commandButton value="Detail" icon="ui-icon-pencil" update=":formEmp" oncomplete="dialogEmp.show()">
+					
+					<p:commandButton value="Delete"  update=":form" action="#{proposalBean.deleteProposal()}" />
+					
+					<f:setPropertyActionListener target="#{proposalBean.proposition}" value="#{prop}" ></f:setPropertyActionListener>
+					</p:commandButton>
+					</p:column>
+					</p:dataTable>
+					</h:form>
+					
+					
+					
+					<p:dialog widgetVar="dialogEmp" header="Proposal" modal="true">
+					<h:form id="formEmp">
+					<h:panelGrid columns="2">
+					<p:outputLabel value="Title :"/>
+					<p:outputLabel value="#{proposalBean.proposition.title}"/>
+					<p:outputLabel value="description : "/>
+					<p:outputLabel value="#{proposalBean.proposition.detail}"/>
+					
+					
+					
+					</h:panelGrid>
+					<p:commandButton value="valider" action="#{proposalBean.updateProposal()}" oncomplete="dialogEmp.hide()" update=":form"></p:commandButton>
+					
+					</h:form>
+					</p:dialog>
+						
+			</p:panel>
+			
+			
+			
+			
+			
+			
+			
+			</ui:define>
+</ui:composition>

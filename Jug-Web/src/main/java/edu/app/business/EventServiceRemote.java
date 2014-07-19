@@ -19,7 +19,7 @@ public interface EventServiceRemote {
 
 	Event findEventById(int idEvent);
 
-	List<Event> findAllEvent();
+	List<Event> findAllEvent(int pageIndex, int noOfRecords);
 
 	List<Event> findAllEventNotDone();
 
