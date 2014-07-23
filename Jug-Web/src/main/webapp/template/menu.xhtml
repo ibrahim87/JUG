@@ -35,6 +35,41 @@
 				
 				</ul>
 				</li>
+				
+				
+				
+				
+				
+				<li class="dropdown">
+				<h:commandLink value="EVENTS"/>
+				<ul class="sub-menu">
+				 <ui:repeat var="Evt" value="#{eventBean.events}">
+					<li>
+				<h:commandLink action="#{eventBean.doDetailEvent}">
+									
+									<h:outputText value="#{Evt.title}" />
+									
+										<f:param name="clickId" value="#{Evt.id}" />
+ 								</h:commandLink>
+					</li>
+					</ui:repeat>
+				</ul></li>
+				
+				<li class="dropdown">
+				<h:commandLink value="ARTICLES"/>
+				<ul class="sub-menu">
+				 <ui:repeat var="Art" value="#{articlesBean2.allcategoriesArtciles}">
+					<li>
+				<h:commandLink action="#{articlesBean2.doDetail()}">
+									
+									<h:outputText value="#{Art.categorie}" />
+									
+										<f:param name="clickId" value="#{Art.idArticle}" />
+ 								</h:commandLink>
+					</li>
+					</ui:repeat>
+				</ul></li>
+				
 			<li class="dropdown">
 			<h:commandLink value="PROGRAMME"/>
 				<ul class="sub-menu">
@@ -95,6 +130,25 @@
 					<li><h:commandLink action="#{userBean.logout}" value="LOG OUT" /></li>
 				</ul></li>
 
+
+
+
+<li>
+<h:commandLink rendered="#{userBean.loggedIn}" action="/pages/both/messages?faces-redirect=true" >
+				
+               	 
+				 <p:graphicImage id="imga" width="20px" height="20px"
+                  		  value="/resources/images/messag.png"  />  	
+                  		  
+                  		
+                  		  <h:outputText value="#{messageBean.nbMessageUnread}" />
+                
+                  		  </h:commandLink>
+                  		  
+                 
+
+ 		 
+				</li>
 		</ul>
 
 

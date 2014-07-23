@@ -69,7 +69,7 @@ public class ArticleService implements ArticleServiceRemote, ArticleServiceLocal
 	public List<Article> findArticleByMember(User user) {
 	
 		Query query = em
-				.createQuery("select a from Article a where a.member.id=:member");
+				.createQuery("select a from Article a where a.user.idUser=:member");
 		query.setParameter("member", user.getidUser());
 		return query.getResultList();
 	}
@@ -173,7 +173,7 @@ Query query = em.createQuery("select ar from Article ar where ar.status='public'
 	@SuppressWarnings("unchecked")
 
 	public List<Article> findarticleBySpaker( int pageIndex, int noOfRecords) {
-		Query query = em.createQuery("select ar from Speaker s join s.articles ar wehre ar!=null");
+		Query query = em.createQuery("select ar from Speaker s join s.articles ar where ar!=null");
 		return query.setMaxResults(noOfRecords)
 				.setFirstResult(noOfRecords * pageIndex).getResultList();
 
@@ -181,11 +181,28 @@ Query query = em.createQuery("select ar from Article ar where ar.status='public'
 
 	
 	
+	@SuppressWarnings("unchecked")
 	public List<Article> findArticleByTitle(String title) {
 		
 		Query query = em
 				.createQuery("select c from Article c where c.title LIKE :title");
 		query.setParameter("title", title);
+		return query.getResultList();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Article> findArticlebycathegorie(int pageIndex, int noOfRecords, String categorie ) {
+		Query query = em
+				.createQuery("select ar from Article ar where ar.status='public' and ar.categorie LIKE :categorie ORDER BY ar.idArticle DESC");
+		query.setParameter("categorie", categorie);
+		return query.getResultList();
+	}
+
+	@Override
+	public List<Article> findAllcategories(int pageIndex, int noOfRecords) {
+		Query query = em
+				.createQuery("select ar from Article ar where ar.categorie='categorie'");
 		return query.getResultList();
 	}
 

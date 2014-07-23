@@ -6,6 +6,8 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+
+import org.codehaus.jackson.annotate.JsonIgnore;
 @Entity
 public class Speaker extends User implements Serializable {
 
@@ -21,6 +23,7 @@ public class Speaker extends User implements Serializable {
 		
 	}
 	 @OneToMany(mappedBy = "speaker", cascade = CascadeType.PERSIST)
+	 @JsonIgnore
 	public List<Proposition> getPropositions() {
 		return propositions;
 	}

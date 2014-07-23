@@ -240,10 +240,14 @@ public class UserService implements UserServiceRemote, UserServiceLocal {
 	}
 
 	@Override
-	public void verification() {
-	
+	public User finduserbykey(String cle) {
+		Query query = em
+				.createQuery("select u from User u where u.userkey like :cle");
+		query.setParameter("cle", cle);
+		return (User) query.getSingleResult();
 		
 	}
+
 	
 
     

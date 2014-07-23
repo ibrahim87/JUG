@@ -1,0 +1,79 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/template/template.xhtml">
+                	
+			<ui:define name="pageTitle"></ui:define>		
+			<ui:define name="pageContent">
+			
+			<ui:include src="/pages/JUGLeader/MenuLeader.xhtml" />
+			
+			
+			<p:panel style="width:750px">
+			<h:form id="form">
+				<p:growl id="growl"></p:growl>
+				
+						<h1>All Call for paper</h1>
+					   <p:dataTable value="#{callforpaperBean.callForPapersJUG}" var="cal"
+					paginator="true" rows="10"
+					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					rowsPerPageTemplate="5,10,15">
+					<p:column headerText="Picture">
+					<h:form>
+					<p:graphicImage value="#{callforpaperBean.streamedPic}"  style= "height:60px; width:60px" >
+ 					<f:param name="photo" value="#{cal.picture.idPicture}"></f:param>
+ 					</p:graphicImage>
+ 					</h:form>
+					</p:column>
+					<p:column headerText="Title">
+					<h:outputText value="#{cal.titleCFP}" />
+					</p:column>
+					
+					<p:column headerText="Description">
+					<h:outputText value="#{cal.description}" />
+					</p:column>
+					<p:column headerText="Start date">
+					<h:outputText value="#{cal.startDatecall}" />
+					</p:column>
+					<p:column headerText="End Date">
+					<h:outputText value="#{cal.endDatecall}" />
+					</p:column>
+					<p:column headerText="From Event">
+					<h:outputText value="#{cal.event}" />
+					</p:column>
+				
+					<p:column>
+					<p:commandButton value="detail" icon="ui-icon-pencil" update=":formEmp" oncomplete="dialogEmp.show()">
+					<f:setPropertyActionListener target="#{callforpaperBean.callForPaper}" value="#{cal}" ></f:setPropertyActionListener>
+					</p:commandButton>
+					</p:column>
+					</p:dataTable>
+					</h:form>
+					<p:dialog widgetVar="dialogEmp" header="Detail" modal="true">
+					<h:form id="formEmp">
+					<h:panelGrid columns="2">
+					<p:outputLabel value="Title"></p:outputLabel>
+					<p:inputText value="#{callforpaperBean.callForPaper.titleCFP}"></p:inputText>
+					<p:outputLabel value="description"/>
+					<p:inputText value="#{callforpaperBean.callForPaper.description}"/>
+					<p:inputTextarea rows="5" cols="200"  value="#{callforpaperBean.callForPaper.description}"  queryDelay="1000000" minQueryLength="4" />
+				
+					
+					</h:panelGrid>
+					<p:commandButton value="valider" action="#{callforpaperBean.updateCallForPaper()}" oncomplete="dialogEmp.hide()" update=":form"></p:commandButton>
+					<p:commandButton value="delete" actionListener="#{callforpaperBean.deleteCallForPaper()}" oncomplete="dialogEmp.hide()" update=":form"></p:commandButton>
+					
+					</h:form>
+					</p:dialog>
+						
+			</p:panel>
+			
+			
+			
+			
+			
+			
+			</ui:define>
+</ui:composition>

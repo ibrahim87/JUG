@@ -158,8 +158,15 @@ public class MessageBean implements Serializable {
 	public int getNbMessageUnread() {
 		messagesUnread = messageServiceLocal.findAssignsByReceiverAndStatus(
 				sender, false);
+		
 		nbMessageUnread = messagesUnread.size();
+		
+		
+	
 		return nbMessageUnread;
+		
+		
+		
 	}
 
 	public void setNbMessageUnread(int nbMessageUnread) {

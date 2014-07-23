@@ -51,10 +51,10 @@
 					<p:dialog widgetVar="dialogEmp" header="Update Developpeur" modal="true">
 					<h:form id="formEmp">
 					<h:panelGrid columns="2">
-					<p:outputLabel value="First name"></p:outputLabel>
-					<p:inputText value="#{userBean.member.nom}"></p:inputText>
-					<p:outputLabel value="Last name"></p:outputLabel>
-					<p:inputText value="#{userBean.member.prenom}"></p:inputText>
+					<p:outputLabel value=" First name : "></p:outputLabel>
+					<p:outputLabel value=" #{userBean.member.nom}" />
+					<p:outputLabel value="  Last name : "></p:outputLabel>
+					<p:outputLabel value=" #{userBean.member.prenom} "/>
 					
 					</h:panelGrid>
 					<p:commandButton value="valider" actionListener="#{userBean.updateMember()}" oncomplete="dialogEmp.hide()" update=":f"></p:commandButton>

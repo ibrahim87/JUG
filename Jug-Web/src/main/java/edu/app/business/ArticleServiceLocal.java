@@ -47,6 +47,8 @@ public interface ArticleServiceLocal {
 	 
 	 List<Article> findarticleBySpaker( int pageIndex, int noOfRecords);
 	 
+	 List<Article> findArticlebycathegorie(int pageIndex, int noOfRecords , String categorie);
 	 
+	 List<Article> findAllcategories(int pageIndex, int noOfRecords);
 	
 }

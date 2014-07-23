@@ -6,8 +6,8 @@ import java.security.NoSuchAlgorithmException;
 public class MD5 {
 	
 	
-	public String getEncodedPassword(String key) {
-		byte[] uniqueKey = key.getBytes();
+	public String getEncodedPassword(String userkey) {
+		byte[] uniqueKey = userkey.getBytes();
 		byte[] hash = null;
 		try {
 			hash = MessageDigest.getInstance("MD5").digest(uniqueKey);

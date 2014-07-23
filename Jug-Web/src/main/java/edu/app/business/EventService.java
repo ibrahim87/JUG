@@ -45,7 +45,7 @@ public class EventService implements EventServiceRemote, EventServiceLocal {
 	@SuppressWarnings("unchecked")
 	public List<Event> findAllEvent(int pageIndex, int noOfRecords) {
 		Query query = em
-				.createQuery("select e from Event e ORDER BY e.id DESC ");
+				.createQuery("select e from Event e ORDER BY e.id DESC");
 		
 		return query.setMaxResults(noOfRecords)
 				.setFirstResult(noOfRecords * pageIndex).getResultList();
@@ -130,6 +130,11 @@ public class EventService implements EventServiceRemote, EventServiceLocal {
 		Query query = em.createQuery("select p from Picture p where p.type=:t");
 		query.setParameter("t", "logo");
 		return  (Event) query.getSingleResult();
+	}
+
+	@Override
+	public List<Event> findAllEventJUG() {
+		return em.createQuery("select e from Event e").getResultList();
 	}
 	}
 	

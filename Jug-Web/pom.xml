@@ -43,21 +43,14 @@
 			<id>google-api-services</id>
 			<url>http://google-api-client-libraries.appspot.com/mavenrepo</url>
 		</repository>
+	   <repository>
+		  <id>JBoss repository</id>
+		  <url>https://repository.jboss.org/nexus/content/groups/public-jboss/</url>
+	   </repository>
 	</repositories>
+  
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+ 
 
 	<build>
 		<!-- Set the name of the war, used as the context root when the app is 
@@ -104,6 +97,18 @@
 			<type>pom</type>
 			<scope>provided</scope>
 		</dependency>
+				<dependency>
+			<groupId>org.jboss.resteasy</groupId>
+			<artifactId>resteasy-jaxrs</artifactId>
+			<version>2.3.2.Final</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+      <groupId>org.jboss.resteasy</groupId>
+        <artifactId>resteasy-jaxb-provider</artifactId>
+      <version>2.3.2.Final</version>
+      <scope>compile</scope>
+      </dependency>
 		<dependency>
 			<groupId>org.primefaces</groupId>
 			<artifactId>primefaces</artifactId>

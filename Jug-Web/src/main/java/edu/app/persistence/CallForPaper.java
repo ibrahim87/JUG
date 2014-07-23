@@ -16,9 +16,11 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
-@Table(name="t_callforpaper") 
+@Table(name="t_callforpaper")
+@XmlRootElement
 public class CallForPaper  implements Serializable{
 
 	/**

@@ -18,6 +18,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 // TODO: Auto-generated Javadoc
 /**
  * Entity implementation class for Entity: User.
@@ -50,6 +52,8 @@ public class User implements Serializable {
 	/** The sexe. */
 	private String sexe;
 
+	
+	
 	/** The date naiss. */
 	
 	private String contact;
@@ -61,6 +65,7 @@ public class User implements Serializable {
 	private String blog ;
 	private Picture picture;
 	private List<Article>articles;
+	private String userkey;
 
 	private static final long serialVersionUID = 1L;
 
@@ -307,6 +312,7 @@ public class User implements Serializable {
 	 */
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "picture_fk", unique = true)
+	@JsonIgnore
 	public Picture getPicture() {
 		return picture;
 	}
@@ -331,6 +337,7 @@ public class User implements Serializable {
 
 	
 	@OneToMany(mappedBy ="user", cascade = CascadeType.MERGE)
+	@JsonIgnore
 	public List<Article> getArticles() {
 		return articles;
 	}
@@ -387,6 +394,17 @@ public class User implements Serializable {
 		this.blog = blog;
 	}
 
+	public String getUserkey() {
+		return userkey;
+	}
+
+	public void setUserkey(String userkey) {
+		this.userkey = userkey;
+	}
+
+	
+
+	
 	
 
 

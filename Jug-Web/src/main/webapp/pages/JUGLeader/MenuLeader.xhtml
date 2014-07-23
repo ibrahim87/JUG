@@ -18,7 +18,7 @@
            	 
         </p:submenu>
  
-        <p:submenu label="Users" icon="ui-icon-disk">
+        <p:submenu label="JUGMember" icon="ui-icon-disk">
             <p:menuitem value="All Users" action="#{userBean.AllUSERMemberJUG}" />
             
         </p:submenu>
@@ -30,17 +30,21 @@
         
          <p:submenu label="CallFor Paper" icon="ui-icon-disk">
             <p:menuitem value="ADD Call For Paper" action="#{userBean.AddCallForPaper}" />
-             <p:menuitem value="All proposal" action="#{userBean.AllProposal}" />
-             <p:menuitem value="proposal Accepted" action="#{proposalBean.AllProposalAccepted}" />
-             <p:menuitem value="not proposal Accepted" action="#{proposalBean.AllProposalNotAccepted}" />
+             <p:menuitem value="All Call For Paper" action="#{userBean.AllCallForPaper}" />
+            
            
         </p:submenu>
     
+      <p:submenu label="Proposals from speakers" icon="ui-icon-disk">
+      		<p:menuitem value="All proposal" action="#{userBean.AllProposal}" />
+             <p:menuitem value="proposal Accepted" action="#{proposalBean.AllProposalAccepted}" />
+             <p:menuitem value="not proposal Accepted" action="#{proposalBean.AllProposalNotAccepted}" />
+      
+      </p:submenu>
     
-    
-      <p:submenu label="Message" icon="ui-icon-disk">
-            <p:menuitem value="Inbox" action="#{userBean.AddEvent}" />
-            <p:menuitem value="Compose Message" action="#{userBean.AllEvent}" />
+      <p:submenu label="Messages" icon="ui-icon-disk">
+            <p:menuitem value="Messages Send" action="#{userBean.MessagesSent}" />
+            <p:menuitem value="Compose Message" action="#{userBean.ComposerMessage}" />
         </p:submenu>
         
     </p:menubar>

@@ -36,9 +36,9 @@ public EMail() {
 			// servers will validate the domain of the from address
 			// before allowing the mail to be sent.
 			String host = "smtp.topnet.tn";
-		//	recipient = "attia.mahdi@gmail.com";
+		//	recipient = "ibrahim.daboussi@gmail.com";
 			String from = "ibrahim.daboussi@gmail.com";
-			String subject = "Inscription in Sprit Elearning";
+			String subject = "Message";
 //			text = "I am sending a message using the"
 //			+ " JavaMail API.\n"
 //			+ "Here type your message.";

@@ -68,8 +68,13 @@ public class CallForPaperBean implements Serializable {
 	private List<Proposition>propositionsSpeaker;
 	private Proposition proposition = new Proposition();
 	private List<CallForPaper>callForPapers;
-
+	private List<Event>eventsJUG;
 	private Speaker speaker;
+	private List<CallForPaper>callForPapersJUG;
+	
+	private CallForPaper callForPaper = new CallForPaper();
+	
+	private Event event = new Event();
 	
 	public Speaker getSpeaker() {
 		return speaker;
@@ -82,6 +87,9 @@ public class CallForPaperBean implements Serializable {
 	@PostConstruct
 	public void init() {
 		
+		
+		eventsJUG=eventServiceLocal.findAllEventJUG();
+		
 		user = sessionProvider.getConnectedUser();
 		pictures = pictureServiceLocal.findPictureById(31).getContent();
 
@@ -91,12 +99,16 @@ public class CallForPaperBean implements Serializable {
 		 
 		callForPapers=callOfPaperServiceLocal.findOneCallForPaper(0, 1);
 		
+		callForPapersJUG=callOfPaperServiceLocal.findAllCallForPaper();
+		
 		propositionsSpeaker=propositionServiceLocal.findPropositionBySpeaker(user);
 		
 		
 		List<Event> events = eventServiceLocal.findAllEvent(0, 8);
-		setSelectItemsForEvent(new ArrayList<Event>(
-				events.size()));
+		
+		
+//		setSelectItemsForEvent(new ArrayList<Event>(
+//				events.size()));
 
 //		for (Event event : events) {
 //			selectItemsForEvent.add(new Event(event.getId(),
@@ -116,6 +128,15 @@ public class CallForPaperBean implements Serializable {
 		user = sessionProvider.getConnectedUser();
 
 		newcall.setPicture(picture);
+		System.out.println("eveeeeeeeeeeeeeeeeent"+event);
+		
+	System.out.println(selectedEvents.get(0));			
+	    String title=selectedEvents.get(0);
+
+		
+		newcall.setEvent(eventServiceLocal.findEventByTitle(title));
+		//eventServiceLocal.updateEvent(event);
+		System.out.println("aaaaaaaaaaaaaaaaa"+event);
 		callOfPaperServiceLocal.createCallOfPaper(newcall);
 
 		FacesMessage messa = new FacesMessage("Success! ! ");
@@ -127,6 +148,34 @@ public class CallForPaperBean implements Serializable {
 
 	}
 
+	
+	public String deleteCallForPaper() {
+		user = sessionProvider.getConnectedUser();
+	
+		callOfPaperServiceLocal.deleteCallOfPaper(callForPaper);
+		callForPapersJUG.remove(callForPaper);
+
+		callForPaper= new CallForPaper();
+
+		
+		
+		return null;
+	}
+	
+	
+	public String updateCallForPaper() {
+		user = sessionProvider.getConnectedUser();
+		
+		callOfPaperServiceLocal.updateCallOfPaper(callForPaper);
+		
+		FacesMessage message = new FacesMessage("update  ! ");
+		FacesContext.getCurrentInstance().addMessage(null, message);
+		return null;
+
+	}
+	
+	
+	
 	public void upload(FileUploadEvent event) throws IOException {
 
 		FacesMessage msg = new FacesMessage("Success! ", event.getFile()
@@ -255,6 +304,9 @@ public class CallForPaperBean implements Serializable {
 		this.events = events;
 	}
 
+	
+	
+
 	public List<String> getSelectedEvents() {
 		return selectedEvents;
 	}
@@ -312,8 +364,39 @@ public class CallForPaperBean implements Serializable {
 		this.proposition = proposition;
 	}
 
+	public List<Event> getEventsJUG() {
+		return eventsJUG;
+	}
 
+	public void setEventsJUG(List<Event> eventsJUG) {
+		this.eventsJUG = eventsJUG;
+	}
 
+	public Event getEvent() {
+		return event;
+	}
+
+	public void setEvent(Event event) {
+		this.event = event;
+	}
+
+	public List<CallForPaper> getCallForPapersJUG() {
+		return callForPapersJUG;
+	}
+
+	public void setCallForPapersJUG(List<CallForPaper> callForPapersJUG) {
+		this.callForPapersJUG = callForPapersJUG;
+	}
+
+	public CallForPaper getCallForPaper() {
+		return callForPaper;
+	}
+
+	public void setCallForPaper(CallForPaper callForPaper) {
+		this.callForPaper = callForPaper;
+	}
+
+	
 	
 
 }

@@ -66,8 +66,10 @@ public class ArticlesBean2 implements Serializable {
 	private List<Article> filtredArticle;
 	private List<Article> AllArticles;
 	private String title;
-
+	private List<Article>articlesBycategorie;
 	// private User user = new Leader();
+	private String categorie;
+	private List<Article>AllcategoriesArtciles ;
 
 	// private Leader =new Leader();
 
@@ -98,7 +100,7 @@ public class ArticlesBean2 implements Serializable {
 
 		articles = articleServiceLocal.findArticleByJUGLeader(0, 4);
 
-		
+	
 		//members = userServiceLocal.findAllMembers(etat);
 		
 		leaders = userServiceLocal.findAllLeaders();
@@ -113,6 +115,9 @@ public class ArticlesBean2 implements Serializable {
 
 		// members=userServiceLocal.findAllMembers();
 
+		articlesBycategorie=articleServiceLocal.findArticlebycathegorie(0, 4, categorie);
+		AllcategoriesArtciles=articleServiceLocal.findAllcategories(0, 4);
+		
 	}
 
 	public String update() {
@@ -457,6 +462,22 @@ public class ArticlesBean2 implements Serializable {
 
 	public void setTitle(String title) {
 		this.title = title;
+	}
+
+	public List<Article> getArticlesBycategorie() {
+		return articlesBycategorie;
+	}
+
+	public void setArticlesBycategorie(List<Article> articlesBycategorie) {
+		this.articlesBycategorie = articlesBycategorie;
+	}
+
+	public List<Article> getAllcategoriesArtciles() {
+		return AllcategoriesArtciles;
+	}
+
+	public void setAllcategoriesArtciles(List<Article> allcategoriesArtciles) {
+		AllcategoriesArtciles = allcategoriesArtciles;
 	}
 
 }

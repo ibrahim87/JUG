@@ -55,10 +55,10 @@
 					
 					<h:outputText value="Event : " />
 				
-					<p:selectCheckboxMenu value="#{callforpaperBean.selectItemsForEvent}"
+					<p:selectCheckboxMenu value="#{callforpaperBean.selectedEvents}"
 						label="Events" filter="true" filterText="Filter"
 						filterMatchMode="startsWith" panelStyle="width:220px">
-						<f:selectItems value="#{callforpaperBean.events}" />
+						<f:selectItems value="#{callforpaperBean.eventsJUG}" />
 					</p:selectCheckboxMenu>
 
            		  

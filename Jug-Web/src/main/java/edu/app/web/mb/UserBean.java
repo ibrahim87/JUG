@@ -15,11 +15,8 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
-
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
-import javax.faces.model.DataModel;
-import javax.faces.model.ListDataModel;
 import javax.faces.validator.ValidatorException;
 import javax.servlet.http.HttpServletRequest;
 
@@ -30,10 +27,12 @@ import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 
 import edu.app.business.AnotherEmailSenderRemote;
+import edu.app.business.EMailLocal;
 import edu.app.business.PictureServiceLocal;
 import edu.app.business.SessionProvider;
 import edu.app.business.UserServiceLocal;
 import edu.app.persistence.Leader;
+import edu.app.persistence.MD5;
 import edu.app.persistence.Member;
 import edu.app.persistence.Picture;
 import edu.app.persistence.Speaker;
@@ -54,13 +53,15 @@ public class UserBean implements Serializable {
 	@ManagedProperty("#{SP}")
 	private SessionProvider sessionProvider;
 
+	@EJB
+	private EMailLocal eMailLocal;
+
 	private static final long serialVersionUID = 6710404278650523921L;
 	private Picture picture = new Picture();
 	private User user = new User();
 
 	private String password2;
-		private List<Member>AllMembersJUG;
-	
+	private List<Member> AllMembersJUG;
 
 	private String email2;
 	private boolean formDisplayed = false;
@@ -113,14 +114,20 @@ public class UserBean implements Serializable {
 	public UserBean() {
 	}
 
+	HttpServletRequest req;
+
 	@PostConstruct
 	public void init() {
+
+		req = (HttpServletRequest) FacesContext.getCurrentInstance()
+				.getExternalContext().getRequest();
+
 		users = userServiceLocal.findAllUser();
 		picUsers = userServiceLocal.findByStatus("Refuser");
 		loggedIn = false;
 
 		speakers = userServiceLocal.findAllSpeakers();
-		AllMembersJUG=userServiceLocal.findAllMembersJUG();
+		AllMembersJUG = userServiceLocal.findAllMembersJUG();
 	}
 
 	public String AllUSERMember() {
@@ -131,23 +138,34 @@ public class UserBean implements Serializable {
 		return "/pages/JUGLeader/ListMemberJUG?faces-redirect=true";
 	}
 
-	
 	public String AddEvent() {
 		return "/pages/JUGLeader/AddEvent?faces-redirect=true";
 	}
+
 	public String AllEvent() {
 		return "/pages/JUGLeader/AllEvent?faces-redirect=true";
 	}
-	
-	
+
 	public String AddCallForPaper() {
 		return "/pages/JUGLeader/AddCallForPaper?faces-redirect=true";
 	}
-	
+
 	public String AllProposal() {
 		return "/pages/JUGLeader/AllProposal?faces-redirect=true";
 	}
-	
+
+	public String MessagesSent() {
+		return "/pages/both/messageSent?faces-redirect=true";
+	}
+
+	public String ComposerMessage() {
+		return "/pages/both/messages?faces-redirect=true";
+	}
+
+	public String AllCallForPaper() {
+		return "/pages/JUGLeader/AllCallForPaper?faces-redirect=true";
+	}
+
 	// methods
 	public String doLogin() throws IOException {
 		String navigateTo = null;
@@ -161,47 +179,46 @@ public class UserBean implements Serializable {
 				FacesContext.getCurrentInstance().addMessage(null, message);
 
 			} else {
-				
-				
+
 				if (found.getEtat().equals("Refuser")) {
-				FacesMessage message = new FacesMessage(
-						"Registredin refused ! ");
-				FacesContext.getCurrentInstance().addMessage(null, message);
+					FacesMessage message = new FacesMessage(
+							"Registredin refused ! ");
+					FacesContext.getCurrentInstance().addMessage(null, message);
 
-			} else{
-				
-				user = found;
-				loggedIn = true;
-				sessionProvider.setConnectedUser(user);
-			
-			if (user instanceof Leader) {
+				} else {
 
-				setUserType("Leader");
-				System.out.println("  " + user.getNom());
-				navigateTo = "/pages/JUGLeader/Home?faces-redirect=true";
-				imJUGLeader = true;
-				
-				
-			}else if (user instanceof Member) {
+					user = found;
+					loggedIn = true;
+					sessionProvider.setConnectedUser(user);
 
-				setUserType("Member");
-				System.out.println("  " + user.getNom());
-				navigateTo = "/pages/JUGMember/Home?faces-redirect=true";
-				imJUGMember = true;
+					if (user instanceof Leader) {
+
+						setUserType("Leader");
+						System.out.println("  " + user.getNom());
+						navigateTo = "/pages/JUGLeader/Home?faces-redirect=true";
+						imJUGLeader = true;
+
+					} else if (user instanceof Member) {
+
+						setUserType("Member");
+						System.out.println("  " + user.getNom());
+						navigateTo = "/pages/JUGMember/Home?faces-redirect=true";
+						imJUGMember = true;
+					} else {
+						if (user instanceof Speaker) {
+
+							setUserType("Speaker");
+							System.out.println("  " + user.getNom());
+							navigateTo = "/pages/JUGSpeaker/Home?faces-redirect=true";
+							imSpeaker = true;
+						}
+					}
+
+					// user = found;
+					// loggedIn = true;
+					// sessionProvider.setConnectedUser(user);
+				}
 			}
-			else{
-			if (user instanceof Speaker) {
-
-				setUserType("Speaker");
-				System.out.println("  " + user.getNom());
-				navigateTo = "/pages/JUGSpeaker/Home?faces-redirect=true";
-				imSpeaker = true;
-			}}
-
-//			user = found;
-//			loggedIn = true;
-//			sessionProvider.setConnectedUser(user);
-			}}
 		} else {
 			FacesMessage message = new FacesMessage("Bad credentials ! ");
 			FacesContext.getCurrentInstance().addMessage(null, message);
@@ -248,37 +265,29 @@ public class UserBean implements Serializable {
 		user.setDescription(description);
 		user.setEtat("attente");
 		user.setBlog("No Completed");
-		userServiceLocal.createUser(user);
 
-//		 anotherEmailSenderRemote.sendMail(
-//		
-//		
-//		
-//		 user.getMail(),
-//		 "Register"," Hello Mr , and Mrs. felicitation you registered in our website, \n you have access to our site crossing   \n Your UserName is :=  "
-//		 + user.getLogin()
-//		 + "\n Your Password is :=    "
-//		 + user.getPassword());
-//		selectedTypeUser = -1;
-		
-		
-		
-		
-		
-		
-		
-//		HttpServletRequest req = (HttpServletRequest) FacesContext
-//				.getCurrentInstance().getExternalContext().getRequest();
-//
-//		String cle = "";
-//
-//		cle = (String) req.getAttribute("cle");
-//		
-//
-//	//	user = userServiceLocal.verification();
-//		if (user != null) {
-//		
-//		
+		MD5 md5 = new MD5();
+		String code = md5.generate();
+
+		String cryp = md5.getEncodedPassword(code);
+		String url = "http://" + req.getHeader("host") + req.getContextPath()
+				+ "/Confirmation?userkey=" + code + "?" + cryp;
+		user.setUserkey(code);
+		userServiceLocal.createUser(user);
+		eMailLocal.sendMail(user.getMail(), "URL \n " + url);
+
+		selectedTypeUser = -1;
+
+		// anotherEmailSenderRemote.sendMail(
+		//
+		//
+		//
+		// user.getMail(),
+		// "Register"," Hello Mr , and Mrs. felicitation you registered in our website, \n you have access to our site crossing   \n Your UserName is :=  "
+		// + user.getLogin()
+		// + "\n Your Password is :=    "
+		// + user.getPassword());
+
 		formDisplayed = true;
 
 		FacesMessage msg = new FacesMessage(
@@ -295,23 +304,20 @@ public class UserBean implements Serializable {
 		formDisplayed = false;
 	}
 
-	
-	
-
 	public void updateMember() {
-		
+
 		member.setEtat("Accepter");
 		userServiceLocal.updateUser(member);
-		
+
 	}
 
-//	public String deleteMember() {
-//		member = (Member) dataModel.getRowData();
-//
-//		member.setEtat("refuse");
-//		userServiceLocal.updateUser(member);
-//		return "";
-//	}
+	// public String deleteMember() {
+	// member = (Member) dataModel.getRowData();
+	//
+	// member.setEtat("refuse");
+	// userServiceLocal.updateUser(member);
+	// return "";
+	// }
 
 	public void forgetPassword() {
 		anotherEmailSenderRemote.sendMail(user.getMail(),
@@ -579,8 +585,6 @@ public class UserBean implements Serializable {
 		this.speakers = speakers;
 	}
 
-	
-
 	public Member getMember() {
 		return member;
 	}
@@ -723,6 +727,14 @@ public class UserBean implements Serializable {
 
 	public void setAllMembersJUG(List<Member> allMembersJUG) {
 		AllMembersJUG = allMembersJUG;
+	}
+
+	public EMailLocal geteMailLocal() {
+		return eMailLocal;
+	}
+
+	public void seteMailLocal(EMailLocal eMailLocal) {
+		this.eMailLocal = eMailLocal;
 	}
 
 }

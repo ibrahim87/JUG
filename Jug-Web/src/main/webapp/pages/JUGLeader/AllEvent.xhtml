@@ -60,11 +60,14 @@
 					<p:outputLabel value="Title"></p:outputLabel>
 					<p:inputText value="#{eventBean.event.title}"></p:inputText>
 					<p:outputLabel value="description"></p:outputLabel>
-					<p:inputText value="#{eventBean.event.description}"></p:inputText>
+					<p:inputTextarea rows="5" cols="200"  value="#{eventBean.event.description}"  queryDelay="1000000" minQueryLength="4" />
 					<p:outputLabel value="Start date"></p:outputLabel>
 					<p:calendar value="#{eventBean.event.startDate}" />
 					
-					
+					<p:outputLabel value="End date"></p:outputLabel>
+					<p:calendar value="#{eventBean.event.endDate}" />
+					<p:outputLabel value="Number of place"></p:outputLabel>
+					<p:inputText value="#{eventBean.event.numberOfPlace}"></p:inputText>
 					
 					</h:panelGrid>
 					<p:commandButton value="valider" action="#{eventBean.update()}" oncomplete="dialogEmp.hide()" update=":form"></p:commandButton>

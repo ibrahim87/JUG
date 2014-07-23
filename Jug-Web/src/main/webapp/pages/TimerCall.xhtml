@@ -6,11 +6,11 @@
             
             
             
-             <!-- <script>
+         <script>
 			
 				$(document).ready(function(){
 					$("#countdown").countdown({
-						date: "04/07/2014 2:00:00",
+						date: "21/07/2014 2:00:00",
 						format: "on"
 					},
 					
@@ -18,7 +18,7 @@
 						// callback function
 					});
 				});
-			</script> -->
+			</script> 
             
              <h:form>
                     
@@ -60,9 +60,16 @@
 					<!-- end timer-area --> 
 
                     <!-- Start WOWSlider.com -->
-					<div class="slider">
+                    <div class="sideBar">
+					    <h1><span class="red" ><h:outputText value="#{call.event.title}" /> </span></h1>
+				
 					
-						<img src="../images/jugdate.png" alt=""/>
+							 <p:graphicImage 
+                                     value="#{callforpaperBean.streamedPic}">
+ 									<f:param name="photo" value="#{call.event.logo.idPicture}"></f:param>
+ 									</p:graphicImage> 
+                    	
+						
 					</div>  
 					
 					</ui:repeat> 	

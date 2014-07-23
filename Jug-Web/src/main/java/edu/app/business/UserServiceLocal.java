@@ -52,7 +52,7 @@ public interface UserServiceLocal {
 	
 	public List<Member> findAllMembersJUG();
 
-		public void verification();
+	public User finduserbykey(String cle);
 	
 	
 

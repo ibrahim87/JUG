@@ -8,14 +8,10 @@
 			<ui:define name="pageTitle"></ui:define>		
 			<ui:define name="pageContent">
 			
-			<div class="subMenu">
-			<h:form>
-			<h:commandLink  action="/pages/both/messageSent" style="margin-left:220px !important">
-			 <p:graphicImage value="/resources/images/bttnsent.jpg" height="21px"></p:graphicImage>
-			</h:commandLink>
-			</h:form>
-			</div>
-			<br/><br/><br/><br/>
+			<ui:include src="/pages/JUGLeader/MenuLeader.xhtml" />
+			
+			
+			
 			
 			<h:form id="messagesForm">
 			 <p:layoutUnit position="north" size="40">

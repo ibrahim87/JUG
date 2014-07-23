@@ -20,11 +20,17 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 
 @Entity
 @Table(name = "t_event")
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
+@XmlRootElement
 public class Event implements Serializable {
 
 	/**
@@ -86,7 +92,7 @@ public class Event implements Serializable {
 	public void setId(int id) {
 		this.id = id;
 	}
-
+  
 	public String getDescription() {
 		return description;
 	}
@@ -163,7 +169,8 @@ public class Event implements Serializable {
 		this.title = title;
 	}
 	
-	@ManyToMany( mappedBy = "events" )
+	@ManyToMany( mappedBy = "events")
+	@JsonIgnore
 	public List<Attended> getAttendeds() {
 		return attendeds;
 	}
@@ -191,6 +198,7 @@ public class Event implements Serializable {
 	}
 	
 	@OneToMany(mappedBy ="event", cascade=CascadeType.ALL)
+	@JsonIgnore
 	public List<Picture> getPictures() {
 		return pictures;
 	}
@@ -207,6 +215,7 @@ public class Event implements Serializable {
 	}
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "picture_fk", unique = true)
+	@JsonIgnore
 	public Picture getLogo() {
 		return logo;
 	}

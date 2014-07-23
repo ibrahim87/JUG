@@ -28,18 +28,19 @@ public class Confirmation extends HttpServlet{
 	 */
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		String key = request.getParameter("key");
+		String userkey = request.getParameter("userkey");
 
 		String cle = "";
 		int i = 0;
-		while (key.charAt(i) != '?') {
-			cle += key.charAt(i);
+		while (userkey.charAt(i) != '?') {
+			cle += userkey.charAt(i);
 			i++;
 		}
 		request.setAttribute("cle", cle);
+		
 
 		RequestDispatcher rd = getServletContext().getRequestDispatcher(
-				"/faces/confirmation/confirmationFiche.xhtml");
+				"/pages/confirmation/confirmation.jsf");
 		rd.forward(request, response);
 
 		// request.getRequestDispatcher("/faces/confirmation/confirmationFiche.xhtml").forward(request,

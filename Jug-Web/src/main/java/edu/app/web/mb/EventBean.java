@@ -6,7 +6,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -60,6 +62,14 @@ public class EventBean implements Serializable {
 	CallOfPaperServiceRemote callOfPaperServiceRemote;
 	private int clickId;
 
+	
+	private List<Picture> allPictures;
+	
+	
+	
+	
+	
+	
 	@ManagedProperty("#{SP}")
 	private SessionProvider sessionProvider;
 
@@ -81,6 +91,10 @@ public class EventBean implements Serializable {
 	@PostConstruct
 	public void init() {
 
+		
+		
+		
+		
 		pictures = pictureServiceLocal.findPictureById(31).getContent();
 
 		if (picture != null)
@@ -89,23 +103,33 @@ public class EventBean implements Serializable {
 
 		events = eventServiceLocal.findAllEvent(0, 4);
 
-		//event=eventServiceLocal.findEventById(1);
-		//List<Picture> allPictures=pictureServiceLocal.findAllPictureByEvent(event);
 		
 		
 		
-		List<Picture> allPictures=pictureServiceLocal.findAllPicture();
+		 allPictures=pictureServiceLocal.findAllPicture();
 		
-		
-		//System.out.println("tout les pictures + "+allPictures);
-		for(Picture picture:allPictures){
+		 
+		 
+		 allStreamedPictures=new ArrayList<StreamedContent>();
 			
-			allStreamedPictures.add(getStramFromPicture(picture));
-			
-			
-			
+		 for(Picture picture:allPictures){
+		 			
+		 	
+		 			StreamedContent scContent=getStramFromPicture(picture);
+		 			allStreamedPictures.add(scContent);
+
+		 		
+		 		}
+		 		
 		
-		}
+		/*
+		 * int imageID = Integer.parseInt(o.toString());
+			streamedPic = new DefaultStreamedContent(new ByteArrayInputStream(
+					pictureServiceLocal.findPictureById(imageID).getContent()));
+		 */
+		
+		
+		
 		
 		
 //		for (StreamedContent s:allStreamedPictures){
@@ -320,6 +344,23 @@ public class EventBean implements Serializable {
 	}
 	
 	
+	
+	public Set<Speaker> findspeakers(){
+		Set<Speaker> speakers=new HashSet<Speaker>();
+		CallForPaper cfp =event.getCallForPaper();
+		List<Proposition> propos=cfp.getPropositions();
+		System.out.println("propositions "+propos);
+		for(Proposition p:propos){
+			if(p.getSpeaker().getEtat()=="Accepter"){
+			speakers.add(p.getSpeaker());
+			}
+		}
+		return speakers;
+		}
+	
+	
+	
+	
 	///les events el 7dhar fihoum speaker
 	public List<Event> getEventBySpeaker(Speaker speaker){
 		
@@ -434,6 +475,12 @@ public class EventBean implements Serializable {
 	}
 
 	public List<StreamedContent> getAllStreamedPictures() {
+		
+		
+		for(StreamedContent sc:allStreamedPictures){
+			System.out.println(sc);
+		}
+		
 		return allStreamedPictures;
 	}
 

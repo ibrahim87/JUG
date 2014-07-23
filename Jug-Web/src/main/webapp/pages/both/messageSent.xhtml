@@ -9,7 +9,7 @@
 			<ui:define name="pageContent">
 			
 			
-			
+			<ui:include src="/pages/JUGLeader/MenuLeader.xhtml" />
 			 <h:form>
     <p:dataTable id="dataTable" var="msg" value="#{messageBean.sentMessages}" sortMode="multiple" rows="10" paginator="true" >  
         <f:facet name="header">  

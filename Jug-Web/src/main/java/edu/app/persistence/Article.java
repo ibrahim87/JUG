@@ -18,9 +18,13 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.xml.bind.annotation.XmlRootElement;
+
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 @Entity
 @Table(name = "t_article")
+@XmlRootElement
 public class Article implements Serializable {
 
 	/**
@@ -78,6 +82,7 @@ public class Article implements Serializable {
 
 	@OneToMany(mappedBy = "article", cascade = { CascadeType.PERSIST,
 			CascadeType.MERGE })
+	@JsonIgnore
 	public List<Page> getPages() {
 		if (pages == null)
 			pages = new ArrayList<Page>();
@@ -123,6 +128,11 @@ public class Article implements Serializable {
 
 	public void setCategorie(String categorie) {
 		this.categorie = categorie;
+	}
+
+	@Override
+	public String toString() {
+		return "Article [title=" + title + ", contenu=" + contenu + "]";
 	}
 
 	
