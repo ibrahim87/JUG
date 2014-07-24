@@ -132,7 +132,7 @@ public class Article implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Article [title=" + title + ", contenu=" + contenu + "]";
+		return title;
 	}
 
 	

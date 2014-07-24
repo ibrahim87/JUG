@@ -1,6 +1,7 @@
 package edu.app.business;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.ejb.Local;
 
@@ -49,6 +50,6 @@ public interface ArticleServiceLocal {
 	 
 	 List<Article> findArticlebycathegorie(int pageIndex, int noOfRecords , String categorie);
 	 
-	 List<Article> findAllcategories(int pageIndex, int noOfRecords);
+	 Set<String> findAllcategories(int pageIndex, int noOfRecords);
 	
 }

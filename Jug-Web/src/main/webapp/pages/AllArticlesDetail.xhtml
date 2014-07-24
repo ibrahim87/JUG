@@ -1,0 +1,68 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/template/template.xhtml">
+                	
+			<ui:define name="pageTitle"></ui:define>		
+			<ui:define name="pageContent">
+			<h:form>
+			<div class="left span6">
+						
+						<div class="row-fluid">	
+							
+								<ui:repeat var="art" value="#{articlesBean2.allArticlesBycatego}">
+								
+							<article class="post">
+								
+								<div class="entry clearfix">
+								
+									
+									<a href="#" title="Permalink to Morbi est est lectus non rutrum commodo felis quis tortor" rel="bookmark">
+										
+
+                                   
+ 									
+									<h:commandLink action="#{articlesBean2.doDetail}">
+										 <p:graphicImage 
+                                     value="#{articlesBean2.streamedPic}">
+ 									<f:param name="photo" value="#{art.picture.idPicture}"></f:param>
+ 									</p:graphicImage> 
+ 									
+ 									<f:param name="clickId" value="#{art.idArticle}" />
+ 									</h:commandLink>
+ 									
+									
+									<h4 class="post-title">
+										<h:commandLink action="#{articlesBean2.doDetail}">
+									<h:outputText value="#{art.title}" />
+									
+										<f:param name="clickId" value="#{art.idArticle}" />
+ 									</h:commandLink>
+ 									</h4>
+									</a>
+									<p><h:outputText value="#{articlesBean2.modifDetail(art.contenu)}" /></p>
+									<div class="meta">
+										<h7> by <h:outputText value="#{art.user.prenom}"/></h7> on<span class="date"><h:outputText value="#{art.datecration}"/></span>
+									</div>
+									
+								</div>
+								
+							</article>
+							</ui:repeat>
+							
+
+							<div class="clearfix"></div>
+						</div>
+					</div>
+			
+			
+			
+			
+			
+			</h:form>
+			
+			
+			</ui:define>
+</ui:composition>

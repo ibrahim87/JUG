@@ -69,6 +69,22 @@
 					<p:outputLabel value="Number of place"></p:outputLabel>
 					<p:inputText value="#{eventBean.event.numberOfPlace}"></p:inputText>
 					
+					
+					 	<h:outputText value="Choose picture For Article  : "/>
+							<h:form>
+								
+
+								<p:fileUpload fileUploadListener="#{eventBean.uploadLogo}"
+									mode="advanced" update="messages" auto="true"
+									sizeLimit="10000000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+								<p:growl id="messages" showDetail="true" />
+							</h:form>
+
+
+								
+					
+					
+					
 					</h:panelGrid>
 					<p:commandButton value="valider" action="#{eventBean.update()}" oncomplete="dialogEmp.hide()" update=":form"></p:commandButton>
 					<p:commandButton value="delete" actionListener="#{eventBean.deleteEvent()}" oncomplete="dialogEmp.hide()" update=":form"></p:commandButton>

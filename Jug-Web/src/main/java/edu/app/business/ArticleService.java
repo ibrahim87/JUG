@@ -1,6 +1,8 @@
 package edu.app.business;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -200,10 +202,13 @@ Query query = em.createQuery("select ar from Article ar where ar.status='public'
 	}
 
 	@Override
-	public List<Article> findAllcategories(int pageIndex, int noOfRecords) {
+	public Set<String> findAllcategories(int pageIndex, int noOfRecords) {
+
 		Query query = em
-				.createQuery("select ar from Article ar where ar.categorie='categorie'");
-		return query.getResultList();
+				.createQuery("select categorie from Article");
+		Set<String> categories =new HashSet<String>(query.getResultList());
+		return categories;
+		
 	}
 
 	

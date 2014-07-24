@@ -4,6 +4,7 @@ import java.io.ByteArrayInputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -50,6 +51,7 @@ public class ArticlesBean2 implements Serializable {
 	private List<Article> articles;
 	private List<Leader> leaders;
 	private int clickId;
+	private String clickCategorie;
 	private User user = new User();
 	private List<Article> artilesCategorie;
 	private List<Article> ArtileFormCategorie = new ArrayList<Article>();
@@ -69,7 +71,8 @@ public class ArticlesBean2 implements Serializable {
 	private List<Article>articlesBycategorie;
 	// private User user = new Leader();
 	private String categorie;
-	private List<Article>AllcategoriesArtciles ;
+	private ArrayList<String> AllcategoriesArtciles ;
+	private List<Article>AllArticlesBycatego;
 
 	// private Leader =new Leader();
 
@@ -115,8 +118,14 @@ public class ArticlesBean2 implements Serializable {
 
 		// members=userServiceLocal.findAllMembers();
 
-		articlesBycategorie=articleServiceLocal.findArticlebycathegorie(0, 4, categorie);
-		AllcategoriesArtciles=articleServiceLocal.findAllcategories(0, 4);
+	//articlesBycategorie=articleServiceLocal.findArticlebycathegorie(0, 4, "java");
+		
+		AllcategoriesArtciles=new ArrayList<String>(articleServiceLocal.findAllcategories(0, 4));
+		
+		
+	//	System.out.println("aaaaaaaaaaaaaaaaaaa"+articlesBycategorie);
+		
+		//System.out.println("AllcategoriesArtciles++++++++++++++++++"+AllcategoriesArtciles);
 		
 	}
 
@@ -220,6 +229,10 @@ public class ArticlesBean2 implements Serializable {
 		return null;
 
 	}
+	
+	
+	
+
 
 	// public List<Article> findArticleBycathegorieName(Categorie categorie, int
 	// pageIndex, int noOfRecords){
@@ -268,10 +281,28 @@ public class ArticlesBean2 implements Serializable {
 		clickId = Integer.parseInt(test);
 		article = articleServiceLocal.findArticleById(clickId);
 
-		navigateTo = "/pages/Articledetail";
+		navigateTo = "/pages/Articledetail?faces-redirect=true";
+		return navigateTo;
+	}
+	
+	
+	public String doDetailAllArtiles() {
+
+		String navigateTo = null;
+
+		String test = FacesContext.getCurrentInstance().getExternalContext()
+				.getRequestParameterMap().get("clickCategorie");
+		System.out.println("cliiiiiiiiiiik"+test);
+
+		AllArticlesBycatego=articleServiceLocal.findArticlebycathegorie(0, 4, test);
+		//article = articleServiceLocal.findArticleById(clickId);
+		System.out.println("wwwwwwwwwwwwwwwwwwwwww"+AllArticlesBycatego);
+
+		navigateTo = "/pages/AllArticlesDetail?faces-redirect=true";
 		return navigateTo;
 	}
 
+	
 	public String doDetailUSER() {
 
 		String navigateTo = null;
@@ -282,7 +313,7 @@ public class ArticlesBean2 implements Serializable {
 
 		user = userServiceLocal.findUserById(clickId);
 
-		navigateTo = "/pages/Userdetail";
+		navigateTo = "/pages/Userdetail?faces-redirect=true";
 		return navigateTo;
 	}
 
@@ -472,12 +503,40 @@ public class ArticlesBean2 implements Serializable {
 		this.articlesBycategorie = articlesBycategorie;
 	}
 
-	public List<Article> getAllcategoriesArtciles() {
+	public ArrayList<String> getAllcategoriesArtciles() {
 		return AllcategoriesArtciles;
 	}
 
-	public void setAllcategoriesArtciles(List<Article> allcategoriesArtciles) {
+	public void setAllcategoriesArtciles(ArrayList<String> allcategoriesArtciles) {
 		AllcategoriesArtciles = allcategoriesArtciles;
 	}
+
+	public String getClickCategorie() {
+		return clickCategorie;
+	}
+
+	public void setClickCategorie(String clickCategorie) {
+		this.clickCategorie = clickCategorie;
+	}
+
+	public List<Article> getAllArticlesBycatego() {
+		return AllArticlesBycatego;
+	}
+
+	public void setAllArticlesBycatego(List<Article> allArticlesBycatego) {
+		AllArticlesBycatego = allArticlesBycatego;
+	}
+
+	public String getCategorie() {
+		return categorie;
+	}
+
+	public void setCategorie(String categorie) {
+		this.categorie = categorie;
+	}
+
+	
+
+	
 
 }

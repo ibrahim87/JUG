@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -174,7 +175,20 @@ public class CallForPaperBean implements Serializable {
 
 	}
 	
-	
+	public String SubmitProposition(){
+		String navigateTo=null;
+		Date end=callForPapers.get(0).getEndDatecall();
+		Date current=new Date();
+		if(current.after(end))
+		{
+			navigateTo="/pages/EndCallForPaper?faces-redirect=true";
+		
+		}
+		else navigateTo="/pages/RegisterCallForPaper?faces-redirect=true";
+		
+		
+		return navigateTo ;
+	}
 	
 	public void upload(FileUploadEvent event) throws IOException {
 
