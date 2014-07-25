@@ -37,16 +37,16 @@
 		
 			
 			
-				<ui:repeat var="spk" value="#{articlesBean2.speakers}">
+				<ui:repeat var="spk" value="#{speakerBean.speakers}">
 			<div class="kontengal4 span3">
 			
 		
 				<article class="galleries">
 					<a href="#" >
 									
-										<h:commandLink action="#{articlesBean2.doDetailUSER}">
+										<h:commandLink action="#{speakerBean.doDetailUSER()}">
 										 <p:graphicImage 
-                                     value="#{articlesBean2.streamedPic}" style="with:570px; height:100px">
+                                     value="#{speakerBean.streamedPic}" style="with:570px; height:100px">
                                      <f:param name="photo" value="#{spk.picture.idPicture}"></f:param>
  								
  									</p:graphicImage> 
@@ -59,7 +59,7 @@
 					</a>
 					<h3 class="gal-title">
 					<a href="#"  >
-					<h:commandLink action="#{articlesBean2.doDetailUSER}">
+					<h:commandLink action="#{speakerBean.doDetailUSER()}">
 									<h:outputText value="#{spk.nom}" />
 									
 										<h:outputText value="#{spk.prenom}" />

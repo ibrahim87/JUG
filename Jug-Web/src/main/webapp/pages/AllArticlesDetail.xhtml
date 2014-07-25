@@ -12,7 +12,7 @@
 						
 						<div class="row-fluid">	
 							
-								<ui:repeat var="art" value="#{articlesBean2.allArticlesBycatego}">
+								<ui:repeat var="arti" value="#{articlesBean2.allArticlesBycatego}">
 								
 							<article class="post">
 								
@@ -24,27 +24,25 @@
 
                                    
  									
-									<h:commandLink action="#{articlesBean2.doDetail}">
+									
 										 <p:graphicImage 
                                      value="#{articlesBean2.streamedPic}">
- 									<f:param name="photo" value="#{art.picture.idPicture}"></f:param>
+ 									<f:param name="photo" value="#{arti.picture.idPicture}"></f:param>
  									</p:graphicImage> 
  									
- 									<f:param name="clickId" value="#{art.idArticle}" />
- 									</h:commandLink>
+ 									
  									
 									
 									<h4 class="post-title">
-										<h:commandLink action="#{articlesBean2.doDetail}">
-									<h:outputText value="#{art.title}" />
+										
+									<h:outputText value="#{arti.title}" />
 									
-										<f:param name="clickId" value="#{art.idArticle}" />
- 									</h:commandLink>
+									
  									</h4>
 									</a>
-									<p><h:outputText value="#{articlesBean2.modifDetail(art.contenu)}" /></p>
+									<p><h:outputText value="#{articlesBean2.modifDetail(arti.contenu)}" /></p>
 									<div class="meta">
-										<h7> by <h:outputText value="#{art.user.prenom}"/></h7> on<span class="date"><h:outputText value="#{art.datecration}"/></span>
+										<h7> by <h:outputText value="#{arti.user.prenom}"/></h7> on<span class="date"><h:outputText value="#{arti.datecration}"/></span>
 									</div>
 									
 								</div>

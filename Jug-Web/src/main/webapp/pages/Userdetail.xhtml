@@ -21,23 +21,23 @@
 									
                                    
  									<h2 class="post-title" >
-									<h:outputText value="#{spk.nom}" />
+									<h:outputText value="#{speakerBean.user.nom}" />
 									
-										<h:outputText value="#{spk.prenom}" />
+										<h:outputText value="#{speakerBean.user.prenom}" />
  									
 										
  									</h2>
 									
 										 <p:graphicImage   style="with:570px; height:100px"
-                                     value="#{articlesBean2.streamedPic}">
- 									<f:param name="photo" value="#{spk.picture.idPicture}"></f:param>
+                                     value="#{speakerBean.streamedPic}">
+ 									<f:param name="photo" value="#{speakerBean.user.picture.idPicture}"></f:param>
  									</p:graphicImage><p:spacer width="20" height="20" /> <p> 
  									
  									<br/><br/>
  									
- 									<span><h7><h:graphicImage library="images" name="twitter.png" /> <h:commandLink url="http://www.twitter.com/" value="#{spk.contact}" />
+ 									<span><h7><h:graphicImage library="images" name="twitter.png" /> <h:commandLink url="http://www.twitter.com/" value="#{speakerBean.user.contact}" />
  									<br/><br/>
- 									Blog :<h:commandLink url="http://www.twitter.com/" value="#{spk.blog}" /></h7></span>
+ 									Blog :<h:commandLink url="http://www.twitter.com/" value="#{speakerBean.user.blog}" /></h7></span>
  									</p>
  									
  									
@@ -57,7 +57,7 @@
 										
 										<pre> 
 									  
-									   <h:outputText value="#{spk.description}"/>
+									   <h:outputText value="#{speakerBean.user.description}"/>
 									
 										</pre> 
 										

@@ -136,6 +136,14 @@ public class EventService implements EventServiceRemote, EventServiceLocal {
 	public List<Event> findAllEventJUG() {
 		return em.createQuery("select e from Event e").getResultList();
 	}
+
+	@Override
+	public Event findlastevent() {
+		Query query = em.createQuery("select e from Event e order by e.id desc");
+		return (Event) query.setMaxResults(1).getSingleResult();
+		
+		
+	}
 	}
 	
 

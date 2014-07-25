@@ -1,0 +1,113 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/template/template.xhtml">
+                	
+			<ui:define name="pageTitle">SubscribeEvent</ui:define>		
+			<ui:define name="pageContent">
+			
+			
+			<h:form id="register">
+				<p:growl id="growl" sticky="true" showDetail="true"/>  
+  
+			<p:panel  header="Subscribe Now">
+
+ 				
+ 				
+				<h:panelGrid columns="3">
+					<p:outputLabel for="firstname" value="Firstname:" />
+					<p:inputText id="firstname" value="#{attendedBean.attended.firstname}"
+						required="true" validatorMessage="between 3 and 10">
+						
+						<f:validateLength minimum="3" maximum="10"/>
+						<f:ajax event="blur" execute="@this" render="mlsg"/>
+						<p:watermark value="first name" for="firstname"></p:watermark>
+					</p:inputText>
+					<h:message  id="mlsg" for="firstname" styleClass="error" style="BACKGROUND-COLOR: #ff0000;" />	
+						
+				
+					<p:outputLabel for="lastname" value="LastName:" />
+					<p:inputText id="lastname" value="#{attendedBean.attended.lastname}"
+						required="true"  validatorMessage="between 3 and 10">
+						<f:validateLength minimum="3" maximum="20"/>
+						<f:ajax event="blur" execute="@this" render="mlasg"/>
+						<p:watermark value="last name" for="lastname"/>
+							
+					</p:inputText>
+					<h:message id ="mlasg" for="lastname" styleClass="error"/>
+						
+						
+						<p:outputLabel for="entrprise" value="Entreprise:" />
+					<p:inputText id="entrprise" value="#{attendedBean.attended.entreprise}"
+						required="true"  validatorMessage="between 3 and 10">
+						<f:validateLength minimum="3" maximum="20"/>
+						<f:ajax event="blur" execute="@this" render="mesg"/>
+						<p:watermark value="last name" for="lastname"/>
+							
+					</p:inputText>
+					<h:message id ="mesg" for="entrprise" styleClass="error"/>
+					
+					
+					
+					
+						
+					<h:outputText value="Gender: " />  
+       			 <p:selectOneRadio id="gender" value="#{attendedBean.attended.sexe}" required="true" label="Gender">  
+            	 <f:selectItem itemLabel="Male" itemValue="Male" />  
+           		 <f:selectItem itemLabel="Female" itemValue="Memale" />  
+       			 </p:selectOneRadio>
+                      
+			<p:outputLabel />
+				
+					
+					<p:outputLabel for="eMail" value="eMail:" required="true" requiredMessage="email is required" validatorMessage="invalid email" />
+					<p:inputText id="eMail" value="#{attendedBean.attended.mail}" required="true"
+						label="eMail">
+						<f:validateRegex pattern="^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$" />
+						<f:ajax event="blur" execute="@this" render="mEmailg"/>
+						
+					</p:inputText>
+						<h:message  id ="mEmailg" for="eMail" styleClass="error" />
+						
+			
+
+					
+
+
+
+
+					<p:outputLabel for="type" value="type:" />
+					<h:selectOneMenu id="type" value="#{attendedBean.attended.category}">
+						<f:selectItem itemValue="-1" itemLabel="choose one.." />
+						<f:selectItem itemValue="1" itemLabel="Teatcher" />
+						<f:selectItem itemValue="2" itemLabel="Student" />
+						<f:selectItem itemValue="3" itemLabel="Vip" />
+						<p:watermark value="user type" for="type"></p:watermark>
+					</h:selectOneMenu>
+				
+				<p:outputLabel />
+					
+				 
+                       
+   			  <h:outputText />  
+
+			
+
+					
+				</h:panelGrid>
+
+				<br></br>
+				<h:commandButton action="#{attendedBean.SubscribeForEvent}" value="valider"
+					update="@form" />
+					
+				
+			</p:panel>
+		</h:form>
+			
+			
+			
+			
+			</ui:define>
+</ui:composition>

@@ -40,4 +40,6 @@ public interface EventServiceLocal {
 	
 	List<Event> findAllEventJUG();
 	
+	Event findlastevent();
+	
 }

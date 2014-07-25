@@ -203,7 +203,7 @@ public class CallForPaperBean implements Serializable {
 		newcall.setPicture(picture);
 		setStreamedPicture(new DefaultStreamedContent(new ByteArrayInputStream(
 				event.getFile().getContents()), "image/png"));
-
+///  application/pdf
 		byte[] bytes = event.getFile().getContents();
 		ByteArrayInputStream in = new ByteArrayInputStream(bytes);
 		FileOutputStream out = new FileOutputStream(new File(destinationTemp

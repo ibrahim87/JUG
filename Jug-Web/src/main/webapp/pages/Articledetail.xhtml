@@ -21,18 +21,18 @@
                                    
  									<h2 class="post-title" >
 									
-									<h:outputText value="#{art.title}"/>
+									<h:outputText value="#{articlesBean2.article.title}"/>
 									
 										
  									</h2>
 									
 										 <p:graphicImage  
                                      value="#{articlesBean2.streamedPic}">
- 									<f:param name="photo" value="#{art.picture.idPicture}"></f:param>
+ 									<f:param name="photo" value="#{articlesBean2.article.picture.idPicture}"></f:param>
  									</p:graphicImage> 
  									
 									<div class="meta">
-										<h7> by <h:outputText value="#{art.user.prenom}"/></h7>  on   <span class="date"> <h:outputText value="#{art.datecration}"/></span>
+										<h7> by <h:outputText value="#{articlesBean2.article.user.nom}"/></h7>  on   <span class="date"> <h:outputText value="#{articlesBean2.article.datecration}"/></span>
 									</div>
  									
  									
@@ -40,7 +40,7 @@
  									
 									
 									
-									<p><h:outputText value="#{art.contenu}" /></p>
+									<p><h:outputText value="#{articlesBean2.article.contenu}" /></p>
 									
 									
 								</div>

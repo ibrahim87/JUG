@@ -4,7 +4,6 @@ import java.io.ByteArrayInputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -26,7 +25,6 @@ import edu.app.persistence.Speaker;
 import edu.app.persistence.User;
 
 @ManagedBean
-@javax.faces.bean.RequestScoped
 @SessionScoped
 public class ArticlesBean2 implements Serializable {
 	/**
@@ -47,7 +45,7 @@ public class ArticlesBean2 implements Serializable {
 	private List<Article> articleCategorie;
 	private List<Speaker> speakers;
 	private List<Member> members;
-	private Article article = new Article();
+	private Article article;
 	private List<Article> articles;
 	private List<Leader> leaders;
 	private int clickId;
@@ -63,26 +61,19 @@ public class ArticlesBean2 implements Serializable {
 	private List<Article> OneArticleJava;
 	private List<Article> OneArticleOther;
 	private List<Article> allArtileOther;
-	private String searchMovie;
+
 	private List<Article> AllArticle;
 	private List<Article> filtredArticle;
 	private List<Article> AllArticles;
 	private String title;
 	private List<Article>articlesBycategorie;
-	// private User user = new Leader();
+	
 	private String categorie;
 	private ArrayList<String> AllcategoriesArtciles ;
 	private List<Article>AllArticlesBycatego;
 
-	// private Leader =new Leader();
-
-	public String getSearchMovie() {
-		return searchMovie;
-	}
-
-	public void setSearchMovie(String searchMovie) {
-		this.searchMovie = searchMovie;
-	}
+	
+	
 
 	@PostConstruct
 	public void init() {
@@ -97,14 +88,14 @@ public class ArticlesBean2 implements Serializable {
 
 		AllArticles = articleServiceLocal.findAllArticle();
 
-		speakers = userServiceLocal.findAllSpeakers();
+		//speakers = userServiceLocal.findAllSpeakers();
 
 		articleCategorie = articleServiceLocal.findArticleJava(0, 4);
 
 		articles = articleServiceLocal.findArticleByJUGLeader(0, 4);
 
 	
-		//members = userServiceLocal.findAllMembers(etat);
+		members = userServiceLocal.findAllMembers(etat);
 		
 		leaders = userServiceLocal.findAllLeaders();
 
@@ -118,7 +109,7 @@ public class ArticlesBean2 implements Serializable {
 
 		// members=userServiceLocal.findAllMembers();
 
-	//articlesBycategorie=articleServiceLocal.findArticlebycathegorie(0, 4, "java");
+		//articlesBycategorie=articleServiceLocal.findArticlebycathegorie(0, 4, "java");
 		
 		AllcategoriesArtciles=new ArrayList<String>(articleServiceLocal.findAllcategories(0, 4));
 		
@@ -280,7 +271,8 @@ public class ArticlesBean2 implements Serializable {
 				.getRequestParameterMap().get("clickId");
 		clickId = Integer.parseInt(test);
 		article = articleServiceLocal.findArticleById(clickId);
-
+System.out.println("article"+article);
+System.out.println("clickId"+"   "+clickId);
 		navigateTo = "/pages/Articledetail?faces-redirect=true";
 		return navigateTo;
 	}
@@ -511,13 +503,7 @@ public class ArticlesBean2 implements Serializable {
 		AllcategoriesArtciles = allcategoriesArtciles;
 	}
 
-	public String getClickCategorie() {
-		return clickCategorie;
-	}
-
-	public void setClickCategorie(String clickCategorie) {
-		this.clickCategorie = clickCategorie;
-	}
+	
 
 	public List<Article> getAllArticlesBycatego() {
 		return AllArticlesBycatego;
@@ -535,7 +521,21 @@ public class ArticlesBean2 implements Serializable {
 		this.categorie = categorie;
 	}
 
-	
+	public String getClickCategorie() {
+		return clickCategorie;
+	}
+
+	public void setClickCategorie(String clickCategorie) {
+		this.clickCategorie = clickCategorie;
+	}
+
+public int getClickId() {
+	return clickId;
+}
+public void setClickId(int clickId) {
+	this.clickId = clickId;
+}
+
 
 	
 
