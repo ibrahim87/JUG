@@ -59,7 +59,9 @@
                 
                         
                         		<h:outputText value="The number of users in chat is :"/><p:spacer width="10px !important"></p:spacer>
+                        		
 							<h:outputText value="#{chatUsers.users.size()}" style="color:red;font-size:14px;font-weight:bold"/><br/><br/>
+							
                         <h:outputText value="Join chat now :"/>	<p:spacer width="25" />		
                         
                         <p:commandButton value="Login" actionListener="#{chatView.login}" update="container" 

@@ -31,17 +31,24 @@ public class Article implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
+	@JsonIgnore
 	private int idArticle;
 	private String title;
+	@JsonIgnore
 	private String status;
-	@Column(length=50000)
+	@Column(length = 50000)
 	private String contenu;
 	private Date datecration;
+	@JsonIgnore
 	private User user;
+	private String username;
+	@JsonIgnore
 	private List<Page> pages;
+	@JsonIgnore
 	private Picture picture;
-	private String categorie ;
+	@JsonIgnore
+	private String categorie;
+	private String urlphotoArticle;
 	
 	public Article() {
 	}
@@ -71,7 +78,8 @@ public class Article implements Serializable {
 	public void setContenu(String contenu) {
 		this.contenu = contenu;
 	}
-    @Temporal(TemporalType.DATE)
+
+	@Temporal(TemporalType.DATE)
 	public Date getDatecration() {
 		return datecration;
 	}
@@ -101,8 +109,8 @@ public class Article implements Serializable {
 		this.title = title;
 	}
 
-	@ManyToOne(cascade={CascadeType.MERGE})
-	@JoinColumn(name="user_fk")
+	@ManyToOne(cascade = { CascadeType.MERGE })
+	@JoinColumn(name = "user_fk")
 	public User getUser() {
 		return user;
 	}
@@ -110,8 +118,7 @@ public class Article implements Serializable {
 	public void setUser(User user) {
 		this.user = user;
 	}
-	
-	
+
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "picture_fk", unique = true)
 	public Picture getPicture() {
@@ -136,5 +143,26 @@ public class Article implements Serializable {
 	}
 
 	
-	
+
+	public String getUsername() {
+		if (user != null) {
+			return user.getNom();	
+		}
+		return null;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+
+
+	public String getUrlphotoArticle() {
+		return urlphotoArticle;
+	}
+
+	public void setUrlphotoArticle(String urlphotoArticle) {
+		this.urlphotoArticle = urlphotoArticle;
+	}
+
 }

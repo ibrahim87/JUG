@@ -1,9 +1,6 @@
 package edu.app.persistence;
 
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeSupport;
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -16,7 +13,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
 
@@ -28,45 +24,47 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 @Table(name = "t_user")
 public class User implements Serializable {
 
-	/** The id user. */
+	@JsonIgnore
 	private int idUser;
 
-	/** The nom. */
 	private String nom;
 
-	/** The Prenom. */
 	private String prenom;
 
-	/** The mail. */
+	@JsonIgnore
 	private String mail;
 
-	/** The etat. */
+	@JsonIgnore
 	private String etat;
 
-	/** The login. */
+	@JsonIgnore
 	private String login;
 
-	/** The password. */
+	@JsonIgnore
 	private String password;
 
-	/** The sexe. */
+	@JsonIgnore
 	private String sexe;
-
-	
-	
-	/** The date naiss. */
 	
 	private String contact;
+	@JsonIgnore
 	private String nationality;
+	@JsonIgnore
 	private String job;
+	@JsonIgnore
 	private String company;
-	@Column(length=50000)
-	private String description ;
-	private String blog ;
+	@Column(length = 50000)
+	private String description;
+	@JsonIgnore
+	private String blog;
+	@JsonIgnore
 	private Picture picture;
-	private List<Article>articles;
+	
+	private List<Article> articles;
+	@JsonIgnore
 	private String userkey;
-
+	
+	private String urlphotoSpeaker;
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -113,9 +111,8 @@ public class User implements Serializable {
 	 *            the new nom
 	 */
 	public void setNom(String nom) {
-		String oldNom = this.nom;
+
 		this.nom = nom;
-		changeSupport.firePropertyChange("nom", oldNom, nom);
 
 	}
 
@@ -130,7 +127,7 @@ public class User implements Serializable {
 	 * 
 	 * @return the mail
 	 */
-	
+
 	public String getMail() {
 		return this.mail;
 	}
@@ -226,9 +223,7 @@ public class User implements Serializable {
 	 * 
 	 * @return the date naiss
 	 */
-	
 
-	
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
@@ -236,7 +231,6 @@ public class User implements Serializable {
 		result = prime * result + ((login == null) ? 0 : login.hashCode());
 		return result;
 	}
-
 
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -261,55 +255,6 @@ public class User implements Serializable {
 				+ "]";
 	}
 
-	
-	
-	
-	
-
-	@Transient
-	public PropertyChangeSupport getChangeSupport() {
-		return changeSupport;
-	}
-
-	/**
-	 * Sets the change support.
-	 * 
-	 * @param changeSupport
-	 *            the new change support
-	 */
-	public void setChangeSupport(PropertyChangeSupport changeSupport) {
-		this.changeSupport = changeSupport;
-	}
-
-	/** The change support. */
-	private PropertyChangeSupport changeSupport = new PropertyChangeSupport(
-			this);
-
-	/**
-	 * Adds the property change listener.
-	 * 
-	 * @param listener
-	 *            the listener
-	 */
-	public void addPropertyChangeListener(PropertyChangeListener listener) {
-		changeSupport.addPropertyChangeListener(listener);
-	}
-
-	/**
-	 * Removes the property change listener.
-	 * 
-	 * @param listener
-	 *            the listener
-	 */
-	public void removePropertyChangeListener(PropertyChangeListener listener) {
-		changeSupport.removePropertyChangeListener(listener);
-	}
-
-	/**
-	 * Gets the picture.
-	 * 
-	 * @return the picture
-	 */
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "picture_fk", unique = true)
 	@JsonIgnore
@@ -335,8 +280,7 @@ public class User implements Serializable {
 		this.prenom = prenom;
 	}
 
-	
-	@OneToMany(mappedBy ="user", cascade = CascadeType.MERGE)
+	@OneToMany(mappedBy = "user", cascade = CascadeType.MERGE)
 	@JsonIgnore
 	public List<Article> getArticles() {
 		return articles;
@@ -402,11 +346,12 @@ public class User implements Serializable {
 		this.userkey = userkey;
 	}
 
-	
+	public String getUrlphotoSpeaker() {
+		return urlphotoSpeaker;
+	}
 
-	
-	
+	public void setUrlphotoSpeaker(String urlphotoSpeaker) {
+		this.urlphotoSpeaker = urlphotoSpeaker;
+	}
 
-
-	
 }

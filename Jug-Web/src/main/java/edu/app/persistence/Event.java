@@ -37,6 +37,7 @@ public class Event implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	@JsonIgnore
 	private int id;
 	private String title;
 	@Column(length=50000)
@@ -45,13 +46,22 @@ public class Event implements Serializable {
 	
 	private Date endDate;
 	private int numberOfPlace;
+	@JsonIgnore
 	private Date startliveTalk;
+	@JsonIgnore
 	private Date endliveTalk;
+	@JsonIgnore
 	private String lienHungOut = null;
+	@JsonIgnore
 	private CallForPaper callForPaper;
+	@JsonIgnore
 	private List<Attended> attendeds;
+	@JsonIgnore
 	private List<Picture>pictures;
+	@JsonIgnore
 	private Picture logo;
+	
+	private String urlphotoEvent;
 	//private Picture picture; 
 	
 	
@@ -108,7 +118,7 @@ public class Event implements Serializable {
 	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
 	}
-
+	@Temporal(TemporalType.DATE)
 	public Date getEndDate() {
 		return endDate;
 	}
@@ -222,6 +232,14 @@ public class Event implements Serializable {
 
 	public void setLogo(Picture logo) {
 		this.logo = logo;
+	}
+
+	public String getUrlphotoEvent() {
+		return urlphotoEvent;
+	}
+
+	public void setUrlphotoEvent(String urlphotoEvent) {
+		this.urlphotoEvent = urlphotoEvent;
 	}
 
 }
